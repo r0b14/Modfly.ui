@@ -1,117 +1,247 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/modfy-ui/ui/main/apps/docs/public/logo.png" alt="Modfly UI Logo" width="120" />
-  <h1>🦋 Modfly UI</h1>
-  <p><strong>Components built for learning.</strong></p>
-  <p>Uma biblioteca de componentes React disruptiva, modular e de alta performance, desenhada especificamente para o ecossistema de e-learning.</p>
 
-  <p align="center">
-    <a href="https://vlab-1.gitbook.io/modfyjs-1.0.0-alpha/"><b>Documentação</b></a> •
-    <a href="https://vlab.ufpe.br"><b>Vlab UFPE</b></a>
-  </p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="apps/docs/public/logo-dark.png">
+  <img src="apps/docs/public/logo.png" alt="Modfly UI" width="96" />
+</picture>
 
-  <div>
-    <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
-    <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
-    <img src="https://img.shields.io/badge/Turborepo-2.0-FF0080?style=for-the-badge&logo=turborepo&logoColor=white" alt="Turborepo" />
-  </div>
+# Modfly UI
+
+**Components built for learning.**
+
+Uma biblioteca de componentes React feita para quem constrói cursos — não dashboards.
+
+<br/>
+
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Turborepo](https://img.shields.io/badge/Turborepo-2-FF0080?style=flat-square&logo=turborepo&logoColor=white)](https://turbo.build)
+[![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
+
+<br/>
+
+[**Documentação**](https://modfly.design) · [**Storybook**](https://storybook.modfly.design) · [**npm**](https://npmjs.com/package/@modfly/ui) · [**Issues**](https://github.com/modfly-ui/ui/issues)
+
 </div>
 
 ---
 
-## ⚡ Por que Modfly UI?
+## O problema
 
-O Modfly UI não é apenas mais uma biblioteca de botões. É a espinha dorsal de cursos escaláveis. Enquanto o mercado foca em Dashboards, nós focamos na **Experiência do Estudante**.
+O mercado tem dezenas de bibliotecas de componentes. Nenhuma delas foi projetada para o contexto de **e-learning**.
 
-- 🧩 **Arquitetura Atômica:** Componentes granulares e reutilizáveis.
-- 🚀 **Performance Extrema:** Monorepo orquestrado por Turborepo e pnpm.
-- 🎨 **Design System-First:** Estilização baseada em Tailwind CSS para customização rápida.
-- 🧪 **Laboratório Visual:** Storybook 8 integrado para testes em tempo real.
+Carrosséis de conteúdo, citações tipográficas, acordeões didáticos, listas de aprendizado, flashcards — esses componentes existem em todo curso EAD produzido profissionalmente. E são reescritos do zero a cada projeto.
 
----
-
-## 🛠️ Stack Tecnológica
-
-| Camada | Tecnologia | Papel |
-| :--- | :--- | :--- |
-| **Workspace** | `pnpm` + `Turborepo` | Orquestração de Monorepo |
-| **Framework** | `React 18` + `TS` | UI Reativa e Tipada |
-| **Estilos** | `Tailwind CSS` | Design System Utilitário |
-| **Bundler** | `tsup` | Geração de Lib (ESM/CJS) |
-| **Docs** | `Storybook 8` | Vitrine de Componentes |
+O Modfly UI resolve isso.
 
 ---
 
-## 🏗️ Estrutura do Ecossistema
+## O que é
 
-O repositório opera em um modelo de **Monorepo**, garantindo que a biblioteca e os cursos estejam sempre sincronizados.
+Uma lib **open source**, modular, construída em cima de React 18 + Tailwind CSS, com CLI de instalação por componente — inspirada no modelo do Shadcn UI, mas com foco total no ecossistema de aprendizagem digital.
 
-```text
-Modfly.ui/
-├── 🚀 apps/
-│   ├── curso-template/   # Aplicação de consumo (O Curso)
-│   ├── storybook/        # Laboratório de componentes
-│   └── docs/             # Site oficial de documentação
-├── 📦 packages/
-│   ├── ui/               # O Core da Biblioteca (Nova)
-│   ├── @legado/          # Baú de componentes para migração
-│   └── tsconfig/         # Regras de TypeScript compartilhadas
-└── 🤖 .agents/           # Instruções para IAs (Gemini, Claude, Copilot)
+```bash
+npx modfly@latest add accordion
 ```
 
 ---
 
-## 🚦 Começo Rápido
+## Stack
 
-Para rodar o ambiente completo de desenvolvimento:
+| Camada | Tecnologia | |
+|:---|:---|:---|
+| Monorepo | Turborepo + pnpm | orquestração e cache de builds |
+| Framework | React 18 + TypeScript | UI reativa e totalmente tipada |
+| Estilo | Tailwind CSS | design system utilitário |
+| Bundler | tsup | saída ESM + CJS + `.d.ts` |
+| Docs | Next.js 15 (App Router) | site de documentação em PT-BR |
+| Storybook | v8 + Vite | laboratório visual de componentes |
+
+---
+
+## Componentes
+
+### Átomos
+
+| Componente | Docs | npm | Story |
+|:---|:---:|:---:|:---:|
+| `ButtonLink` | — | — | ✅ |
+| `ButtonPdfDownload` | — | — | — |
+| `Tooltip` | — | — | — |
+| `Postit` | — | — | — |
+| `Check` | — | — | — |
+
+### Moléculas
+
+| Componente | Docs | npm | Story |
+|:---|:---:|:---:|:---:|
+| `Citation` | ✅ | — | ✅ |
+| `Cards` | — | — | ✅ |
+| `CardFlip` | — | — | ✅ |
+| `QuoteText` | — | — | ✅ |
+| `Figure` | — | — | ✅ |
+| `IndentCitation` | — | — | ✅ |
+| `ListModule` | — | — | ✅ |
+| `MiniCards` | — | — | ✅ |
+| `Embed` | — | — | ✅ |
+| `ImageList` | — | — | ✅ |
+
+### Organismos
+
+| Componente | Docs | npm | Story |
+|:---|:---:|:---:|:---:|
+| `Accordion` | — | — | ✅ |
+| `LearningBlock` | — | — | ✅ |
+| `StarList` | — | — | — |
+| `TimelineWithCards` | — | — | — |
+| `HistoryTopics` | — | — | — |
+
+### Templates
+
+| Componente | Docs | npm | Story |
+|:---|:---:|:---:|:---:|
+| `Carousel` | — | — | ✅ |
+| `Slider` | — | — | ✅ |
+| `Pagination` | — | — | ✅ |
+| `UnityBanner` | — | — | — |
+| `Glossary` | — | — | — |
+
+### `@modfly/ui-avamec` — sub-pacote
+
+Questões interativas compatíveis com o padrão AVAMEC.
+
+`QuestionOption` · `QuestionMultipleAnswer` · `QuestionTrueOrFalse` · `QuestionGrid` · `QuestionCorrelation` · `QuestionDragDrop` · `QuestionWritten` · `SendActivityButton`
+
+---
+
+## Estrutura do repositório
+
+```
+Modfly.ui/
+├── apps/
+│   ├── docs/              # site de documentação (Next.js 15)
+│   ├── storybook/         # laboratório visual (Storybook v8)
+│   └── curso-template/    # app de consumo — fonte dos componentes
+├── packages/
+│   ├── ui/                # core da biblioteca (@modfly/ui)
+│   └── tsconfig/          # tsconfig compartilhado
+├── ARCHITECTURE.md
+├── PLANO_BIBLIOTECA_UI.md
+├── turbo.json
+└── pnpm-workspace.yaml
+```
+
+---
+
+## Início rápido
 
 ```bash
-# Instale as ferramentas (se não tiver)
+# Pré-requisito: Node 18+ e pnpm
 npm install -g pnpm
 
-# Instale as dependências
+# Clone e instale
+git clone https://github.com/modfly-ui/ui
+cd ui
 pnpm install
 
-# Inicie o modo desenvolvimento (Turbo + Storybook)
+# Inicie o ambiente completo
 pnpm dev
 ```
 
+O comando `pnpm dev` sobe em paralelo o **site de docs** (`localhost:3000`), o **Storybook** (`localhost:6006`) e o **curso-template** (`localhost:3001`).
+
 ---
 
-## ✍️ Autores & Contribuidores
+## Uso no seu projeto
 
-Este projeto nasceu de pesquisas e desenvolvimentos incubados inicialmente no **[Vlab UFPE](https://vlab.ufpe.br)**, e hoje é mantido com paixão por uma comunidade de desenvolvedores autônomos. Conecte-se conosco:
+```bash
+# instala a lib
+pnpm add @modfly/ui
+
+# ou, no modelo CLI (em breve)
+npx modfly@latest add citation
+```
+
+Adicione o caminho ao `content` do seu `tailwind.config`:
+
+```js
+content: [
+  "./src/**/*.{js,ts,jsx,tsx}",
+  "./node_modules/@modfly/ui/dist/**/*.js",
+]
+```
+
+```tsx
+import { Citation, Accordion } from '@modfly/ui'
+
+export default function Aula() {
+  return (
+    <Citation
+      author="Paulo Freire"
+      text="Ensinar não é transferir conhecimento, mas criar possibilidades para a sua produção."
+    />
+  )
+}
+```
+
+---
+
+## Roadmap
+
+```
+✅ Fase 0 — Monorepo + site de docs
+🔄 Fase 1 — Migração dos componentes para packages/ui
+🔄 Fase 2 — Deploy (Vercel) + domínio + npm
+⏳ Fase 3 — @modfly/ui-avamec (questões interativas)
+⏳ Fase 4 — CLI + polimento + Changesets
+```
+
+---
+
+## Contribuindo
+
+Toda contribuição é bem-vinda — do relatório de bug à nova história no Storybook. Antes de abrir um PR, leia o [padrão de documentação de componentes](COMPONENT-DOC-PATTERN.md) e o guia de [assets PNG/SVG](img-svg.md).
+
+```
+feat: novo componente
+fix: correção de bug
+docs: mudança em documentação
+style: formatação / visual
+refactor: refatoração
+perf: melhoria de performance
+```
+
+Seguimos o padrão **[Conventional Commits](https://www.conventionalcommits.org/pt-br)**.
+
+---
+
+## Autor
 
 <table>
   <tr>
-    <td align="center">
+    <td width="120" align="center" valign="top">
       <a href="https://github.com/r0b14">
-        <img src="https://github.com/r0b14.png" width="100px;" alt="Robson Thiago"/><br />
-        <sub><b>Robson Thiago</b></a></sub><br />
-        <a href="https://twitter.com/_r0b14" title="Twitter">🌐</a> 
-        <a href="https://linkedin.com/in/robson-thiago" title="LinkedIn">🔗</a>
+        <img src="https://github.com/r0b14.png" width="80" style="border-radius:50%" /><br/>
+        <sub><b>Robson Thiago</b></sub>
       </a>
     </td>
-    <!-- Adicione mais autores aqui seguindo o mesmo padrão -->
+    <td valign="top">
+      <strong>Criador & mantenedor principal</strong><br/>
+      <br/>
+      Designer de sistemas que escreve TypeScript. Começou a construir essa lib porque nenhuma outra entendia o que é produzir um curso online de verdade — com flashcards, carrosséis pedagógicos e componentes que respeitam o estudante.<br/>
+      <br/>
+      <a href="https://twitter.com/_r0b14">Twitter</a> ·
+      <a href="https://linkedin.com/in/robson-thiago">LinkedIn</a> ·
+      <a href="https://github.com/r0b14">GitHub</a>
+    </td>
   </tr>
 </table>
 
----
-
-## 📝 Padrão de Commits
-
-Seguimos estritamente o **[Conventional Commits](https://www.conventionalcommits.org/pt-br)**. 
-
-- `feat`: Novo recurso
-- `fix`: Correção de bug
-- `docs`: Mudança em documentação
-- `style`: Formatação/Visual
-- `refactor`: Refatoração de código
-- `perf`: Melhoria de performance
+> Este projeto nasceu de pesquisas incubadas no **[Vlab UFPE](https://vlab.ufpe.br)** e hoje é desenvolvido de forma independente.
 
 ---
 
 <div align="center">
-  <p>Desenvolvido com ❤️ por <strong>Desenvolvedores Autônomos</strong></p>
-  <p><i>Inspirado pelas inovações em e-learning iniciadas no Vlab UFPE</i></p>
+  <sub>MIT License · feito com foco no estudante</sub>
 </div>
