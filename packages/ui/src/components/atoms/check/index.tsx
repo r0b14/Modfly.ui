@@ -1,10 +1,10 @@
 import React from "react";
 
 // SVGs como componentes React (via plugin SVGR configurado no tsup)
-import { ReactComponent as TopCheckSVGGreen } from "./assets/topCheckGreen.svg";
-import { ReactComponent as BottomCheckSVGGreen } from "./assets/bottomCheckGreen.svg";
-import { ReactComponent as TopCheckSVGBlue } from "./assets/topCheckBlue.svg";
-import { ReactComponent as BottomCheckSVGBlue } from "./assets/bottomCheckBlue.svg";
+import TopCheckSVGGreen from "./assets/topCheckGreen.svg";
+import BottomCheckSVGGreen from "./assets/bottomCheckGreen.svg";
+import TopCheckSVGBlue from "./assets/topCheckBlue.svg";
+import BottomCheckSVGBlue from "./assets/bottomCheckBlue.svg";
 
 // Ícone do check (convertido para SVG)
 import checkIcon from "./assets/checkIcon.svg";

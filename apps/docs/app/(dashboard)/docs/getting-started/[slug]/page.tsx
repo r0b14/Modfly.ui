@@ -26,6 +26,237 @@ export default async function GettingStartedPage({ params }: GettingStartedPageP
     notFound();
   }
 
+  if (slug === "introduction") {
+    return (
+      <div className="grid grid-cols-[1fr_260px] min-h-screen">
+        <div className="min-w-0 px-10">
+          <header className="doc-head">
+            <div className="doc-cat">Getting Started · 01 of 04</div>
+            <h1 className="doc-title">
+              Components built for <i>learning.</i>
+            </h1>
+            <p className="doc-lead">
+              A <strong>Modfly UI</strong> é uma biblioteca de componentes React projetada especificamente para o ecossistema de e-learning e cursos estruturados.
+            </p>
+          </header>
+
+          <article className="doc-prose">
+            <section id="philosophy">
+              <h2 className="doc-h2">
+                <span className="doc-h2-num">01 · Filosofia</span>
+                Design para Educação
+              </h2>
+              <p className="doc-p">
+                Diferente de bibliotecas genéricas, a Modfly foca na hierarquia de informação necessária para o ensino. Nossos componentes são pensados para reduzir a carga cognitiva, destacando citações, blocos de reflexão e transições de conteúdo.
+              </p>
+              <ul className="prose-ul">
+                <li className="prose-li"><strong>Acessibilidade primeiro:</strong> Navegação por teclado e suporte a leitores de tela em componentes complexos.</li>
+                <li className="prose-li"><strong>Escalabilidade:</strong> Cresce junto com a complexidade do seu curso.</li>
+                <li className="prose-li"><strong>Opinionated, but flexible:</strong> Design system pronto para uso, mas totalmente customizável via Tailwind.</li>
+              </ul>
+            </section>
+
+            <section id="structure">
+              <h2 className="doc-h2">
+                <span className="doc-h2-num">02 · Estrutura</span>
+                Atomic Design
+              </h2>
+              <p className="doc-p">
+                Organizamos nossos componentes seguindo a metodologia Atomic Design, facilitando a descoberta e manutenção:
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+                <div className="p-6 bg-[var(--paper)] border border-rule rounded-xl">
+                  <h4 className="font-bold mb-2">Átomos</h4>
+                  <p className="text-sm text-[var(--muted)]">Botões, ícones e elementos base.</p>
+                </div>
+                <div className="p-6 bg-[var(--paper)] border border-rule rounded-xl">
+                  <h4 className="font-bold mb-2">Moléculas</h4>
+                  <p className="text-sm text-[var(--muted)]">Citações, cards e grupos de botões.</p>
+                </div>
+                <div className="p-6 bg-[var(--paper)] border border-rule rounded-xl">
+                  <h4 className="font-bold mb-2">Organismos</h4>
+                  <p className="text-sm text-[var(--muted)]">Accordions complexos e blocos de aprendizagem.</p>
+                </div>
+                <div className="p-6 bg-[var(--paper)] border border-rule rounded-xl">
+                  <h4 className="font-bold mb-2">Templates</h4>
+                  <p className="text-sm text-[var(--muted)]">Carousels, banners de unidade e paginação.</p>
+                </div>
+              </div>
+            </section>
+
+            <section id="next">
+              <Pager
+                next={{
+                  href: "/docs/getting-started/installation",
+                  label: "Próximo",
+                  title: "Installation",
+                }}
+              />
+            </section>
+          </article>
+        </div>
+        <RightToc
+          entries={[
+            { id: "philosophy", label: "Filosofia" },
+            { id: "structure", label: "Estrutura" },
+          ]}
+          readTime="~3 min"
+          editHref="https://github.com/r0b14/Modfly.ui"
+        />
+      </div>
+    );
+  }
+
+  if (slug === "tailwind-setup") {
+    return (
+      <div className="grid grid-cols-[1fr_260px] min-h-screen">
+        <div className="min-w-0 px-10">
+          <header className="doc-head">
+            <div className="doc-cat">Getting Started · 03 of 04</div>
+            <h1 className="doc-title">
+              Tailwind <i>Configuration.</i>
+            </h1>
+            <p className="doc-lead">
+              Aprenda a configurar o Tailwind para extrair o máximo do design system da Modfly UI.
+            </p>
+          </header>
+
+          <article className="doc-prose">
+            <section id="content">
+              <h2 className="doc-h2">
+                <span className="doc-h2-num">01 · Content Scanning</span>
+                Varredura de Classes
+              </h2>
+              <p className="doc-p">
+                Como mencionado na instalação, o passo mais importante é garantir que o Tailwind faça o scan dos arquivos compilados da biblioteca:
+              </p>
+              <DocCodeBlock
+                filename="tailwind.config.ts"
+                raw={`content: [\n  "./src/**/*.{ts,tsx}",\n  "./node_modules/@modfly/ui/dist/**/*.js",\n]`}
+              >
+                <pre style={{ margin: 0 }}>
+                  <span className="tok-attr">content</span>: [{"\n"}
+                  {"  "}<span className="tok-str">&quot;./src/**/*.{"{"}ts,tsx{"}"}&quot;</span>,{"\n"}
+                  {"  "}<span className="tok-str">&quot;./node_modules/@modfly/ui/dist/**/*.js&quot;</span>,{"\n"}
+                  ]
+                </pre>
+              </DocCodeBlock>
+            </section>
+
+            <section id="customization">
+              <h2 className="doc-h2">
+                <span className="doc-h2-num">02 · Customização</span>
+                Estendendo o Tema
+              </h2>
+              <p className="doc-p">
+                Você pode estender as cores da Modfly no seu tema. Recomendamos usar os mesmos nomes de tokens para manter a consistência:
+              </p>
+              <DocCodeBlock
+                filename="tailwind.config.ts"
+                raw={`theme: {\n  extend: {\n    colors: {\n      primary: "#285C93",\n      secondary: "#6CA3E8",\n      accent: "#FFB861",\n    }\n  }\n}`}
+              >
+                <pre style={{ margin: 0 }}>
+                  <span className="tok-attr">theme</span>: {"{"}{"\n"}
+                  {"  "}<span className="tok-attr">extend</span>: {"{"}{"\n"}
+                  {"    "}<span className="tok-attr">colors</span>: {"{"}{"\n"}
+                  {"      "}<span className="tok-attr">primary</span>: <span className="tok-str">&quot;#285C93&quot;</span>,{"\n"}
+                  {"      "}<span className="tok-attr">secondary</span>: <span className="tok-str">&quot;#6CA3E8&quot;</span>,{"\n"}
+                  {"      "}<span className="tok-attr">accent</span>: <span className="tok-str">&quot;#FFB861&quot;</span>,{"\n"}
+                  {"    "}{"}"}{"\n"}
+                  {"  "}{"}"}{"\n"}
+                  {"}"}
+                </pre>
+              </DocCodeBlock>
+            </section>
+
+            <section id="next">
+              <Pager
+                prev={{
+                  href: "/docs/getting-started/installation",
+                  label: "Anterior",
+                  title: "Installation",
+                }}
+                next={{
+                  href: "/docs/getting-started/theming",
+                  label: "Próximo",
+                  title: "Theming",
+                }}
+              />
+            </section>
+          </article>
+        </div>
+        <RightToc
+          entries={[
+            { id: "content", label: "Content Scanning" },
+            { id: "customization", label: "Customização" },
+          ]}
+          readTime="~4 min"
+          editHref="https://github.com/r0b14/Modfly.ui"
+        />
+      </div>
+    );
+  }
+
+  if (slug === "theming") {
+    return (
+      <div className="grid grid-cols-[1fr_260px] min-h-screen">
+        <div className="min-w-0 px-10">
+          <header className="doc-head">
+            <div className="doc-cat">Getting Started · 04 of 04</div>
+            <h1 className="doc-title">
+              Advanced <i>Theming.</i>
+            </h1>
+            <p className="doc-lead">
+              Customize as cores e estilos globais da Modfly UI para alinhar com a identidade visual do seu curso.
+            </p>
+          </header>
+
+          <article className="doc-prose">
+            <section id="css-variables">
+              <h2 className="doc-h2">
+                <span className="doc-h2-num">01 · CSS Variables</span>
+                Sobrescrevendo Tokens
+              </h2>
+              <p className="doc-p">
+                A lib utiliza variáveis CSS no `:root` para definir sua paleta base. Você pode sobrescrevê-las no seu CSS global:
+              </p>
+              <DocCodeBlock
+                filename="src/globals.css"
+                raw={`:root {\n  --modfly-primary: #1a365d;\n  --modfly-secondary: #2b6cb0;\n  --modfly-accent: #ed8936;\n  --modfly-radius: 0.5rem;\n}`}
+              >
+                <pre style={{ margin: 0 }}>
+                  <span className="tok-key">:root</span> {"{"}{"\n"}
+                  {"  "}<span className="tok-attr">--modfly-primary</span>: <span className="tok-str">#1a365d</span>;{"\n"}
+                  {"  "}<span className="tok-attr">--modfly-secondary</span>: <span className="tok-str">#2b6cb0</span>;{"\n"}
+                  {"  "}<span className="tok-attr">--modfly-accent</span>: <span className="tok-str">#ed8936</span>;{"\n"}
+                  {"  "}<span className="tok-attr">--modfly-radius</span>: <span className="tok-str">0.5rem</span>;{"\n"}
+                  {"}"}
+                </pre>
+              </DocCodeBlock>
+            </section>
+
+            <section id="next">
+              <Pager
+                prev={{
+                  href: "/docs/getting-started/tailwind-setup",
+                  label: "Anterior",
+                  title: "Tailwind setup",
+                }}
+              />
+            </section>
+          </article>
+        </div>
+        <RightToc
+          entries={[
+            { id: "css-variables", label: "CSS Variables" },
+          ]}
+          readTime="~2 min"
+          editHref="https://github.com/r0b14/Modfly.ui"
+        />
+      </div>
+    );
+  }
+
   if (slug !== "installation") {
     return (
       <div className="px-10">
