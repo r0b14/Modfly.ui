@@ -39,9 +39,9 @@ Este documento contém a lista de issues estruturadas para o lançamento da vers
 - **Status:** Concluída (5 átomos migrados e exportados).
 - **Labels:** `components`, `atoms`, `migration`
 
-### Issue 5: Migração de Moléculas (Parte 1 - Básicas)
-
+### Issue 5: Migração de Moléculas (Parte 1 - Básicas) ✅
 - **Descrição:** Mover `Cards`, `CardFlip`, `QuoteText`, e `Figure`. Certificar de tratar adequadamente imagens PNG e conversões necessárias para SVG.
+- **Status:** Concluída (4 moléculas e o átomo de dependência ImageFallback migrados).
 - **Labels:** `components`, `molecules`, `migration`
 
 ### Issue 6: Migração de Moléculas (Parte 2 - Avançadas)
