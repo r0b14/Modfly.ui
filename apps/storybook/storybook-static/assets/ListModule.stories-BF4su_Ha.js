@@ -1,0 +1,8 @@
+import{L as d}from"./Layout-BwgvqtAe.js";const l=({borderColor:i="#0D4490",title:t,subtitle:c,textList:a})=>React.createElement(d,null,React.createElement("div",{style:{borderColor:i,borderLeftWidth:"3.5px",borderLeftStyle:"solid",paddingLeft:"0.8rem"}},React.createElement("div",{className:""},React.createElement("span",{className:"font-bold"},t&&React.createElement("p",null,React.createElement("span",{className:"text-[#0D4490] font-bold text-md"},t)," | ",c))),React.createElement("div",null,React.createElement("ul",{className:"list-[circle] pl-5 marker:text-[#0D4490]"},a&&a.map((n,u)=>React.createElement("li",{key:u,className:"mb-2 col"},n))))));l.__docgenInfo={description:"",methods:[],displayName:"ListModule",props:{borderColor:{defaultValue:{value:'"#0D4490"',computed:!1},required:!1}}};const p={title:"Molecules/ListModule",component:l,tags:["autodocs"]},e={args:{title:"Módulo 1",subtitle:"Introdução aos Conceitos",textList:["O que é Justiça Restaurativa?","Histórico e origens.","Diferença entre Justiça Retributiva e Restaurativa.","Os três pilares da JR."],borderColor:"#0D4490"}};var r,s,o;e.parameters={...e.parameters,docs:{...(r=e.parameters)==null?void 0:r.docs,source:{originalSource:`{
+  args: {
+    title: 'Módulo 1',
+    subtitle: 'Introdução aos Conceitos',
+    textList: ['O que é Justiça Restaurativa?', 'Histórico e origens.', 'Diferença entre Justiça Retributiva e Restaurativa.', 'Os três pilares da JR.'],
+    borderColor: '#0D4490'
+  }
+}`,...(o=(s=e.parameters)==null?void 0:s.docs)==null?void 0:o.source}}};const R=["Default"];export{e as Default,R as __namedExportsOrder,p as default};

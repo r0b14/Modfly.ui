@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Figure } from './Figure';
 
-import image1_src from '../../assets/figure/image1.png';
-import image1_fb from '../../assets/figure/phone.png';
-import image2_src from '../../assets/figure/image2.png';
-import image2_fb from '../../assets/figure/background2.png';
+import image1_src from '../../../assets/figure/image1.png';
+import image1_fb from '../../../assets/figure/phone.png';
+import image2_src from '../../../assets/figure/image2.png';
+import image2_fb from '../../../assets/figure/background2.png';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Figure> = {
