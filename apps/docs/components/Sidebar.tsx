@@ -1,14 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export function Sidebar() {
   const pathname = usePathname();
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    requestAnimationFrame(() => el.classList.add("in"));
+  }, []);
 
   return (
-    <aside className="sidebar border-r border-rule bg-[var(--bg)] p-7 sticky top-0 h-screen overflow-y-auto overflow-x-hidden in">
+    <aside ref={ref} className="sidebar border-r border-rule bg-[var(--bg)] p-7 sticky top-0 h-screen overflow-y-auto overflow-x-hidden">
       <Link href="/" className="flex items-baseline gap-2.5 mb-1 no-underline text-inherit hover:opacity-80 transition-opacity">
         <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] grid place-items-center font-instrument italic text-2xl rounded-[4px] translate-y-[2px] serif">
           M
@@ -32,7 +39,7 @@ export function Sidebar() {
         </span>
       </div>
 
-      <NavSection title="Getting started" items={["Introduction", "Installation", "Tailwind setup", "Theming"]} />
+      <NavSection title="Getting started" items={["Introduction", "Installation", "Tailwind setup", "Theming"]} currentPath={pathname} />
       <NavSection title="Atoms" items={["ButtonLink", "ButtonPdfDownload", "Tooltip", "Postit", "Check"]} currentPath={pathname} />
       <NavSection title="Molecules" items={["Cards", "CardFlip", "QuoteText", "Figure", "Citation", "IndentCitation", "ListModule", "MiniCards", "Embed", "ImageList"]} currentPath={pathname} />
       <NavSection title="Organisms" items={["Accordion", "StarList", "TimelineWithCards", "HistoryTopics", "LearningBlock"]} currentPath={pathname} />
@@ -40,7 +47,7 @@ export function Sidebar() {
       
       <div className="mb-6">
         <div className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mb-2.5 flex items-center gap-2 mono">
-          @modfy/ui-avamec <div className="flex-1 h-[1px] bg-rule" />
+          @modfly/ui-avamec <div className="flex-1 h-[1px] bg-rule" />
         </div>
         <ul className="list-none p-0 m-0">
           {["QuestionOption", "QuestionMultipleAnswer", "QuestionTrueOrFalse", "QuestionGrid", "QuestionCorrelation", "QuestionDragDrop", "QuestionWritten", "SendActivityButton"].map(item => {
