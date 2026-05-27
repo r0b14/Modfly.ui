@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f6f3ec;
+  --bg-2: #efeae0;
+  --paper: #fbf9f3;
+  --ink: #0f0e0c;
+  --ink-2: #1a1714;
+  --muted: #6b645a;
+  --rule: #1a17141a;
+  --rule-strong: #1a17143b;
+
+  /* Brand palette from design tokens */
+  --blue: #298bca;
+  --blue-soft: #7db0ec;
+  --green: #649753;
+  --green-soft: #8fcd79;
+  --orange: #c66a4a;
+  --orange-soft: #ffb861;
+  --yellow: #f5c542;
+  --pink: #ed1b69;
+  --pink-soft: #f8a8c3;
+  --purple: #6c4ab6;
+  --purple-soft: #b9a3e4;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.serif {
+  font-family: var(--font-instrument), serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.mono {
+  font-family: var(--font-jetbrains), monospace;
+  font-weight: 500;
+}
+
+/* Ambient layers */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQwIDI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwLjcgMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIyNDAiIGhlaWdodD0iMjQwIiBmaWx0ZXI9InVybCgjbikiLz48L3N2Zz4=");
+}
+
+.tint-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9997;
+  background: var(--tint, transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease, background 0.35s ease;
+  mix-blend-mode: multiply;
+}
+
+.tint-layer.on {
+  opacity: 0.10;
+}
+
+.color-rail {
+  position: fixed;
+  top: 0;
+  left: 280px;
+  right: 0;
+  height: 3px;
+  z-index: 200;
+  display: flex;
+  pointer-events: none;
+}
+
+.color-rail span {
+  flex: 1;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) var(--rd, 0s);
+}
+
+.color-rail.in span {
+  transform: scaleX(1);
+}
+
+/* Sidebar Custom Scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--rule-strong);
+  border-radius: 3px;
+}
+
+/* Animations and decorative styles from template */
+.deco-mark {
+  position: absolute;
+  font-family: var(--font-instrument), serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--rule-strong);
+  user-select: none;
+  pointer-events: none;
+  line-height: 0.78;
+  z-index: 0 !important;
+  white-space: nowrap;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) var(--delay, 0s),
+    transform 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) var(--delay, 0s);
+}
+
+[data-reveal].in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Showcase grid helpers */
+.demo-stage {
+  background-image: linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+}
+
+/* Specific Component Styles ported from template */
+/* (Added as classes to be used in Tailwind-like fashion) */
+
+.acc-body {
+  overflow: hidden;
+  transition: max-height 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+    padding 0.45s ease, opacity 0.45s ease;
+}
+
+.flip-inner {
+  transition: transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform-style: preserve-3d;
+}
+
+.marquee-track {
+  animation: marquee 44s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
