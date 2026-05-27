@@ -80,7 +80,7 @@ pnpm dev
 
 ## ✍️ Autores & Contribuidores
 
-Este projeto é mantido com paixão pela equipe do **Vlab UFPE**. Conecte-se conosco:
+Este projeto nasceu de pesquisas e desenvolvimentos incubados inicialmente no **[Vlab UFPE](https://vlab.ufpe.br)**, e hoje é mantido com paixão por uma comunidade de desenvolvedores autônomos. Conecte-se conosco:
 
 <table>
   <tr>
@@ -112,8 +112,6 @@ Seguimos estritamente o **[Conventional Commits](https://www.conventionalcommits
 ---
 
 <div align="center">
-  <p>Desenvolvido com ❤️ pelo <strong>Vlab UFPE</strong></p>
-  <a href="https://vlab.ufpe.br">
-    <img src="https://img.shields.io/badge/Vlab-UFPE-0000ff?style=for-the-badge" alt="Vlab UFPE" />
-  </a>
+  <p>Desenvolvido com ❤️ por <strong>Desenvolvedores Autônomos</strong></p>
+  <p><i>Inspirado pelas inovações em e-learning iniciadas no Vlab UFPE</i></p>
 </div>
