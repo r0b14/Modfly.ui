@@ -1,1 +1,0 @@
-const t=({children:e})=>React.createElement("div",{className:"mx-5 lg:mx-32 flex-col items-center flex"},React.createElement("div",{className:"flex flex-col items-center max-w-[1200px] w-full"},e));t.__docgenInfo={description:"",methods:[],displayName:"Layout"};export{t as L};

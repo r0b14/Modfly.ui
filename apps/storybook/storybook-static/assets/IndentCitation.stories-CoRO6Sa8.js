@@ -1,6 +1,0 @@
-import{L as c}from"./Layout-BwgvqtAe.js";const n=({children:l,borderColor:d="#0D4490",backgroundColor:a})=>{const t=a?{backgroundColor:a}:{};return React.createElement("div",{className:"py-8 sm:pl-[3rem] md:pl-[5rem]",style:t},React.createElement(c,null,React.createElement("div",{className:"md:w-[85%] self-end max-md:ml-10 px-6",style:{borderLeft:`5px solid ${d}`,...t}},React.createElement("p",null,l))))};n.__docgenInfo={description:"",methods:[],displayName:"IndentCitation",props:{borderColor:{defaultValue:{value:"'#0D4490'",computed:!1},required:!1}}};const m={title:"Molecules/IndentCitation/IndentCitation",component:n,tags:["autodocs"]},e={args:{children:"A citação indentada é ideal para destacar trechos de livros, artigos ou falas importantes que merecem atenção especial do aluno.",borderColor:"#0D4490"}};var o,r,s;e.parameters={...e.parameters,docs:{...(o=e.parameters)==null?void 0:o.docs,source:{originalSource:`{
-  args: {
-    children: 'A citação indentada é ideal para destacar trechos de livros, artigos ou falas importantes que merecem atenção especial do aluno.',
-    borderColor: '#0D4490'
-  }
-}`,...(s=(r=e.parameters)==null?void 0:r.docs)==null?void 0:s.source}}};const p=["Default"];export{e as Default,p as __namedExportsOrder,m as default};
