@@ -1,5 +1,5 @@
 {
-  "name": "@modfy/ui",
+  "name": "@modfly/ui",
   "version": "0.1.0",
   "description": "Components built for learning.",
   "keywords": [
@@ -40,6 +40,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^8.0.0",
+    "esbuild-plugin-svgr": "^2.1.0",
     "typescript": "^5.4.0"
   }
 }
