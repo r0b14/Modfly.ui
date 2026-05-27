@@ -44,19 +44,19 @@ Este documento contém a lista de issues estruturadas para o lançamento da vers
 - **Status:** Concluída (4 moléculas e o átomo de dependência ImageFallback migrados).
 - **Labels:** `components`, `molecules`, `migration`
 
-### Issue 6: Migração de Moléculas (Parte 2 - Avançadas)
-
+### Issue 6: Migração de Moléculas (Parte 2 - Avançadas) ✅
 - **Descrição:** Mover `IndentCitation` (suas 4 variantes), `ListModule`, `MiniCards`, `Embed`, e `ImageList`.
+- **Status:** Concluída (Todas as moléculas migradas e exportadas).
 - **Labels:** `components`, `molecules`, `migration`
 
-### Issue 7: Migração dos Organismos
-
+### Issue 7: Migração dos Organismos ✅
 - **Descrição:** Mover `Accordion` (atentar-se às 22 variantes), `StarList`, `TimelineWithCards`, `HistoryTopics`, e `LearningBlock` (usando SVGR quando aplicável).
+- **Status:** Concluída (Todos os organismos migrados com seus respectivos assets e plugins).
 - **Labels:** `components`, `organisms`, `migration`
 
-### Issue 8: Migração de Templates & Utilitários
-
+### Issue 8: Migração de Templates & Utilitários ✅
 - **Descrição:** Mover componentes complexos e estruturais: `Carousel`, `Slider`, `Pagination` (remover acoplamento com `react-router-dom`), `UnityBanner`, e `Glossary`.
+- **Status:** Concluída (Todos os templates migrados e refatorados para maior independência).
 - **Labels:** `components`, `templates`, `migration`
 
 ---
@@ -65,9 +65,9 @@ Este documento contém a lista de issues estruturadas para o lançamento da vers
 
 *Finalização do portal Next.js de acordo com o padrão `COMPONENT-DOC-PATTERN.md`.*
 
-### Issue 9: Concluir seção "Getting Started"
-
+### Issue 9: Concluir seção "Getting Started" ✅
 - **Descrição:** Criar conteúdo para as rotas placeholder: `/docs/getting-started/introduction`, `/docs/getting-started/tailwind-setup` e `/docs/getting-started/theming`.
+- **Status:** Concluída (Todas as páginas de guia inicial preenchidas com conteúdo real).
 - **Labels:** `documentation`, `core`
 
 ### Issue 10: Páginas de Documentação (Átomos e Moléculas)
