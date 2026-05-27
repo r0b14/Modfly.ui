@@ -1,0 +1,191 @@
+.question-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+
+  width: 100%;
+}
+
+.question {
+  max-width: 1201px;
+  width: 100%;
+}
+
+.question-titleAndAdvice {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.question-title {
+  color: #513a56;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+}
+
+.question-text {
+  color: #000000;
+}
+
+.answersDiv {
+  margin-top: 20px;
+}
+
+.optionDisabled {
+  border: 1px solid #acacac !important;
+  background: #ebebeb !important;
+}
+
+/* Estilos para inputs de texto do QuestionWritten */
+.writtenInput {
+  font-weight: 400;
+  transition: all 0.3s ease;
+  outline: none;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+  text-transform: lowercase;
+}
+
+.writtenInput:focus {
+  box-shadow: 0 2px 8px rgba(90, 45, 17, 0.15) !important;
+}
+
+.iddleInputAnswer {
+  background: #ECF3FB !important;
+  border: none !important;
+  color: #4C4C4C !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+.correctInputAnswer {
+  background: #93EABA !important;
+  border: none !important;
+  color: black !important;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(93, 211, 158, 0.3) !important;
+}
+
+.incorrectInputAnswer {
+  background: #ffcbcb !important;
+  border: none !important;
+  color: black !important;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(199, 123, 123, 0.3) !important;
+}
+
+.written-answer-area {
+  margin-top: 20px;
+  background: transparent !important;
+}
+
+.written-content-line {
+  line-height: 2.5;
+  align-items: center;
+  color: #000000;
+}
+
+.written-content-line span {
+  display: inline;
+  vertical-align: middle;
+}
+
+.feedback-container {
+  margin-top: 24px;
+}
+
+.feedback-inline {
+  font-size: 22px;
+  display: block;
+  text-align: left;
+}
+
+/* Estilos legados para QuestionOption (caso ainda seja usado) */
+.iddleOptionAnswer {
+  border: none !important;
+  color: #4C4C4C !important;
+  font-weight: 500;
+
+}
+
+.correctOptionAnswer {
+  background: #9dd5b8 !important;
+  border: 1px solid #5dd39e !important;
+  color: black !important;
+  pointer-events: none;
+}
+
+.incorrectOptionAnswer {
+  background: #ffcbcb !important;
+  border: 1px solid #c77b7b !important;
+  color: black !important;
+  pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+  .question {
+    padding: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .question-title {
+    font-size: 34px;
+  }
+
+  .question-text,
+  .answer-oneAnswer,
+  .answer-trueOrFalse,
+  .trueOrFalse-indicator p {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .question-title {
+    font-size: 32px;
+  }
+
+  .question-text,
+  .answer-oneAnswer,
+  .answer-trueOrFalse,
+  .trueOrFalse-indicator p {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .question-title {
+    font-size: 30px;
+  }
+
+  .answersDiv {
+    padding-left: 0;
+  }
+
+  .question-text,
+  .answer-oneAnswer,
+  .answer-trueOrFalse,
+  .trueOrFalse-indicator p {
+    font-size: 20px;
+  }
+}

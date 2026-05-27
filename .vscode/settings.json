@@ -1,0 +1,59 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.rulers": [80, 120],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/build": false,
+    "**/dist": false,
+    "**/node_modules": false
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/*.lock": true,
+    "**/coverage": true,
+    "**/.turbo": true
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.patterns": {
+    "package.json": "pnpm-lock.yaml, pnpm-workspace.yaml, turbo.json, .prettierrc, .gitignore, .nvmrc, tsconfig.json, tsconfig.base.json, .eslintignore, .prettierignore, .editorconfig",
+    "*.tsx": "$(capture).ts, $(capture).module.css, $(capture).css, $(capture).test.tsx, $(capture).spec.tsx, $(capture).stories.tsx, $(capture).d.ts",
+    "*.ts": "$(capture).js, $(capture).d.ts.map, $(capture).spec.ts, $(capture).test.ts, $(capture).config.ts, $(capture).d.ts",
+    "*.js": "$(capture).js.map, $(capture).d.ts",
+    "*.md": "$(capture).assets/*"
+  },
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*)(?:[\"'`])"]
+  ],
+  "cSpell.language": "en,pt,pt-BR"
+}

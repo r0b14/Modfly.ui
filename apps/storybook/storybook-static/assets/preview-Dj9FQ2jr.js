@@ -1,0 +1,1 @@
+typeof window<"u"&&(window.BridgeRestApi=class{obterDadosGenericos(){return Promise.resolve({data:[]})}registrarDadosGenericos(){return Promise.resolve()}registrarPorcentagemConclusaoUnidade(){return Promise.resolve()}});const e={parameters:{controls:{matchers:{color:/(background|color)$/i,date:/Date$/i}}}};export{e as default};

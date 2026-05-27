@@ -1,0 +1,121 @@
+.question-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+
+  width: 100%;
+}
+
+
+.question {
+  max-width: 1201px;
+  width: 100%;
+}
+
+.question-titleAndAdvice {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.question-title {
+  color: #585858;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionGrid-gridDiv {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-template-rows: repeat(4, auto);
+  grid-row-gap: 17px;
+
+  border: 3px solid #c6e9fd;
+  border-radius: 20px;
+  padding: 20px 10px;
+}
+
+.questionGrid-gridDiv::-webkit-scrollbar {
+  -webkit-appearance: none;
+  height: 4px;
+}
+.questionGrid-gridDiv::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.242);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.correctOptionBackground-questionGrid {
+  background-color: #90d96e;
+}
+
+.incorrectOptionBackground-questionGrid {
+  background-color: #ffe195;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+}
+
+.question-text {
+  color: #000000;
+}
+
+.answersDiv {
+  margin-top: 30px;
+}
+
+@media (max-width: 1200px) {
+  .question {
+    padding: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .question-title {
+    font-size: 34px;
+  }
+
+  .question-text {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .question-title {
+    font-size: 32px;
+  }
+
+  .question-text {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .question-title {
+    font-size: 30px;
+  }
+
+  .answersDiv {
+    padding-left: 0;
+  }
+
+  .question-text {
+    font-size: 20px;
+  }
+}

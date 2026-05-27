@@ -1,0 +1,152 @@
+.question-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0;
+
+  width: 100%;
+}
+
+.question {
+  max-width: 1201px;
+  width: 100%;
+}
+
+.question-titleAndAdvice {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.question-title {
+  color: #513a56;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+}
+
+.question-text {
+  color: #000000;
+}
+
+.answersDiv {
+  margin-top: 20px;
+}
+
+.optionDisabled {
+  border: 1px solid #acacac !important;
+  background: #ebebeb !important;
+}
+
+.iddleOptionAnswer {
+  background: #f5b76c !important;
+  border: none !important;
+  color: #4c4c4c !important;
+}
+
+.correctOptionAnswer {
+  background: #9dd5b8 !important;
+  border: 1px solid #5dd39e !important;
+  color: black !important;
+  pointer-events: none;
+}
+
+.incorrectOptionAnswer {
+  background: #ffcbcb !important;
+  border: 1px solid #c77b7b !important;
+  color: black !important;
+  pointer-events: none;
+}
+
+@media (max-width: 1200px) {
+  .question {
+    padding: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .question-title {
+    font-size: 34px;
+  }
+
+  .question-text,
+  .answer-oneAnswer,
+  .answer-trueOrFalse,
+  .trueOrFalse-indicator p {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .question-title {
+    font-size: 32px;
+  }
+
+  .question-text,
+  .answer-oneAnswer,
+  .answer-trueOrFalse,
+  .trueOrFalse-indicator p {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .question-title {
+    font-size: 30px;
+  }
+
+  .answersDiv {
+    padding-left: 0;
+  }
+
+  .question-text,
+  .answer-oneAnswer,
+  .answer-trueOrFalse,
+  .trueOrFalse-indicator p {
+    font-size: 20px;
+  }
+}
+
+.correctFeedback {
+  background-color: #93eaba; /* light green */
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 8px;
+}
+.incorrectFeedback {
+  background-color: #fff394; /* light yellow */
+  border: 1px solid #000;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* Hover: laranja quando selecionado, bege claro quando vazio*/
+.QuestionOptionSelect:hover {
+  background-color: #f5be7a !important;
+}
+
+.QuestionOptionSelect:focus {
+  background-color: #f5be7a !important;
+}
+
+/* Cor padrão quando nenhuma opção está selecionada */
+.QuestionOptionSelect:not([value]):hover {
+  background-color: #faefd0 !important;
+}

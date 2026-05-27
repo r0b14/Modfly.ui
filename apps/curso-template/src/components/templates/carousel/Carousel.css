@@ -1,0 +1,47 @@
+:root {
+  --backgroundSlide: #00000 center/cover no-repeat;
+  --opacitySlide: 1;
+}
+
+.carouselBackgroundDiv::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--backgroundSlide);
+
+  opacity: var(--opacitySlide);
+  transition: opacity 0.4s;
+}
+
+
+.carouselBulletPoint {
+  max-width: 14px;
+  min-width: 14px;
+  max-height: 14px;
+  min-height: 14px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+
+  cursor: pointer;
+  user-select: none;
+
+  margin-bottom: 30px;
+
+  transition: background 0.8s;
+}
+
+.currentBulletPoint {
+  background-color: #1e2b3b;
+}
+
+/* garante que o conteúdo do slide esteja centralizado */
+.slick-slide > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

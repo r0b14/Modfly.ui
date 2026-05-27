@@ -1,0 +1,66 @@
+.button-link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 2rem;
+  font-weight: bold;
+  font-size: 1.125rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  margin: 0 auto;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: transparent;
+}
+
+/* Variantes de modelo baseadas nos ícones SVG importados */
+/* Modelo 1 - Azul (buttomBlue/buttomBlue2) */
+/* Modelo 2 - Amarelo (buttomYellow/buttomYellow2) */
+/* Modelo 3 - Rosa (buttomPink/buttomPink2) */
+
+.button-link:hover {
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+.button-link-text:hover {
+  text-decoration: none;
+}
+
+.button-link:focus {
+  outline: none;
+}
+
+.button-link-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.button-link-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  transition: transform 0.3s ease-in-out;
+}
+
+.button-link:hover .button-link-icon {
+  transform: rotate(10deg);
+}
+
+.button-link-text {
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  text-decoration: underline;
+  color: #453B04;
+  text-align: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}

@@ -1,0 +1,1153 @@
+[
+  {
+    "identificador": "modulo-0",
+    "nome": "Módulo Introdutório",
+    "descricao": "",
+    "permitePorcentagem": "true",
+    "topicos": [
+      {
+        "identificador": "0",
+        "nome": "módulo Introdutório"
+      }
+    ],
+    "atividades": [
+      {
+        "identificador": "moduloAvaliativo_S2M1",
+        "nomeAtividade": "MA_S2M1",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M1_1",
+            "enunciado": "1. No contexto escolar, as práticas restaurativas têm como objetivo fomentar uma cultura de paz e diálogo. Qual alternativa melhor reflete esses princípios?",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M1_2",
+            "enunciado": "2. Segundo Howard Zehr (1990), qual é o principal objetivo da Justiça Restaurativa?",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "identificador": "modulo-1",
+    "nome": "Módulo 1 - PRÁXIS",
+    "descricao": "",
+    "permitePorcentagem": "true",
+    "topicos": [
+      {
+        "identificador": "1",
+        "nome": "Conhecimentos Fundamentais"
+      }
+    ],
+    "atividades": [
+      {
+        "identificador": "moduloAvaliativo_S1M2",
+        "nomeAtividade": "MA_S1M2",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M2_1",
+            "enunciado": "No contexto escolar, qual das alternativas descreve incorretamente a contribuição dos círculos não-conflitivos para o fortalecimento da comunidade escolar?",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M2_2",
+            "enunciado": "Marque (V) para verdadeiro e (F) para falso com base nos objetivos e características dos círculos não-conflitivos:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M2_3",
+            "enunciado": "Marque (V) para verdadeiro e (F) para falso com base nos objetivos e características dos círculos não-conflitivos:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M2_4",
+            "enunciado": "Marque (V) para verdadeiro e (F) para falso com base nos objetivos e características dos círculos não-conflitivos:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M2_5",
+            "enunciado": "Marque (V) para verdadeiro e (F) para falso com base nos objetivos e características dos círculos não-conflitivos:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S2M2",
+        "nomeAtividade": "MA_S2M2",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_1",
+            "enunciado": "Ao distribuir a responsabilidade entre os participantes, favorecendo a colaboração e o alinhamento às metas do grupo.",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_2",
+            "enunciado": "1. Sobre a Educação Restaurativa, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_3",
+            "enunciado": "Ao criar um ambiente de apoio e confiança, onde os participantes desenvolvem habilidades de liderança e comunicação efetiva.",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_4",
+            "enunciado": "Ao permitir flexibilidade no processo, ajustando as dinâmicas do círculo às necessidades do grupo e fortalecendo a coesão.",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_5",
+            "enunciado": "Criação de um ambiente de apoio e confiança mútua, incentivando contribuições autênticas e compartilhamento de responsabilidades.",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_6",
+            "enunciado": "Desenvolvimento de habilidades de liderança e facilitação para todos os participantes, promovendo maior comprometimento com os objetivos do grupo.",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_7",
+            "enunciado": "Promoção de uma abordagem centralizada, em que decisões estratégicas são tomadas por um facilitador com foco em resultados rápidos.",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M2_8",
+            "enunciado": "Adaptação flexível aos contextos e necessidades do grupo, garantindo maior eficácia e relevância no alcance dos objetivos.",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S3M2",
+        "nomeAtividade": "MA_S3M2",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M2_1",
+            "enunciado": "Por causa da flexibilidade e poder do processo circular, as pessoas usam os Círculos para propósitos diversos. Consequentemente há diversos tipos de Círculo. O tipo determinará a importância relativa dos vários elementos da estrutura e do processo. (PRANIS, 2010, p. 13). A respeito dos tipos de Círculo, é correto afirmar:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M2_2",
+            "enunciado": "2. De acordo com a classificação dos valores restaurativos apresentada por John Braithwaite, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S5M2",
+        "nomeAtividade": "MA_S5M2",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M2_1",
+            "enunciado": "2. De acordo com a classificação dos valores restaurativos apresentada por John Braithwaite, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M2_2",
+            "enunciado": "2. De acordo com a classificação dos valores restaurativos apresentada por John Braithwaite, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M2_3",
+            "enunciado": "2. De acordo com a classificação dos valores restaurativos apresentada por John Braithwaite, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M2_4",
+            "enunciado": "2. De acordo com a classificação dos valores restaurativos apresentada por John Braithwaite, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M2_5",
+            "enunciado": "2. De acordo com a classificação dos valores restaurativos apresentada por John Braithwaite, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M2_6",
+            "enunciado": "2. De acordo com a classificação dos valores restaurativos apresentada por John Braithwaite, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S7M2",
+        "nomeAtividade": "MA_S7M2",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S7M2_1",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S7M2_2",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S8M2",
+        "nomeAtividade": "MA_S8M2",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S8M2_1",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S8M2_2",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S8M2_3",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S8M2_4",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S8M2_5",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S8M2_6",
+            "enunciado": "Acerca das possíveis correlações entre a Comunicação não-violenta (CNV) e as práticas circulares, assinale a alternativa correta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "identificador": "modulo-2",
+    "nome": "Módulo 2 - Organização",
+    "descricao": "",
+    "permitePorcentagem": "true",
+    "topicos": [
+      {
+        "identificador": "2",
+        "nome": "Organização"
+      }
+    ],
+    "atividades": [
+      {
+        "identificador": "moduloAvaliativo_S1M3",
+        "nomeAtividade": "MA_S1M3",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_1",
+            "enunciado": "Com base no pensamento que fundamenta o texto qual das premissas NÃO se relaciona de forma adequada, estando, portanto, INCORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_2",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_3",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_4",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_5",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_6",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_7",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_8",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S1M3_9",
+            "enunciado": "2. Uma forma de fortalecer as práticas de pertencimento na escola é por meio da:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S2M3",
+        "nomeAtividade": "MA_S2M3",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M3_1",
+            "enunciado": "Considere as duas afirmativas e a análise que elas possibilitam, a partir das alternativas, aquela que se apresenta como CORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M3_2",
+            "enunciado": "Considere as duas afirmativas e a análise que elas possibilitam, a partir das alternativas, aquela que se apresenta como CORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M3_3",
+            "enunciado": "Considere as duas afirmativas e a análise que elas possibilitam, a partir das alternativas, aquela que se apresenta como CORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M3_4",
+            "enunciado": "Considere as duas afirmativas e a análise que elas possibilitam, a partir das alternativas, aquela que se apresenta como CORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M3_5",
+            "enunciado": "Considere as duas afirmativas e a análise que elas possibilitam, a partir das alternativas, aquela que se apresenta como CORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M3_6",
+            "enunciado": "Considere as duas afirmativas e a análise que elas possibilitam, a partir das alternativas, aquela que se apresenta como CORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S2M3_7",
+            "enunciado": "Considere as duas afirmativas e a análise que elas possibilitam, a partir das alternativas, aquela que se apresenta como CORRETA:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S3M3",
+        "nomeAtividade": "MA_S3M3",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M3_1",
+            "enunciado": "Kay Pranis e Carolyn Boyes-Watson apresentam, no Manual Círculos em Movimento, o poder e o desafio em incorporar as práticas circulares na ambiência escolar (2015, pp. 23-26). Sobre essa temática, assinale a opção incorreta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "3",
+            "enunciado": "Kay Pranis e Carolyn Boyes-Watson apresentam, no Manual Círculos em Movimento, o poder e o desafio em incorporar as práticas circulares na ambiência escolar (2015, pp. 23-26). Sobre essa temática, assinale a opção incorreta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M3_3",
+            "enunciado": "Kay Pranis e Carolyn Boyes-Watson apresentam, no Manual Círculos em Movimento, o poder e o desafio em incorporar as práticas circulares na ambiência escolar (2015, pp. 23-26). Sobre essa temática, assinale a opção incorreta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M3_4",
+            "enunciado": "Kay Pranis e Carolyn Boyes-Watson apresentam, no Manual Círculos em Movimento, o poder e o desafio em incorporar as práticas circulares na ambiência escolar (2015, pp. 23-26). Sobre essa temática, assinale a opção incorreta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M3_5",
+            "enunciado": "Kay Pranis e Carolyn Boyes-Watson apresentam, no Manual Círculos em Movimento, o poder e o desafio em incorporar as práticas circulares na ambiência escolar (2015, pp. 23-26). Sobre essa temática, assinale a opção incorreta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M3_6",
+            "enunciado": "Kay Pranis e Carolyn Boyes-Watson apresentam, no Manual Círculos em Movimento, o poder e o desafio em incorporar as práticas circulares na ambiência escolar (2015, pp. 23-26). Sobre essa temática, assinale a opção incorreta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S3M3_7",
+            "enunciado": "Kay Pranis e Carolyn Boyes-Watson apresentam, no Manual Círculos em Movimento, o poder e o desafio em incorporar as práticas circulares na ambiência escolar (2015, pp. 23-26). Sobre essa temática, assinale a opção incorreta:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S5M3",
+        "nomeAtividade": "MA_S5M3",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M3_1",
+            "enunciado": "A disciplina restaurativa, portanto, demanda que se trabalhe com a pessoa afetada e com a pessoa que causou o dano. Essa é uma mudança grande em relação à disciplina tradicional, a qual tende a focar exclusivamente no transgressor. (BOYES-WATSON e PRANIS, 2015, p. 286). A partir dessa compreensão, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M3_2",
+            "enunciado": "A disciplina restaurativa, portanto, demanda que se trabalhe com a pessoa afetada e com a pessoa que causou o dano. Essa é uma mudança grande em relação à disciplina tradicional, a qual tende a focar exclusivamente no transgressor. (BOYES-WATSON e PRANIS, 2015, p. 286). A partir dessa compreensão, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M3_3",
+            "enunciado": "A disciplina restaurativa, portanto, demanda que se trabalhe com a pessoa afetada e com a pessoa que causou o dano. Essa é uma mudança grande em relação à disciplina tradicional, a qual tende a focar exclusivamente no transgressor. (BOYES-WATSON e PRANIS, 2015, p. 286). A partir dessa compreensão, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M3_4",
+            "enunciado": "A disciplina restaurativa, portanto, demanda que se trabalhe com a pessoa afetada e com a pessoa que causou o dano. Essa é uma mudança grande em relação à disciplina tradicional, a qual tende a focar exclusivamente no transgressor. (BOYES-WATSON e PRANIS, 2015, p. 286). A partir dessa compreensão, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S5M3_5",
+            "enunciado": "A disciplina restaurativa, portanto, demanda que se trabalhe com a pessoa afetada e com a pessoa que causou o dano. Essa é uma mudança grande em relação à disciplina tradicional, a qual tende a focar exclusivamente no transgressor. (BOYES-WATSON e PRANIS, 2015, p. 286). A partir dessa compreensão, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "identificador": "moduloAvaliativo_S7M3",
+        "nomeAtividade": "MA_S7M3",
+        "questoes": [
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S7M3_1",
+            "enunciado": "A disciplina restaurativa, portanto, demanda que se trabalhe com a pessoa afetada e com a pessoa que causou o dano. Essa é uma mudança grande em relação à disciplina tradicional, a qual tende a focar exclusivamente no transgressor. (BOYES-WATSON e PRANIS, 2015, p. 286). A partir dessa compreensão, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          },
+          {
+            "tipoQuestaoString": "INTEGRAL",
+            "identificador": "S7M3_2",
+            "enunciado": "A disciplina restaurativa, portanto, demanda que se trabalhe com a pessoa afetada e com a pessoa que causou o dano. Essa é uma mudança grande em relação à disciplina tradicional, a qual tende a focar exclusivamente no transgressor. (BOYES-WATSON e PRANIS, 2015, p. 286). A partir dessa compreensão, é correto afirmar que:",
+            "gabaritos": [
+              {
+                "alternativa": "Correta",
+                "chave": "1",
+                "valor": "1"
+              },
+              {
+                "alternativa": "Incorreta",
+                "chave": "2",
+                "valor": "0"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

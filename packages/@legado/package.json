@@ -1,0 +1,7 @@
+{
+  "name": "@modfy/legado",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Legacy components from the original project.",
+  "license": "MIT"
+}

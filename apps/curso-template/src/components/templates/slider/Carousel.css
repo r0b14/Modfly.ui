@@ -1,0 +1,45 @@
+/* Permitir seleção de texto dentro do slider quando não arrastável */
+.slick-slider {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Quando arrastável, bloqueia a seleção de texto para não atrapalhar drag */
+.slick-list.draggable {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Track sem flex para não “nivelar” alturas entre slides */
+.slick-slider .slick-track {
+  display: block;
+}
+
+/* Altura controlada pelo conteúdo de cada slide, evitando herança 100% */
+.slick-slider .slick-slide {
+  height: auto;
+}
+
+/* Remover centralização apenas do primeiro slide; 
+   centralize com um wrapper interno comum */
+.slick-slider .slick-slide:first-child {
+  display: block;
+}
+
+/* Use este wrapper dentro de cada slide para centralizar conteúdo:
+   <div class="slideContent">...</div> */
+.slideContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* opcional: ocupar a largura/altura do slide conforme necessidade */
+  width: 100%;
+}
+
+/* Dots e setas podem manter seus estilos existentes conforme seu projeto */
