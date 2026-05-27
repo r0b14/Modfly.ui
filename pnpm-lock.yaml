@@ -227,6 +227,10 @@ importers:
   packages/tsconfig: {}
 
   packages/ui:
+    dependencies:
+      '@emotion/css':
+        specifier: ^11.13.5
+        version: 11.13.5
     devDependencies:
       '@modfy/tsconfig':
         specifier: workspace:*
