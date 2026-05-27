@@ -1,4 +1,5 @@
-# 📐 Plano de Ação — Modfy UI
+# Plano de Ação — Modfly UI
+
 ### Biblioteca de componentes para cursos e-learning
 
 > **Inspiração:** [Pittaya UI](https://ui.pittaya.org/) — open source, React + TypeScript + Tailwind, CLI de instalação, site de documentação próprio.
@@ -6,417 +7,373 @@
 
 ---
 
+## Status geral
+
+| Fase | Descrição | Status |
+|---|---|---|
+| 0 | Estrutura do monorepo e site de docs | ✅ Concluída |
+| 1 | Migração dos componentes para `packages/ui` | 🔄 Pendente |
+| 2 | Deploy (Vercel) + domínio + npm | 🔄 Próximo passo |
+| 3 | Questões AVAMEC (`@modfly/ui-avamec`) | ⏳ Planejado |
+| 4 | CLI + polimento | ⏳ Planejado |
+
+---
+
 ## 1. Nome e Identidade
 
-**Nome escolhido: `Modfy UI`**
-
-> O nome já existe no codebase (`"name": "modfyjs"`, pasta `src/@modfy/`), é curto, técnico e já é a marca estabelecida do projeto. Não faz sentido criar uma marca paralela.
+**Nome: `Modfly UI`**
 
 | Item | Valor |
 |---|---|
-| Nome da lib | `Modfy UI` |
-| Pacote npm | `@modfy/ui` |
-| CLI | `npx modfy@latest add accordion` |
-| Site de docs | `ui.modfy.dev` *(ou `modfy.design`)* |
-| Org GitHub | `github.com/modfy-ui` |
-| Slogan sugerido | *"Components built for learning."* |
+| Nome da lib | `Modfly UI` |
+| Pacote npm | `@modfly/ui` |
+| CLI | `npx modfly@latest add accordion` |
+| Site de docs | `modfly.design` *(ou `ui.modfly.dev`)* |
+| Org GitHub | `github.com/modfly-ui` |
+| Slogan | *"Components built for learning."* |
 
 ---
 
 ## 2. Estrutura do Repositório (Monorepo)
 
-Usar **monorepo com pnpm workspaces + Turborepo** — o mesmo padrão de libs profissionais como Shadcn, Radix e Pittaya.
-
 ```
-modfy-ui/                          ← raiz do monorepo
+modfly-ui/                         ← raiz do monorepo
 ├── apps/
-│   ├── docs/                      ← site de documentação (Next.js 15)
-│   └── storybook/                 ← Storybook para dev interno
+│   ├── docs/                      ← ✅ site de documentação (Next.js 15)
+│   ├── storybook/                 ← ✅ Storybook v8
+│   └── curso-template/            ← ✅ template original (fonte dos componentes)
 ├── packages/
-│   ├── ui/                        ← 📦 A BIBLIOTECA EM SI
-│   │   ├── src/
-│   │   │   ├── components/
-│   │   │   │   ├── atoms/
-│   │   │   │   ├── molecules/
-│   │   │   │   ├── organisms/
-│   │   │   │   └── templates/
-│   │   │   ├── assets/            ← assets agrupados por componente
-│   │   │   ├── hooks/             ← hooks reutilizáveis (ex: useMediaQuery)
-│   │   │   └── index.ts           ← ponto de entrada único
-│   │   ├── package.json
-│   │   └── tsup.config.ts
-│   └── tsconfig/                  ← tsconfig compartilhado
-├── turbo.json
-├── pnpm-workspace.yaml
-└── package.json
+│   ├── ui/                        ← 🔄 biblioteca (estrutura criada, componentes pendentes)
+│   └── tsconfig/                  ← ✅ tsconfig compartilhado
+├── ARCHITECTURE.md                ← ✅ documentação da arquitetura
+├── COMPONENT-DOC-PATTERN.md       ← ✅ padrão de páginas de componente
+├── img-svg.md                     ← ✅ guia de assets PNG/SVG na migração
+├── turbo.json                     ← ✅
+└── pnpm-workspace.yaml            ← ✅
 ```
 
 ---
 
-## 3. Stack Técnica Definitiva
+## 3. Stack Técnica
 
-| Camada | Tecnologia | Motivo |
+| Camada | Tecnologia | Status |
 |---|---|---|
-| Framework da lib | React 18 + TypeScript | já existe no template |
-| Bundler | **tsup** | zero-config, gera ESM + CJS + .d.ts |
-| Estilo | **Tailwind CSS** *(principal)* + CSS Modules *(exceções)* | padronizar, reduzir Emotion |
-| Documentação | **Next.js 15** (App Router) | mesmo padrão do Pittaya UI |
-| Storybook | v8 | desenvolvimento e testes visuais |
-| Monorepo | **Turborepo** + **pnpm** | cache de builds, scripts paralelos |
-| Testes | Vitest + React Testing Library | mais rápido que Jest no monorepo |
-| CI/CD | **GitHub Actions** | free, integrado ao repo |
-| Deploy docs | **Vercel** | gratuito para open source, integra com GitHub |
-| Publicação | **npm** (scoped `@modfy/ui`) | padrão de mercado |
+| Framework da lib | React 18 + TypeScript | ✅ |
+| Bundler | tsup (ESM + CJS + .d.ts) | ✅ configurado |
+| Estilo | Tailwind CSS | ✅ |
+| Documentação | Next.js 15 (App Router) | ✅ rodando |
+| Storybook | v8 com `@storybook/react-vite` | ✅ rodando |
+| Monorepo | Turborepo + pnpm | ✅ |
+| Testes | Vitest + React Testing Library | ⏳ pendente |
+| CI/CD | GitHub Actions | ⏳ pendente |
+| Deploy docs | Vercel | 🔄 próximo passo |
+| Publicação npm | `@modfly/ui` | 🔄 próximo passo |
 
 ---
 
-## 4. Inventário de Componentes para Migrar
+## 4. Site de Documentação — O que foi feito
 
-### ✅ Fase 1 — Core (do CURSO-TEMPLATE atual)
+### Infraestrutura visual
 
-| Componente | Origem | Complexidade | Prioridade |
-|---|---|---|---|
-| `Accordion` | organisms/ | 🔴 Alta (22 variantes + ~50 assets) | Alta |
-| `ButtonLink` | atoms/ | 🟢 Baixa | Alta |
-| `ButtonPdfDownload` | atoms/ | 🟢 Baixa | Alta |
-| `Cards` | molecules/ | 🟡 Média | Alta |
-| `CardFlip` | molecules/ | 🟡 Média | Alta |
-| `Carousel` | templates/ | 🟡 Média | Alta |
-| `Slider` | templates/ | 🟡 Média | Alta |
-| `Pagination` | templates/ | 🟡 Média | Alta |
-| `QuoteText` | molecules/ | 🟢 Baixa | Média |
-| `Figure` | molecules/ | 🟢 Baixa | Média |
-| `Citation` | molecules/ | 🟢 Baixa | Média |
-| `IndentCitation` | molecules/ | 🟢 Baixa | Média |
-| `Tooltip` | atoms/ | 🟢 Baixa | Média |
-| `Postit` | atoms/ | 🟢 Baixa | Média |
-| `UnityBanner` | templates/ | 🟡 Média | Alta |
-| `Glossary` | templates/ | 🟡 Média | Média |
-| `ListModule` | molecules/ | 🟢 Baixa | Média |
-| `MiniCards` | molecules/ | 🟢 Baixa | Média |
-| `StarList` | organisms/ | 🟡 Média | Média |
-| `TimelineWithCards` | organisms/ | 🟡 Média | Média |
-| `HistoryTopics` | organisms/ | 🟡 Média | Média |
-| `LearningBlock` | organisms/ | 🟡 Média | Alta |
-| `ImageList` | molecules/ | 🟢 Baixa | Baixa |
-| `Embed` | molecules/ | 🟡 Média | Baixa |
+- ✅ Layout 3 colunas: sidebar (280px) | conteúdo | TOC lateral (260px)
+- ✅ Sidebar com navegação por seções e estado ativo
+- ✅ Topbar com breadcrumb dinâmico via `usePathname`
+- ✅ Barra de leitura (ReadingBar) com progresso de scroll
+- ✅ Animações de entrada: sidebar (slide da esquerda) + topbar (fade-down)
+- ✅ Design system completo em `globals.css` (tokens, classes doc-*, tabelas, code blocks)
 
-### ✅ Fase 1 — Questões (AVAMEC-ready)
+### Shared components criados (`apps/docs/components/docs/`)
 
-| Componente | Obs |
+| Componente | Função |
 |---|---|
-| `QuestionOption` | múltipla escolha, 1 resposta |
-| `QuestionMultipleAnswer` | múltiplas respostas |
-| `QuestionTrueOrFalse` | verdadeiro/falso |
-| `QuestionGrid` | grade de questões |
-| `QuestionCorrelation` | correlação de itens |
-| `QuestionDragDrop` | arrasta e solta |
-| `QuestionWritten` | resposta dissertativa |
-| `SendActivityButton` | botão de envio (AVAMEC) |
+| `ReadingBar` | barra laranja de progresso de leitura (fixa no topo) |
+| `Callout` | callouts info / warn / tip / danger |
+| `DocCodeBlock` | bloco de código dark com botão COPIAR e efeito spotlight |
+| `PackageManagerTabs` | tabs pnpm / npm / yarn / bun |
+| `RightToc` | TOC lateral com scroll-spy e barra de progresso |
+| `Pager` | navegação prev / next entre páginas |
 
-> **Nota:** Os componentes de questão têm dependência da `BridgeRestApi` (AVAMEC). Eles devem ser exportados em um sub-pacote separado `@modfy/ui-avamec` para não poluir a lib genérica com dependências específicas de plataforma.
+### Páginas implementadas
 
-### 🔄 Fase 2 — Novos cursos (adicionar conforme produção)
+| Rota | Status | Observação |
+|---|---|---|
+| `/` | ✅ | landing page completa em PT-BR |
+| `/docs/getting-started/installation` | ✅ | página completa (5 seções, tabela de requisitos, steps, preview UnityBanner) |
+| `/docs/getting-started/introduction` | ⏳ | placeholder |
+| `/docs/getting-started/tailwind-setup` | ⏳ | placeholder |
+| `/docs/getting-started/theming` | ⏳ | placeholder |
+| `/docs/components/citation` | ✅ | página completa (5 seções, preview inline, SVG embutido) |
+| `/docs/components/[slug]` | 🔄 | fallback genérico para os demais |
 
-A cada novo curso produzido, o fluxo deve ser:
-1. Desenvolver o componente no template do curso
-2. Identificar se é genérico ou específico do curso
-3. Abstrair props, remover conteúdo hardcoded
-4. Abrir PR no monorepo `modfy-ui`
-5. Escrever story no Storybook e página de docs
+### Padrão de documentação de componentes
+
+Definido em `COMPONENT-DOC-PATTERN.md`. Toda página de componente segue:
+
+1. **Rota estática** `apps/docs/app/(dashboard)/docs/components/<slug>/page.tsx`
+2. **Layout** `grid grid-cols-[1fr_260px]` + `<RightToc />`
+3. **5 seções numeradas** em PT-BR: Visão geral · Demo · API · Exemplos · Variantes
+4. **Preview inline** — componente recriado visualmente sem importar do curso-template
+5. **SVGs embutidos** como componentes React (não `<img src>`)
 
 ---
 
-## 5. Decisões de Migração Críticas
+## 5. Inventário de Componentes
 
-### 5.1 Assets (imagens/SVGs)
+### Moléculas
 
-O `Accordion` importa ~50 arquivos de imagem. Solução:
+| Componente | Doc page | Migrado para `packages/ui` | Story |
+|---|---|---|---|
+| `Citation` | ✅ | ❌ | ✅ |
+| `Cards` | ❌ | ❌ | ✅ |
+| `CardFlip` | ❌ | ❌ | ✅ |
+| `QuoteText` | ❌ | ❌ | ✅ |
+| `Figure` | ❌ | ❌ | ✅ |
+| `IndentCitation` | ❌ | ❌ | ✅ |
+| `ListModule` | ❌ | ❌ | ✅ |
+| `MiniCards` | ❌ | ❌ | ✅ |
+| `Embed` | ❌ | ❌ | ✅ |
+| `ImageList` | ❌ | ❌ | ✅ |
+
+### Átomos
+
+| Componente | Doc page | Migrado para `packages/ui` | Story |
+|---|---|---|---|
+| `ButtonLink` | ❌ | ❌ | ✅ |
+| `ButtonPdfDownload` | ❌ | ❌ | — |
+| `Tooltip` | ❌ | ❌ | — |
+| `Postit` | ❌ | ❌ | — |
+| `Check` | ❌ | ❌ | — |
+
+### Organismos
+
+| Componente | Doc page | Migrado para `packages/ui` | Story |
+|---|---|---|---|
+| `Accordion` | ❌ | ❌ | ✅ |
+| `StarList` | ❌ | ❌ | — |
+| `TimelineWithCards` | ❌ | ❌ | — |
+| `HistoryTopics` | ❌ | ❌ | — |
+| `LearningBlock` | ❌ | ❌ | ✅ |
+
+### Templates
+
+| Componente | Doc page | Migrado para `packages/ui` | Story |
+|---|---|---|---|
+| `Carousel` | ❌ | ❌ | ✅ |
+| `Slider` | ❌ | ❌ | ✅ |
+| `Pagination` | ❌ | ❌ | ✅ |
+| `UnityBanner` | ❌ | ❌ | — |
+| `Glossary` | ❌ | ❌ | — |
+
+### @modfly/ui-avamec (sub-pacote)
+
+| Componente | Status |
+|---|---|
+| `QuestionOption` | ⏳ pendente |
+| `QuestionMultipleAnswer` | ⏳ pendente |
+| `QuestionTrueOrFalse` | ⏳ pendente |
+| `QuestionGrid` | ⏳ pendente |
+| `QuestionCorrelation` | ⏳ pendente |
+| `QuestionDragDrop` | ⏳ pendente |
+| `QuestionWritten` | ⏳ pendente |
+| `SendActivityButton` | ⏳ pendente |
+
+---
+
+## 6. Próximos passos — Deploy e publicação
+
+### 6.1 Vercel (docs)
+
+Dois projetos separados no painel da Vercel:
+
+| Projeto | Root directory | URL |
+|---|---|---|
+| `modfly-docs` | `apps/docs` | modfly.design (ou subdomínio provisório) |
+| `modfly-storybook` | `apps/storybook` | storybook.modfly.design |
+
+**Configuração do projeto `modfly-docs` na Vercel:**
 
 ```
-packages/ui/src/assets/accordion/
-  ├── background1.svg   ← converter PNG → SVG quando possível
-  ├── arrowDown.svg
-  └── ...
+Framework preset : Next.js
+Root directory   : apps/docs
+Build command    : (deixar padrão — Vercel detecta automaticamente)
+Output directory : (deixar padrão)
 ```
 
-- SVGs simples: converter em componentes React (`<ArrowDownIcon />`)
-- PNGs complexos (backgrounds texturizados): manter como arquivo e bundlar com `tsup` usando o plugin de assets
+O Vercel tem suporte nativo a Turborepo — basta conectar o repositório GitHub.
 
-### 5.2 Tailwind no consumidor
+**Para o Storybook**, alternativa gratuita e melhor integrada: **Chromatic** (chromatic.com) — hospedagem oficial do Storybook com review visual por PR.
 
-O consumidor da lib precisa adicionar os arquivos da lib ao `content` do Tailwind:
+### 6.2 Domínio
+
+| Opção | Preço | Recomendação |
+|---|---|---|
+| `modfly.design` | ~$35/ano | ✅ primeira escolha |
+| `modfly-ui.com` | ~$15/ano | alternativa |
+| `ui.modfly.dev` | ~$12/ano | econômica |
+
+Comprar em **Porkbun** (porkbun.com) e apontar o DNS para Vercel via CNAME.
+
+### 6.3 npm
+
+```bash
+# 1. Criar conta em npmjs.com
+# 2. Criar organização @modfly (gratuito para pacotes públicos)
+# 3. Primeiro publish manual
+
+cd packages/ui
+pnpm build
+npm publish --access public
+```
+
+### 6.4 GitHub Organization
+
+1. Criar organização `modfly-ui` no GitHub
+2. Transferir (ou fazer fork) do repo atual
+3. Configurar branch protection na `main`
+
+---
+
+## 7. Decisões técnicas de migração
+
+### 7.1 Assets — ver `img-svg.md` para detalhes completos
+
+| Asset | Ação |
+|---|---|
+| SVG simples (ícones, setas) | copiar para `packages/ui/src/components/[Nome]/assets/` |
+| PNG simples (banners vetorizados) | converter para SVG antes de migrar |
+| PNG complexo / foto | manter PNG, copiar junto |
+| Imagem de conteúdo do curso | virar prop `src: string` |
+| Logos de terceiros (MEC, UFPE) | permanecem em `apps/curso-template` |
+
+### 7.2 Tailwind no consumidor
+
+O consumidor precisa adicionar ao `content` do tailwind.config:
 
 ```js
-// tailwind.config.js do projeto consumidor
 content: [
   "./src/**/*.{js,ts,jsx,tsx}",
-  "./node_modules/@modfy/ui/dist/**/*.js",  // ← adicionar isso
+  "./node_modules/@modfly/ui/dist/**/*.js",
 ]
 ```
 
-Documentar isso claramente no Getting Started.
-
-### 5.3 Remover dependência de `react-router-dom` do core
-
-O hook `useModfy` usa `useNavigate`. Na lib, isso deve ser opcional — expor uma interface de navegação injetável:
-
-```ts
-// ao invés de acoplar ao react-router
-<Pagination onPageChange={(page) => navigate(page)} />
-```
-
-### 5.4 Padrão de exportação
+### 7.3 Padrão de exportação
 
 ```ts
 // packages/ui/src/index.ts
-export { Accordion } from './components/organisms/accordion'
-export { ButtonLink } from './components/atoms/buttonLink'
-export { Cards } from './components/molecules/cards'
+export { Accordion }    from './components/organisms/accordion'
+export { ButtonLink }   from './components/atoms/buttonLink'
+export { Cards }        from './components/molecules/cards'
+export { Citation }     from './components/molecules/citation'
 // ...
 export type { AccordionProps } from './components/organisms/accordion'
 ```
 
----
+### 7.4 Remover react-router-dom do core
 
-## 6. Site de Documentação (Next.js)
-
-### Estrutura das páginas
-
-```
-apps/docs/
-├── app/
-│   ├── page.tsx                    ← landing page (hero + features)
-│   ├── docs/
-│   │   ├── getting-started/        ← instalação, configuração
-│   │   ├── components/
-│   │   │   ├── accordion/          ← página do componente
-│   │   │   ├── button-link/
-│   │   │   └── ...
-│   │   └── avamec/                 ← docs dos componentes AVAMEC
-│   └── layout.tsx
+```ts
+// Expor interface injetável em vez de acoplar ao react-router
+<Pagination onPageChange={(page) => navigate(page)} />
 ```
 
-### Cada página de componente deve ter
+---
 
-- Preview interativo do componente (live)
-- Tabs: **Preview** | **Code**
-- Tabela de props com tipos
-- Exemplos de variantes
-- Botão de copiar código
+## 8. Roadmap de páginas de documentação
 
-### Tecnologias do site de docs
+Prioridade sugerida para criar as próximas páginas seguindo `COMPONENT-DOC-PATTERN.md`:
 
-| Ferramenta | Função |
-|---|---|
-| Next.js 15 (App Router) | framework do site |
-| `next-mdx-remote` ou Contentlayer | conteúdo MDX das páginas |
-| Shiki ou Prism | syntax highlighting |
-| Tailwind CSS | estilo do site |
-| Vercel | deploy automático |
+### Getting Started (completa a seção)
+
+1. Introduction
+2. Tailwind setup
+3. Theming
+
+### Moléculas — do mais simples ao mais complexo
+
+1. QuoteText — sem assets, props simples
+2. Figure — sem assets
+3. ListModule — sem assets
+4. Cards — assets PNG a converter
+5. CardFlip — assets PNG a verificar
+6. IndentCitation (4 variantes)
+7. MiniCards
+
+### Átomos — páginas de doc
+
+1. ButtonLink
+2. Tooltip / Postit
+
+### Organismos — páginas de doc
+
+1. Accordion (22 variantes — o mais complexo)
+2. LearningBlock (SVGR)
 
 ---
 
-## 7. Publicação no npm
-
-### Configuração do `package.json` da lib
-
-```json
-{
-  "name": "@modfy/ui",
-  "version": "0.1.0",
-  "description": "Components built for learning.",
-  "keywords": ["react", "ui", "components", "e-learning", "tailwind"],
-  "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
-  "files": ["dist"],
-  "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
-  }
-}
-```
-
-### Fluxo de release
-
-1. Usar **Changesets** para controle de versão semântica
-2. PR merged → GitHub Action roda testes
-3. Release manual: `pnpm changeset` → `pnpm version-packages` → `pnpm release`
-4. Tag no GitHub + publicação automática no npm via Action
-
----
-
-## 8. CLI (como o Pittaya tem `npx pittaya@latest add button`)
-
-Fase 2 — mas planejar desde já a estrutura.
-
-```bash
-npx modfy@latest add accordion
-# → baixa apenas o arquivo do componente para src/components/
-# → instala dependências necessárias
-# → não instala a lib inteira como node_module
-```
-
-Esse modelo (copiador de código, não pacote instalado) é o padrão do Shadcn UI e Pittaya.
-Implementar com um script Node.js simples que lê um registry JSON e copia arquivos.
-
----
-
-## 9. Domínio e Infraestrutura
-
-### 9.1 Compra de domínio
-
-| Opção | Preço estimado | Recomendação |
-|---|---|---|
-| `modfy.design` | ~$35/ano | ✅ Melhor opção — curto, técnico, .design comunica o propósito |
-| `modfy-ui.com` | ~$15/ano | Boa alternativa |
-| `ui.modfy.dev` | subdomínio do .dev (~$12/ano) | Alternativa econômica |
-
-**Onde comprar:**
-- **Porkbun** ([porkbun.com](https://porkbun.com)) — melhor preço, boa interface ✅
-- **Namecheap** — confiável, muito usado
-- Evitar: GoDaddy (renovação cara), registro.br não tem `.design`
-
-**Configuração DNS após compra:**
-- Apontar para Vercel via `A record` ou `CNAME`
-- Vercel provisiona SSL automaticamente (HTTPS grátis)
-
-### 9.2 Hosting do site de docs
-
-**Vercel** (gratuito para projetos open source)
-
-1. Conectar o repositório GitHub à Vercel
-2. Configurar: root directory = `apps/docs`
-3. Preview automático a cada PR
-4. Deploy em produção a cada merge na `main`
-5. Adicionar domínio customizado no painel da Vercel
-
-### 9.3 npm Organization
-
-1. Criar conta em [npmjs.com](https://www.npmjs.com)
-2. Criar organização `@modfy` (gratuito para pacotes públicos)
-3. Publicar como `@modfy/ui`
-
-### 9.4 GitHub Organization
-
-1. Criar organização `modfy-ui` no GitHub
-2. Criar repositório `modfy-ui/ui` (monorepo principal)
-3. Configurar branch protection na `main`
-4. Adicionar `CONTRIBUTING.md` e templates de PR/Issue
-
----
-
-## 10. CI/CD com GitHub Actions
-
-### Pipeline principal (`.github/workflows/ci.yml`)
+## 9. CI/CD (após deploy)
 
 ```yaml
-# Roda a cada PR e push na main
+# .github/workflows/ci.yml
 jobs:
-  build:    ← tsc + tsup (verifica se builda sem erro)
-  test:     ← vitest
-  lint:     ← eslint + prettier
+  build:   # tsc + tsup
+  lint:    # eslint
+  # release: # publica no npm via Changesets
+```
 
-# Roda apenas na main
-  release:  ← publica no npm (se houver changeset de release)
-  deploy:   ← Vercel faz automaticamente via integração
+Usar **Changesets** para versionamento semântico:
+
+```bash
+pnpm changeset        # descreve a mudança
+pnpm version-packages # atualiza versions
+pnpm release          # publica no npm
 ```
 
 ---
 
-## 11. Roadmap por Fases
+## 10. Custos estimados
 
-### 🏗️ Fase 0 — Setup (1–2 semanas)
-- [ ] Criar organização GitHub `modfy-ui`
-- [ ] Inicializar monorepo com pnpm + Turborepo
-- [ ] Configurar `packages/ui` com tsup
-- [ ] Configurar `apps/storybook`
-- [ ] Criar `packages/ui/src/index.ts` com primeiros exports
-- [ ] Comprar domínio (`modfy.design`)
-- [ ] Criar conta npm + organização `@modfy`
-
-### 🧱 Fase 1 — Migração dos componentes (2–4 semanas)
-- [ ] Migrar e abstrair os componentes `atoms` (ButtonLink, Tooltip, Postit, Check)
-- [ ] Migrar e abstrair os componentes `molecules` (Cards, CardFlip, QuoteText, Figure, Citation)
-- [ ] Migrar `Accordion` com tratamento de assets
-- [ ] Migrar templates (Carousel, Slider, Pagination, UnityBanner)
-- [ ] Escrever stories para cada componente
-- [ ] Publicar versão `0.1.0-alpha` no npm
-
-### 🌐 Fase 2 — Site de documentação (2–3 semanas)
-- [ ] Criar `apps/docs` com Next.js 15
-- [ ] Landing page (hero, features, preview)
-- [ ] Página de Getting Started (instalação, configuração do Tailwind)
-- [ ] Página por componente com preview + código + props
-- [ ] Conectar Vercel + domínio
-- [ ] Publicar versão `0.1.0`
-
-### 🎓 Fase 3 — Questões AVAMEC (paralelo ou após Fase 2)
-- [ ] Criar `packages/ui-avamec` para componentes de questão
-- [ ] Documentar a integração com `BridgeRestApi`
-- [ ] Guia de uso com AVAMEC no site de docs
-
-### ⚡ Fase 4 — CLI e polimento
-- [ ] Implementar `npx modfy@latest add <component>`
-- [ ] Adicionar mais componentes de novos cursos
-- [ ] SEO do site de docs
-- [ ] Analytics (Vercel Analytics — gratuito)
+| Item | Custo | Frequência |
+|---|---|---|
+| Domínio `modfly.design` | ~$35 | Anual |
+| Vercel (docs + storybook) | $0 | Free tier |
+| Chromatic (Storybook hosting) | $0 | Free tier (5k snapshots/mês) |
+| GitHub | $0 | Free tier |
+| npm `@modfly` org pública | $0 | Gratuito |
+| GitHub Actions | $0 | Free para repos públicos |
+| **Total** | **~$35/ano** | |
 
 ---
 
-## 12. Fluxo de Trabalho após a Lib estar no ar
+## 11. Fluxo após a lib estar no ar
 
 A cada novo curso produzido:
 
 ```
-1. Desenvolver componente no template do curso (CURSO-TEMPLATE)
+1. Desenvolver componente em apps/curso-template
          ↓
-2. Avaliar: é genérico? → SIM → migrar para @modfy/ui
-                        → NÃO → manter só no curso
+2. Avaliar: é genérico?
+   → SIM → migrar para packages/ui
+   → NÃO → manter só no curso
          ↓
-3. Abrir PR no repo modfy-ui/ui
-   - Componente + assets
+3. Abrir PR no monorepo
+   - Componente + assets em packages/ui
    - Story no Storybook
-   - Página de docs em MDX
+   - Página de docs seguindo COMPONENT-DOC-PATTERN.md
    - Changeset (patch/minor/major)
          ↓
-4. Review + merge → CI roda → npm publica → Vercel deploya docs
+4. Review + merge → CI roda → npm publica → Vercel deploya
          ↓
-5. No próximo curso: instalar @modfy/ui e importar o componente
+5. No próximo curso: instalar @modfly/ui e importar
 ```
 
 ---
 
-## 13. Custos Estimados
-
-| Item | Custo | Frequência |
-|---|---|---|
-| Domínio `modfy.design` | ~$35 | Anual |
-| Vercel (docs) | $0 | Free tier |
-| GitHub | $0 | Free tier |
-| npm (`@modfy` org pública) | $0 | Free |
-| GitHub Actions | $0 | Free para repositórios públicos |
-| **Total** | **~$35/ano** | |
-
-> 💡 Se no futuro quiser versão premium com autenticação ou analytics avançado, a única adição seria um servidor (Railway ~$5/mês ou Supabase free tier para backend simples).
-
----
-
-## 14. Referências
+## 12. Referências
 
 - [Pittaya UI](https://ui.pittaya.org/) — inspiração direta
-- [Shadcn UI](https://ui.shadcn.com/) — modelo de CLI "copiar código"
+- [Shadcn UI](https://ui.shadcn.com/) — modelo CLI "copiar código"
 - [Radix UI](https://www.radix-ui.com/) — acessibilidade como base
 - [Turborepo Docs](https://turbo.build/repo) — setup do monorepo
 - [tsup](https://tsup.egoist.dev/) — bundler da lib
 - [Changesets](https://github.com/changesets/changesets) — versionamento semântico
 - [Porkbun](https://porkbun.com) — compra de domínio
+- [Chromatic](https://www.chromatic.com/) — hospedagem do Storybook

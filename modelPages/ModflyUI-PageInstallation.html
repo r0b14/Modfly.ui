@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation — Modfly UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f3ec;
+      --bg-2: #efeae0;
+      --paper: #fbf9f3;
+      --ink: #0f0e0c;
+      --ink-2: #1a1714;
+      --muted: #6b645a;
+      --rule: #1a17141a;
+      --rule-strong: #1a17143b;
+
+      --blue: #298bca;
+      --blue-soft: #7db0ec;
+      --green: #649753;
+      --green-soft: #8fcd79;
+      --orange: #c66a4a;
+      --orange-soft: #ffb861;
+      --yellow: #f5c542;
+      --pink: #ed1b69;
+      --pink-soft: #f8a8c3;
+      --purple: #6c4ab6;
+      --purple-soft: #b9a3e4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .serif {
+      font-family: 'Instrument Serif', serif;
+    }
+
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ========== AMBIENT ========== */
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.08;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQwIDI0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSIyIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPSIwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwIDAgMCAwLjcgMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIyNDAiIGhlaWdodD0iMjQwIiBmaWx0ZXI9InVybCgjbikiLz48L3N2Zz4=");
+    }
+
+    .color-rail {
+      position: fixed;
+      top: 0;
+      left: 280px;
+      right: 0;
+      height: 3px;
+      z-index: 200;
+      display: flex;
+      pointer-events: none;
+    }
+
+    .color-rail span {
+      flex: 1;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) var(--rd, 0s);
+    }
+
+    .color-rail.in span {
+      transform: scaleX(1);
+    }
+
+    .reading-bar {
+      position: fixed;
+      top: 0;
+      left: 280px;
+      height: 3px;
+      background: var(--orange);
+      z-index: 201;
+      width: 0%;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 12px rgba(198, 106, 74, 0.5);
+    }
+
+    /* ========== SHELL ========== */
+    .app {
+      display: grid;
+      grid-template-columns: 280px 1fr 260px;
+      min-height: 100vh;
+    }
+
+    /* ========== SIDEBAR ========== */
+    .sidebar {
+      border-right: 1px solid var(--rule);
+      background: var(--bg);
+      padding: 28px 24px 60px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .sidebar.in {
+      transform: translateX(0);
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--rule-strong);
+      border-radius: 3px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--ink);
+      color: var(--bg);
+      display: grid;
+      place-items: center;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 22px;
+      border-radius: 4px;
+      transform: translateY(2px);
+    }
+
+    .brand-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .brand-name sup {
+      font-size: 10px;
+      color: var(--orange);
+      font-family: 'JetBrains Mono', monospace;
+      margin-left: 2px;
+    }
+
+    .brand-version {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      padding: 3px 7px;
+      background: var(--bg-2);
+      border-radius: 999px;
+      align-self: center;
+    }
+
+    .brand-tag {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 28px;
+      padding-left: 42px;
+      margin-top: -4px;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .search-kbd {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      background: var(--bg-2);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--muted);
+    }
+
+    .nav-section {
+      margin-bottom: 22px;
+    }
+
+    .nav-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-list li {
+      font-size: 13.5px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--ink-2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.12s ease, padding 0.2s ease;
+    }
+
+    .nav-list li:hover:not(.active) {
+      background: var(--bg-2);
+      padding-left: 14px;
+    }
+
+    .nav-list li.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .nav-list li.active .nav-dot {
+      background: var(--orange-soft);
+    }
+
+    .nav-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--rule-strong);
+      flex-shrink: 0;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      color: var(--muted);
+      background: var(--bg-2);
+      padding: 1px 5px;
+      border-radius: 3px;
+    }
+
+    .nav-list li.active .nav-badge {
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* ========== MAIN ========== */
+    .main {
+      min-width: 0;
+      padding: 0 60px;
+    }
+
+    /* Topbar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      background: rgba(246, 243, 236, 0.85);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.5s ease 0.25s, transform 0.5s ease 0.25s;
+    }
+
+    .topbar.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .breadcrumb {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breadcrumb .sep {
+      opacity: 0.4;
+    }
+
+    .breadcrumb b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .topbar-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      color: var(--ink-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .btn {
+      font-family: 'Geist', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 7px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--bg);
+      cursor: pointer;
+      transition: transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--rule-strong);
+    }
+
+    /* ========== DOC HEADER ========== */
+    .doc-head {
+      padding: 64px 0 40px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .doc-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .doc-cat::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--orange);
+    }
+
+    .doc-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 88px;
+      line-height: 0.92;
+      letter-spacing: -0.035em;
+      margin: 0 0 24px;
+      max-width: 720px;
+    }
+
+    .doc-title i {
+      color: var(--orange);
+      font-style: italic;
+    }
+
+    .doc-lead {
+      font-family: 'Geist', sans-serif;
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--ink-2);
+      max-width: 640px;
+      margin: 0 0 28px;
+    }
+
+    .doc-meta {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .doc-meta b {
+      color: var(--ink-2);
+      font-weight: 500;
+    }
+
+    .doc-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .doc-meta-item::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--rule-strong);
+    }
+
+    /* ========== PROSE ========== */
+    .prose {
+      max-width: 720px;
+      padding: 48px 0 80px;
+    }
+
+    .prose [data-reveal] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) var(--delay, 0s), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) var(--delay, 0s);
+    }
+
+    .prose [data-reveal].in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 42px;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin: 64px 0 12px;
+      position: relative;
+      scroll-margin-top: 88px;
+    }
+
+    .h2 .anchor {
+      position: absolute;
+      left: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px;
+      color: var(--rule-strong);
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .h2:hover .anchor {
+      opacity: 1;
+    }
+
+    .h2 .anchor:hover {
+      color: var(--orange);
+    }
+
+    .h2 .h2-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .h3 {
+      font-family: 'Geist', sans-serif;
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin: 40px 0 12px;
+      scroll-margin-top: 88px;
+    }
+
+    .p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--ink-2);
+      margin: 0 0 18px;
+      max-width: 640px;
+    }
+
+    .p code,
+    .li code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      background: var(--bg-2);
+      padding: 1px 6px;
+      border-radius: 3px;
+      color: var(--ink);
+      border: 1px solid var(--rule);
+    }
+
+    .p a,
+    .li a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--orange);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .p a:hover,
+    .li a:hover {
+      color: var(--orange);
+    }
+
+    .ol,
+    .ul {
+      padding-left: 0;
+      margin: 0 0 22px;
+      max-width: 640px;
+      list-style: none;
+      counter-reset: olcount;
+    }
+
+    .li {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: var(--ink-2);
+      margin-bottom: 8px;
+      padding-left: 30px;
+      position: relative;
+    }
+
+    .ol .li {
+      counter-increment: olcount;
+    }
+
+    .ol .li::before {
+      content: counter(olcount, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--orange);
+      font-weight: 600;
+      padding-top: 5px;
+      letter-spacing: 0.04em;
+    }
+
+    .ul .li::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 13px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    /* ========== TABS (Package manager) ========== */
+    .tabs {
+      margin: 28px 0;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .tabs-head {
+      display: flex;
+      border-bottom: 1px solid var(--rule);
+      background: var(--bg);
+      padding: 0 16px;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 12px 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      position: relative;
+      letter-spacing: 0.04em;
+      transition: color 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--ink);
+    }
+
+    .tab-btn.on {
+      color: var(--ink);
+    }
+
+    .tab-btn.on::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.on {
+      display: block;
+    }
+
+    /* ========== CODE BLOCK ========== */
+    .code {
+      background: #16140f;
+      color: #e8e2d1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 20px 24px;
+      position: relative;
+      overflow-x: auto;
+      isolation: isolate;
+    }
+
+    .code::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 184, 97, 0.16), transparent 65%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .code:hover::before {
+      opacity: 1;
+    }
+
+    .code>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .code .tok-key {
+      color: #f4a261;
+    }
+
+    .code .tok-str {
+      color: #9fcd84;
+    }
+
+    .code .tok-com {
+      color: #6b645a;
+      font-style: italic;
+    }
+
+    .code .tok-tag {
+      color: #88c0ec;
+    }
+
+    .code .tok-attr {
+      color: #d9b8f0;
+    }
+
+    .code .tok-num {
+      color: #f8a8c3;
+    }
+
+    .code .tok-fn {
+      color: #f4d35e;
+    }
+
+    .code .tok-op {
+      color: #d9b8f0;
+    }
+
+    .code-prompt {
+      color: var(--orange-soft);
+      user-select: none;
+    }
+
+    .code-block {
+      margin: 18px 0 24px;
+      background: #16140f;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .code-block .code {
+      border-radius: 10px;
+    }
+
+    .code-copy {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e8e2d1;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.06em;
+      transition: all 0.2s ease;
+    }
+
+    .code-copy:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .code-copy.copied {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+
+    .code-block-head {
+      display: flex;
+      align-items: center;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .code-block-file {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .code-block-dots {
+      display: flex;
+      gap: 6px;
+      margin-right: 12px;
+    }
+
+    .code-block-dots span {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    /* ========== CALLOUT ========== */
+    .callout {
+      margin: 28px 0;
+      padding: 20px 22px 20px 56px;
+      border-radius: 10px;
+      background: var(--paper);
+      border-left: 3px solid var(--blue);
+      position: relative;
+      max-width: 720px;
+    }
+
+    .callout::before {
+      content: 'i';
+      position: absolute;
+      left: 20px;
+      top: 22px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 15px;
+      display: grid;
+      place-items: center;
+      line-height: 1;
+    }
+
+    .callout-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--blue);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-2);
+      line-height: 1.6;
+    }
+
+    .callout p+p {
+      margin-top: 8px;
+    }
+
+    .callout code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      background: var(--bg-2);
+      padding: 1px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--rule);
+    }
+
+    .callout.warn {
+      border-left-color: var(--orange);
+    }
+
+    .callout.warn::before {
+      background: var(--orange);
+      content: '!';
+    }
+
+    .callout.warn .callout-label {
+      color: var(--orange);
+    }
+
+    .callout.tip {
+      border-left-color: var(--green);
+    }
+
+    .callout.tip::before {
+      background: var(--green);
+      content: '✓';
+      font-family: 'Geist', sans-serif;
+      font-style: normal;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .callout.tip .callout-label {
+      color: var(--green);
+    }
+
+    .callout.danger {
+      border-left-color: var(--pink);
+    }
+
+    .callout.danger::before {
+      background: var(--pink);
+      content: '×';
+      font-family: 'Geist', sans-serif;
+      font-style: normal;
+      font-size: 18px;
+    }
+
+    .callout.danger .callout-label {
+      color: var(--pink);
+    }
+
+    /* ========== TABLE ========== */
+    .table-wrap {
+      margin: 28px 0;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .table thead th {
+      background: var(--bg);
+      text-align: left;
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 500;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .table tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink-2);
+    }
+
+    .table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table tbody tr:hover {
+      background: var(--bg-2);
+    }
+
+    .table .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      color: var(--ink);
+    }
+
+    .table .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+    }
+
+    .table .status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    .table .status.ok::before {
+      background: var(--green);
+    }
+
+    .table .status.partial::before {
+      background: var(--yellow);
+    }
+
+    .table .status.no::before {
+      background: var(--pink);
+    }
+
+    /* ========== STEP BLOCK ========== */
+    .steps {
+      margin: 32px 0;
+      counter-reset: stepc;
+      max-width: 720px;
+    }
+
+    .step {
+      counter-increment: stepc;
+      padding: 24px 0 24px 70px;
+      position: relative;
+      border-bottom: 1px dashed var(--rule);
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .step::before {
+      content: counter(stepc, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 22px;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--orange);
+      width: 56px;
+    }
+
+    .step-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 26px;
+      line-height: 1.1;
+      margin: 0 0 8px;
+    }
+
+    .step-desc {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--ink-2);
+      margin: 0 0 12px;
+    }
+
+    .step .code-block {
+      margin-top: 14px;
+    }
+
+    /* ========== KBD ========== */
+    kbd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: var(--paper);
+      border: 1px solid var(--rule-strong);
+      box-shadow: 0 1px 0 var(--rule-strong);
+      color: var(--ink);
+      display: inline-block;
+      line-height: 1.4;
+    }
+
+    /* ========== HORIZONTAL RULE ========== */
+    .hr {
+      border: 0;
+      margin: 56px 0;
+      height: 1px;
+      background: var(--rule);
+      position: relative;
+    }
+
+    .hr::after {
+      content: '✦';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--bg);
+      color: var(--orange);
+      padding: 0 14px;
+      font-size: 13px;
+    }
+
+    /* ========== PREV/NEXT NAV ========== */
+    .pager {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 64px 0 40px;
+      max-width: 720px;
+    }
+
+    .pager-card {
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      padding: 20px 22px;
+      background: var(--paper);
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.22, 0.61, 0.36, 1), border-color 0.25s ease, background 0.25s ease;
+      text-decoration: none;
+      color: var(--ink);
+      display: block;
+    }
+
+    .pager-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--rule-strong);
+      background: var(--bg);
+    }
+
+    .pager-card.next {
+      text-align: right;
+    }
+
+    .pager-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pager-card.next .pager-label {
+      justify-content: flex-end;
+    }
+
+    .pager-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 26px;
+      line-height: 1.1;
+    }
+
+    .pager-card .arrow {
+      color: var(--orange);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ========== FOOTER OF PAGE ========== */
+    .pg-foot {
+      padding: 32px 0 60px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .pg-foot a {
+      color: var(--ink-2);
+      text-decoration: none;
+      padding: 6px 10px;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .pg-foot a:hover {
+      border-color: var(--rule-strong);
+      background: var(--paper);
+    }
+
+    .pg-foot .right {
+      margin-left: auto;
+    }
+
+    /* ========== RIGHT TOC ========== */
+    .toc {
+      border-left: 1px solid var(--rule);
+      padding: 28px 32px 60px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--bg);
+    }
+
+    .toc::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .toc::-webkit-scrollbar-thumb {
+      background: var(--rule-strong);
+      border-radius: 3px;
+    }
+
+    .toc-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 16px;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toc-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .toc-list li {
+      padding: 5px 0 5px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      margin-left: -2px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .toc-list li:hover {
+      color: var(--ink);
+    }
+
+    .toc-list li.active {
+      color: var(--ink);
+      border-left-color: var(--orange);
+      font-weight: 500;
+    }
+
+    .toc-list li.h3-link {
+      padding-left: 26px;
+      font-size: 12.5px;
+    }
+
+    .toc-meta {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toc-meta a {
+      font-family: 'Geist', sans-serif;
+      font-size: 12.5px;
+      color: var(--ink-2);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 0;
+    }
+
+    .toc-meta a:hover {
+      color: var(--orange);
+    }
+
+    .toc-meta a .icon {
+      width: 14px;
+      height: 14px;
+      display: inline-grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .toc-progress {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .toc-progress-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .toc-progress-label b {
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    .toc-progress-bar {
+      height: 3px;
+      background: var(--bg-2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .toc-progress-fill {
+      height: 100%;
+      background: var(--orange);
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.15s ease-out;
+    }
+
+    /* Estimated read time chip in TOC */
+    .toc-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+    }
+
+    .toc-chip::before {
+      content: '○';
+      color: var(--orange);
+    }
+
+    /* ========== REDUCED MOTION ========== */
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="color-rail" aria-hidden="true">
+    <span style="background:var(--blue);--rd:0s;"></span>
+    <span style="background:var(--green);--rd:0.08s;"></span>
+    <span style="background:var(--orange);--rd:0.16s;"></span>
+    <span style="background:var(--yellow);--rd:0.24s;"></span>
+    <span style="background:var(--pink);--rd:0.32s;"></span>
+    <span style="background:var(--purple);--rd:0.40s;"></span>
+  </div>
+  <div class="reading-bar" id="readingBar" aria-hidden="true"></div>
+
+  <div class="app">
+
+    <!-- =================== SIDEBAR =================== -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <div class="brand-name">Modfy<sup>UI</sup></div>
+        <span class="brand-version">v0.1.0</span>
+      </div>
+      <div class="brand-tag">Components built for learning.</div>
+
+      <div class="search">
+        <span style="font-size:13px;">⌕</span>
+        <span>Search docs…</span>
+        <span class="search-kbd">⌘ K</span>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Getting started</div>
+        <ul class="nav-list">
+          <li><span class="nav-dot"></span>Introduction</li>
+          <li class="active"><span class="nav-dot"></span>Installation</li>
+          <li><span class="nav-dot"></span>Tailwind setup</li>
+          <li><span class="nav-dot"></span>Theming</li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Atoms</div>
+        <ul class="nav-list">
+          <li><span class="nav-dot"></span>ButtonLink<span class="nav-badge">3v</span></li>
+          <li><span class="nav-dot"></span>ButtonPdfDownload</li>
+          <li><span class="nav-dot"></span>Tooltip</li>
+          <li><span class="nav-dot"></span>Postit</li>
+          <li><span class="nav-dot"></span>Check</li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Molecules</div>
+        <ul class="nav-list">
+          <li><span class="nav-dot"></span>Cards</li>
+          <li><span class="nav-dot"></span>CardFlip</li>
+          <li><span class="nav-dot"></span>QuoteText</li>
+          <li><span class="nav-dot"></span>Figure</li>
+          <li><span class="nav-dot"></span>Citation</li>
+          <li><span class="nav-dot"></span>IndentCitation<span class="nav-badge">4v</span></li>
+          <li><span class="nav-dot"></span>ListModule</li>
+          <li><span class="nav-dot"></span>MiniCards</li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Organisms</div>
+        <ul class="nav-list">
+          <li><span class="nav-dot"></span>Accordion<span class="nav-badge">22+</span></li>
+          <li><span class="nav-dot"></span>StarList</li>
+          <li><span class="nav-dot"></span>TimelineWithCards</li>
+          <li><span class="nav-dot"></span>LearningBlock</li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">Templates</div>
+        <ul class="nav-list">
+          <li><span class="nav-dot"></span>Carousel</li>
+          <li><span class="nav-dot"></span>Slider</li>
+          <li><span class="nav-dot"></span>Pagination</li>
+          <li><span class="nav-dot"></span>UnityBanner</li>
+          <li><span class="nav-dot"></span>Glossary</li>
+        </ul>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-label">@modfy/ui-avamec</div>
+        <ul class="nav-list">
+          <li><span class="nav-dot" style="background:var(--green)"></span>QuestionOption</li>
+          <li><span class="nav-dot" style="background:var(--green)"></span>QuestionMultipleAnswer</li>
+          <li><span class="nav-dot" style="background:var(--green)"></span>QuestionTrueOrFalse</li>
+          <li><span class="nav-dot" style="background:var(--green)"></span>QuestionGrid</li>
+          <li><span class="nav-dot" style="background:var(--green)"></span>QuestionCorrelation</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- =================== MAIN =================== -->
+    <main class="main">
+
+      <div class="topbar">
+        <div class="breadcrumb">
+          <span>DOCS</span>
+          <span class="sep">/</span>
+          <span>GETTING STARTED</span>
+          <span class="sep">/</span>
+          <b>INSTALLATION</b>
+        </div>
+        <div class="topbar-actions">
+          <span class="pill"><span class="dot"></span>npm · @modfy/ui · v0.1.0</span>
+          <button class="btn ghost" data-magnetic>GitHub ↗</button>
+        </div>
+      </div>
+
+      <!-- ===== DOC HEADER ===== -->
+      <header class="doc-head">
+        <div class="doc-cat">Getting Started · 02 of 04</div>
+        <h1 class="doc-title">Up and running in <i>under a minute.</i></h1>
+        <p class="doc-lead">
+          O Modfy UI é distribuído como um pacote npm tree-shakeable. Esta página cobre
+          instalação, configuração mínima do Tailwind e o primeiro <span class="mono"
+            style="font-size:13.5px;">&lt;UnityBanner /&gt;</span>
+          renderizando na tela.
+        </p>
+        <div class="doc-meta">
+          <div class="doc-meta-item">Version <b>0.1.0</b></div>
+          <div class="doc-meta-item">Updated <b>27 May 2026</b></div>
+          <div class="doc-meta-item">Read time <b>~6 min</b></div>
+          <div class="doc-meta-item">Status <b style="color:var(--green);">stable</b></div>
+        </div>
+      </header>
+
+      <!-- ===== PROSE ===== -->
+      <article class="prose">
+
+        <!-- Requirements ============================================== -->
+        <section id="requirements" data-section data-reveal>
+          <h2 class="h2">
+            <a class="anchor" href="#requirements" aria-hidden="true">#</a>
+            <span class="h2-num">01 · Pré-requisitos</span>
+            Before you install
+          </h2>
+          <p class="p">
+            Modfy UI roda em qualquer aplicação React 18+ com Tailwind. Não há
+            dependências escondidas — a lib é <em>peer-dependency-only</em> em
+            <code>react</code>, <code>react-dom</code> e <code>tailwindcss</code>.
+          </p>
+
+          <div class="table-wrap" data-reveal>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Dependência</th>
+                  <th>Versão mínima</th>
+                  <th>Status</th>
+                  <th>Notas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="mono">node</span></td>
+                  <td><span class="mono">18.18+</span></td>
+                  <td><span class="status ok">supported</span></td>
+                  <td>20.x recomendado</td>
+                </tr>
+                <tr>
+                  <td><span class="mono">react</span></td>
+                  <td><span class="mono">^18.2.0</span></td>
+                  <td><span class="status ok">supported</span></td>
+                  <td>peer dep</td>
+                </tr>
+                <tr>
+                  <td><span class="mono">tailwindcss</span></td>
+                  <td><span class="mono">^3.4.0</span></td>
+                  <td><span class="status ok">supported</span></td>
+                  <td>v4 em alpha</td>
+                </tr>
+                <tr>
+                  <td><span class="mono">typescript</span></td>
+                  <td><span class="mono">^5.0</span></td>
+                  <td><span class="status partial">optional</span></td>
+                  <td>tipos incluídos</td>
+                </tr>
+                <tr>
+                  <td><span class="mono">react-router</span></td>
+                  <td>—</td>
+                  <td><span class="status no">not required</span></td>
+                  <td>componentes recebem callbacks</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout tip" data-reveal>
+            <div class="callout-label">Tip · pnpm é o gerenciador oficial</div>
+            <p>
+              O monorepo do Modfy usa <code>pnpm</code> + Turborepo. Os exemplos
+              assumem pnpm, mas npm e yarn funcionam igual — só troque o comando.
+            </p>
+          </div>
+        </section>
+
+        <!-- Install ============================================== -->
+        <section id="install" data-section data-reveal>
+          <h2 class="h2">
+            <a class="anchor" href="#install" aria-hidden="true">#</a>
+            <span class="h2-num">02 · Instalação</span>
+            Install the package
+          </h2>
+          <p class="p">
+            Escolha seu package manager. O pacote é menor que 80kb gzipped e suporta
+            ESM e CJS — sem configuração extra de bundler.
+          </p>
+
+          <!-- Package manager tabs -->
+          <div class="tabs" data-reveal>
+            <div class="tabs-head" role="tablist">
+              <button class="tab-btn on" data-tab="pnpm" role="tab">pnpm</button>
+              <button class="tab-btn" data-tab="npm" role="tab">npm</button>
+              <button class="tab-btn" data-tab="yarn" role="tab">yarn</button>
+              <button class="tab-btn" data-tab="bun" role="tab">bun</button>
+            </div>
+            <div class="tab-pane on" data-pane="pnpm">
+              <div class="code"><span class="code-prompt">$ </span>pnpm add <span class="tok-str">@modfy/ui</span></div>
+            </div>
+            <div class="tab-pane" data-pane="npm">
+              <div class="code"><span class="code-prompt">$ </span>npm install <span class="tok-str">@modfy/ui</span>
+              </div>
+            </div>
+            <div class="tab-pane" data-pane="yarn">
+              <div class="code"><span class="code-prompt">$ </span>yarn add <span class="tok-str">@modfy/ui</span></div>
+            </div>
+            <div class="tab-pane" data-pane="bun">
+              <div class="code"><span class="code-prompt">$ </span>bun add <span class="tok-str">@modfy/ui</span></div>
+            </div>
+          </div>
+
+          <h3 class="h3">Optional: instalar o pacote AVAMEC</h3>
+          <p class="p">
+            Se você está escrevendo cursos para a plataforma AVAMEC do MEC,
+            instale também o sub-pacote dedicado. Ele expõe <code>QuestionOption</code>,
+            <code>QuestionMultipleAnswer</code>, etc., já integrados com a
+            <code>BridgeRestApi</code>.
+          </p>
+          <div class="code-block" data-reveal>
+            <div class="code-block-head">
+              <div class="code-block-dots">
+                <span style="background:#ec5d5d;"></span>
+                <span style="background:#f0c042;"></span>
+                <span style="background:#7fc77f;"></span>
+              </div>
+              <span class="code-block-file">terminal</span>
+              <button class="code-copy" data-copy="pnpm add @modfy/ui-avamec">COPY</button>
+            </div>
+            <div class="code"><span class="code-prompt">$ </span>pnpm add <span class="tok-str">@modfy/ui-avamec</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Setup ============================================== -->
+        <section id="setup" data-section data-reveal>
+          <h2 class="h2">
+            <a class="anchor" href="#setup" aria-hidden="true">#</a>
+            <span class="h2-num">03 · Setup</span>
+            Configure your project
+          </h2>
+          <p class="p">
+            Três passos. Apenas o <strong>2</strong> é não-óbvio — sem ele, as
+            classes Tailwind da lib não aparecem no bundle final do seu projeto.
+          </p>
+
+          <div class="steps">
+            <div class="step" data-reveal>
+              <h4 class="step-title">Import the global styles</h4>
+              <p class="step-desc">
+                No seu arquivo de entrada (<code>main.tsx</code>, <code>_app.tsx</code> ou
+                equivalente), importe os estilos base. Eles incluem reset, fontes e tokens.
+              </p>
+              <div class="code-block">
+                <div class="code-block-head">
+                  <div class="code-block-dots">
+                    <span style="background:#ec5d5d;"></span>
+                    <span style="background:#f0c042;"></span>
+                    <span style="background:#7fc77f;"></span>
+                  </div>
+                  <span class="code-block-file">src / main.tsx</span>
+                  <button class="code-copy" data-copy="import '@modfy/ui/styles.css'">COPY</button>
+                </div>
+                <pre class="code"
+                  style="margin:0;"><span class="tok-key">import</span> <span class="tok-str">'@modfy/ui/styles.css'</span>
+<span class="tok-key">import</span> <span class="tok-tag">React</span> <span class="tok-key">from</span> <span class="tok-str">'react'</span>
+<span class="tok-key">import</span> { <span class="tok-fn">createRoot</span> } <span class="tok-key">from</span> <span class="tok-str">'react-dom/client'</span>
+<span class="tok-key">import</span> <span class="tok-fn">App</span> <span class="tok-key">from</span> <span class="tok-str">'./App'</span>
+
+<span class="tok-fn">createRoot</span>(<span class="tok-fn">document.getElementById</span>(<span class="tok-str">'root'</span>)!).<span class="tok-fn">render</span>(&lt;<span class="tok-tag">App</span> /&gt;)</pre>
+              </div>
+            </div>
+
+            <div class="step" data-reveal>
+              <h4 class="step-title">Update your Tailwind config</h4>
+              <p class="step-desc">
+                Adicione o caminho dos componentes ao array <code>content</code> para que o JIT
+                do Tailwind veja as classes usadas dentro do <code>@modfy/ui</code>.
+              </p>
+              <div class="code-block">
+                <div class="code-block-head">
+                  <div class="code-block-dots">
+                    <span style="background:#ec5d5d;"></span>
+                    <span style="background:#f0c042;"></span>
+                    <span style="background:#7fc77f;"></span>
+                  </div>
+                  <span class="code-block-file">tailwind.config.ts</span>
+                  <button class="code-copy"
+                    data-copy='content: ["./src/**/*.{ts,tsx}", "./node_modules/@modfy/ui/dist/**/*.js"]'>COPY</button>
+                </div>
+                <pre class="code" style="margin:0;"><span class="tok-key">import</span> <span class="tok-key">type</span> { <span class="tok-tag">Config</span> } <span class="tok-key">from</span> <span class="tok-str">'tailwindcss'</span>
+
+<span class="tok-key">export default</span> {
+  <span class="tok-attr">content</span>: [
+    <span class="tok-str">'./src/**/*.{ts,tsx}'</span>,
+    <span class="tok-com">// 👇 obrigatório para classes da lib</span>
+    <span class="tok-str">'./node_modules/@modfy/ui/dist/**/*.js'</span>,
+  ],
+  <span class="tok-attr">theme</span>: {
+    <span class="tok-attr">extend</span>: {},
+  },
+  <span class="tok-attr">plugins</span>: [],
+} <span class="tok-key">satisfies</span> <span class="tok-tag">Config</span></pre>
+              </div>
+              <div class="callout warn" style="margin-top:18px;">
+                <div class="callout-label">Atenção · esquecer este passo é o erro #1</div>
+                <p>
+                  Se você instalar o pacote e os componentes aparecerem sem estilos,
+                  100% das vezes é o <code>content</code> do Tailwind faltando. Verifique
+                  o caminho em <code>node_modules/@modfy/ui/dist</code>.
+                </p>
+              </div>
+            </div>
+
+            <div class="step" data-reveal>
+              <h4 class="step-title">Render your first component</h4>
+              <p class="step-desc">
+                Cole o trecho abaixo numa página qualquer. Você deve ver o banner roxo
+                da unidade renderizando na tela.
+              </p>
+              <div class="code-block">
+                <div class="code-block-head">
+                  <div class="code-block-dots">
+                    <span style="background:#ec5d5d;"></span>
+                    <span style="background:#f0c042;"></span>
+                    <span style="background:#7fc77f;"></span>
+                  </div>
+                  <span class="code-block-file">src / pages / HelloModfy.tsx</span>
+                  <button class="code-copy" data-copy='import { UnityBanner } from "@modfy/ui"'>COPY</button>
+                </div>
+                <pre class="code" style="margin:0;"><span class="tok-key">import</span> { <span class="tok-tag">UnityBanner</span> } <span class="tok-key">from</span> <span class="tok-str">'@modfy/ui'</span>
+
+<span class="tok-key">export default function</span> <span class="tok-fn">HelloModfy</span>() {
+  <span class="tok-key">return</span> (
+    &lt;<span class="tok-tag">UnityBanner</span>
+      <span class="tok-attr">number</span>={<span class="tok-num">1</span>}
+      <span class="tok-attr">title</span>=<span class="tok-str">"Hello, Modfy"</span>
+      <span class="tok-attr">subtitle</span>=<span class="tok-str">"Componentes prontos para construir cursos."</span>
+    /&gt;
+  )
+}</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout tip">
+            <div class="callout-label">Pro tip · imports tree-shakeable</div>
+            <p>
+              Todos os componentes são exportados individualmente. Use
+              <code>import { UnityBanner } from '@modfy/ui'</code> — o bundler descarta
+              o resto. Sem barrel files quebrando o tree-shake.
+            </p>
+          </div>
+        </section>
+
+        <!-- Verify ============================================== -->
+        <section id="verify" data-section data-reveal>
+          <h2 class="h2">
+            <a class="anchor" href="#verify" aria-hidden="true">#</a>
+            <span class="h2-num">04 · Verificação</span>
+            You should see this
+          </h2>
+          <p class="p">
+            Rode o seu dev server (<kbd>pnpm dev</kbd>, <kbd>npm run dev</kbd>, etc).
+            Se tudo estiver no lugar, o banner abaixo renderiza com o gradiente roxo
+            característico:
+          </p>
+
+          <!-- Preview ===== -->
+          <div
+            style="margin: 28px 0 32px; max-width:720px; padding:32px; background:var(--paper); border:1px solid var(--rule); border-radius:12px;"
+            data-reveal>
+            <div
+              style="background:linear-gradient(110deg, var(--purple) 0%, #4a2d8e 100%); color:white; padding:32px 28px; border-radius:14px; position:relative; overflow:hidden;">
+              <div
+                style="position:absolute; right:-40px; bottom:-40px; width:200px; height:200px; border-radius:50%; background:var(--purple-soft); opacity:0.3;">
+              </div>
+              <div
+                style="font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.7; margin-bottom:8px; position:relative;">
+                UNIDADE</div>
+              <div
+                style="font-family:'Instrument Serif',serif; font-style:italic; font-size:64px; line-height:1; margin-bottom:8px; position:relative;">
+                01<span style="font-size:24px;color:var(--orange-soft);">.</span></div>
+              <div
+                style="font-family:'Instrument Serif',serif; font-size:28px; line-height:1.05; max-width:320px; position:relative;">
+                Hello, Modfy</div>
+              <div
+                style="margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:11px; opacity:0.75; position:relative;">
+                COMPONENTES PRONTOS PARA CONSTRUIR CURSOS.</div>
+            </div>
+            <div
+              style="margin-top:14px; font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--muted); letter-spacing:0.06em;">
+              ↑ <span style="color:var(--ink-2);">&lt;UnityBanner /&gt;</span> renderizado
+            </div>
+          </div>
+
+          <div class="callout danger">
+            <div class="callout-label">Não está vendo nada?</div>
+            <p>
+              Se o componente aparece como texto cru ou sem estilo, abra o DevTools
+              e procure pelas classes do Tailwind no HTML. Se elas estão lá mas
+              não têm efeito → seu <code>content</code> está errado. Se nem estão →
+              o import do CSS global está faltando.
+            </p>
+            <p>
+              Ainda travado? Abra uma issue no
+              <a href="#" style="color:inherit;text-decoration:underline;">GitHub</a>
+              com seu <code>package.json</code> e <code>tailwind.config</code>.
+            </p>
+          </div>
+        </section>
+
+        <!-- Next ============================================== -->
+        <section id="next" data-section data-reveal>
+          <h2 class="h2">
+            <a class="anchor" href="#next" aria-hidden="true">#</a>
+            <span class="h2-num">05 · O que vem a seguir</span>
+            Where to go from here
+          </h2>
+          <p class="p">
+            Você tem o ambiente pronto. Algumas direções recomendadas a partir daqui:
+          </p>
+          <ul class="ul">
+            <li class="li">
+              <a href="#">Tailwind setup</a> — customização avançada do <code>tailwind.config</code>,
+              extensão da paleta e fontes customizadas.
+            </li>
+            <li class="li">
+              <a href="#">Theming</a> — como sobrescrever as 6 cores base da lib via CSS
+              variables sem ejetar componentes.
+            </li>
+            <li class="li">
+              <a href="#">Components</a> — catálogo completo dos 38+ componentes
+              organizados por Atoms / Molecules / Organisms / Templates.
+            </li>
+            <li class="li">
+              <a href="#">@modfy/ui-avamec</a> — instale e configure o sub-pacote para
+              integração com a BridgeRestApi do AVAMEC.
+            </li>
+          </ul>
+
+          <hr class="hr" />
+
+          <!-- prev/next pager -->
+          <nav class="pager">
+            <a href="#" class="pager-card prev">
+              <div class="pager-label"><span class="arrow">←</span> ANTERIOR</div>
+              <div class="pager-title">Introduction</div>
+            </a>
+            <a href="#" class="pager-card next">
+              <div class="pager-label">PRÓXIMO <span class="arrow">→</span></div>
+              <div class="pager-title">Tailwind setup</div>
+            </a>
+          </nav>
+        </section>
+
+      </article>
+
+      <footer class="pg-foot">
+        <span>Last updated <b style="color:var(--ink-2);">May 27, 2026</b></span>
+        <a href="#">Edit this page ↗</a>
+        <a href="#">Report an issue</a>
+        <span class="right">© Modfy UI · MIT</span>
+      </footer>
+
+    </main>
+
+    <!-- =================== RIGHT TOC =================== -->
+    <aside class="toc">
+      <div style="margin-top:24px;">
+        <span class="toc-chip">~6 min read</span>
+      </div>
+
+      <div class="toc-label">On this page</div>
+      <ul class="toc-list" id="tocList">
+        <li data-target="requirements" class="active">Before you install</li>
+        <li data-target="install">Install the package</li>
+        <li data-target="setup">Configure your project</li>
+        <li data-target="verify">You should see this</li>
+        <li data-target="next">Where to go from here</li>
+      </ul>
+
+      <div class="toc-progress">
+        <div class="toc-progress-label">
+          <span>Progress</span>
+          <b id="progPct">0%</b>
+        </div>
+        <div class="toc-progress-bar">
+          <div class="toc-progress-fill" id="progFill"></div>
+        </div>
+      </div>
+
+      <div class="toc-label">Resources</div>
+      <div class="toc-meta">
+        <a href="#"><span class="icon">⌥</span>API Reference</a>
+        <a href="#"><span class="icon">⌥</span>Storybook</a>
+        <a href="#"><span class="icon">⌥</span>GitHub source</a>
+        <a href="#"><span class="icon">⌥</span>npm package</a>
+        <a href="#"><span class="icon">⌥</span>Changelog v0.1.0</a>
+      </div>
+
+      <div class="toc-label">Contributors</div>
+      <div style="display:flex; gap:6px; margin-top:4px;">
+        <div
+          style="width:28px;height:28px;border-radius:50%;background:var(--blue);border:2px solid var(--bg);display:grid;place-items:center;color:white;font-size:11px;font-weight:600;">
+          JS</div>
+        <div
+          style="width:28px;height:28px;border-radius:50%;background:var(--orange);border:2px solid var(--bg);margin-left:-12px;display:grid;place-items:center;color:white;font-size:11px;font-weight:600;">
+          MA</div>
+        <div
+          style="width:28px;height:28px;border-radius:50%;background:var(--green);border:2px solid var(--bg);margin-left:-12px;display:grid;place-items:center;color:white;font-size:11px;font-weight:600;">
+          RP</div>
+        <div
+          style="width:28px;height:28px;border-radius:50%;background:var(--bg-2);border:2px solid var(--bg);margin-left:-12px;display:grid;place-items:center;color:var(--muted);font-size:10px;font-family:'JetBrains Mono',monospace;">
+          +5</div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      document.addEventListener('DOMContentLoaded', () => {
+
+        /* 1. Entrance */
+        requestAnimationFrame(() => {
+          setTimeout(() => document.querySelector('.sidebar')?.classList.add('in'), 60);
+          setTimeout(() => document.querySelector('.topbar')?.classList.add('in'), 200);
+          setTimeout(() => document.querySelector('.color-rail')?.classList.add('in'), 300);
+        });
+
+        /* 2. Reveal on scroll */
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+        /* 3. Magnetic */
+        document.querySelectorAll('[data-magnetic]').forEach(el => {
+          let raf;
+          el.addEventListener('mousemove', (ev) => {
+            const r = el.getBoundingClientRect();
+            const x = ev.clientX - r.left - r.width / 2;
+            const y = ev.clientY - r.top - r.height / 2;
+            cancelAnimationFrame(raf);
+            raf = requestAnimationFrame(() => {
+              el.style.transform = `translate(${x * 0.28}px, ${y * 0.35}px)`;
+            });
+          });
+          el.addEventListener('mouseleave', () => {
+            cancelAnimationFrame(raf);
+            el.style.transform = '';
+          });
+        });
+
+        /* 4. Code spotlight */
+        document.querySelectorAll('.code, .code-block').forEach(card => {
+          card.addEventListener('mousemove', (ev) => {
+            const r = card.getBoundingClientRect();
+            card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+            card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+          });
+        });
+
+        /* 5. Tabs */
+        document.querySelectorAll('.tabs').forEach(tabs => {
+          const btns = tabs.querySelectorAll('.tab-btn');
+          const panes = tabs.querySelectorAll('.tab-pane');
+          btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+              btns.forEach(b => b.classList.remove('on'));
+              panes.forEach(p => p.classList.remove('on'));
+              btn.classList.add('on');
+              const key = btn.dataset.tab;
+              tabs.querySelector(`[data-pane="${key}"]`)?.classList.add('on');
+            });
+          });
+        });
+
+        /* 6. Copy buttons */
+        document.querySelectorAll('.code-copy').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const text = btn.dataset.copy || '';
+            try { navigator.clipboard && navigator.clipboard.writeText(text); } catch (_) { }
+            const orig = btn.textContent;
+            btn.textContent = '✓ COPIED';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1800);
+          });
+        });
+
+        /* 7. TOC scroll-spy + reading progress */
+        const sections = Array.from(document.querySelectorAll('[data-section]'));
+        const tocItems = Array.from(document.querySelectorAll('#tocList li'));
+        const progFill = document.getElementById('progFill');
+        const progPct = document.getElementById('progPct');
+        const readingBar = document.getElementById('readingBar');
+
+        tocItems.forEach(li => {
+          li.addEventListener('click', () => {
+            const target = document.getElementById(li.dataset.target);
+            target && target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+
+        const updateSpy = () => {
+          const scrollY = window.scrollY;
+          const docH = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = Math.max(0, Math.min(1, scrollY / docH));
+          progFill && (progFill.style.width = (pct * 100) + '%');
+          progPct && (progPct.textContent = Math.round(pct * 100) + '%');
+          readingBar && (readingBar.style.width = (pct * 100) + '%');
+
+          let activeIdx = 0;
+          sections.forEach((s, i) => {
+            const r = s.getBoundingClientRect();
+            if (r.top < window.innerHeight * 0.35) activeIdx = i;
+          });
+          tocItems.forEach((li, i) => li.classList.toggle('active', i === activeIdx));
+        };
+        window.addEventListener('scroll', updateSpy, { passive: true });
+        updateSpy();
+
+        /* 8. Anchor links smooth */
+        document.querySelectorAll('a.anchor').forEach(a => {
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = a.getAttribute('href').slice(1);
+            const t = document.getElementById(id);
+            if (t) {
+              t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              history.replaceState(null, '', '#' + id);
+            }
+          });
+        });
+
+        /* 9. Sidebar nav active */
+        document.querySelectorAll('.sidebar .nav-list li').forEach(li => {
+          li.addEventListener('click', () => {
+            document.querySelectorAll('.sidebar .nav-list li.active').forEach(a => a.classList.remove('active'));
+            li.classList.add('active');
+          });
+        });
+      });
+    })();
+  </script>
+
+</body>
+
+</html>

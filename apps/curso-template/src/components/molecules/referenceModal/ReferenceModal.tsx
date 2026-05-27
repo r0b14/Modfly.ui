@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import closeIcon from '../../assets/referenceModal/close.svg';
+import closeIcon from '../../../assets/referenceModal/close.svg';
 
 
 const ReferenceModal: React.FC<ReferenceModalProps> = ({

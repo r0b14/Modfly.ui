@@ -1,7 +1,7 @@
-import imgbg1 from "../../assets/citation/indent/ImgBg1.jpg";
-import imgbg2 from "../../assets/citation/indent/ImgBg2.jpg";
-import img1 from "../../assets/citation/indent/img1.png";
-import img2 from "../../assets/citation/indent/img2.png";
+import imgbg1 from "../../../assets/citation/indent/ImgBg1.jpg";
+import imgbg2 from "../../../assets/citation/indent/ImgBg2.jpg";
+import img1 from "../../../assets/citation/indent/img1.png";
+import img2 from "../../../assets/citation/indent/img2.png";
 import Layout from "../../templates/layout/Layout";
 
 const IndentCitationBg: React.FC<{

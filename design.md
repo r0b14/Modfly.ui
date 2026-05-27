@@ -20,6 +20,7 @@ O **Modfy UI** é uma biblioteca de componentes React open source voltada para p
 | `apps/storybook` | Storybook v8 | Dev e testes visuais isolados |
 
 ### Filosofia central
+
 *"A biblioteca cresce com o curso."* — Todo componente novo criado para um curso deve ser avaliado para migrar para `@modfy/ui`. Componentes AVAMEC vivem em um sub-pacote separado (`@modfy/ui-avamec`) para não contaminar a lib genérica com dependências de plataforma.
 
 ---
@@ -112,6 +113,7 @@ modfy-ui/
 ## 4. Convenções de Código
 
 ### Nomenclatura
+
 - Componentes: **PascalCase** (`ButtonLink`, `CardFlip`, `QuestionOption`)
 - Props interfaces: `<ComponentName>Props` (`ButtonLinkProps`, `CardFlipProps`)
 - Hooks: **camelCase** com prefixo `use` (`useModfy`, `useMediaQuery`)
@@ -185,9 +187,11 @@ Os componentes do legado usam uma paleta consistente com 3 esquemas de cor base.
 ### 6.1 Atoms
 
 #### `ButtonLink`
+
 Botão/link com background de imagem (PNG ou SVG), suporta hover com troca de imagem, 3 variantes de ícone e 3 variantes de cor.
 
 **Props:**
+
 ```ts
 interface ButtonLinkProps {
   variant: 1 | 2 | 3            // 1: link/clique, 2: documento, 3: vídeo
@@ -211,26 +215,31 @@ interface ButtonLinkProps {
 ---
 
 #### `ButtonPdfDownload`
+
 Botão específico para download de PDF, imagem de background `pdfDownload.png`.
 
 ---
 
 #### `Tooltip`
+
 Tooltip simples que exibe conteúdo ao hover.
 
 ---
 
 #### `Postit`
+
 Componente visual de post-it, estilizado como nota adesiva. Usa CSS Modules (`Postit.module.css`).
 
 ---
 
 #### `Check`
+
 Componente de checkbox ou ícone de verificação.
 
 ---
 
 #### `SendActivityButton` *(→ `@modfy/ui-avamec`)*
+
 Botão de envio de atividade integrado à `BridgeRestApi` AVAMEC.
 
 ---
@@ -238,9 +247,11 @@ Botão de envio de atividade integrado à `BridgeRestApi` AVAMEC.
 ### 6.2 Molecules
 
 #### `Cards`
+
 Cards expansíveis com imagem, texto e área expandida. Accordion por clique no botão circular inferior.
 
 **Props:**
+
 ```ts
 interface CardsProps {
   cardsData: Array<[
@@ -260,6 +271,7 @@ interface CardsProps {
 ---
 
 #### `CardFlip`
+
 Card com animação de virar (flip 3D). Frente e verso com conteúdo diferente.
 
 **Assets necessários:** `cardFlip/` — 2 PNGs de fundo (bottomBlue, bottomGreen), 2 PNGs de botão.
@@ -267,6 +279,7 @@ Card com animação de virar (flip 3D). Frente e verso com conteúdo diferente.
 ---
 
 #### `QuoteText`
+
 Citação estilizada com aspas decorativas e texto do autor.
 
 **Assets necessários:** `QuoteText/assets/quote.png`
@@ -274,36 +287,43 @@ Citação estilizada com aspas decorativas e texto do autor.
 ---
 
 #### `Figure`
+
 Componente de figura com imagem, legenda e créditos. Tem story no Storybook (`Figure.stories.ts`).
 
 ---
 
 #### `Citation`
+
 Citação bibliográfica formatada (ABNT ou livre).
 
 ---
 
 #### `IndentCitation`
+
 Citação com recuo de parágrafo (citação longa, estilo ABNT). Variantes: `IndentCitationBg` (com fundo), `IndentCitationImg` (com imagem), `IndentCitationTitle` (com título).
 
 ---
 
 #### `ListModule`
+
 Lista temática com estilo visual próprio (não é um `<ul>` simples).
 
 ---
 
 #### `MiniCards`
+
 Cards menores, usados em grupos para apresentar itens de uma lista visualmente.
 
 ---
 
 #### `Embed`
+
 Embed de conteúdo externo (iframe, vídeo, etc). Possui `HowToUse.tsx` de exemplo.
 
 ---
 
 #### `ImageList`
+
 Lista de imagens com layout grid ou flex.
 
 ---
@@ -311,9 +331,11 @@ Lista de imagens com layout grid ou flex.
 ### 6.3 Organisms
 
 #### `Accordion`
+
 O componente mais complexo da biblioteca. 22+ variantes visuais, cada uma com seu conjunto de assets (SVG/PNG para fundo fechado, fundo aberto, seta).
 
 **Props:**
+
 ```ts
 interface AccordionProps {
   title: string
@@ -327,6 +349,7 @@ interface AccordionProps {
 ```
 
 **Variantes documentadas (do Storybook):**
+
 - `Type1`: bgColor=1, bgInsideColor="#FFEDB8", titleColor="#FFFFFF", variant="static"
 - `Type2`: bgColor=1, bgInsideColor="#DAF8F8", titleColor="#FFFFFF", titleColor2="#2A5C93", variant="dynamic"
 - E muitas outras conforme `Accordion.styles.ts`
@@ -338,56 +361,67 @@ interface AccordionProps {
 ---
 
 #### `StarList`
+
 Lista com marcadores estilizados em forma de estrela ou ícone temático.
 
 ---
 
 #### `TimelineWithCards`
+
 Timeline horizontal ou vertical com cards em cada ponto.
 
 ---
 
 #### `HistoryTopics`
+
 Componente de tópicos históricos/cronológicos com navegação entre itens.
 
 ---
 
 #### `LearningBlock`
+
 Bloco de aprendizagem — destaca um conceito, objetivo ou resultado de aprendizagem. Usa `LearningBlock.css`.
 
 ---
 
 #### `QuestionOption` *(→ `@modfy/ui-avamec`)*
+
 Questão de múltipla escolha com uma resposta correta. Integrado à `BridgeRestApi`.
 
 ---
 
 #### `QuestionMultipleAnswer` *(→ `@modfy/ui-avamec`)*
+
 Questão com múltiplas respostas corretas.
 
 ---
 
 #### `QuestionTrueOrFalse` *(→ `@modfy/ui-avamec`)*
+
 Questão Verdadeiro ou Falso.
 
 ---
 
 #### `QuestionGrid` *(→ `@modfy/ui-avamec`)*
+
 Grade de questões.
 
 ---
 
 #### `QuestionCorrelation` *(→ `@modfy/ui-avamec`)*
+
 Correlação de itens (coluna A ↔ coluna B).
 
 ---
 
 #### `QuestionDragDrop` *(→ `@modfy/ui-avamec`)*
+
 Arrasta e solta.
 
 ---
 
 #### `QuestionWritten` *(→ `@modfy/ui-avamec`)*
+
 Questão dissertativa (textarea com envio).
 
 ---
@@ -395,16 +429,19 @@ Questão dissertativa (textarea com envio).
 ### 6.4 Templates
 
 #### `Carousel`
+
 Carrossel de conteúdo com navegação por setas e/ou dots.
 
 ---
 
 #### `Slider`
+
 Slider de conteúdo (pode ser similar ao Carousel ou um slider de range/valor).
 
 ---
 
 #### `Pagination`
+
 Navegação entre páginas do curso. **Crítico:** não deve depender de `react-router-dom`. Expor interface injetável:
 
 ```ts
@@ -420,11 +457,13 @@ interface PaginationProps {
 ---
 
 #### `UnityBanner`
+
 Banner de apresentação de unidade/módulo do curso.
 
 ---
 
 #### `Glossary`
+
 Componente de glossário com busca e listagem alfabética de termos.
 
 ---
@@ -621,6 +660,7 @@ declare global {
 ## 11. Site de Documentação (`apps/docs`)
 
 ### Stack
+
 - Next.js 15 (App Router)
 - Tailwind CSS
 - `next-mdx-remote` para conteúdo MDX
@@ -808,6 +848,7 @@ jobs:
 ## 15. Roadmap de Implementação
 
 ### Fase 0 — Setup (semanas 1–2)
+
 - [ ] Criar organização GitHub `modfy-ui`
 - [ ] Configurar `packages/ui` com tsup (ESM + CJS + `.d.ts`)
 - [ ] Configurar `apps/storybook` apontando para `packages/ui`
@@ -816,7 +857,9 @@ jobs:
 - [ ] Criar conta npm + organização `@modfy`
 
 ### Fase 1 — Migração Core (semanas 3–6)
+
 Prioridade alta:
+
 - [ ] `Accordion` (22+ variantes, ~50 assets)
 - [ ] `ButtonLink` + `ButtonPdfDownload`
 - [ ] `Cards` + `CardFlip`
@@ -825,6 +868,7 @@ Prioridade alta:
 - [ ] `LearningBlock`
 
 Prioridade média:
+
 - [ ] `QuoteText` + `Figure` + `Citation` + `IndentCitation`
 - [ ] `Tooltip` + `Postit`
 - [ ] `Glossary` + `ListModule` + `MiniCards`
@@ -833,6 +877,7 @@ Prioridade média:
 Publicação: **`0.1.0-alpha`** no npm ao final desta fase.
 
 ### Fase 2 — Site de Docs (semanas 7–9)
+
 - [ ] `apps/docs` — Next.js 15 + MDX
 - [ ] Landing page + Getting Started
 - [ ] Página por componente (preview + código + props)
@@ -841,10 +886,12 @@ Publicação: **`0.1.0-alpha`** no npm ao final desta fase.
 Publicação: **`0.1.0`** no npm.
 
 ### Fase 3 — AVAMEC (paralelo ou após Fase 2)
+
 - [ ] `packages/ui-avamec` com todos os componentes de questão
 - [ ] Documentação da integração `BridgeRestApi`
 
 ### Fase 4 — CLI e Polimento
+
 - [ ] `npx modfy@latest add <component>` (modelo Shadcn/Pittaya)
 - [ ] SEO + Analytics (Vercel Analytics)
 - [ ] Novos componentes de cursos futuros

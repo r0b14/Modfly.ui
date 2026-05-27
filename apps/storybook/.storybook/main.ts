@@ -6,6 +6,7 @@ const config: StorybookConfig = {
     "../../../packages/ui/src/**/*.mdx",
     "../../../packages/ui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../../curso-template/src/components/templates/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../../curso-template/src/components/molecules/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",

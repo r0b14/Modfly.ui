@@ -1,1 +1,0 @@
-import{L as a}from"./Logos-BZN6K0T-.js";const c={title:"Templates/Logos",component:a,tags:["autodocs"]},e={};var o,s,t;e.parameters={...e.parameters,docs:{...(o=e.parameters)==null?void 0:o.docs,source:{originalSource:"{}",...(t=(s=e.parameters)==null?void 0:s.docs)==null?void 0:t.source}}};const m=["Default"];export{e as Default,m as __namedExportsOrder,c as default};
