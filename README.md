@@ -17,6 +17,7 @@ Uma biblioteca de componentes React feita para quem constrói cursos — não da
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Turborepo](https://img.shields.io/badge/Turborepo-2-FF0080?style=flat-square&logo=turborepo&logoColor=white)](https://turbo.build)
+[![CI](https://github.com/r0b14/Modfly.ui/actions/workflows/ci.yml/badge.svg)](https://github.com/r0b14/Modfly.ui/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
 
 <br/>
@@ -24,6 +25,12 @@ Uma biblioteca de componentes React feita para quem constrói cursos — não da
 [**Documentação**](https://modfly.design) · [**Storybook**](https://storybook.modfly.design) · [**npm**](https://npmjs.com/package/@modfly/ui) · [**Issues**](https://github.com/modfly-ui/ui/issues)
 
 </div>
+
+---
+
+### Sumário
+
+[O problema](#o-problema) · [O que é](#o-que-é) · [Recursos](#recursos) · [Como a lib cresce](#como-a-lib-cresce-com-o-curso) · [Stack](#stack) · [Componentes](#componentes) · [Estrutura do repositório](#estrutura-do-repositório) · [Início rápido](#início-rápido) · [Uso no seu projeto](#uso-no-seu-projeto) · [Roadmap](#roadmap) · [Contribuindo](#contribuindo) · [Autor](#autor)
 
 ---
 
@@ -43,6 +50,33 @@ Uma lib **open source**, modular, construída em cima de React 18 + Tailwind CSS
 
 ```bash
 npx modfly@latest add accordion
+```
+
+---
+
+## Recursos
+
+- 🧩 **Atomic Design** — átomos, moléculas, organismos e templates, sem misturar camadas
+- ⚡ **Tree-shakeable** — build ESM + CJS + `.d.ts` via `tsup`, importe só o que usar
+- 🎨 **Tailwind CSS puro** — sem CSS-in-JS pesado, fácil de sobrescrever no seu tema
+- 🧭 **Zero acoplamento a router** — `Pagination`/`useModfy` recebem callbacks, funcionam com qualquer navegação
+- 🇧🇷 **Documentação 100% em PT-BR** — feita para times brasileiros de e-learning
+- 🎓 **Componentes pedagógicos** — carrosséis, flashcards, acordeões didáticos e citações, não widgets de dashboard
+
+---
+
+## Como a lib cresce com o curso
+
+Nenhum componente nasce na biblioteca — ele nasce dentro de um curso real, e só migra se fizer sentido para outros cursos também usarem:
+
+```mermaid
+flowchart LR
+    A["Componente nasce<br/>em um curso real"] --> B{"É genérico?"}
+    B -- Sim --> C["Migra para<br/>packages/ui"]
+    B -- Não --> D["Fica só no curso"]
+    C --> E["Publica no npm<br/>@modfly/ui"]
+    E --> F["Outros cursos<br/>instalam e reusam"]
+    F -.-> A
 ```
 
 ---
@@ -130,6 +164,26 @@ Modfly.ui/
 ├── LICENSE
 ├── turbo.json
 └── pnpm-workspace.yaml
+```
+
+`packages/*` é o que é publicável; `apps/*` é quem consome. O `apps/docs` ainda está na "Fase Ponte" — importa direto do `curso-template` em vez de `@modfly/ui`, até a migração de cada componente ser concluída:
+
+```mermaid
+flowchart TB
+    subgraph packages["📦 packages/ (publicável)"]
+        UI["ui — @modfly/ui"]
+    end
+    subgraph apps["apps/ (consumidores)"]
+        SB["storybook"]
+        DOCS["docs (Next.js)"]
+        CURSO["curso-template"]
+    end
+    NPM(["pnpm add @modfly/ui<br/>em qualquer curso"])
+
+    UI --> SB
+    UI --> NPM
+    CURSO -. "Fase Ponte (temporário)" .-> DOCS
+    UI -. "Fase B (meta)" .-> DOCS
 ```
 
 ---
