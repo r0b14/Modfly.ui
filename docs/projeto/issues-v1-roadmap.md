@@ -35,7 +35,7 @@ Este documento contém a lista de issues estruturadas para o lançamento da vers
 
 ### Issue 4: Migração dos Átomos para `packages/ui` ✅
 
-- **Descrição:** Mover os átomos existentes (`ButtonLink`, `ButtonPdfDownload`, `Tooltip`, `Postit`, `Check`). Os componentes devem ter suas dependências de assets resolvidas (ver `img-svg.md`) e exportados via `src/index.ts`.
+- **Descrição:** Mover os átomos existentes (`ButtonLink`, `ButtonPdfDownload`, `Tooltip`, `Postit`, `Check`). Os componentes devem ter suas dependências de assets resolvidas (ver [`guia-assets-png-svg.md`](../front/guia-assets-png-svg.md)) e exportados via `src/index.ts`.
 - **Status:** Concluída (5 átomos migrados e exportados).
 - **Labels:** `components`, `atoms`, `migration`
 
@@ -67,7 +67,7 @@ Este documento contém a lista de issues estruturadas para o lançamento da vers
 
 ## 📚 Milestone 3: Documentação Oficial
 
-*Finalização do portal Next.js de acordo com o padrão `COMPONENT-DOC-PATTERN.md`.*
+*Finalização do portal Next.js de acordo com o padrão [`padrao-documentacao-componentes.md`](../front/padrao-documentacao-componentes.md).*
 
 ### Issue 9: Concluir seção "Getting Started" ✅
 

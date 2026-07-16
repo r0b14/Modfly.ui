@@ -126,8 +126,8 @@ Modfly.ui/
 ├── packages/
 │   ├── ui/                # core da biblioteca (@modfly/ui)
 │   └── tsconfig/          # tsconfig compartilhado
-├── ARCHITECTURE.md
-├── PLANO_BIBLIOTECA_UI.md
+├── docs/                  # documentação interna (infra, front, projeto, integrações, copyright)
+├── LICENSE
 ├── turbo.json
 └── pnpm-workspace.yaml
 ```
@@ -149,7 +149,19 @@ pnpm install
 pnpm dev
 ```
 
-O comando `pnpm dev` sobe em paralelo o **site de docs** (`localhost:3000`), o **Storybook** (`localhost:6006`) e o **curso-template** (`localhost:3001`).
+O comando `pnpm dev` sobe todos os apps em paralelo via Turborepo.
+
+### Rodar um app por vez
+
+> **Importante:** todos os comandos abaixo devem ser executados **na raiz do monorepo** (`Modfly.ui/`), nunca dentro de `packages/ui`. O `packages/ui` é uma biblioteca — rodar `pnpm dev` dentro dele apenas compila os arquivos com `tsup`, sem abrir nenhuma porta.
+
+| App | Comando | URL | Quando usar |
+|:---|:---|:---|:---|
+| Storybook | `pnpm --filter storybook dev` | `localhost:6006` | Ver e testar componentes isolados |
+| Docs | `pnpm --filter docs dev` | `localhost:3000` | Navegar a documentação |
+| Curso Template | `pnpm --filter curso-template start` | `localhost:3000` | Ver componentes no contexto real de curso |
+
+> Para testar um componente novo (ex: `Accordion` com `course="pce"`), o **Storybook** é o caminho mais rápido — crie uma story e veja o resultado isolado sem precisar navegar no app.
 
 ---
 
@@ -201,7 +213,7 @@ export default function Aula() {
 
 ## Contribuindo
 
-Toda contribuição é bem-vinda — do relatório de bug à nova história no Storybook. Antes de abrir um PR, leia o [padrão de documentação de componentes](COMPONENT-DOC-PATTERN.md) e o guia de [assets PNG/SVG](img-svg.md).
+Toda contribuição é bem-vinda — do relatório de bug à nova história no Storybook. Antes de abrir um PR, leia o [padrão de documentação de componentes](docs/front/padrao-documentacao-componentes.md) e o guia de [assets PNG/SVG](docs/front/guia-assets-png-svg.md).
 
 ```
 feat: novo componente

@@ -6,7 +6,7 @@ Perguntas frequentes sobre o funcionamento da lib, sem jargão desnecessário.
 
 ## "Fiz a migração de um componente e o localhost não mudou nada. Por quê?"
 
-Porque o site de docs (`apps/docs`) nunca importou o componente diretamente do `apps/curso-template` — ele tem um *preview inline* que recria o visual do componente com JSX puro, sem depender de nenhum pacote. Isso é intencional (documentado em `COMPONENT-DOC-PATTERN.md`) para que o site de docs funcione independentemente do estado do pacote.
+Porque o site de docs (`apps/docs`) nunca importou o componente diretamente do `apps/curso-template` — ele tem um *preview inline* que recria o visual do componente com JSX puro, sem depender de nenhum pacote. Isso é intencional (documentado em [`padrao-documentacao-componentes.md`](../front/padrao-documentacao-componentes.md)) para que o site de docs funcione independentemente do estado do pacote.
 
 O site de docs continua igual. Isso é correto.
 

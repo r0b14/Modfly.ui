@@ -30,6 +30,10 @@ Instruções específicas para que as IAs entendam o contexto do projeto.
 - **`claude/`**: Prompts e diretrizes para uso com Claude (Anthropic).
 - **`copilot/`**: Arquivos `.github/copilot-instructions.md` e configurações de contexto.
 
+### `docs/` (Documentação Interna) — na raiz do monorepo
+
+Não confundir com `apps/docs/` (o site público de componentes). Esta pasta reúne toda a documentação **interna** do projeto, organizada por tema: `infra/`, `front/`, `projeto/`, `integracoes/` e `copyright/`. Veja o índice completo em [`docs/README.md`](../README.md).
+
 ---
 
 ## Comandos Principais

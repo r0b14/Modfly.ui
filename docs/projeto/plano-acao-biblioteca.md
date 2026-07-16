@@ -45,9 +45,8 @@ modfly-ui/                         ← raiz do monorepo
 ├── packages/
 │   ├── ui/                        ← 🔄 biblioteca (estrutura criada, componentes pendentes)
 │   └── tsconfig/                  ← ✅ tsconfig compartilhado
-├── ARCHITECTURE.md                ← ✅ documentação da arquitetura
-├── COMPONENT-DOC-PATTERN.md       ← ✅ padrão de páginas de componente
-├── img-svg.md                     ← ✅ guia de assets PNG/SVG na migração
+├── docs/                          ← ✅ documentação interna (infra, front, projeto, integrações, copyright)
+├── LICENSE                        ← ✅
 ├── turbo.json                     ← ✅
 └── pnpm-workspace.yaml            ← ✅
 ```
@@ -107,7 +106,7 @@ modfly-ui/                         ← raiz do monorepo
 
 ### Padrão de documentação de componentes
 
-Definido em `COMPONENT-DOC-PATTERN.md`. Toda página de componente segue:
+Definido em [`padrao-documentacao-componentes.md`](../front/padrao-documentacao-componentes.md). Toda página de componente segue:
 
 1. **Rota estática** `apps/docs/app/(dashboard)/docs/components/<slug>/page.tsx`
 2. **Layout** `grid grid-cols-[1fr_260px]` + `<RightToc />`
@@ -235,7 +234,7 @@ npm publish --access public
 
 ## 7. Decisões técnicas de migração
 
-### 7.1 Assets — ver `img-svg.md` para detalhes completos
+### 7.1 Assets — ver [`guia-assets-png-svg.md`](../front/guia-assets-png-svg.md) para detalhes completos
 
 | Asset | Ação |
 |---|---|
@@ -279,7 +278,7 @@ export type { AccordionProps } from './components/organisms/accordion'
 
 ## 8. Roadmap de páginas de documentação
 
-Prioridade sugerida para criar as próximas páginas seguindo `COMPONENT-DOC-PATTERN.md`:
+Prioridade sugerida para criar as próximas páginas seguindo [`padrao-documentacao-componentes.md`](../front/padrao-documentacao-componentes.md):
 
 ### Getting Started (completa a seção)
 
@@ -357,7 +356,7 @@ A cada novo curso produzido:
 3. Abrir PR no monorepo
    - Componente + assets em packages/ui
    - Story no Storybook
-   - Página de docs seguindo COMPONENT-DOC-PATTERN.md
+   - Página de docs seguindo docs/front/padrao-documentacao-componentes.md
    - Changeset (patch/minor/major)
          ↓
 4. Review + merge → CI roda → npm publica → Vercel deploya
