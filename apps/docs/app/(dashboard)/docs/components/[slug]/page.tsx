@@ -6,7 +6,7 @@ interface ComponentPageProps {
 }
 
 const VALID_COMPONENTS = [
-  "buttonlink", "buttonpdfdownload", "tooltip", "postit", "check",
+  "buttonlink", "buttonpdfdownload", "tooltip", "postit", "check", "imagefallback",
   "cards", "cardflip", "quotetext", "figure", "citation", "indentcitation", "listmodule", "minicards", "embed", "imagelist",
   "accordion", "starlist", "timelinewithcards", "historytopics", "learningblock",
   "carousel", "slider", "pagination", "unitybanner", "glossary"

@@ -40,7 +40,7 @@ export function Sidebar() {
       </div>
 
       <NavSection title="Getting started" items={["Introduction", "Installation", "Tailwind setup", "Theming"]} currentPath={pathname} />
-      <NavSection title="Atoms" items={["ButtonLink", "ButtonPdfDownload", "Tooltip", "Postit", "Check"]} currentPath={pathname} />
+      <NavSection title="Atoms" items={["ButtonLink", "ButtonPdfDownload", "Tooltip", "Postit", "Check", "ImageFallback"]} currentPath={pathname} />
       <NavSection title="Molecules" items={["Cards", "CardFlip", "QuoteText", "Figure", "Citation", "IndentCitation", "ListModule", "MiniCards", "Embed", "ImageList"]} currentPath={pathname} />
       <NavSection title="Organisms" items={["Accordion", "StarList", "TimelineWithCards", "HistoryTopics", "LearningBlock"]} currentPath={pathname} />
       <NavSection title="Templates" items={["Carousel", "Slider", "Pagination", "UnityBanner", "Glossary"]} currentPath={pathname} />
