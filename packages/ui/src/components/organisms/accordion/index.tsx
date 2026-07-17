@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styleAccordionBox, styleAccordionContent } from "./Accordion.styles";
+import { courseAccordionAssets, type CourseVariant } from "./assets";
 
 // Assets
 import sun from "./assets/sun.svg";
@@ -116,6 +117,8 @@ export interface AccordionProps {
   downArrowColorVariant?: ArrowVariant;
   headerHeight?: string;
   sidePadding?: string;
+  /** Quando informado, usa os assets do curso correspondente e ignora bgColor */
+  course?: CourseVariant;
 }
 
 const idxFromBg = (bgColor: number) => {
@@ -179,18 +182,68 @@ export const Accordion: React.FC<AccordionProps> = ({
   bgInsideColor = bgColor === 7 ? "#FAEBC2" : "transparent",
   children, iconBackColor, variant = "static",
   upArrowColorVariant = 3, downArrowColorVariant = 3,
-  headerHeight, sidePadding,
+  headerHeight, sidePadding, course,
 }) => {
   const isMobile = useMediaQuery("(max-width: 660px)");
   const [isOpen, setIsOpen] = useState(false);
+
+  // Renderização pelo sistema de cursos (pce, e futuros)
+  if (course) {
+    const assets = courseAccordionAssets[course];
+    return (
+      <div className={styleAccordionBox}>
+        <div
+          className={styleAccordionContent}
+          style={{ overflow: "hidden", padding: 0, maxWidth: isMobile ? "500px" : variant === "dynamic" ? "950px" : "" }}
+        >
+          <div
+            className="relative z-20 flex justify-between w-full items-center cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+            style={{
+              backgroundImage: `url(${isOpen ? assets.bgOpen : assets.bgClosed})`,
+              backgroundSize: "cover",
+              backgroundPosition: "left",
+              backgroundRepeat: "no-repeat",
+              height: headerHeight ?? "100px",
+              padding: "0 24px",
+              color: isOpen ? titleColor2 : titleColor,
+            }}
+          >
+            <h2 className="ml-4" style={{ color: "inherit" }}>{title}</h2>
+            <img
+              src={assets.arrow}
+              alt={isOpen ? "Fechar" : "Abrir"}
+              style={{
+                width: isMobile ? "40px" : "50px",
+                transform: isOpen ? "rotate(180deg)" : "rotate(0)",
+                transition: "transform 0.3s linear",
+              }}
+            />
+          </div>
+          <div
+            className="overflow-hidden z-20"
+            style={{
+              maxHeight: isOpen ? "3300px" : "0px",
+              opacity: isOpen ? 1 : 0,
+              transition: "max-height 0.3s linear, opacity 0.2s linear",
+              padding: isOpen ? "25px" : "0 25px",
+            }}
+          >
+            <div className="p-4">{children}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const bgImageToUse = isOpen ? getBgOpened(bgColor, isMobile) : getBgClosed(bgColor, isMobile);
-  
+
   const sizeVariation = isMobile ? "500px" : variant === "dynamic" ? "950px" : "";
   const headerMargin = bgColor === 7 ? (isMobile ? "0" : "0px auto") : "0px";
-  const headerPadding = bgColor === 7 ? (isMobile ? "0 0px 0 75px" : "0 50px 0 90px") : 
-                        (bgColor >= 9 && bgColor <= 12) ? "0 20px 0 30px" : 
+  const headerPadding = bgColor === 7 ? (isMobile ? "0 0px 0 75px" : "0 50px 0 90px") :
+                        (bgColor >= 9 && bgColor <= 12) ? "0 20px 0 30px" :
                         variant === "dynamic" ? "0 24px 0 120px" : "0 24px";
-  
+
   const custom = getHeaderColorsAndArrow(bgColor, isOpen);
   const arrowSrcForHeader = custom ? custom.arrow : (isOpen ? ArrowDownWhite : getArrowImage(upArrowColorVariant));
   const isSmallBgHeader = bgColor >= 9 && bgColor <= 12;

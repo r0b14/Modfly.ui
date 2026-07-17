@@ -1,5 +1,6 @@
 import React from 'react';
-import buttonIcon from './assets/pdfDownload.svg';
+// SVG renderizado como componente React via plugin SVGR configurado no tsup
+import PdfDownloadIcon from './assets/pdfDownload.svg';
 
 export interface ButtonPdfDownloadProps {
   pdfile?: string;
@@ -82,9 +83,8 @@ export const ButtonPdfDownload: React.FC<ButtonPdfDownloadProps> = ({
             )}
           </strong>
         </div>
-        <img
-          src={buttonIcon}
-          alt="Ícone de download"
+        <PdfDownloadIcon
+          aria-hidden="true"
           className="w-10 h-10 md:w-12 md:h-12"
         />
       </button>
