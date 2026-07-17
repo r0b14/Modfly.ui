@@ -1,6 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    // Necessário para o Storybook (apps/storybook) gerar as classes Tailwind
+    // usadas dentro dos componentes de packages/ui, já que ele reaproveita
+    // este config via apps/storybook/.storybook/preview.tsx.
+    '../../packages/ui/src/**/*.{js,jsx,ts,tsx}',
+  ],
   theme: {
     extend: {
       fontFamily: {

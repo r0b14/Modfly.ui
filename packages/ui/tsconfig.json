@@ -1,5 +1,5 @@
 {
-  "extends": "@modfy/tsconfig/react-library.json",
+  "extends": "@modfly/tsconfig/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },

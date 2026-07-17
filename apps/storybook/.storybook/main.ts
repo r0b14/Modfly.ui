@@ -1,5 +1,6 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 import path from "path";
+import svgr from "vite-plugin-svgr";
 
 const config: StorybookConfig = {
   stories: [
@@ -21,6 +22,22 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   async viteFinal(config) {
+    config.plugins = config.plugins || [];
+    // Only these components rely on SVGs being transformed into React
+    // components (matching the esbuild-plugin-svgr behavior used by
+    // packages/ui's tsup build). Every other component in the design
+    // system imports SVGs as raw URLs (<img src={...}>), which must
+    // keep getting Vite's default asset handling.
+    config.plugins.push(
+      svgr({
+        include: [
+          "**/atoms/buttonLink/assets/*.svg",
+          "**/atoms/buttonPdfDownload/assets/*.svg",
+          "**/atoms/check/assets/*.svg",
+        ],
+      })
+    );
+
     config.server = config.server || {};
     config.server.fs = config.server.fs || {};
     config.server.fs.allow = [
