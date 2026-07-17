@@ -36,8 +36,10 @@ Este documento contém a lista de issues estruturadas para o lançamento da vers
 ### Issue 4: Migração dos Átomos para `packages/ui` ✅
 
 - **Descrição:** Mover os átomos existentes (`ButtonLink`, `ButtonPdfDownload`, `Tooltip`, `Postit`, `Check`). Os componentes devem ter suas dependências de assets resolvidas (ver [`guia-assets-png-svg.md`](../front/guia-assets-png-svg.md)) e exportados via `src/index.ts`.
-- **Status:** Concluída (5 átomos migrados e exportados).
+- **Status:** Concluída (5 átomos migrados e exportados, mais `ImageFallback` — 6 no total em `packages/ui/src/components/atoms`).
 - **Labels:** `components`, `atoms`, `migration`
+
+> **Pendência identificada (16 Jul 2026):** `packages/@legado/components/atoms` e `apps/curso-template/src/components/atoms` ainda têm 5 átomos que nunca migraram para `packages/ui`: `buttonReference`, `exclamation`, `range` (`rangeBlue`/`rangeGreen`), `sendActivityButton` e `PageRenderError` (este último só existe em `@legado`). Precisam ser avaliados e portados seguindo o mesmo padrão dos 6 já migrados (ver [`guia-arquitetura-react-e-bibliotecas.md`](../infra/guia-arquitetura-react-e-bibliotecas.md) para o diagnóstico da duplicação entre `@legado`/`curso-template`).
 
 ### Issue 5: Migração de Moléculas (Parte 1 - Básicas) ✅
 

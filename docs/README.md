@@ -27,8 +27,9 @@
 | Documento | Conteúdo |
 |---|---|
 | [`plano-acao-biblioteca.md`](projeto/plano-acao-biblioteca.md) | Plano de ação geral do projeto: nome, identidade, fases, custos e roadmap de publicação. |
+| [`fluxo-saudavel-componentes.md`](projeto/fluxo-saudavel-componentes.md) | Decisão de arquitetura sobre o fluxo correto entre curso, Storybook, `packages/ui` e site público de docs. |
 | [`issues-v1-roadmap.md`](projeto/issues-v1-roadmap.md) | Issues estruturadas para o lançamento da v1.0.0 (infraestrutura, migração, documentação). |
-| [`faq-duvidas-basicas.md`](projeto/faq-duvidas-basicas.md) | Perguntas frequentes sobre o funcionamento da lib e do processo de migração. |
+| [`faq-basic-projetestack.md`](projeto/faq-basic-projetestack.md) | Perguntas frequentes sobre o funcionamento da lib e do processo de migração. |
 
 ## `integracoes/` — Integração com a API AVAMEC
 
@@ -43,3 +44,4 @@
 | Documento | Conteúdo |
 |---|---|
 | [`licenca-mit.md`](copyright/licenca-mit.md) | Explicação da licença MIT aplicada ao projeto e orientação sobre atribuição. Texto legal completo em [`LICENSE`](../LICENSE) na raiz. |
+

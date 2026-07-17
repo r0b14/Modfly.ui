@@ -366,7 +366,29 @@ A cada novo curso produzido:
 
 ---
 
-## 12. Referências
+## 12. Fluxo saudável antes da publicação pública
+
+O fluxo correto separa fonte, validação e documentação:
+
+```text
+apps/curso-template ou novo componente isolado
+         ↓
+apps/storybook valida visualmente
+         ↓
+packages/ui vira a fonte consumível da biblioteca
+         ↓
+apps/docs documenta a API pública
+```
+
+Decisão: **Storybook e Docs são consumidores/renderizadores; `packages/ui` é a fonte da biblioteca.**
+
+O Storybook pode e deve renderizar o componente antes da página pública, porque ele é o ambiente de validação visual. Ele não deve ser tratado como fornecedor da renderização pública nem como gerador do pacote. A documentação pública pode ter previews próprios enquanto houver limitações de assets/CSS no Next.js, mas esses previews precisam ser conferidos contra as stories aprovadas.
+
+Plano detalhado registrado em [`fluxo-saudavel-componentes.md`](fluxo-saudavel-componentes.md).
+
+---
+
+## 13. Referências
 
 - [Pittaya UI](https://ui.pittaya.org/) — inspiração direta
 - [Shadcn UI](https://ui.shadcn.com/) — modelo CLI "copiar código"
@@ -376,3 +398,4 @@ A cada novo curso produzido:
 - [Changesets](https://github.com/changesets/changesets) — versionamento semântico
 - [Porkbun](https://porkbun.com) — compra de domínio
 - [Chromatic](https://www.chromatic.com/) — hospedagem do Storybook
+
