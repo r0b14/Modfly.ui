@@ -191,7 +191,7 @@ export default function ImageListPage() {
 
           <Pager
             prev={{ href: "/docs/components/embed", label: "Anterior", title: "Embed" }}
-            next={{ href: "/docs/components/accordion", label: "Próximo", title: "Accordion" }}
+            next={{ href: "/docs/components/casestudy", label: "Próximo", title: "CaseStudy" }}
           />
 
           <footer className="pg-foot">
