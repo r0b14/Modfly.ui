@@ -6,8 +6,6 @@ const config: StorybookConfig = {
   stories: [
     "../../../packages/ui/src/**/*.mdx",
     "../../../packages/ui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../../curso-template/src/components/templates/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-    "../../curso-template/src/components/molecules/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links",
@@ -23,18 +21,15 @@ const config: StorybookConfig = {
   },
   async viteFinal(config) {
     config.plugins = config.plugins || [];
-    // Only these components rely on SVGs being transformed into React
-    // components (matching the esbuild-plugin-svgr behavior used by
-    // packages/ui's tsup build). Every other component in the design
-    // system imports SVGs as raw URLs (<img src={...}>), which must
-    // keep getting Vite's default asset handling.
+    // packages/ui's tsup build uses esbuild-plugin-svgr with NO filter — every
+    // `.svg` import anywhere in the package becomes a React component (never a
+    // URL string). Storybook must match that exactly, or a component that looks
+    // fine here can be silently broken in the published package (this bit us
+    // once already: a curated include-list here drifted out of sync with what
+    // was actually published). Apply svgr to every `.svg` under packages/ui/src.
     config.plugins.push(
       svgr({
-        include: [
-          "**/atoms/buttonLink/assets/*.svg",
-          "**/atoms/buttonPdfDownload/assets/*.svg",
-          "**/atoms/check/assets/*.svg",
-        ],
+        include: ["**/packages/ui/src/**/*.svg"],
       })
     );
 
@@ -45,15 +40,6 @@ const config: StorybookConfig = {
       path.resolve(__dirname, "../../../"),
     ];
 
-    if (config.resolve) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        "@modfy": path.resolve(__dirname, "../../curso-template/src/@modfy"),
-        "contexts": path.resolve(__dirname, "../../curso-template/src/contexts"),
-        "@types": path.resolve(__dirname, "../../curso-template/src/@types"),
-        "assets": path.resolve(__dirname, "../../curso-template/src/assets"),
-      };
-    }
     return config;
   },
 };
