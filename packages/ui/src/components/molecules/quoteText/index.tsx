@@ -28,7 +28,7 @@ export const QuoteText: React.FC<QuoteTextProps> = ({
 				className={`flex sm:flex-row flex-col content-center items-${quoteAlign} gap-5`}
 			>
 				<div className="min-w-[100px] w-full max-h-[75px] flex justify-center items-center">
-					<img src={Quote} alt="" className="w-14 h-auto opacity-50" />
+					<Quote aria-hidden="true" className="w-14 h-auto opacity-50" />
 				</div>
 				<div className="flex-1 text-left">
 					<div className="text-[#333333] sm:text-xl leading-relaxed" id={specText}>
