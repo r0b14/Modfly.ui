@@ -214,7 +214,7 @@ export default function LearningBlockPage() {
 
           <Pager
             prev={{ href: "/docs/components/historytopics", label: "Anterior", title: "HistoryTopics" }}
-            next={{ href: "/docs/components/carousel", label: "Próximo", title: "Carousel" }}
+            next={{ href: "/docs/components/questionoptionheader", label: "Próximo", title: "QuestionOptionHeader" }}
           />
 
           <footer className="pg-foot">

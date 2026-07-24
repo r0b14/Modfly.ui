@@ -58,6 +58,8 @@ export { StarList } from "./components/organisms/starList";
 export type { StarListProps, StarListItem } from "./components/organisms/starList";
 export { TimelineWithCards } from "./components/organisms/timelineWithCards";
 export type { TimelineWithCardsProps, TimelineItem } from "./components/organisms/timelineWithCards";
+export { QuestionOptionHeader } from "./components/organisms/questionOptionHeader";
+export type { QuestionOptionHeaderProps } from "./components/organisms/questionOptionHeader";
 
 // Atoms
 export { ButtonLink } from "./components/atoms/buttonLink";
