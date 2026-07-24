@@ -46,6 +46,12 @@ export { UnityBanner } from "./components/templates/unityBanner";
 export type { UnityBannerProps } from "./components/templates/unityBanner";
 export { Glossary } from "./components/templates/glossary";
 export type { GlossaryProps } from "./components/templates/glossary";
+export { Container } from "./components/templates/container";
+export type { ContainerProps } from "./components/templates/container";
+export { TextWithImageBox } from "./components/templates/textWithImageBox";
+export type { TextWithImageBoxProps } from "./components/templates/textWithImageBox";
+export { Minibanner } from "./components/templates/minibanner";
+export type { MinibannerProps } from "./components/templates/minibanner";
 export { QuoteText } from "./components/molecules/quoteText";
 export type { QuoteTextProps } from "./components/molecules/quoteText";
 

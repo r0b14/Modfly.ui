@@ -200,6 +200,7 @@ export default function GlossaryPage() {
 
           <Pager
             prev={{ href: "/docs/components/unitybanner", label: "Anterior", title: "UnityBanner" }}
+            next={{ href: "/docs/components/container", label: "Próximo", title: "Container" }}
           />
 
           <footer className="pg-foot">
