@@ -34,6 +34,7 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 .serif {
@@ -84,6 +85,12 @@ body {
   pointer-events: none;
 }
 
+@media (max-width: 1023px) {
+  .color-rail {
+    left: 0;
+  }
+}
+
 .color-rail span {
   flex: 1;
   height: 100%;
@@ -105,14 +112,37 @@ body {
   border-radius: 3px;
 }
 
-/* Sidebar slide-in from left */
+/* Sidebar slide-in from left (desktop) / off-canvas drawer (mobile) */
 .sidebar {
   transform: translateX(-100%);
   transition: transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.sidebar.in {
-  transform: translateX(0);
+@media (min-width: 1024px) {
+  .sidebar.in {
+    transform: translateX(0);
+  }
+}
+
+/* Mobile drawer: hidden by default, revealed via the #nav-toggle checkbox hack */
+.nav-overlay {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  #nav-toggle:checked ~ .sidebar {
+    transform: translateX(0);
+  }
+
+  #nav-toggle:checked ~ .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 14, 12, 0.45);
+    z-index: 40;
+    cursor: pointer;
+    border: none;
+  }
 }
 
 /* Topbar fade-in from top */
@@ -199,6 +229,12 @@ body {
   transition: width 0.1s linear;
   box-shadow: 0 0 12px rgba(198, 106, 74, 0.45);
   pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .reading-bar {
+    left: 0;
+  }
 }
 
 /* Code syntax tokens */
@@ -846,4 +882,86 @@ body {
   line-height: 1.6;
   color: var(--ink-2);
   margin: 0 0 12px;
+}
+
+/* ===== RESPONSIVE / MOBILE ===== */
+
+.tabs-head {
+  overflow-x: auto;
+}
+
+@media (max-width: 1279px) {
+  /* Right TOC column only makes sense once there's room for a 3rd rail */
+  .toc {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .doc-head {
+    padding: 40px 0 28px;
+  }
+  .doc-lead {
+    font-size: 16.5px;
+  }
+  .doc-meta {
+    gap: 14px;
+  }
+  .doc-h2 {
+    font-size: 30px;
+    margin: 44px 0 10px;
+  }
+  .doc-h3 {
+    font-size: 18px;
+    margin: 32px 0 10px;
+  }
+  .doc-anchor {
+    display: none;
+  }
+  .doc-prose {
+    padding: 32px 0 56px;
+  }
+  .step {
+    padding: 20px 0 20px 52px;
+  }
+  .step::before {
+    font-size: 32px;
+    width: 40px;
+    top: 20px;
+  }
+  .callout {
+    padding: 16px 16px 16px 48px;
+  }
+  .callout::before {
+    left: 14px;
+    top: 16px;
+  }
+  .code {
+    padding: 16px 14px;
+    font-size: 12px;
+  }
+  .pager {
+    grid-template-columns: 1fr;
+    margin: 40px auto 24px;
+  }
+  .pager-card.next {
+    text-align: left;
+  }
+  .pager-card.next .pager-label {
+    justify-content: flex-start;
+  }
+  .pg-foot {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .pg-foot .right {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .doc-title {
+    font-size: clamp(36px, 13vw, 52px);
+  }
 }

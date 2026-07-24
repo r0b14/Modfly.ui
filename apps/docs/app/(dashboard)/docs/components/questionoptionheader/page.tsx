@@ -14,8 +14,8 @@ const TOC_ENTRIES = [
 
 export default function QuestionOptionHeaderPage() {
   return (
-    <div className="grid grid-cols-[1fr_260px] min-h-screen">
-      <div className="min-w-0 px-10">
+    <div className="grid grid-cols-1 xl:grid-cols-[1fr_260px] min-h-screen">
+      <div className="min-w-0 px-4 sm:px-6 lg:px-10">
         <header className="doc-head">
           <div className="doc-cat">Organismos · Referência</div>
           <h1 className="doc-title">

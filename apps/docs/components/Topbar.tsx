@@ -37,8 +37,15 @@ export function Topbar() {
   }, []);
 
   return (
-    <div ref={ref} className="flex items-center gap-4 py-4 px-14 border-b border-rule bg-[var(--bg)] sticky top-0 z-10 backdrop-blur-md topbar">
-      <div className="font-jetbrains text-[11px] text-[var(--muted)] tracking-[0.04em] mono flex items-center">
+    <div ref={ref} className="flex items-center gap-3 sm:gap-4 py-4 px-4 sm:px-6 lg:px-14 border-b border-rule bg-[var(--bg)] sticky top-0 z-10 backdrop-blur-md topbar">
+      <label
+        htmlFor="nav-toggle"
+        aria-label="Abrir menu de navegação"
+        className="lg:hidden shrink-0 w-8 h-8 grid place-items-center border border-rule-strong rounded-[6px] cursor-pointer text-[var(--ink)]"
+      >
+        ☰
+      </label>
+      <div className="font-jetbrains text-[11px] text-[var(--muted)] tracking-[0.04em] mono flex items-center overflow-x-auto whitespace-nowrap min-w-0">
         DOCS
         {crumbs.map((c, i) => (
           <React.Fragment key={i}>
@@ -52,7 +59,7 @@ export function Topbar() {
         ))}
       </div>
       <div className="ml-auto flex items-center gap-2">
-        <span className="font-jetbrains text-[11px] py-[5px] px-[10px] rounded-full border border-rule bg-[var(--paper)] text-[var(--ink-2)] inline-flex items-center gap-1.5 mono">
+        <span className="hidden md:inline-flex font-jetbrains text-[11px] py-[5px] px-[10px] rounded-full border border-rule bg-[var(--paper)] text-[var(--ink-2)] items-center gap-1.5 mono">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--green)]" />
           npm · @modfly/ui · v0.1.0
         </span>
@@ -62,11 +69,12 @@ export function Topbar() {
           rel="noopener noreferrer"
           className="font-geist text-[13px] font-medium py-[7px] px-3.5 rounded-[6px] border border-rule-strong bg-transparent text-[var(--ink)] cursor-pointer hover:bg-[var(--bg-2)] transition-colors no-underline"
         >
-          GitHub ↗
+          <span className="hidden sm:inline">GitHub ↗</span>
+          <span className="sm:hidden">GH ↗</span>
         </a>
         <Link
           href="/docs/getting-started/introduction"
-          className="font-geist text-[13px] font-medium py-[7px] px-3.5 rounded-[6px] border border-[var(--ink)] bg-[var(--ink)] text-[var(--bg)] cursor-pointer no-underline hover:opacity-90 transition-opacity"
+          className="hidden sm:inline-block font-geist text-[13px] font-medium py-[7px] px-3.5 rounded-[6px] border border-[var(--ink)] bg-[var(--ink)] text-[var(--bg)] cursor-pointer no-underline hover:opacity-90 transition-opacity"
         >
           Get Started
         </Link>

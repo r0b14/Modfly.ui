@@ -30,30 +30,30 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="p-14 md:pt-20 md:pb-14 border-b border-rule relative overflow-hidden" data-reveal>
+      <section className="p-6 sm:p-10 md:p-14 md:pt-20 md:pb-14 border-b border-rule relative overflow-hidden" data-reveal>
         <div className="font-jetbrains text-[11px] tracking-[0.16em] uppercase text-[var(--muted)] mb-7 flex items-center gap-3.5 mono">
           <div className="w-8 h-[1px] bg-[var(--ink)]" />
           Uma biblioteca React de componentes — código aberto, MIT
         </div>
 
-        <div className="grid grid-cols-[1.6fr_1fr] gap-14 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-8 lg:gap-14 items-start lg:items-end">
           <div>
-            <h1 className="font-instrument text-[112px] leading-[0.92] tracking-[-0.035em] m-0 mb-7 serif">
+            <h1 className="font-instrument text-[42px] sm:text-[64px] md:text-[84px] lg:text-[112px] leading-[0.95] lg:leading-[0.92] tracking-[-0.03em] lg:tracking-[-0.035em] m-0 mb-5 lg:mb-7 serif">
               Componentes<br />
               <i className="italic text-[var(--orange)]">feitos</i> para<br />
               aprender<span className="text-[var(--orange)]">.</span>
             </h1>
-            <p className="text-[19px] leading-[1.45] text-[var(--ink-2)] max-w-[560px] mb-9">
+            <p className="text-[15.5px] sm:text-[17px] md:text-[19px] leading-[1.5] lg:leading-[1.45] text-[var(--ink-2)] max-w-full md:max-w-[560px] mb-7 lg:mb-9">
               <b className="font-medium">Modfly UI</b> é uma biblioteca React + TypeScript + Tailwind para autoria de cursos e-learning.
               Cresce com cada curso novo, é pensada para acessibilidade e tem suporte de primeira classe
               à plataforma <span className="font-jetbrains text-[var(--ink)] text-[13px] mono">AVAMEC</span> via sub-pacote dedicado.
             </p>
-            <div className="flex items-stretch border border-[var(--ink)] rounded-[8px] overflow-hidden bg-[var(--paper)] max-w-[500px] font-jetbrains text-[13px] mono">
+            <div className="flex items-stretch border border-[var(--ink)] rounded-[8px] overflow-hidden bg-[var(--paper)] max-w-full sm:max-w-[500px] font-jetbrains text-[12px] sm:text-[13px] mono">
               <span className="py-3.5 pl-4 text-[var(--orange)] font-semibold">$&nbsp;</span>
-              <span className="py-3.5 px-2 text-[var(--ink)] flex-1">pnpm add <span className="text-[var(--blue)]">@modfly/ui</span></span>
+              <span className="py-3.5 px-2 text-[var(--ink)] flex-1 overflow-x-auto whitespace-nowrap">pnpm add <span className="text-[var(--blue)]">@modfly/ui</span></span>
               <button
                 onClick={copyToClipboard}
-                className={`py-0 px-[18px] bg-[var(--ink)] text-[var(--bg)] border-none font-geist text-[12px] font-medium tracking-[0.04em] cursor-pointer transition-colors ${copied ? "bg-[var(--green)]" : ""}`}
+                className={`py-0 px-3 sm:px-[18px] shrink-0 bg-[var(--ink)] text-[var(--bg)] border-none font-geist text-[11px] sm:text-[12px] font-medium tracking-[0.04em] cursor-pointer transition-colors ${copied ? "bg-[var(--green)]" : ""}`}
               >
                 {copied ? "COPIADO" : "COPIAR"}
               </button>
@@ -73,7 +73,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="mt-14 grid grid-cols-4 border-t border-rule pt-7">
+        <div className="mt-10 lg:mt-14 grid grid-cols-2 sm:grid-cols-4 gap-y-6 border-t border-rule pt-7">
           <MetaItem label="Stack" value="React 18 · TS · Tailwind" mono />
           <MetaItem label="Bundler" value="tsup" detail="— ESM + CJS" />
           <MetaItem label="Monorepo" value="pnpm" detail="+ Turborepo" />
@@ -90,27 +90,27 @@ export default function Home() {
       </div>
 
       {/* VITRINE */}
-      <section className="p-14 border-b border-rule relative overflow-hidden" data-reveal>
-        <div className="deco-mark dm-overview absolute text-[380px] -top-14 -right-12 opacity-[0.55] serif">Vitrine</div>
-        <div className="grid grid-cols-[220px_1fr] gap-14 mb-12 items-start">
+      <section className="p-6 sm:p-10 md:p-14 border-b border-rule relative overflow-hidden" data-reveal>
+        <div className="deco-mark dm-overview hidden lg:block absolute text-[380px] -top-14 -right-12 opacity-[0.55] serif">Vitrine</div>
+        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 md:gap-14 mb-8 md:mb-12 items-start">
           <div className="font-jetbrains text-[11px] text-[var(--muted)] tracking-[0.14em] mono">
             SEC. 01 <span className="block font-instrument italic text-[52px] text-[var(--ink)] tracking-[-0.02em] leading-none mt-2 serif">i.</span>
           </div>
           <div>
-            <h2 className="font-instrument text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Um inventário, não um sistema.</h2>
-            <p className="max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
+            <h2 className="font-instrument text-[32px] sm:text-[40px] md:text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Um inventário, não um sistema.</h2>
+            <p className="max-w-full md:max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
               Modfly não te entrega regras — entrega componentes prontos para virar conteúdo. Cada peça já tem
               variantes de cor, comportamento responsivo e um conjunto de assets curado. Você compõe a lição.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-5 bg-[var(--paper)] border border-rule rounded-[12px] overflow-hidden flex flex-col group" data-reveal>
-            <div className="flex-1 p-10 flex flex-col items-center justify-center gap-3.5 demo-stage">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <div className="lg:col-span-5 bg-[var(--paper)] border border-rule rounded-[12px] overflow-hidden flex flex-col group" data-reveal>
+            <div className="flex-1 p-6 sm:p-10 flex flex-col items-center justify-center gap-3.5 demo-stage">
               <div className="w-full max-w-[360px] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-[1.02]">
                 <div className="bg-[var(--blue)] text-white p-3.5 px-4.5 flex items-center gap-3 font-medium text-sm">
-                  <span className="w-4 h-4 border-[1.5px] border-white rounded-full flex items-center justify-center text-[10px] font-bold">+</span>
+                  <span className="w-4 h-4 border-[1.5px] border-white rounded-full flex items-center justify-center text-[10px] font-bold shrink-0">+</span>
                   Para saber mais sobre o tema
                 </div>
                 <div className="bg-[#DAF8F8] p-4.5 text-[#2A5C93] text-[13px] leading-relaxed">
@@ -118,15 +118,15 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="p-3.5 px-4.5 border-t border-rule flex items-center gap-2.5 bg-[var(--bg-2)]">
+            <div className="p-3.5 px-4.5 border-t border-rule flex flex-wrap items-center gap-2.5 bg-[var(--bg-2)]">
               <span className="font-jetbrains text-xs font-semibold mono">&lt;Accordion /&gt;</span>
               <span className="font-jetbrains text-[10px] text-[var(--muted)] py-[2px] px-1.5 bg-[var(--paper)] border border-rule rounded-[3px] mono">organismo</span>
-              <span className="ml-auto font-jetbrains text-[11px] text-[var(--muted)] mono">22 variantes ↗</span>
+              <span className="sm:ml-auto font-jetbrains text-[11px] text-[var(--muted)] mono">22 variantes ↗</span>
             </div>
           </div>
 
-          <div className="col-span-7 bg-[var(--paper)] border border-rule rounded-[12px] overflow-hidden flex flex-col" data-reveal>
-            <div className="flex-1 p-10 flex items-center justify-center gap-4 demo-stage">
+          <div className="lg:col-span-7 bg-[var(--paper)] border border-rule rounded-[12px] overflow-hidden flex flex-col" data-reveal>
+            <div className="flex-1 p-6 sm:p-10 flex items-center justify-center gap-4 demo-stage overflow-x-auto">
               <MockCard title="Conceito A" color="blue" />
               <MockCard title="Conceito B" color="green" offset />
               <MockCard title="Conceito C" color="orange" />
@@ -140,22 +140,22 @@ export default function Home() {
       </section>
 
       {/* PALETA DE CORES */}
-      <section className="p-14 border-b border-rule relative overflow-hidden bg-[var(--bg-2)]" data-reveal>
-        <div className="deco-mark dm-palette absolute text-[360px] -bottom-24 -left-8 opacity-50 serif" style={{ WebkitTextStroke: "1px rgba(26,23,20,0.18)" }}>Paleta</div>
-        <div className="grid grid-cols-[220px_1fr] gap-14 mb-12 items-start">
+      <section className="p-6 sm:p-10 md:p-14 border-b border-rule relative overflow-hidden bg-[var(--bg-2)]" data-reveal>
+        <div className="deco-mark dm-palette hidden lg:block absolute text-[360px] -bottom-24 -left-8 opacity-50 serif" style={{ WebkitTextStroke: "1px rgba(26,23,20,0.18)" }}>Paleta</div>
+        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 md:gap-14 mb-8 md:mb-12 items-start">
           <div className="font-jetbrains text-[11px] text-[var(--muted)] tracking-[0.14em] mono">
             SEC. 02 <span className="block font-instrument italic text-[52px] text-[var(--ink)] tracking-[-0.02em] leading-none mt-2 serif">ii.</span>
           </div>
           <div>
-            <h2 className="font-instrument text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Seis esquemas, três papéis.</h2>
-            <p className="max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
+            <h2 className="font-instrument text-[32px] sm:text-[40px] md:text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Seis esquemas, três papéis.</h2>
+            <p className="max-w-full md:max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
               A paleta vem do legado e segue uma regra simples: cada cor tem um par soft/strong.
               Mapeamos na migração como <span className="font-jetbrains text-[13px] mono">variant</span> via props — nunca hardcoded.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           <Swatch name="azul" soft="var(--blue-soft)" strong="var(--blue)" hex1="#7DB0EC" hex2="#298BCA" />
           <Swatch name="verde" soft="var(--green-soft)" strong="var(--green)" hex1="#8FCD79" hex2="#649753" />
           <Swatch name="laranja" soft="var(--orange-soft)" strong="var(--orange)" hex1="#FFB861" hex2="#C66A4A" />
@@ -166,76 +166,76 @@ export default function Home() {
       </section>
 
       {/* TIPOGRAFIA */}
-      <section className="p-14 border-b border-rule relative overflow-hidden" data-reveal>
-        <div className="deco-mark dm-specimen absolute text-[380px] -top-12 -right-10 opacity-50 serif">Amostra</div>
-        <div className="grid grid-cols-[220px_1fr] gap-14 mb-12 items-start">
+      <section className="p-6 sm:p-10 md:p-14 border-b border-rule relative overflow-hidden" data-reveal>
+        <div className="deco-mark dm-specimen hidden lg:block absolute text-[380px] -top-12 -right-10 opacity-50 serif">Amostra</div>
+        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 md:gap-14 mb-8 md:mb-12 items-start">
           <div className="font-jetbrains text-[11px] text-[var(--muted)] tracking-[0.14em] mono">
             SEC. 03 <span className="block font-instrument italic text-[52px] text-[var(--ink)] tracking-[-0.02em] leading-none mt-2 serif">iii.</span>
           </div>
           <div>
-            <h2 className="font-instrument text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Tipografia que fala por si.</h2>
-            <p className="max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
+            <h2 className="font-instrument text-[32px] sm:text-[40px] md:text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Tipografia que fala por si.</h2>
+            <p className="max-w-full md:max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
               Modfly assume três famílias: um serif editorial para títulos e citações,
               um sans neutro para corpo e UI, e um monospaced para código, props e tokens.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-8">
-          <div className="border border-rule rounded-xl p-8 bg-[var(--paper)]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="border border-rule rounded-xl p-6 sm:p-8 bg-[var(--paper)]">
             <div className="font-jetbrains text-[10px] tracking-[0.14em] uppercase text-[var(--muted)] mb-4 flex items-center gap-3 mono">DISPLAY · Instrument Serif <div className="flex-1 h-[1px] bg-rule" /></div>
-            <h3 className="font-instrument text-[96px] leading-[0.85] tracking-[-0.03em] m-0 mb-1 serif">A<i className="text-[var(--orange)]">a</i>Bb<i className="text-[var(--orange)]">Gg</i></h3>
-            <div className="mt-5 grid grid-cols-[60px_1fr] gap-x-4 gap-y-1 text-[13px]">
+            <h3 className="font-instrument text-[56px] sm:text-[72px] md:text-[96px] leading-[0.85] tracking-[-0.03em] m-0 mb-1 serif">A<i className="text-[var(--orange)]">a</i>Bb<i className="text-[var(--orange)]">Gg</i></h3>
+            <div className="mt-5 grid grid-cols-[44px_1fr] sm:grid-cols-[60px_1fr] gap-x-4 gap-y-1 text-[13px]">
               <span className="font-jetbrains text-[10px] text-[var(--muted)] uppercase self-end pb-1 mono">112</span>
-              <span className="font-instrument text-[38px] leading-none serif">Feito para aprender</span>
+              <span className="font-instrument text-[28px] sm:text-[38px] leading-none serif">Feito para aprender</span>
               <span className="font-jetbrains text-[10px] text-[var(--muted)] uppercase self-end pb-1 mono">52</span>
-              <span className="font-instrument text-[26px] leading-none serif">Seis esquemas, três papéis</span>
+              <span className="font-instrument text-[20px] sm:text-[26px] leading-none serif">Seis esquemas, três papéis</span>
             </div>
           </div>
-          <div className="border border-rule rounded-xl p-8 bg-[var(--paper)] flex flex-col">
+          <div className="border border-rule rounded-xl p-6 sm:p-8 bg-[var(--paper)] flex flex-col">
             <div className="font-jetbrains text-[10px] tracking-[0.14em] uppercase text-[var(--muted)] mb-4 flex items-center gap-3 mono">UI · Geist Sans <span className="ml-auto text-[var(--ink)] font-geist normal-case">Aa</span> <div className="flex-1 h-[1px] bg-rule" /></div>
-            <h3 className="font-geist text-[56px] leading-none tracking-[-0.02em] m-0">Aa Bb Gg</h3>
-            <div className="mt-5 grid grid-cols-[60px_1fr] gap-x-4 gap-y-1 text-[13px]">
+            <h3 className="font-geist text-[40px] sm:text-[48px] md:text-[56px] leading-none tracking-[-0.02em] m-0">Aa Bb Gg</h3>
+            <div className="mt-5 grid grid-cols-[44px_1fr] sm:grid-cols-[60px_1fr] gap-x-4 gap-y-1 text-[13px]">
               <span className="font-jetbrains text-[10px] text-[var(--muted)] uppercase self-end pb-1 mono">15</span>
               <span>Texto base usado em parágrafos e descrições</span>
               <span className="font-jetbrains text-[10px] text-[var(--muted)] uppercase self-end pb-1 mono">13</span>
               <span>Controles de UI — botões, navegação, props</span>
             </div>
             <div className="font-jetbrains text-[10px] tracking-[0.14em] uppercase text-[var(--muted)] mt-7 mb-4 flex items-center gap-3 mono">MONO · JetBrains Mono <div className="flex-1 h-[1px] bg-rule" /></div>
-            <p className="font-jetbrains text-[22px] m-0 mono text-[var(--ink)]">npm i @modfly/ui →</p>
+            <p className="font-jetbrains text-[18px] sm:text-[22px] m-0 mono text-[var(--ink)]">npm i @modfly/ui →</p>
           </div>
         </div>
       </section>
 
       {/* COMEÇANDO */}
-      <section className="p-14 border-b border-rule relative overflow-hidden bg-[var(--bg-2)]" data-reveal>
-        <div className="deco-mark dm-install absolute text-[360px] -bottom-24 -right-8 opacity-50 serif" style={{ WebkitTextStroke: "1px rgba(26,23,20,0.16)" }}>Instale</div>
-        <div className="grid grid-cols-[220px_1fr] gap-14 mb-12 items-start">
+      <section className="p-6 sm:p-10 md:p-14 border-b border-rule relative overflow-hidden bg-[var(--bg-2)]" data-reveal>
+        <div className="deco-mark dm-install hidden lg:block absolute text-[360px] -bottom-24 -right-8 opacity-50 serif" style={{ WebkitTextStroke: "1px rgba(26,23,20,0.16)" }}>Instale</div>
+        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 md:gap-14 mb-8 md:mb-12 items-start">
           <div className="font-jetbrains text-[11px] text-[var(--muted)] tracking-[0.14em] mono">
             SEC. 04 <span className="block font-instrument italic text-[52px] text-[var(--ink)] tracking-[-0.02em] leading-none mt-2 serif">iv.</span>
           </div>
           <div>
-            <h2 className="font-instrument text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Começando em quatro passos.</h2>
-            <p className="max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
+            <h2 className="font-instrument text-[32px] sm:text-[40px] md:text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Começando em quatro passos.</h2>
+            <p className="max-w-full md:max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
               Da instalação à primeira lição. O único passo não-óbvio é o <span className="font-jetbrains text-[13px] mono">content</span> do Tailwind —
               sem ele as classes da lib não chegam ao bundle final.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-[1fr_1.2fr] gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 items-start">
           <div>
             <Step num="01" title="Instale o pacote" desc={<>Adicione <code>@modfly/ui</code> ao seu projeto React 18+ via pnpm, npm ou yarn.</>} />
             <Step num="02" title="Configure o Tailwind" desc={<>Inclua <code>./node_modules/@modfly/ui/dist/**/*.js</code> no array <code>content</code> do seu tailwind.config.</>} />
             <Step num="03" title="Importe e componha" desc={<>Use os componentes diretamente. Tudo é tree-shakeable — só carrega o que importa.</>} />
             <Step num="04" title="Precisa do AVAMEC?" desc={<>Instale também <code>@modfly/ui-avamec</code> para as questões integradas à BridgeRestApi.</>} />
           </div>
-          <div className="bg-[#16140f] text-[#e8e2d1] rounded-xl p-7 font-jetbrains text-[13px] leading-[1.7] overflow-x-auto relative">
+          <div className="bg-[#16140f] text-[#e8e2d1] rounded-xl p-5 sm:p-7 font-jetbrains text-[12px] sm:text-[13px] leading-[1.7] overflow-x-auto relative">
             <div className="flex items-center gap-2 pb-3.5 mb-3.5 border-b border-white/10">
               <div className="w-2.5 h-2.5 rounded-full bg-[#ec5d5d]" />
               <div className="w-2.5 h-2.5 rounded-full bg-[#f0c042]" />
               <div className="w-2.5 h-2.5 rounded-full bg-[#7fc77f]" />
-              <div className="ml-auto text-[11px] text-[#6b645a]">CursoTemplate / pages / Unidade01.tsx</div>
+              <div className="ml-auto text-[11px] text-[#6b645a] whitespace-nowrap">CursoTemplate / pages / Unidade01.tsx</div>
             </div>
             <pre className="m-0 font-inherit">
               <code className="text-[#f4a261]">import</code> {"{"}<br />
@@ -256,22 +256,22 @@ export default function Home() {
       </section>
 
       {/* ROTEIRO */}
-      <section className="p-14 border-b border-rule relative overflow-hidden" data-reveal>
-        <div className="deco-mark dm-forward absolute text-[340px] -bottom-20 -left-2.5 opacity-[0.45] serif">Roteiro</div>
-        <div className="grid grid-cols-[220px_1fr] gap-14 mb-12 items-start">
+      <section className="p-6 sm:p-10 md:p-14 border-b border-rule relative overflow-hidden" data-reveal>
+        <div className="deco-mark dm-forward hidden lg:block absolute text-[340px] -bottom-20 -left-2.5 opacity-[0.45] serif">Roteiro</div>
+        <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-4 md:gap-14 mb-8 md:mb-12 items-start">
           <div className="font-jetbrains text-[11px] text-[var(--muted)] tracking-[0.14em] mono">
             SEC. 05 <span className="block font-instrument italic text-[52px] text-[var(--ink)] tracking-[-0.02em] leading-none mt-2 serif">v.</span>
           </div>
           <div>
-            <h2 className="font-instrument text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Para onde vamos.</h2>
-            <p className="max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
+            <h2 className="font-instrument text-[32px] sm:text-[40px] md:text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Para onde vamos.</h2>
+            <p className="max-w-full md:max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
               Quatro fases até a 1.0. Cada fase termina com um entregável concreto: lib publicada,
               site no ar, ou CLI funcionando.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-4 border-t border-rule">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-rule">
           <Phase num="00" title="Estrutura" when="em andamento" ship="workspace pronto" items={["Org GitHub modfly-ui", "tsup + ESM/CJS", "Storybook v8 wiring", "Domínio modfly.design"]} />
           <Phase num="01" title="Migração central" when="planejado" ship="0.1.0-alpha no npm" items={["Accordion (22 variantes)", "ButtonLink + PDF", "Cards + CardFlip", "Carousel + Slider", "LearningBlock"]} />
           <Phase num="02" title="Site de docs" when="planejado" ship="0.1.0 estável" items={["Next.js 15 + MDX", "Preview + abas de código", "Página por componente", "Deploy Vercel"]} />
@@ -280,10 +280,10 @@ export default function Home() {
       </section>
 
       {/* RODAPÉ */}
-      <footer className="p-14 pt-16 pb-10 bg-[var(--ink)] text-[var(--bg)] relative overflow-hidden">
-        <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-10 pb-10 border-b border-white/10 relative z-10">
-          <div>
-            <div className="font-instrument text-[72px] leading-[0.9] tracking-[-0.03em] serif">
+      <footer className="p-6 sm:p-10 md:p-14 md:pt-16 md:pb-10 bg-[var(--ink)] text-[var(--bg)] relative overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[2fr_1fr_1fr_1fr] gap-8 md:gap-10 pb-10 border-b border-white/10 relative z-10">
+          <div className="sm:col-span-2 md:col-span-1">
+            <div className="font-instrument text-[36px] sm:text-[52px] md:text-[72px] leading-[0.95] md:leading-[0.9] tracking-[-0.03em] serif">
               A biblioteca<br />cresce <i className="italic text-[var(--orange-soft)]">com</i><br />o curso.
             </div>
           </div>
@@ -291,7 +291,7 @@ export default function Home() {
           <FooterCol title="Recursos" items={["GitHub", "NPM", "Roteiro", "Contribuir"]} />
           <FooterCol title="Inspirado por" items={["Pittaya UI", "Shadcn UI", "Radix UI", "Turborepo"]} />
         </div>
-        <div className="pt-6 flex justify-between items-center font-jetbrains text-[11px] text-white/50 mono">
+        <div className="pt-6 flex flex-col sm:flex-row gap-2 sm:justify-between sm:items-center font-jetbrains text-[11px] text-white/50 mono">
           <div>MODFLY UI · MIT · 2026</div>
           <div>FEITO PARA APRENDER · BRASIL</div>
         </div>
@@ -315,7 +315,7 @@ function StatItem({ num, label }: any) {
 
 function MetaItem({ label, value, mono, detail }: any) {
   return (
-    <div className="pr-6 border-r border-rule last:border-none px-6 first:pl-0">
+    <div className="pr-6 sm:border-r border-rule sm:last:border-none px-4 sm:px-6 first:pl-0">
       <div className="font-jetbrains text-[10px] uppercase tracking-[0.14em] text-[var(--muted)] mb-1.5 mono">{label}</div>
       <div className="font-instrument text-[22px] leading-[1.1] tracking-[-0.01em] serif">
         {mono ? <span className="font-jetbrains text-sm mono">{value}</span> : value}
@@ -347,7 +347,7 @@ function MockCard({ title, color, offset }: any) {
     color === "green" ? "bg-gradient-to-br from-[var(--green-soft)] to-[var(--green)]" :
     "bg-gradient-to-br from-[var(--orange-soft)] to-[var(--orange)]";
   return (
-    <div className={`w-[200px] bg-white rounded-2xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2 ${offset ? "-translate-y-3" : ""}`}>
+    <div className={`w-[200px] shrink-0 bg-white rounded-2xl overflow-hidden shadow-lg transition-transform hover:-translate-y-2 ${offset ? "-translate-y-3" : ""}`}>
       <div className={`h-[70px] ${bg}`} />
       <div className="w-20 h-20 rounded-full bg-[var(--bg-2)] mx-auto -mt-10 border-4 border-white" style={{ backgroundImage: "repeating-linear-gradient(45deg, #d6cdb8 0, #d6cdb8 4px, #efeae0 4px, #efeae0 8px)" }} />
       <div className="font-instrument text-[22px] text-center leading-none px-4 mt-3 serif">{title}</div>

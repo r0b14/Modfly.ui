@@ -28,8 +28,8 @@ export default async function GettingStartedPage({ params }: GettingStartedPageP
 
   if (slug === 'introduction') {
     return (
-      <div className="grid grid-cols-[1fr_260px] min-h-screen">
-        <div className="min-w-0 px-10">
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_260px] min-h-screen">
+        <div className="min-w-0 px-4 sm:px-6 lg:px-10">
           <header className="doc-head">
             <div className="doc-cat">Getting Started · 01 of 04</div>
             <h1 className="doc-title">
@@ -125,8 +125,8 @@ export default async function GettingStartedPage({ params }: GettingStartedPageP
 
   if (slug === 'tailwind-setup') {
     return (
-      <div className="grid grid-cols-[1fr_260px] min-h-screen">
-        <div className="min-w-0 px-10">
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_260px] min-h-screen">
+        <div className="min-w-0 px-4 sm:px-6 lg:px-10">
           <header className="doc-head">
             <div className="doc-cat">Getting Started · 03 of 04</div>
             <h1 className="doc-title">
@@ -239,8 +239,8 @@ export default async function GettingStartedPage({ params }: GettingStartedPageP
 
   if (slug === 'theming') {
     return (
-      <div className="grid grid-cols-[1fr_260px] min-h-screen">
-        <div className="min-w-0 px-10">
+      <div className="grid grid-cols-1 xl:grid-cols-[1fr_260px] min-h-screen">
+        <div className="min-w-0 px-4 sm:px-6 lg:px-10">
           <header className="doc-head">
             <div className="doc-cat">Getting Started · 04 of 04</div>
             <h1 className="doc-title">
@@ -327,8 +327,8 @@ export default async function GettingStartedPage({ params }: GettingStartedPageP
   }
 
   return (
-    <div className="grid grid-cols-[1fr_260px] min-h-screen">
-      <div className="min-w-0 px-10">
+    <div className="grid grid-cols-1 xl:grid-cols-[1fr_260px] min-h-screen">
+      <div className="min-w-0 px-4 sm:px-6 lg:px-10">
         <header className="doc-head">
           <div className="doc-cat">Getting Started · 02 of 04</div>
           <h1 className="doc-title">

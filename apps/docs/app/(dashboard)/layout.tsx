@@ -8,7 +8,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="grid grid-cols-[280px_1fr] min-h-screen">
+    <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] min-h-screen">
+      <input type="checkbox" id="nav-toggle" className="hidden peer/nav" />
+      <label htmlFor="nav-toggle" className="nav-overlay" aria-hidden="true" />
       <ReadingBar />
       <Sidebar />
       <main className="min-w-0 flex flex-col">

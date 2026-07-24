@@ -14,9 +14,18 @@ export function Sidebar() {
     requestAnimationFrame(() => el.classList.add("in"));
   }, []);
 
+  // Fecha o drawer mobile ao navegar para outra página
+  const closeMobileNav = () => {
+    const toggle = document.getElementById("nav-toggle") as HTMLInputElement | null;
+    if (toggle) toggle.checked = false;
+  };
+
   return (
-    <aside ref={ref} className="sidebar border-r border-rule bg-[var(--bg)] p-7 sticky top-0 h-screen overflow-y-auto overflow-x-hidden">
-      <Link href="/" className="flex items-baseline gap-2.5 mb-1 no-underline text-inherit hover:opacity-80 transition-opacity">
+    <aside
+      ref={ref}
+      className="sidebar fixed inset-y-0 left-0 z-50 w-[280px] max-w-[85vw] lg:static lg:z-auto lg:w-auto lg:max-w-none border-r border-rule bg-[var(--bg)] p-5 sm:p-7 lg:sticky lg:top-0 h-screen overflow-y-auto overflow-x-hidden"
+    >
+      <Link href="/" onClick={closeMobileNav} className="flex items-baseline gap-2.5 mb-1 no-underline text-inherit hover:opacity-80 transition-opacity">
         <div className="w-8 h-8 bg-[var(--ink)] text-[var(--bg)] grid place-items-center font-instrument italic text-2xl rounded-[4px] translate-y-[2px] serif">
           M
         </div>
@@ -64,8 +73,12 @@ function NavSection({ title, items, currentPath }: any) {
           
           return (
             <li key={item}>
-              <Link 
+              <Link
                 href={href}
+                onClick={() => {
+                  const toggle = document.getElementById("nav-toggle") as HTMLInputElement | null;
+                  if (toggle) toggle.checked = false;
+                }}
                 className={`text-[13.5px] py-1 px-2 rounded-[4px] flex items-center gap-2 transition-all no-underline ${isActive ? 'bg-[var(--ink)] text-[var(--bg)]' : 'text-[var(--ink-2)] hover:bg-[var(--bg-2)]'}`}
               >
                 <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[var(--orange-soft)]' : 'bg-rule-strong'}`} />
