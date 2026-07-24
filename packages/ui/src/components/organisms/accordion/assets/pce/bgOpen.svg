@@ -1,0 +1,21 @@
+<svg width="1083" height="512" viewBox="0 0 1083 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Status=True">
+<rect width="1083" height="512" rx="20" fill="#670098"/>
+<g id="Rectangle 616" filter="url(#filter0_d_2046_2044)">
+<rect x="20" y="23" width="1043" height="466" rx="20" fill="#F6ECBD"/>
+</g>
+<rect id="Rectangle 617" x="542" width="541" height="215" fill="#F6ECBD"/>
+</g>
+<defs>
+<filter id="filter0_d_2046_2044" x="16" y="23" width="1051" height="474" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2046_2044"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2046_2044" result="shape"/>
+</filter>
+</defs>
+</svg>

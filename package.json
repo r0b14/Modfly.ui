@@ -1,5 +1,5 @@
 {
-  "name": "modfy-ui-monorepo",
+  "name": "modfly-ui-monorepo",
   "private": true,
   "engines": {
     "node": ">=18"

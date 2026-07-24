@@ -93,6 +93,7 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
       <div className="flex md:flex-row flex-col flex-wrap gap-10 mb-10 justify-center relative max-w-[1200px] w-full">
         {cardsData.map(([nome, texto, imagemURL, tipo, textoExpandido], index) => {
           const colors = getColorClasses(tipo);
+          const ButtonImage = getButtonImage(tipo, openIndex === index, index);
           return (
             <div
               key={index}
@@ -102,10 +103,10 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
                 className={`${colors.bg} rounded-[10px] shadow-lg w-full max-w-[353px] h-[599px] flex flex-col relative transition-all duration-300`}
               >
                 <div className="w-full h-[55px] flex items-center justify-center">
-                  <img
-                    src={colors.topImage}
-                    alt=""
-                    className="w-full h-full object-cover rounded-t-[10px]"
+                  <colors.topImage
+                    aria-hidden="true"
+                    preserveAspectRatio="none"
+                    className="w-full h-full rounded-t-[10px]"
                   />
                 </div>
 
@@ -137,9 +138,8 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
                 onMouseLeave={() => setHoveredButton(null)}
                 aria-expanded={openIndex === index}
               >
-                <img
-                  src={getButtonImage(tipo, openIndex === index, index)}
-                  alt={openIndex === index ? "Fechar" : "Abrir"}
+                <ButtonImage
+                  aria-hidden="true"
                   className="w-[60px] h-[60px] transition duration-200"
                 />
               </button>

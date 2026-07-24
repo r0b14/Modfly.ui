@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styleAccordionBox, styleAccordionContent } from "./Accordion.styles";
+import { courseAccordionAssets, type CourseVariant } from "./assets";
 
 // Assets
 import sun from "./assets/sun.svg";
@@ -82,6 +83,64 @@ import arroweigth from "./assets/arroweigth.svg";
 import arrownine from "./assets/arrownine.svg";
 import arrowten from "./assets/arrowten.svg";
 
+/**
+ * Todo asset importado de `.svg` neste pacote é transformado em componente React pelo
+ * SVGR (esbuild-plugin-svgr, sem filtro por arquivo) — nunca é uma URL. Já os `.png`
+ * continuam sendo URL normalmente. Como vários mapas de asset abaixo (arrows, backgrounds)
+ * misturam os dois tipos por variante histórica, `Asset`/`AssetBg` decidem em tempo de
+ * execução como renderizar cada um, em vez de exigir classificação manual por variante.
+ */
+type ImgAsset = string | React.FC<React.SVGProps<SVGSVGElement>>;
+
+function Asset({
+  src,
+  className,
+  style,
+  onClick,
+  alt,
+}: {
+  src?: ImgAsset;
+  className?: string;
+  style?: React.CSSProperties;
+  onClick?: () => void;
+  /** Quando informado, o ícone deixa de ser tratado como decorativo (aria-hidden) e recebe esse rótulo acessível */
+  alt?: string;
+}) {
+  if (!src) return null;
+  if (typeof src === "string") {
+    return (
+      <img
+        src={src}
+        alt={alt ?? ""}
+        aria-hidden={alt ? undefined : "true"}
+        className={className}
+        style={style}
+        onClick={onClick}
+      />
+    );
+  }
+  const Svg = src;
+  return (
+    <Svg
+      aria-hidden={alt ? undefined : "true"}
+      aria-label={alt}
+      role={alt ? "img" : undefined}
+      className={className}
+      style={style}
+      onClick={onClick}
+    />
+  );
+}
+
+function AssetBg({ src, className, style }: { src?: ImgAsset; className?: string; style?: React.CSSProperties }) {
+  if (!src) return null;
+  if (typeof src === "string") {
+    return <img src={src} alt="" aria-hidden="true" className={className} style={style} />;
+  }
+  const Svg = src;
+  return <Svg aria-hidden="true" preserveAspectRatio="none" className={className} style={style} />;
+}
+
 const backgroundCorHeaderClosed = [
   "#4E9236", "#15623C", "#177586", "#4089DE", "#2A539F",
   "#B8649C", "#FAA5CC", "#EA8914", "#DDAD2A", "#4A90E2",
@@ -116,6 +175,8 @@ export interface AccordionProps {
   downArrowColorVariant?: ArrowVariant;
   headerHeight?: string;
   sidePadding?: string;
+  /** Quando informado, usa os assets do curso correspondente e ignora bgColor */
+  course?: CourseVariant;
 }
 
 const idxFromBg = (bgColor: number) => {
@@ -147,8 +208,8 @@ export function useMediaQuery(query: string, ssrFallback = false) {
   return matches;
 }
 
-function getArrowImage(variant: ArrowVariant) {
-  const arrowColors: Record<number, string> = {
+function getArrowImage(variant: ArrowVariant): ImgAsset {
+  const arrowColors: Record<number, ImgAsset> = {
     1: ArrowDownYellow, 2: ArrowDownBlue, 3: ArrowDownWhite, 4: ArrowDownBrown,
     5: ArrowDownOrange, 6: ArrowGreen, 7: ArrowDownOrange2, 8: Arrow8,
     9: plusArrowPink, 10: plusArrowWhite, 11: plusArrowWhite, 12: plusArrowWhite,
@@ -156,22 +217,22 @@ function getArrowImage(variant: ArrowVariant) {
   return arrowColors[variant] || ArrowDownWhite;
 }
 
-function getBgClosed(bgColor: BgVariant, isMobile: boolean) {
-  const bgs: Record<number, string | undefined> = {
+function getBgClosed(bgColor: BgVariant, isMobile: boolean): ImgAsset | undefined {
+  const bgs: Record<number, ImgAsset | undefined> = {
     1: background1, 2: background2, 3: background3, 4: background4, 5: background5,
     6: background6, 7: isMobile ? bgSunEDCMobile : bgSunEDC, 8: isMobile ? background8mobile : background8,
     9: topPinkBgClosed, 10: topBgGreenClosed, 11: topBgOrangeClosed, 12: topBgBlueClosed,
   };
-  return bgs[bgColor] || "";
+  return bgs[bgColor];
 }
 
-function getBgOpened(bgColor: BgVariant, isMobile: boolean) {
-  const bgs: Record<number, string | undefined> = {
+function getBgOpened(bgColor: BgVariant, isMobile: boolean): ImgAsset | undefined {
+  const bgs: Record<number, ImgAsset | undefined> = {
     1: background1, 2: background2_open, 3: background3_open, 4: background4_open, 5: background5_open,
     6: background6_open, 7: isMobile ? bgSunEDCMobile : bgSunEDC, 8: isMobile ? background8mobile_open : background8_open,
     9: topPinkBgOpened, 10: topBgGreenOpened, 11: bgOrangeOpened, 12: topBgBlueBgOpened,
   };
-  return bgs[bgColor] || "";
+  return bgs[bgColor];
 }
 
 export const Accordion: React.FC<AccordionProps> = ({
@@ -179,20 +240,72 @@ export const Accordion: React.FC<AccordionProps> = ({
   bgInsideColor = bgColor === 7 ? "#FAEBC2" : "transparent",
   children, iconBackColor, variant = "static",
   upArrowColorVariant = 3, downArrowColorVariant = 3,
-  headerHeight, sidePadding,
+  headerHeight, sidePadding, course,
 }) => {
   const isMobile = useMediaQuery("(max-width: 660px)");
   const [isOpen, setIsOpen] = useState(false);
+
+  // Renderização pelo sistema de cursos (pce, e futuros)
+  if (course) {
+    const assets = courseAccordionAssets[course];
+    return (
+      <div className={styleAccordionBox}>
+        <div
+          className={styleAccordionContent}
+          style={{ overflow: "hidden", padding: 0, maxWidth: isMobile ? "500px" : variant === "dynamic" ? "950px" : "" }}
+        >
+          <div
+            className="relative z-20 flex justify-between w-full items-center cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+            style={{
+              height: headerHeight ?? "100px",
+              padding: "0 24px",
+              color: isOpen ? titleColor2 : titleColor,
+            }}
+          >
+            <AssetBg
+              src={isOpen ? assets.bgOpen : assets.bgClosed}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              style={{ objectFit: "cover", objectPosition: "left" }}
+            />
+            <h2 className="relative z-10 ml-4" style={{ color: "inherit" }}>{title}</h2>
+            <Asset
+              src={assets.arrow}
+              alt={isOpen ? "Fechar" : "Abrir"}
+              className="relative z-10"
+              style={{
+                width: isMobile ? "40px" : "50px",
+                transform: isOpen ? "rotate(180deg)" : "rotate(0)",
+                transition: "transform 0.3s linear",
+              }}
+            />
+          </div>
+          <div
+            className="overflow-hidden z-20"
+            style={{
+              maxHeight: isOpen ? "3300px" : "0px",
+              opacity: isOpen ? 1 : 0,
+              transition: "max-height 0.3s linear, opacity 0.2s linear",
+              padding: isOpen ? "25px" : "0 25px",
+            }}
+          >
+            <div className="p-4">{children}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const bgImageToUse = isOpen ? getBgOpened(bgColor, isMobile) : getBgClosed(bgColor, isMobile);
-  
+
   const sizeVariation = isMobile ? "500px" : variant === "dynamic" ? "950px" : "";
   const headerMargin = bgColor === 7 ? (isMobile ? "0" : "0px auto") : "0px";
-  const headerPadding = bgColor === 7 ? (isMobile ? "0 0px 0 75px" : "0 50px 0 90px") : 
-                        (bgColor >= 9 && bgColor <= 12) ? "0 20px 0 30px" : 
+  const headerPadding = bgColor === 7 ? (isMobile ? "0 0px 0 75px" : "0 50px 0 90px") :
+                        (bgColor >= 9 && bgColor <= 12) ? "0 20px 0 30px" :
                         variant === "dynamic" ? "0 24px 0 120px" : "0 24px";
-  
+
   const custom = getHeaderColorsAndArrow(bgColor, isOpen);
-  const arrowSrcForHeader = custom ? custom.arrow : (isOpen ? ArrowDownWhite : getArrowImage(upArrowColorVariant));
+  const arrowSrcForHeader: ImgAsset = custom ? custom.arrow : (isOpen ? ArrowDownWhite : getArrowImage(upArrowColorVariant));
   const isSmallBgHeader = bgColor >= 9 && bgColor <= 12;
   const headerArrowWidth = isSmallBgHeader ? (isMobile ? "15px" : "20px") : (isMobile ? "40px" : "50px");
 
@@ -217,25 +330,27 @@ export const Accordion: React.FC<AccordionProps> = ({
                 height: headerHeight, color: isOpen ? titleColor2 : titleColor,
               }}
             >
-              <img src={sun} alt="" className="absolute w-[80px] h-[80px] sm:w-[153px] sm:h-[153px] sun"
+              <Asset
+                src={sun}
+                className="absolute w-[80px] h-[80px] sm:w-[153px] sm:h-[153px] sun"
                 style={{
                   zIndex: 10, bottom: isMobile ? "10px" : "30px", right: isMobile ? "12px" : "-35px",
                   transform: isOpen ? "rotate(90deg)" : "rotate(30deg)", transition: "transform 0.3s linear",
                 }}
               />
-              {bgImageToUse && (
-                <img src={bgImageToUse} alt="" className="absolute inset-0 w-full h-full"
-                  style={{ zIndex: 20, objectFit: "contain", objectPosition: "left" }}
-                />
-              )}
+              <AssetBg
+                src={bgImageToUse}
+                className="absolute inset-0 w-full h-full"
+                style={{ zIndex: 20, objectFit: "contain", objectPosition: "left" }}
+              />
               <div className="relative z-30 flex justify-between w-full items-center cursor-pointer">
                 <h2 className="ml-4 text-[26px] sm:text-[36px] font-semibold" style={{ color: "inherit" }}>
                   {title}
                 </h2>
                 <div style={{ marginBottom: "40px", display: "flex", alignItems: "center" }}>
-                  <img className="z-20 rounded-full"
+                  <Asset
                     src={getArrowImage(isOpen ? downArrowColorVariant : upArrowColorVariant)}
-                    alt=""
+                    className="z-20 rounded-full"
                     style={{
                       width: isMobile ? "40px" : "50px", transform: isOpen ? "rotate(180deg)" : "rotate(0)",
                       transition: "transform 0.3s linear", background: iconBackColor,
@@ -250,23 +365,25 @@ export const Accordion: React.FC<AccordionProps> = ({
               className="relative z-20 flex justify-between w-full items-center cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}
               style={{
-                backgroundImage: bgImageToUse ? `url(${bgImageToUse})` : "none",
                 padding: headerPadding, margin: headerMargin,
-                backgroundSize: bgColor === 8 ? "100% auto" : "cover",
-                backgroundPosition: "left", backgroundRepeat: "no-repeat",
                 height: headerHeight ?? "100px", color: isOpen ? titleColor2 : titleColor,
               }}
             >
-              <h2 className={`ml-4 ${bgColor === 8 ? 'text-[24px] sm:text-[36px]' : isSmallBgHeader ? 'text-[18px] sm:text-[30px]' : ''}`} style={{ color: "inherit" }}>
+              <AssetBg
+                src={bgImageToUse}
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                style={{ objectFit: bgColor === 8 ? "fill" : "cover", objectPosition: "left" }}
+              />
+              <h2 className={`relative z-10 ml-4 ${bgColor === 8 ? 'text-[24px] sm:text-[36px]' : isSmallBgHeader ? 'text-[18px] sm:text-[30px]' : ''}`} style={{ color: "inherit" }}>
                 {title}
               </h2>
-              <div style={{
+              <div className="relative z-10" style={{
                 ...(isSmallBgHeader ? { position: "absolute", right: isMobile ? "30px" : "60px", top: "50%", transform: "translateY(-50%)" } : {}),
                 display: isOpen && isSmallBgHeader ? "none" : "flex", alignItems: "center"
               }}>
-                <img className="z-20 rounded-full"
+                <Asset
                   src={getArrowImage(isOpen ? downArrowColorVariant : upArrowColorVariant)}
-                  alt=""
+                  className="z-20 rounded-full"
                   style={{
                     width: headerArrowWidth, transform: isOpen ? "rotate(180deg)" : "rotate(0)",
                     transition: "transform 0.3s linear", background: iconBackColor,
@@ -278,8 +395,8 @@ export const Accordion: React.FC<AccordionProps> = ({
           )
         ) : (
           <div className="relative w-full" style={{ maxWidth: sizeVariation }}>
-            {custom && <img src={custom.numberImg} className="mb-[-10px] z-20" alt="" />}
-            <img src={background10} alt="" className="z-10 w-full h-auto block" />
+            {custom && <Asset src={custom.numberImg} className="mb-[-10px] z-20" />}
+            <Asset src={background10} className="z-10 w-full h-auto block" />
             <div
               className="relative z-20 flex justify-between w-full items-center cursor-pointer"
               onClick={() => setIsOpen(!isOpen)}
@@ -292,9 +409,9 @@ export const Accordion: React.FC<AccordionProps> = ({
                 {title}
               </h2>
               <div className="relative flex items-center justify-center w-[145px] h-[145px]">
-                <img className="z-20 rounded-full ml-2"
-                  src={custom ? custom.arrow : (isOpen ? ArrowDownWhite : getArrowImage(upArrowColorVariant))}
-                  alt=""
+                <Asset
+                  src={arrowSrcForHeader}
+                  className="z-20 rounded-full ml-2"
                   style={{
                     width: isMobile ? "30px" : "44px", transform: isOpen ? "rotate(180deg)" : "rotate(0)",
                     transition: "transform 0.3s linear", background: iconBackColor,
@@ -310,24 +427,27 @@ export const Accordion: React.FC<AccordionProps> = ({
           style={{
             background: bgInsideColor, maxHeight: isOpen ? "3300px" : "0px",
             marginTop: bgColor === 7 ? "-32px" : bgColor === 8 ? "-42px" : "0px",
-            padding: bgColor === 7 ? "20px" : bgColor === 8 ? (isMobile ? "50px 10px 20px 10px" : "50px 20px 20px 20px") : 
+            padding: bgColor === 7 ? "20px" : bgColor === 8 ? (isMobile ? "50px 10px 20px 10px" : "50px 20px 20px 20px") :
                      isSmallBgHeader ? "0 0 30px 0" : (isOpen ? "25px" : "0 25px"),
             opacity: isOpen ? 1 : 0, transition: "max-height 0.3s linear, opacity 0.2s linear, padding 0.3s linear",
           }}
         >
           <div className="relative">
-            {bgColor === 8 && <img src={detailBg8} className="mt-[-27px]" alt="" />}
+            {bgColor === 8 && <Asset src={detailBg8} className="mt-[-27px]" />}
             {isOpen && isSmallBgHeader ? (
               <>
-                <img src={bgColor === 9 ? topPinkDetailOpened : bgColor === 10 ? topGreenDetailOpened : bgColor === 11 ? topOrangeDetailOpened : topDetailBlueOpened} 
-                     alt="" className="w-full block mt-[-18px] mb-[-2px]" />
+                <Asset
+                  src={bgColor === 9 ? topPinkDetailOpened : bgColor === 10 ? topGreenDetailOpened : bgColor === 11 ? topOrangeDetailOpened : topDetailBlueOpened}
+                  className="w-full block mt-[-18px] mb-[-2px]"
+                />
                 <div className="relative p-8 md:px-10">
                   <div style={{ maxWidth: isMobile ? "320px" : "100%", wordWrap: "break-word" }}>
                     {children}
                   </div>
-                  <img 
-                    src={bgColor === 9 ? minusArrowPink : bgColor === 10 ? minusArrowGreen : bgColor === 11 ? minusArrowOrange : minusArrowBlue} 
-                    alt="Fechar" onClick={() => setIsOpen(false)}
+                  <Asset
+                    src={bgColor === 9 ? minusArrowPink : bgColor === 10 ? minusArrowGreen : bgColor === 11 ? minusArrowOrange : minusArrowBlue}
+                    onClick={() => setIsOpen(false)}
+                    alt="Fechar"
                     className="absolute bottom-0 right-5 cursor-pointer z-30"
                     style={{ width: isMobile ? "15px" : "20px" }}
                   />
@@ -338,7 +458,7 @@ export const Accordion: React.FC<AccordionProps> = ({
                 borderStyle: (bgColor === 7 || bgColor === 8) ? "solid" : undefined,
                 borderWidth: (bgColor === 7 || bgColor === 8) ? "20px" : undefined,
                 borderImageSlice: (bgColor === 7 || bgColor === 8) ? "35 44 32 38" : undefined,
-                borderImageSource: bgColor === 7 ? "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDU3IiBoZWlnaHQ9IjYyOCIgdmlld0JveD0iMCAwIDQ1NyA2MjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik00MTAuMTA5IDEuMjVIMjI1LjY5Mkg0MS4yNzU5IiBzdHJva2U9IiM0QTkwRTIiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00Mi4yNzU5IDYyNi4yNUg0MS41NDI0TDEuMjc1ODggNTk0LjcxN0wyNC45NjgyIDI2Ljk3NTZDMjQuOTY4MiAyNi45NzU2IDMyLjE5ODcgMTEuNDI4OSAzNy4xOTA5IDEuMjVINDIuMjc1OSIgc3Ryb2tlPSIjNEE5MEUyIiBzdHJva2Utd2lkdGg9IjIuNSIvPgo8cGF0aCBkPSJNNDExLjEwOSA2MjYuMjVIMjI2LjY5Mkg0Mi4yNzU5IiBzdHJva2U9IiM0QTkwRTIiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00MDkuMjc2IDEuMjVINDEzLjE2Nkw0MjUuMzUyIDM3LjQxMTFMNDQ2LjY3NyA1MS42NzM3TDQ1NS4yNzYgNTM0Ljk3TDQxMy4xNjYgNjI2LjI1TDQwOS4yNzYgNjI2LjI1IiBzdHJva2U9IiM0QTkwRTIiIHN0cm9rZS13aWR0aD0iMi41Ii8+Cjwvc3ZnPgo=')" : 
+                borderImageSource: bgColor === 7 ? "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDU3IiBoZWlnaHQ9IjYyOCIgdmlld0JveD0iMCAwIDQ1NyA2MjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik00MTAuMTA5IDEuMjVIMjI1LjY5Mkg0MS4yNzU5IiBzdHJva2U9IiM0QTkwRTIiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00Mi4yNzU5IDYyNi4yNUg0MS41NDI0TDEuMjc1ODggNTk0LjcxN0wyNC45NjgyIDI2Ljk3NTZDMjQuOTY4MiAyNi45NzU2IDMyLjE5ODcgMTEuNDI4OSAzNy4xOTA5IDEuMjVINDIuMjc1OSIgc3Ryb2tlPSIjNEE5MEUyIiBzdHJva2Utd2lkdGg9IjIuNSIvPgo8cGF0aCBkPSJNNDExLjEwOSA2MjYuMjVIMjI2LjY5Mkg0Mi4yNzU5IiBzdHJva2U9IiM0QTkwRTIiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00MDkuMjc2IDEuMjVINDEzLjE2Nkw0MjUuMzUyIDM3LjQxMTFMNDQ2LjY3NyA1MS42NzM3TDQ1NS4yNzYgNTM0Ljk3TDQxMy4xNjYgNjI2LjI1TDQwOS4yNzYgNjI2LjI1IiBzdHJva2U9IiM0QTkwRTIiIHN0cm9rZS13aWR0aD0iMi41Ii8+Cjwvc3ZnPgo=')" :
                                    bgColor === 8 ? "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDU3IiBoZWlnaHQ9IjYyOCIgdmlld0JveD0iMCAwIDQ1NyA2MjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik00MTAuMTA5IDEuMjVIMjI1LjY5Mkg0MS4yNzU5IiBzdHJva2U9IiMyQTZCMTMiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00Mi4yNzU5IDYyNi4yNUg0MS41NDI0TDEuMjc1ODggNTk0LjcxN0wyNC45NjgyIDI2Ljk3NTZDMjQuOTY4MiAyNi45NzU2IDMyLjE5ODcgMTEuNDI4OSAzNy4xOTA5IDEuMjVINDIuMjc1OSIgc3Ryb2tlPSIjMkE2QjEzIiBzdHJva2Utd2lkdGg9IjIuNSIvPgo8cGF0aCBkPSJNNDExLjEwOSA2MjYuMjVIMjI2LjY5Mkg0Mi4yNzU5IiBzdHJva2U9IiMyQTZCMTMiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00MDkuMjc2IDEuMjVINDEzLjE2Nkw0MjUuMzUyIDM3LjQxMTFMNDQ2LjY3NyA1MS42NzM3TDQ1NS4yNzYgNTM0Ljk3TDQxMy4xNjYgNjI2LjI1TDQwOS4yNzYgNjI2LjI1IiBzdHJva2U9IiMyQTZCMTMiIHN0cm9rZS13aWR0aD0iMi41Ii8+Cjwvc3ZnPgo=')" : undefined,
               }}>
                 <div style={{ maxWidth: isMobile ? "320px" : "100%" }}>{children}</div>

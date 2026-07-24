@@ -1,568 +1,161 @@
-# Padrão de Documentação de Componentes — Modfly UI
+# Padrão de página de documentação de componente
 
-Este documento define o padrão obrigatório para criar páginas de documentação de componentes no `apps/docs`. Toda nova página de componente deve seguir esta estrutura.
+Este documento formaliza a estrutura já usada nas páginas de componente de `apps/docs`
+(referência viva: `apps/docs/app/(dashboard)/docs/components/buttonlink/page.tsx`). Toda
+página nova deve seguir exatamente este padrão — não é um guia opcional.
 
----
+Contexto de arquitetura: `docs/projeto/fluxo-saudavel-componentes.md`. `apps/docs` documenta
+a API pública exportada por `packages/ui/src/index.ts`; nunca documente uma prop que não
+existe no componente real.
 
-## 1. Estrutura de arquivos
+## Onde entra cada página
 
-### Rota estática (obrigatório)
-
-Cada componente recebe uma **rota estática própria**, não usa o `[slug]` dinâmico:
+Rota estática obrigatória (tem prioridade sobre a rota dinâmica de fallback):
 
 ```
 apps/docs/app/(dashboard)/docs/components/<slug>/page.tsx
 ```
 
-Exemplos:
+`<slug>` é o nome do componente em minúsculas, sem separador (ex.: `buttonlink`, `cardflip`,
+`imagelist`). A rota dinâmica `[slug]/page.tsx` só existe como fallback genérico para
+componentes ainda sem página própria — criar a página estática não exige tocar nela nem na
+allowlist `VALID_COMPONENTS`.
 
-```
-apps/docs/app/(dashboard)/docs/components/citation/page.tsx     ✓
-apps/docs/app/(dashboard)/docs/components/accordion/page.tsx    ✓
-apps/docs/app/(dashboard)/docs/components/cards/page.tsx        ✓
-```
+## Componentes compartilhados (`apps/docs/components/docs/`)
 
-> **Por quê?** A rota estática é pré-renderizada (`○ Static` no build do Next.js), tem melhor performance e isola o conteúdo de cada componente sem lógica de switch/case.
+| Componente | Props | Uso |
+|---|---|---|
+| `RightToc` | `entries: {id, label, level?: 2\|3}[]`, `readTime?` (padrão `"~5 min"`), `editHref?` | TOC lateral com scroll-spy e barra de progresso. Renderizado fora de `<article>`, como segunda coluna do grid. |
+| `Pager` | `prev?: {href, label, title}`, `next?: {href, label, title}` | Navegação anterior/próximo, rodapé do artigo. |
+| `DocCodeBlock` | `filename?`, `raw: string` (usado no botão copiar), `children` (JSX tokenizado à mão) | Bloco de código com header "traffic lights" e botão copiar. |
+| `Callout` | `variant?: "info"\|"warn"\|"tip"\|"danger"` (padrão `"info"`), `label?` (padrão por variante: Note/Warning/Tip/Danger), `children` | Caixa de destaque dentro do prosa. |
 
-O `[slug]/page.tsx` dinâmico continua funcionando como fallback para componentes que ainda não têm página dedicada.
+Não existe um componente `DocTable` dedicado — a tabela de props é `<table className="doc-table">`
+cru, escrita diretamente em cada `page.tsx`, dentro de `<div className="table-wrap">`.
 
----
-
-## 2. Imports obrigatórios
-
-```tsx
-import { DocCodeBlock }        from "@/components/docs/DocCodeBlock";
-import { Callout }             from "@/components/docs/Callout";
-import { Pager }               from "@/components/docs/Pager";
-import { RightToc }            from "@/components/docs/RightToc";
-```
-
-Todos os shared components de documentação ficam em `apps/docs/components/docs/`.
-
----
-
-## 3. Entradas do TOC
-
-Defina as entradas antes do componente de página. Use IDs em português com hífens:
+## Estrutura obrigatória do arquivo
 
 ```tsx
+import { DocCodeBlock } from "@/components/docs/DocCodeBlock";
+import { Callout } from "@/components/docs/Callout";
+import { Pager } from "@/components/docs/Pager";
+import { RightToc } from "@/components/docs/RightToc";
+
 const TOC_ENTRIES = [
-  { id: "visao-geral",   label: "Visão geral"    },
-  { id: "preview",       label: "Visualização"   },
-  { id: "props",         label: "Propriedades"   },
-  { id: "uso",           label: "Como usar"      },
-  { id: "variantes",     label: "Variantes"      },
+  { id: "visao-geral", label: "Visão geral" },
+  { id: "preview", label: "Visualização" },
+  { id: "props", label: "Propriedades" },
+  { id: "uso", label: "Como usar" },
+  { id: "variantes", label: "Variantes" },
   { id: "acessibilidade", label: "Acessibilidade", level: 3 as const },
 ];
-```
 
-A entrada `level: 3` aparece recuada no TOC (sub-item visual).
-
----
-
-## 4. Layout da página
-
-O wrapper externo é sempre um grid de duas colunas: conteúdo principal + TOC lateral.
-
-```tsx
-export default function NomeComponentePage() {
+export default function <Nome>Page() {
   return (
     <div className="grid grid-cols-[1fr_260px] min-h-screen">
       <div className="min-w-0 px-10">
-        <header className="doc-head">...</header>
-        <article className="doc-prose">...</article>
-      </div>
-
-      <RightToc
-        entries={TOC_ENTRIES}
-        readTime="~4 min"
-        editHref="https://github.com/r0b14/Modfly.ui"
-      />
-    </div>
-  );
-}
-```
-
----
-
-## 5. Cabeçalho (`doc-head`)
-
-```tsx
-<header className="doc-head">
-  <div className="doc-cat">Moléculas · Referência</div>
-
-  <h1 className="doc-title">
-    NomeComponente<i>.</i>       {/* o ponto final em itálico é o estilo padrão */}
-  </h1>
-
-  <p className="doc-lead">
-    Descrição curta do componente — o que faz, onde encaixa, propósito.
-  </p>
-
-  <div className="doc-meta">
-    <div className="doc-meta-item">Pacote <b>@modfly/ui</b></div>
-    <div className="doc-meta-item">Categoria <b>molécula</b></div>  {/* átomo / molécula / organismo / template */}
-    <div className="doc-meta-item">Props <b>N</b></div>
-    <div className="doc-meta-item">Status <b style={{ color: "var(--green)" }}>estável</b></div>
-  </div>
-</header>
-```
-
-**Valores válidos para `doc-cat`:**
-
-| Categoria  | Valor                         |
-| :--------- | :---------------------------- |
-| Átomos     | `Átomos · Referência`         |
-| Moléculas  | `Moléculas · Referência`      |
-| Organismos | `Organismos · Referência`     |
-| Templates  | `Templates · Referência`      |
-
----
-
-## 6. Seções do artigo
-
-### Estrutura de cada seção
-
-```tsx
-<section id="nome-da-secao">
-  <h2 className="doc-h2">
-    <a className="doc-anchor" href="#nome-da-secao" aria-hidden="true">#</a>
-    <span className="doc-h2-num">01 · Contexto</span>
-    Título da Seção
-  </h2>
-
-  <p className="doc-p">Texto do parágrafo.</p>
-  {/* ... conteúdo da seção ... */}
-</section>
-```
-
-### Numeração obrigatória
-
-| Seção             | ID                | `doc-h2-num`           |
-| :---------------- | :---------------- | :--------------------- |
-| Visão geral       | `visao-geral`     | `01 · Contexto`        |
-| Visualização      | `preview`         | `02 · Demo`            |
-| Propriedades      | `props`           | `03 · API`             |
-| Como usar         | `uso`             | `04 · Exemplos`        |
-| Variantes         | `variantes`       | `05 · Variações`       |
-
-Sub-seções usam `<h3 className="doc-h3">` com `id` e `style={{ scrollMarginTop: "88px" }}`.
-
----
-
-## 7. Preview inline do componente
-
-**Nunca importe o componente real diretamente** — ele depende de assets (PNG/SVG) e CSS que não funcionam no Next.js App Router sem configuração adicional.
-
-Recrie o componente visualmente com JSX + estilos inline:
-
-```tsx
-{/* Caixa de preview */}
-<div className="my-7 bg-[var(--paper)] border border-rule rounded-xl overflow-hidden">
-
-  {/* Barra superior tipo Storybook */}
-  <div className="flex items-center gap-2 px-4 py-2.5 border-b border-rule bg-[var(--bg)]">
-    <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">
-      Preview · NomeComponente / Default
-    </span>
-    <span className="ml-auto font-jetbrains text-[9px] text-[var(--muted)] bg-[var(--bg-2)] py-[2px] px-[7px] rounded-full border border-rule mono">
-      molécula
-    </span>
-  </div>
-
-  {/* Área branca com o componente recriado */}
-  <div className="p-10 bg-white">
-    <ComponentePreview prop1="valor" prop2="valor" />
-  </div>
-
-  {/* Legenda */}
-  <div className="px-4 py-2 border-t border-rule bg-[var(--bg)] font-jetbrains text-[10px] text-[var(--muted)] mono">
-    ↑ <span className="text-[var(--ink-2)]">&lt;NomeComponente /&gt;</span> — props usadas
-  </div>
-</div>
-```
-
-### SVGs embutidos
-
-Se o componente usa um SVG de asset, copie o conteúdo do SVG e crie um componente React inline — **não use `<img src="...">`**:
-
-```tsx
-function BookGreenIcon() {
-  return (
-    <svg width="100" height="82" viewBox="0 0 110 90" fill="none" xmlns="...">
-      {/* paths do SVG original */}
-    </svg>
-  );
-}
-```
-
-O SVG original fica em `apps/curso-template/src/assets/`. Leia o arquivo e copie os paths.
-
----
-
-## 8. Tabela de propriedades
-
-```tsx
-<div className="table-wrap">
-  <table className="doc-table">
-    <thead>
-      <tr>
-        <th>Prop</th>
-        <th>Tipo</th>
-        <th>Padrão</th>
-        <th>Descrição</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>
-            nomeProp
-          </span>
-        </td>
-        <td>
-          <span className="mono" style={{ fontSize: "12.5px" }}>string</span>
-        </td>
-        <td>
-          <span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>—</span>
-        </td>
-        <td>Descrição da prop em português.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-```
-
-**Convenção de cores na coluna Prop:**
-
-- Props **ativas/usadas**: `color: "var(--orange)"`
-- Props **reservadas/depreciadas**: `color: "var(--muted)"`
-
----
-
-## 9. Blocos de código (`DocCodeBlock`)
-
-```tsx
-<DocCodeBlock
-  filename="Unidade01.tsx"          {/* opcional — mostra barra com macOS dots */}
-  raw={`código puro para o botão COPIAR`}
->
-  {/* JSX com tokens de sintaxe */}
-  <pre style={{ margin: 0 }}>
-    <span className="tok-key">import</span>{" "}{"{ "}
-    <span className="tok-tag">NomeComponente</span>
-    {" }"}{" "}
-    <span className="tok-key">from</span>{" "}
-    <span className="tok-str">&apos;@modfly/ui&apos;</span>
-  </pre>
-</DocCodeBlock>
-```
-
-**Classes de token disponíveis:**
-
-| Classe       | Cor      | Uso                              |
-| :----------- | :------- | :------------------------------- |
-| `tok-key`    | laranja  | `import`, `export`, `return`     |
-| `tok-str`    | verde    | strings entre aspas              |
-| `tok-tag`    | azul     | nomes de componentes JSX         |
-| `tok-attr`   | lilás    | nomes de props                   |
-| `tok-fn`     | amarelo  | nomes de funções                 |
-| `tok-num`    | rosa     | números                          |
-| `tok-com`    | cinza    | comentários (itálico)            |
-| `tok-op`     | lilás    | operadores                       |
-| `code-prompt`| laranja-soft | prompt `$` do terminal (non-selectable) |
-
----
-
-## 10. Callouts
-
-```tsx
-<Callout variant="info"   label="Quando usar">...</Callout>
-<Callout variant="tip"    label="Pro tip · texto">...</Callout>
-<Callout variant="warn"   label="Atenção · texto">...</Callout>
-<Callout variant="danger" label="Não está funcionando?">...</Callout>
-```
-
-**Quando usar cada variante:**
-
-| Variante  | Ícone | Cor    | Contexto de uso                                          |
-| :-------- | :---- | :----- | :------------------------------------------------------- |
-| `info`    | `i`   | azul   | Contexto neutro, "quando usar", comparações              |
-| `tip`     | `✓`   | verde  | Boas práticas, atalhos, pro tips                        |
-| `warn`    | `!`   | laranja| Erros comuns, passos não-óbvios, configuração crítica    |
-| `danger`  | `×`   | rosa   | Erros de runtime, problemas de debug                    |
-
----
-
-## 11. Listas em prosa
-
-```tsx
-{/* Lista não-ordenada */}
-<ul className="prose-ul">
-  <li className="prose-li">Item com bullet laranja.</li>
-</ul>
-
-{/* Lista ordenada */}
-<ol className="prose-ol">
-  <li className="prose-li">Item numerado com contador CSS.</li>
-</ol>
-```
-
----
-
-## 12. Divisor e paginação
-
-```tsx
-{/* Divisor com estrela */}
-<hr className="doc-hr" />
-
-{/* Navegação prev/next */}
-<Pager
-  prev={{ href: "/docs/components/figure",        label: "Anterior", title: "Figure" }}
-  next={{ href: "/docs/components/indentcitation", label: "Próximo",  title: "IndentCitation" }}
-/>
-```
-
----
-
-## 13. Rodapé da página
-
-```tsx
-<footer className="pg-foot">
-  <span>Atualizado em <b style={{ color: "var(--ink-2)" }}>27 Mai 2026</b></span>
-  <a href="https://github.com/r0b14/Modfly.ui/tree/main/apps/curso-template/src/components/molecules/nome"
-     target="_blank" rel="noopener noreferrer">Ver fonte ↗</a>
-  <a href="https://github.com/r0b14/Modfly.ui/issues"
-     target="_blank" rel="noopener noreferrer">Reportar problema</a>
-  <span className="right">© Modfly UI · MIT</span>
-</footer>
-```
-
----
-
-## 14. Classes CSS de referência rápida
-
-Todas as classes abaixo estão definidas em `apps/docs/app/globals.css`:
-
-```
-Layout e estrutura
-  doc-head          cabeçalho do doc (max-width 760px, mx-auto, border-bottom)
-  doc-prose         área do artigo (max-width 760px, mx-auto, padding vertical)
-  doc-cat           eyebrow laranja com linha antes (::before)
-  doc-title         h1 display em Instrument Serif
-  doc-lead          parágrafo de abertura em 19px
-  doc-meta          linha de metadados em JetBrains Mono
-  doc-meta-item     item individual com dot ::before
-
-Tipografia interna
-  doc-h2            h2 com serif 42px + ancla hover
-  doc-h2-num        span de numeração acima do h2 (laranja, mono, uppercase)
-  doc-h3            h3 geist 21px semi-bold
-  doc-p             parágrafo 15.5px com max-width 640px
-  doc-anchor        link # que aparece no hover do h2
-
-Tabelas
-  table-wrap        container com border-radius e overflow-hidden
-  doc-table         tabela com estilo editorial
-  doc-status        badge com dot colorido (variantes: .ok .partial .no)
-
-Código
-  code-block        container dark com border-radius
-  code              área de código #16140f com efeito spotlight
-  code-block-head   barra com macOS dots e nome do arquivo
-  code-copy         botão COPIAR (variante .copied para feedback verde)
-
-Callout
-  callout           container com border-left (variantes: .warn .tip .danger)
-  callout-label     label uppercase em monospace
-
-Listas
-  prose-ul / prose-ol  listas sem estilo nativo
-  prose-li             item com padding-left e bullet laranja
-
-Steps
-  steps             container com counter-reset
-  step              item com counter-increment e número ::before
-  step-title        título do step em serif 26px
-  step-desc         descrição 14.5px cinza
-
-Navegação
-  pager             grid 2 colunas prev/next
-  pager-card        card com hover translateY
-  pager-label       legenda ANTERIOR/PRÓXIMO mono uppercase
-  pager-title       título em serif 26px
-
-TOC lateral
-  toc               container sticky height 100vh
-  toc-label         label de seção com linha ::after
-  toc-list li       item com border-left ativo
-  toc-progress      barra de progresso com percentage
-
-Rodapé
-  pg-foot           footer com border-top, flex, max-width 760px
-  reading-bar       barra laranja de progresso de leitura (fixed, top:0)
-```
-
----
-
-## 15. Template mínimo
-
-Copie e adapte para iniciar uma nova página:
-
-```tsx
-// apps/docs/app/(dashboard)/docs/components/<slug>/page.tsx
-
-import { DocCodeBlock } from "@/components/docs/DocCodeBlock";
-import { Callout }      from "@/components/docs/Callout";
-import { Pager }        from "@/components/docs/Pager";
-import { RightToc }     from "@/components/docs/RightToc";
-
-const TOC_ENTRIES = [
-  { id: "visao-geral", label: "Visão geral"  },
-  { id: "preview",     label: "Visualização" },
-  { id: "props",       label: "Propriedades" },
-  { id: "uso",         label: "Como usar"    },
-  { id: "variantes",   label: "Variantes"    },
-];
-
-export default function NomeComponentePage() {
-  return (
-    <div className="grid grid-cols-[1fr_260px] min-h-screen">
-      <div className="min-w-0 px-10">
-
         <header className="doc-head">
-          <div className="doc-cat">Moléculas · Referência</div>
-          <h1 className="doc-title">NomeComponente<i>.</i></h1>
-          <p className="doc-lead">Descrição curta do componente.</p>
+          <div className="doc-cat">{/* ex.: "Átomos · Referência" */}</div>
+          <h1 className="doc-title"><Nome><i>.</i></h1>
+          <p className="doc-lead">{/* 1-2 frases: o que é e quando usar */}</p>
           <div className="doc-meta">
             <div className="doc-meta-item">Pacote <b>@modfly/ui</b></div>
-            <div className="doc-meta-item">Categoria <b>molécula</b></div>
-            <div className="doc-meta-item">Props <b>N</b></div>
+            <div className="doc-meta-item">Categoria <b>{/* átomo | molécula | organismo | template */}</b></div>
+            <div className="doc-meta-item">Props <b>{/* contagem real */}</b></div>
             <div className="doc-meta-item">Status <b style={{ color: "var(--green)" }}>estável</b></div>
           </div>
         </header>
 
         <article className="doc-prose">
-
-          <section id="visao-geral">
-            <h2 className="doc-h2">
-              <a className="doc-anchor" href="#visao-geral" aria-hidden="true">#</a>
-              <span className="doc-h2-num">01 · Contexto</span>
-              Visão geral
-            </h2>
-            <p className="doc-p">Descreva o componente, origem e propósito.</p>
-            <Callout variant="info" label="Quando usar">
-              <p>Orientação de uso vs outros componentes similares.</p>
-            </Callout>
-          </section>
-
-          <section id="preview">
-            <h2 className="doc-h2">
-              <a className="doc-anchor" href="#preview" aria-hidden="true">#</a>
-              <span className="doc-h2-num">02 · Demo</span>
-              Visualização
-            </h2>
-            <div className="my-7 bg-[var(--paper)] border border-rule rounded-xl overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-rule bg-[var(--bg)]">
-                <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">
-                  Preview · NomeComponente / Default
-                </span>
-              </div>
-              <div className="p-10 bg-white">
-                {/* Recriação visual inline do componente */}
-              </div>
-              <div className="px-4 py-2 border-t border-rule bg-[var(--bg)] font-jetbrains text-[10px] text-[var(--muted)] mono">
-                ↑ <span className="text-[var(--ink-2)]">&lt;NomeComponente /&gt;</span>
-              </div>
-            </div>
-          </section>
-
-          <section id="props">
-            <h2 className="doc-h2">
-              <a className="doc-anchor" href="#props" aria-hidden="true">#</a>
-              <span className="doc-h2-num">03 · API</span>
-              Propriedades
-            </h2>
-            <div className="table-wrap">
-              <table className="doc-table">
-                <thead>
-                  <tr><th>Prop</th><th>Tipo</th><th>Padrão</th><th>Descrição</th></tr>
-                </thead>
-                <tbody>
-                  {/* linhas da tabela */}
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section id="uso">
-            <h2 className="doc-h2">
-              <a className="doc-anchor" href="#uso" aria-hidden="true">#</a>
-              <span className="doc-h2-num">04 · Exemplos</span>
-              Como usar
-            </h2>
-            <DocCodeBlock filename="Unidade01.tsx" raw="// código para copiar">
-              <pre style={{ margin: 0 }}>
-                {/* tokens JSX */}
-              </pre>
-            </DocCodeBlock>
-          </section>
-
-          <section id="variantes">
-            <h2 className="doc-h2">
-              <a className="doc-anchor" href="#variantes" aria-hidden="true">#</a>
-              <span className="doc-h2-num">05 · Variações</span>
-              Variantes
-            </h2>
-            {/* grid de variantes */}
-          </section>
+          {/* 01 — Visão geral (id="visao-geral") */}
+          {/* 02 — Preview (id="preview") */}
+          {/* 03 — Props (id="props") */}
+          {/* 04 — Como usar (id="uso") */}
+          {/* 05 — Variantes (id="variantes"), com <h3 id="acessibilidade"> dentro */}
 
           <hr className="doc-hr" />
-
-          <Pager
-            prev={{ href: "/docs/components/anterior", label: "Anterior", title: "Anterior" }}
-            next={{ href: "/docs/components/proximo",  label: "Próximo",  title: "Próximo"  }}
-          />
+          <Pager prev={{ ... }} next={{ ... }} />
 
           <footer className="pg-foot">
-            <span>Atualizado em <b style={{ color: "var(--ink-2)" }}>Mai 2026</b></span>
-            <a href="https://github.com/r0b14/Modfly.ui" target="_blank" rel="noopener noreferrer">Ver fonte ↗</a>
+            <span>Atualizado em <b style={{ color: "var(--ink-2)" }}>DD Mmm AAAA</b></span>
+            <a href="https://github.com/r0b14/Modfly.ui/tree/main/packages/ui/src/components/<layer>/<name>" target="_blank" rel="noopener noreferrer">Ver fonte ↗</a>
             <a href="https://github.com/r0b14/Modfly.ui/issues" target="_blank" rel="noopener noreferrer">Reportar problema</a>
             <span className="right">© Modfly UI · MIT</span>
           </footer>
-
         </article>
       </div>
 
-      <RightToc entries={TOC_ENTRIES} readTime="~4 min" editHref="https://github.com/r0b14/Modfly.ui" />
+      <RightToc entries={TOC_ENTRIES} readTime="~3 min" editHref="https://github.com/r0b14/Modfly.ui" />
     </div>
   );
 }
 ```
 
----
+## As 5 seções (cada `<h2>` segue este padrão de anchor + número)
 
-## 16. Checklist antes de publicar
-
-```
-[ ] Rota estática criada em /docs/components/<slug>/page.tsx
-[ ] Todos os textos em PT-BR (sem mistura com EN)
-[ ] doc-cat com a categoria correta (átomo/molécula/organismo/template)
-[ ] 5 seções numeradas com IDs corretos para scroll-spy
-[ ] TOC_ENTRIES corresponde exatamente aos IDs das seções
-[ ] Preview recria o componente inline (sem import do curso-template)
-[ ] SVGs embutidos como componentes React (não <img src>)
-[ ] Tabela de props cobre todas as props da interface TypeScript
-[ ] DocCodeBlock tem prop `raw` com o código limpo para COPIAR
-[ ] Pager aponta para os vizinhos corretos na ordem do sidebar
-[ ] Build limpo: npx turbo run build --filter=docs sem erros
+```tsx
+<section id="<id>">
+  <h2 className="doc-h2">
+    <a className="doc-anchor" href="#<id>" aria-hidden="true">#</a>
+    <span className="doc-h2-num">0N · <rótulo curto></span>
+    <Título da seção>
+  </h2>
+  {/* conteúdo */}
+</section>
 ```
 
----
+1. **`01 · Contexto` — Visão geral** (`id="visao-geral"`): parágrafo explicando o que o
+   componente renderiza e como as props principais se combinam, seguido de um `Callout
+   variant="info"` com "quando usar" (e, se fizer sentido, qual componente irmão usar em vez
+   deste).
+2. **`02 · Demo` — Visualização** (`id="preview"`): preview inline dentro de um cartão
+   `bg-[var(--paper)] border border-rule rounded-xl` com um header estilo Storybook (nome do
+   preview + chip de categoria) e um rodapé listando as props usadas. Ver seção "Preview" abaixo.
+3. **`03 · API` — Propriedades** (`id="props"`): `<table className="doc-table">` dentro de
+   `<div className="table-wrap">`, colunas `Prop | Tipo | Padrão | Descrição`, nome da prop em
+   `<span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>`. A lista de
+   props e tipos vem do `<Name>Props` real exportado em `packages/ui/src/index.ts` — nunca
+   inventar ou omitir. Pode terminar com um `Callout variant="warn"` para ressalvas de
+   implementação (ex.: fundo é SVG, não CSS).
+4. **`04 · Exemplos` — Como usar** (`id="uso"`): um `DocCodeBlock` com `filename` e `raw` (string
+   crua do exemplo, usada pelo botão copiar) **e** o mesmo código tokenizado manualmente como
+   `children` (spans `tok-key`, `tok-tag`, `tok-str`, `tok-attr`, `tok-num`, `tok-fn` — não há
+   highlighter automático). As duas versões devem ficar idênticas.
+5. **`05 · Variações` — Variantes** (`id="variantes"`): grid (`grid grid-cols-3 gap-5`, ajustar
+   colunas ao nº de variantes) com um cartão por variação relevante, cada um com header
+   (indicador de cor + rótulo) e o preview em tamanho reduzido. Termina com
+   `<h3 id="acessibilidade" className="doc-h3" style={{ scrollMarginTop: "88px" }}>Acessibilidade</h3>`
+   e uma `<ul className="prose-ul">` de notas de acessibilidade reais do componente (não genéricas).
 
-## Referências
+## Preview: import real vs. recriado
 
-- Implementação de referência: [`apps/docs/app/(dashboard)/docs/components/citation/page.tsx`](apps/docs/app/(dashboard)/docs/components/citation/page.tsx)
-- Shared components: [`apps/docs/components/docs/`](apps/docs/components/docs/)
-- CSS das classes: [`apps/docs/app/globals.css`](apps/docs/app/globals.css)
-- Padrão das páginas Getting Started: [`apps/docs/app/(dashboard)/docs/getting-started/[slug]/page.tsx`](apps/docs/app/(dashboard)/docs/getting-started/%5Bslug%5D/page.tsx)
+Regra do doc de arquitetura: o preview deve representar fielmente `packages/ui`, e — quando
+recriado manualmente — deve ser conferido contra a story aprovada no Storybook.
+
+- **Padrão atual (usado em todos os 8 componentes existentes) — obrigatório por enquanto:** o
+  preview é uma função local no próprio `page.tsx` (ex. `ButtonLinkPreview`) que recria o
+  componente em JSX, reaproveitando os **mesmos arquivos SVG do componente real**, copiados para
+  `apps/docs/public/<slug>/*.svg` — nunca redesenhados à mão. Isso evita divergência visual sem
+  depender de importar o pacote.
+- **Import direto de `@modfly/ui` foi testado e não funciona hoje.** Causa raiz confirmada: o
+  build do pacote (`tsup`) empacota todos os componentes num único `dist/index.mjs`, sem
+  code-splitting por componente e sem diretivas `"use client"` nos componentes que usam hooks
+  (`useState` etc.). O App Router do Next.js (`apps/docs`, Server Components por padrão) não
+  consegue isolar, dentro desse arquivo único, quais exports precisam de client boundary — ele
+  rejeita a importação de qualquer símbolo do módulo com o erro *"You're importing a component
+  that needs `useState`... mark the file with the `use client` directive"*, mesmo importando um
+  componente sem estado (ex.: `Check`). Resolver isso exigiria mudar o build de `packages/ui`
+  para gerar saída por componente com `"use client"` nos que precisam — fora do escopo deste
+  fluxo de docs. Até isso ser feito, siga o padrão de recriação com assets copiados.
+- Em qualquer um dos dois casos: depois de criar/atualizar a página, abra a story equivalente
+  no Storybook (`apps/storybook`) e confira lado a lado antes de considerar a página pronta.
+
+## Checklist antes de dar como pronta
+
+- [ ] Rota estática criada em `apps/docs/app/(dashboard)/docs/components/<slug>/page.tsx`.
+- [ ] Todas as props documentadas existem de fato em `<Name>Props` (`packages/ui`).
+- [ ] Preview conferido visualmente contra a story do Storybook.
+- [ ] Nomes de componente/props revisados (fazem sentido em termos de frontend? Se algo parecer
+      estranho, não renomear silenciosamente — reportar como nota separada).
+- [ ] `Pager` `prev`/`next` apontando para os componentes vizinhos corretos.
+- [ ] `TOC_ENTRIES` bate com os `id` reais das seções/subsseções do artigo.

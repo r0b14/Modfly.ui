@@ -6,8 +6,8 @@ import BottomCheckSVGGreen from "./assets/bottomCheckGreen.svg";
 import TopCheckSVGBlue from "./assets/topCheckBlue.svg";
 import BottomCheckSVGBlue from "./assets/bottomCheckBlue.svg";
 
-// Ícone do check (convertido para SVG)
-import checkIcon from "./assets/checkIcon.svg";
+// Ícone do check (SVG renderizado como componente React via plugin SVGR)
+import CheckIcon from "./assets/checkIcon.svg";
 
 export interface CheckProps {
   items?: React.ReactNode[];
@@ -101,9 +101,7 @@ export const Check: React.FC<CheckProps> = ({
                 }}
                 aria-hidden="true"
               >
-                <img
-                  src={checkIcon}
-                  alt=""
+                <CheckIcon
                   aria-hidden="true"
                   className="block w-5 h-5"
                 />

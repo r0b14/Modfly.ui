@@ -1,5 +1,5 @@
 {
-  "extends": "@modfy/tsconfig/nextjs.json",
+  "extends": "@modfly/tsconfig/nextjs.json",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

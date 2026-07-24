@@ -34,6 +34,8 @@ export const CardFlip: React.FC<CardFlipProps> = ({ cardFlipData }) => {
             const isFlipped = flippedIndex === index;
             const isHovered = hoveredIndex === index;
             const frontBgColor = getFrontBgColor(tipo);
+            const ButtonIcon = isHovered ? button2 : button1;
+            const BottomImage = getBottomImage(tipo);
 
             return (
               <div
@@ -75,9 +77,8 @@ export const CardFlip: React.FC<CardFlipProps> = ({ cardFlipData }) => {
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
                     >
-                      <img
-                        src={isHovered ? button2 : button1}
-                        alt="Clique para ver mais"
+                      <ButtonIcon
+                        aria-hidden="true"
                         className={`transition-all duration-300 ease-in-out w-auto h-[75px] ${
                           isHovered ? "scale-110 rotate-3" : "scale-100 rotate-0"
                         }`}
@@ -102,9 +103,8 @@ export const CardFlip: React.FC<CardFlipProps> = ({ cardFlipData }) => {
                     </div>
 
                     <div className="absolute bottom-0 left-0 right-0 w-full">
-                      <img
-                        src={getBottomImage(tipo)}
-                        alt=""
+                      <BottomImage
+                        aria-hidden="true"
                         className="w-full h-auto block rounded-b-[40px]"
                       />
                     </div>

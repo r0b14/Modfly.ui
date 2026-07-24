@@ -53,13 +53,15 @@ export const MiniCards: React.FC<MiniCardProps> = ({ cardsData }) => {
   return (
     <div className="flex flex-col items-center w-full my-10 px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10 w-full max-w-[800px]">
-        {cardsData.map(([nome, texto, imagemURL, tipo], index) => (
+        {cardsData.map(([nome, texto, imagemURL, tipo], index) => {
+          const TopImage = getTopImage(tipo);
+          const ButtonImage = getButtonImage(tipo, openIndex === index);
+          return (
           <div key={index} className="flex flex-col items-center relative w-full">
             <div className={`${getBackgroundColor(tipo)} rounded-[20px] shadow-md w-full h-[430px] flex flex-col relative pb-8 justify-between transition-all duration-300`}>
               <div className="w-full">
-                <img 
-                  src={getTopImage(tipo)} 
-                  alt="" 
+                <TopImage
+                  aria-hidden="true"
                   className="w-full h-auto rounded-t-[20px]"
                 />
               </div>
@@ -81,9 +83,8 @@ export const MiniCards: React.FC<MiniCardProps> = ({ cardsData }) => {
                 onClick={() => handleToggle(index)}
                 aria-expanded={openIndex === index}
               >
-                <img 
-                  src={getButtonImage(tipo, openIndex === index)}
-                  alt={openIndex === index ? "Fechar" : "Abrir"}
+                <ButtonImage
+                  aria-hidden="true"
                   className="w-[60px] h-[60px]"
                 />
               </button>
@@ -99,7 +100,8 @@ export const MiniCards: React.FC<MiniCardProps> = ({ cardsData }) => {
               </div>
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
