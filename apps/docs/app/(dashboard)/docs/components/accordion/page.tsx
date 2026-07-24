@@ -434,9 +434,9 @@ export default function AccordionPage() {
 
           <Pager
             prev={{
-              href: "/docs/components/learningblock",
+              href: "/docs/components/imagelist",
               label: "Anterior",
-              title: "LearningBlock",
+              title: "ImageList",
             }}
             next={{
               href: "/docs/components/starlist",

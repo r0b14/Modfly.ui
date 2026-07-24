@@ -196,7 +196,7 @@ export default function ImageFallbackPage() {
 
           <Pager
             prev={{ href: "/docs/components/check", label: "Anterior", title: "Check" }}
-            next={{ href: "/docs/components/citation", label: "Próximo", title: "Citation" }}
+            next={{ href: "/docs/components/buttonreference", label: "Próximo", title: "ButtonReference" }}
           />
 
           <footer className="pg-foot">

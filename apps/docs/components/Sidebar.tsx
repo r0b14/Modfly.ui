@@ -40,30 +40,10 @@ export function Sidebar() {
       </div>
 
       <NavSection title="Getting started" items={["Introduction", "Installation", "Tailwind setup", "Theming"]} currentPath={pathname} />
-      <NavSection title="Atoms" items={["ButtonLink", "ButtonPdfDownload", "Tooltip", "Postit", "Check", "ImageFallback"]} currentPath={pathname} />
+      <NavSection title="Atoms" items={["ButtonLink", "ButtonPdfDownload", "Tooltip", "Postit", "Check", "ImageFallback", "ButtonReference", "Exclamation", "RangeBlue", "RangeGreen"]} currentPath={pathname} />
       <NavSection title="Molecules" items={["Cards", "CardFlip", "QuoteText", "Figure", "Citation", "IndentCitation", "ListModule", "MiniCards", "Embed", "ImageList"]} currentPath={pathname} />
       <NavSection title="Organisms" items={["Accordion", "StarList", "TimelineWithCards", "HistoryTopics", "LearningBlock"]} currentPath={pathname} />
       <NavSection title="Templates" items={["Carousel", "Slider", "Pagination", "UnityBanner", "Glossary"]} currentPath={pathname} />
-      
-      <div className="mb-6">
-        <div className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mb-2.5 flex items-center gap-2 mono">
-          @modfly/ui-avamec <div className="flex-1 h-[1px] bg-rule" />
-        </div>
-        <ul className="list-none p-0 m-0">
-          {["QuestionOption", "QuestionMultipleAnswer", "QuestionTrueOrFalse", "QuestionGrid", "QuestionCorrelation", "QuestionDragDrop", "QuestionWritten", "SendActivityButton"].map(item => {
-            const href = `/docs/avamec/${item.toLowerCase()}`;
-            const isActive = pathname === href;
-            return (
-              <li key={item}>
-                <Link href={href} className={`text-[13.5px] py-1 px-2 rounded-[4px] flex items-center gap-2 transition-all no-underline ${isActive ? 'bg-[var(--ink)] text-[var(--bg)]' : 'text-[var(--ink-2)] hover:bg-[var(--bg-2)]'}`}>
-                  <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-[var(--orange-soft)]' : 'bg-[var(--green)]'}`} />
-                  {item}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
     </aside>
   );
 }
