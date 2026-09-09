@@ -2,10 +2,12 @@
 
 Índice central de toda a documentação interna do monorepo. Cada subpasta agrupa documentos por tema; os nomes de arquivo são descritivos para facilitar a busca.
 
-> Isto é documentação **interna** do repositório (decisões técnicas, padrões, planos). O site público de docs dos componentes é o app `apps/docs` (Next.js, deployado em modfly.design) — não confunda os dois.
+> Isto é documentação **interna** do repositório (decisões técnicas, padrões, planos). O site público de docs dos componentes é o app `apps/docs` (Next.js, com destino público modfly.design) — não confunda os dois.
 
 ## Entrega v1.1
 
+- [Entrega e evidências do site](projeto/entrega-site-publico.md)
+- [Site público bilíngue](front/site-publico-bilingue.md)
 - [Evidências e publicação](projeto/entrega-v1.1.md)
 - [Migração de consumidores](projeto/migracao-v1.1.md)
 - [Contrato AVAMEC e homologação](integracoes/avamec-v1.1.md)

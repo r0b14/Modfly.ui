@@ -21,11 +21,6 @@ for (const [category, label] of Object.entries(categories)) {
     const stories = (await readdir(folder)).filter(f => f.endsWith('.stories.tsx')).sort();
     if (!stories.length) continue;
     const slug = dir.toLowerCase();
-    const page = path.join(root, 'apps/docs/app/(dashboard)/docs/components', slug, 'page.tsx');
-    let old = ''; try { old = await readFile(page, 'utf8'); } catch { /* nova página */ }
-    const previous = old.match(/className="doc-lead">([\s\S]*?)<\/p>/)?.[1];
-    const previousData = await readFile(path.join(out, 'catalog.json'), 'utf8').then(JSON.parse).catch(() => []);
-    const description = previous?.replace(/<[^>]+>/g, '').replace(/\{[^}]*\}/g, ' ').replace(/\s+/g, ' ').trim() || previousData.find(c => c.slug === slug)?.description || `Componente ${dir} para compor experiências de aprendizagem.`;
     const components = [];
     for (const file of stories) {
       const original = await readFile(path.join(folder, file), 'utf8');
@@ -50,17 +45,16 @@ for (const [category, label] of Object.entries(categories)) {
       const helpers = sf.statements.filter(ts.isVariableStatement).filter(s => !s.modifiers?.some(m => m.kind === ts.SyntaxKind.ExportKeyword) && !s.declarationList.declarations.some(d => d.name.getText(sf) === 'meta')).map(s => s.getText(sf)).join('\n');
       components.push({ name: componentName, initialVariant: firstStory?.declarationList.declarations[0]?.name.getText(sf), props, example: `'use client';\nimport { ${componentName} } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\n${helpers ? helpers + '\n\n' : ''}const props: ComponentProps<typeof ${componentName}> = ${args || '{}'};\n\nexport default function Exemplo() {\n  return <${componentName} {...props} />;\n}` });
     }
-    catalog.push({ slug, name: dir[0].toUpperCase() + dir.slice(1), category: label, description, source: `packages/ui/src/components/${category}/${dir}`, components });
-    await mkdir(path.dirname(page), { recursive: true });
-    await writeFile(page, `import { ComponentDoc } from '@/components/docs/ComponentDoc';\nexport default function Page() { return <ComponentDoc slug=${JSON.stringify(slug)} />; }\n`);
+    catalog.push({ slug, name: dir[0].toUpperCase() + dir.slice(1), category: label, source: `packages/ui/src/components/${category}/${dir}`, components });
   }
 }
 await writeFile(path.join(out, 'catalog.json'), JSON.stringify(catalog, null, 2) + '\n');
+await writeFile(path.join(out, 'navigation.json'), JSON.stringify(catalog.map(({slug,name,category,components}) => ({slug,name,category,exports:components.length})), null, 2) + '\n');
 await writeFile(path.join(out, 'stories.jsx'), registry + `\nexport const stories = {${mappings.join(',\n')}};\n`);
 console.log(`Catálogo: ${catalog.length} páginas, ${mappings.length} componentes exportados.`);
 
 const readmePath = path.join(root, 'README.md');
 const readme = await readFile(readmePath, 'utf8');
 const rows = ['| Camada | Componentes |', '| --- | --- |'];
-for (const label of Object.values(categories)) rows.push(`| ${label} | ${catalog.filter(c => c.category === label).map(c => `[${c.name}](https://modfly.design/docs/components/${c.slug})`).join(' · ')} |`);
+for (const label of Object.values(categories)) rows.push(`| ${label} | ${catalog.filter(c => c.category === label).map(c => `[${c.name}](https://modfly.design/pt/docs/components/${c.slug})`).join(' · ')} |`);
 await writeFile(readmePath, readme.replace(/<!-- component-inventory:start -->[\s\S]*?<!-- component-inventory:end -->/, '<!-- component-inventory:start -->\n' + rows.join('\n') + '\n<!-- component-inventory:end -->'));

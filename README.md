@@ -12,7 +12,7 @@
 
 Componentes React e TypeScript para transformar conteúdo em experiências de aprendizagem.
 
-[Documentação](https://modfly.design) · [Storybook](https://storybook.modfly.design) · [Código e issues](https://github.com/r0b14/Modfly.ui) · [Licença MIT](LICENSE)
+[Documentação PT](https://modfly.design/pt) · [Documentation EN](https://modfly.design/en) · [Storybook](https://storybook.modfly.design) · [Código e issues](https://github.com/r0b14/Modfly.ui) · [Licença MIT](LICENSE)
 
 </div>
 
@@ -108,10 +108,10 @@ A organização segue Atomic Design: peças pequenas formam conjuntos que, por s
 <!-- component-inventory:start -->
 | Camada | Componentes |
 | --- | --- |
-| Átomos | [ButtonLink](https://modfly.design/docs/components/buttonlink) · [ButtonPdfDownload](https://modfly.design/docs/components/buttonpdfdownload) · [ButtonReference](https://modfly.design/docs/components/buttonreference) · [Check](https://modfly.design/docs/components/check) · [Exclamation](https://modfly.design/docs/components/exclamation) · [ImageFallback](https://modfly.design/docs/components/imagefallback) · [PageRenderError](https://modfly.design/docs/components/pagerendererror) · [Postit](https://modfly.design/docs/components/postit) · [RangeBlue](https://modfly.design/docs/components/rangeblue) · [RangeGreen](https://modfly.design/docs/components/rangegreen) · [Tooltip](https://modfly.design/docs/components/tooltip) |
-| Moléculas | [CardFlip](https://modfly.design/docs/components/cardflip) · [Cards](https://modfly.design/docs/components/cards) · [CaseStudy](https://modfly.design/docs/components/casestudy) · [Citation](https://modfly.design/docs/components/citation) · [Embed](https://modfly.design/docs/components/embed) · [Figure](https://modfly.design/docs/components/figure) · [ImageList](https://modfly.design/docs/components/imagelist) · [IndentCitation](https://modfly.design/docs/components/indentcitation) · [ListModule](https://modfly.design/docs/components/listmodule) · [MiniCards](https://modfly.design/docs/components/minicards) · [QuestionReflect](https://modfly.design/docs/components/questionreflect) · [QuoteText](https://modfly.design/docs/components/quotetext) · [Quotes](https://modfly.design/docs/components/quotes) · [ReferenceModal](https://modfly.design/docs/components/referencemodal) |
-| Organismos | [Accordion](https://modfly.design/docs/components/accordion) · [HistoryTopics](https://modfly.design/docs/components/historytopics) · [LearningBlock](https://modfly.design/docs/components/learningblock) · [QuestionOptionHeader](https://modfly.design/docs/components/questionoptionheader) · [StarList](https://modfly.design/docs/components/starlist) · [TimelineWithCards](https://modfly.design/docs/components/timelinewithcards) |
-| Templates | [Carousel](https://modfly.design/docs/components/carousel) · [Container](https://modfly.design/docs/components/container) · [Glossary](https://modfly.design/docs/components/glossary) · [Minibanner](https://modfly.design/docs/components/minibanner) · [Pagination](https://modfly.design/docs/components/pagination) · [Slider](https://modfly.design/docs/components/slider) · [TextWithImageBox](https://modfly.design/docs/components/textwithimagebox) · [UnityBanner](https://modfly.design/docs/components/unitybanner) |
+| Átomos | [ButtonLink](https://modfly.design/pt/docs/components/buttonlink) · [ButtonPdfDownload](https://modfly.design/pt/docs/components/buttonpdfdownload) · [ButtonReference](https://modfly.design/pt/docs/components/buttonreference) · [Check](https://modfly.design/pt/docs/components/check) · [Exclamation](https://modfly.design/pt/docs/components/exclamation) · [ImageFallback](https://modfly.design/pt/docs/components/imagefallback) · [PageRenderError](https://modfly.design/pt/docs/components/pagerendererror) · [Postit](https://modfly.design/pt/docs/components/postit) · [RangeBlue](https://modfly.design/pt/docs/components/rangeblue) · [RangeGreen](https://modfly.design/pt/docs/components/rangegreen) · [Tooltip](https://modfly.design/pt/docs/components/tooltip) |
+| Moléculas | [CardFlip](https://modfly.design/pt/docs/components/cardflip) · [Cards](https://modfly.design/pt/docs/components/cards) · [CaseStudy](https://modfly.design/pt/docs/components/casestudy) · [Citation](https://modfly.design/pt/docs/components/citation) · [Embed](https://modfly.design/pt/docs/components/embed) · [Figure](https://modfly.design/pt/docs/components/figure) · [ImageList](https://modfly.design/pt/docs/components/imagelist) · [IndentCitation](https://modfly.design/pt/docs/components/indentcitation) · [ListModule](https://modfly.design/pt/docs/components/listmodule) · [MiniCards](https://modfly.design/pt/docs/components/minicards) · [QuestionReflect](https://modfly.design/pt/docs/components/questionreflect) · [QuoteText](https://modfly.design/pt/docs/components/quotetext) · [Quotes](https://modfly.design/pt/docs/components/quotes) · [ReferenceModal](https://modfly.design/pt/docs/components/referencemodal) |
+| Organismos | [Accordion](https://modfly.design/pt/docs/components/accordion) · [HistoryTopics](https://modfly.design/pt/docs/components/historytopics) · [LearningBlock](https://modfly.design/pt/docs/components/learningblock) · [QuestionOptionHeader](https://modfly.design/pt/docs/components/questionoptionheader) · [StarList](https://modfly.design/pt/docs/components/starlist) · [TimelineWithCards](https://modfly.design/pt/docs/components/timelinewithcards) |
+| Templates | [Carousel](https://modfly.design/pt/docs/components/carousel) · [Container](https://modfly.design/pt/docs/components/container) · [Glossary](https://modfly.design/pt/docs/components/glossary) · [Minibanner](https://modfly.design/pt/docs/components/minibanner) · [Pagination](https://modfly.design/pt/docs/components/pagination) · [Slider](https://modfly.design/pt/docs/components/slider) · [TextWithImageBox](https://modfly.design/pt/docs/components/textwithimagebox) · [UnityBanner](https://modfly.design/pt/docs/components/unitybanner) |
 <!-- component-inventory:end -->
 
 Cada página apresenta contexto, demonstração interativa, tipos das propriedades, exemplo e variantes. A API é extraída dos tipos TypeScript; as demonstrações reutilizam as stories e importam o pacote real.
@@ -239,7 +239,7 @@ pnpm dev
 
 ```text
 apps/
-  docs/             documentação pública
+  docs/             site e documentação pública em /pt e /en
   storybook/        laboratório de componentes
   curso-template/   aula que consome os pacotes
 packages/

@@ -3,7 +3,6 @@
     "slug": "buttonlink",
     "name": "ButtonLink",
     "category": "Átomos",
-    "description": "Botão ou link com fundo ilustrado e ícone de ação — clique, documento ou vídeo — em três esquemas de cor. O componente mais usado para chamadas de ação dentro de um módulo.",
     "source": "packages/ui/src/components/atoms/buttonLink",
     "components": [
       {
@@ -85,7 +84,6 @@
     "slug": "buttonpdfdownload",
     "name": "ButtonPdfDownload",
     "category": "Átomos",
-    "description": "Botão dedicado ao download de um PDF — slides da aula ou roteiro de vídeo — com rótulo fixo e ícone de download.",
     "source": "packages/ui/src/components/atoms/buttonPdfDownload",
     "components": [
       {
@@ -113,7 +111,6 @@
     "slug": "buttonreference",
     "name": "ButtonReference",
     "category": "Átomos",
-    "description": "Botão de alternância (&quot;Ver mais&quot; / &quot;Ver menos&quot;) com ícone de mais/menos — usado para expandir ou recolher uma lista de referências bibliográficas.",
     "source": "packages/ui/src/components/atoms/buttonReference",
     "components": [
       {
@@ -141,7 +138,6 @@
     "slug": "check",
     "name": "Check",
     "category": "Átomos",
-    "description": "Lista de itens de aprendizagem com moldura decorativa de topo e rodapé — ideal para resumir objetivos ou pontos-chave de uma unidade.",
     "source": "packages/ui/src/components/atoms/check",
     "components": [
       {
@@ -175,7 +171,6 @@
     "slug": "exclamation",
     "name": "Exclamation",
     "category": "Átomos",
-    "description": "Bloco de aviso com ícone de exclamação, título opcional e um link de ação (ex.: download de material complementar).",
     "source": "packages/ui/src/components/atoms/exclamation",
     "components": [
       {
@@ -215,7 +210,6 @@
     "slug": "imagefallback",
     "name": "ImageFallback",
     "category": "Átomos",
-    "description": "Imagem com fallback automático — tenta carregar um WEBP e recua para PNG/JPG se o navegador não suportar o formato moderno.",
     "source": "packages/ui/src/components/atoms/imageFallback",
     "components": [
       {
@@ -267,7 +261,6 @@
     "slug": "pagerendererror",
     "name": "PageRenderError",
     "category": "Átomos",
-    "description": "Componente pageRenderError para compor experiências de aprendizagem.",
     "source": "packages/ui/src/components/atoms/pageRenderError",
     "components": [
       {
@@ -301,7 +294,6 @@
     "slug": "postit",
     "name": "Postit",
     "category": "Átomos",
-    "description": "Bloco de destaque estilizado como um post-it — corpo azul com dobra decorativa no topo e no rodapé — para observações e avisos que precisam se destacar do texto corrido.",
     "source": "packages/ui/src/components/atoms/postit",
     "components": [
       {
@@ -335,7 +327,6 @@
     "slug": "rangeblue",
     "name": "RangeBlue",
     "category": "Átomos",
-    "description": "Faixa horizontal de fundo azul com bordas decorativas onduladas no topo e na base — envolve conteúdo em destaque com um texto de apoio opcional ao lado.",
     "source": "packages/ui/src/components/atoms/rangeBlue",
     "components": [
       {
@@ -375,7 +366,6 @@
     "slug": "rangegreen",
     "name": "RangeGreen",
     "category": "Átomos",
-    "description": "Faixa horizontal verde com três sub-variantes visuais (bordas retas, arredondadas e finas) — mesmo conceito do RangeBlue, com outra paleta e mais opções de estilo.",
     "source": "packages/ui/src/components/atoms/rangeGreen",
     "components": [
       {
@@ -403,7 +393,6 @@
     "slug": "tooltip",
     "name": "Tooltip",
     "category": "Átomos",
-    "description": "Termo com sublinhado pontilhado que revela uma explicação ao passar o mouse — ideal para glossário inline sem sair da leitura.",
     "source": "packages/ui/src/components/atoms/tooltip",
     "components": [
       {
@@ -467,7 +456,6 @@
     "slug": "cardflip",
     "name": "CardFlip",
     "category": "Moléculas",
-    "description": "Cartão com efeito de virar em 3D: a frente mostra imagem e título, o verso revela um texto expandido em HTML ao clicar no botão.",
     "source": "packages/ui/src/components/molecules/cardFlip",
     "components": [
       {
@@ -489,7 +477,6 @@
     "slug": "cards",
     "name": "Cards",
     "category": "Moléculas",
-    "description": "Grade de cartões com imagem, título e texto curto, cada um com um botão circular que expande um texto complementar em HTML. Ideal para apresentar princípios, passos ou conceitos lado a lado.",
     "source": "packages/ui/src/components/molecules/cards",
     "components": [
       {
@@ -511,7 +498,6 @@
     "slug": "casestudy",
     "name": "CaseStudy",
     "category": "Moléculas",
-    "description": "Cartão de estudo de caso com faixa de topo ilustrada (ícone + título) e um corpo com fundo próprio para o conteúdo — pensado para blocos de leitura mais longos e autocontidos.",
     "source": "packages/ui/src/components/molecules/caseStudy",
     "components": [
       {
@@ -569,7 +555,6 @@
     "slug": "citation",
     "name": "Citation",
     "category": "Moléculas",
-    "description": "Bloco de citação editorial com ícone de livro e atribuição de autor. Ideal para referenciar frases de impacto, pensadores e referências bibliográficas dentro do fluxo de um módulo de aprendizagem.",
     "source": "packages/ui/src/components/molecules/citation",
     "components": [
       {
@@ -609,7 +594,6 @@
     "slug": "embed",
     "name": "Embed",
     "category": "Moléculas",
-    "description": "Incorpora vídeos do YouTube/Vimeo, áudios do Spotify, arquivos do Google Drive ou posts do Instagram a partir de um único link, detectando a plataforma automaticamente.",
     "source": "packages/ui/src/components/molecules/embed",
     "components": [
       {
@@ -685,7 +669,6 @@
     "slug": "figure",
     "name": "Figure",
     "category": "Moléculas",
-    "description": "Wrapper editorial para imagens com numeração, legenda e referência, incluindo fallback e uma versão específica para mobile.",
     "source": "packages/ui/src/components/molecules/figure",
     "components": [
       {
@@ -761,7 +744,6 @@
     "slug": "imagelist",
     "name": "ImageList",
     "category": "Moléculas",
-    "description": "Sequência vertical de imagens conectadas por uma barra colorida, cada uma com fonte e um botão para expandir uma descrição.",
     "source": "packages/ui/src/components/molecules/imageList",
     "components": [
       {
@@ -783,7 +765,6 @@
     "slug": "indentcitation",
     "name": "IndentCitation",
     "category": "Moléculas",
-    "description": "Família de blocos de citação indentados com borda colorida à esquerda. O módulo exporta quatro componentes: IndentCitation, IndentCitationBg, IndentCitationImg e IndentCitationTitle.",
     "source": "packages/ui/src/components/molecules/indentCitation",
     "components": [
       {
@@ -934,7 +915,6 @@
     "slug": "listmodule",
     "name": "ListModule",
     "category": "Moléculas",
-    "description": "Lista com borda esquerda colorida e título/subtítulo opcionais — usada para resumir o conteúdo de um módulo antes de começar.",
     "source": "packages/ui/src/components/molecules/listModule",
     "components": [
       {
@@ -974,7 +954,6 @@
     "slug": "minicards",
     "name": "MiniCards",
     "category": "Moléculas",
-    "description": "Versão compacta de Cards, em grade de duas colunas, com apenas duas cores (azul e verde) e texto expandido simples (sem HTML).",
     "source": "packages/ui/src/components/molecules/miniCards",
     "components": [
       {
@@ -996,7 +975,6 @@
     "slug": "questionreflect",
     "name": "QuestionReflect",
     "category": "Moléculas",
-    "description": "Bloco de pergunta reflexiva com um ícone decorativo grande no canto e duas paletas de tema (padrão e &quot;nuvem&quot;).",
     "source": "packages/ui/src/components/molecules/questionReflect",
     "components": [
       {
@@ -1030,7 +1008,6 @@
     "slug": "quotetext",
     "name": "QuoteText",
     "category": "Moléculas",
-    "description": "Bloco de citação simples com ícone de aspas e sombra suave — sem atribuição de autor nem ícone de livro, para trechos de destaque dentro do texto corrido.",
     "source": "packages/ui/src/components/molecules/quoteText",
     "components": [
       {
@@ -1070,7 +1047,6 @@
     "slug": "quotes",
     "name": "Quotes",
     "category": "Moléculas",
-    "description": "Citação com ícone de aspas colorido, alinhada à direita, em quatro esquemas de cor.",
     "source": "packages/ui/src/components/molecules/quotes",
     "components": [
       {
@@ -1104,7 +1080,6 @@
     "slug": "referencemodal",
     "name": "ReferenceModal",
     "category": "Moléculas",
-    "description": "Texto clicável que abre um modal simples com a referência bibliográfica completa — para citações rápidas sem sair do fluxo de leitura.",
     "source": "packages/ui/src/components/molecules/referenceModal",
     "components": [
       {
@@ -1132,7 +1107,6 @@
     "slug": "accordion",
     "name": "Accordion",
     "category": "Organismos",
-    "description": "Componente de revelação progressiva com cabeçalho visual rico. Usado em módulos de e-learning para organizar seções de conteúdo como \"Para saber mais\", \"Sugestão de resposta\" e \"Dica de aprofundamento\" sem sobrecarregar visualmente a página.",
     "source": "packages/ui/src/components/organisms/accordion",
     "components": [
       {
@@ -1232,7 +1206,6 @@
     "slug": "historytopics",
     "name": "HistoryTopics",
     "category": "Organismos",
-    "description": "Estrutura fixa de três &quot;gerações&quot; conectadas por uma linha vertical, cada uma com um resumo curto e um detalhe complementar em destaque.",
     "source": "packages/ui/src/components/organisms/historyTopics",
     "components": [
       {
@@ -1296,7 +1269,6 @@
     "slug": "learningblock",
     "name": "LearningBlock",
     "category": "Organismos",
-    "description": "Bloco de destaque com 10 variantes visuais diferentes — de faixas decorativas com SVG no topo/base a bordas ilustradas — para reflexões, dicas e sínteses ao longo do curso.",
     "source": "packages/ui/src/components/organisms/learningBlock",
     "components": [
       {
@@ -1336,7 +1308,6 @@
     "slug": "questionoptionheader",
     "name": "QuestionOptionHeader",
     "category": "Organismos",
-    "description": "Cabeçalho estático de uma questão de múltipla escolha: número opcional, enunciado em parágrafos e a grade de alternativas em destaque.",
     "source": "packages/ui/src/components/organisms/questionOptionHeader",
     "components": [
       {
@@ -1376,7 +1347,6 @@
     "slug": "starlist",
     "name": "StarList",
     "category": "Organismos",
-    "description": "Lista vertical conectada por uma linha tracejada, com um ícone de estrela e um trecho em destaque antes do texto de cada item.",
     "source": "packages/ui/src/components/organisms/starList",
     "components": [
       {
@@ -1404,7 +1374,6 @@
     "slug": "timelinewithcards",
     "name": "TimelineWithCards",
     "category": "Organismos",
-    "description": "Linha do tempo vertical com cartões alternando à esquerda e à direita, conectados por uma linha central e pontos coloridos — para eventos históricos ou marcos de um curso.",
     "source": "packages/ui/src/components/organisms/timelineWithCards",
     "components": [
       {
@@ -1438,7 +1407,6 @@
     "slug": "carousel",
     "name": "Carousel",
     "category": "Templates",
-    "description": "Carrossel de slides com setas de navegação e bolinhas indicadoras, com fundo opcional que pode trocar de imagem a cada slide.",
     "source": "packages/ui/src/components/templates/carousel",
     "components": [
       {
@@ -1484,7 +1452,6 @@
     "slug": "container",
     "name": "Container",
     "category": "Templates",
-    "description": "Wrapper de largura máxima que centraliza o conteúdo de uma página, com margens laterais responsivas.",
     "source": "packages/ui/src/components/templates/container",
     "components": [
       {
@@ -1506,7 +1473,6 @@
     "slug": "glossary",
     "name": "Glossary",
     "category": "Templates",
-    "description": "Palavra com sublinhado pontilhado que revela uma definição em um popover ao passar o mouse, tocar ou clicar — posicionado automaticamente acima ou abaixo conforme o espaço disponível.",
     "source": "packages/ui/src/components/templates/glossary",
     "components": [
       {
@@ -1546,7 +1512,6 @@
     "slug": "minibanner",
     "name": "Minibanner",
     "category": "Templates",
-    "description": "Faixa curta com ilustração de fundo por variante, usada para rotular seções como leitura, fixação, tarefa ou avaliação dentro de uma aula.",
     "source": "packages/ui/src/components/templates/minibanner",
     "components": [
       {
@@ -1610,7 +1575,6 @@
     "slug": "pagination",
     "name": "Pagination",
     "category": "Templates",
-    "description": "Barra de navegação entre páginas de um módulo, com botões Voltar/Próximo e números de página clicáveis.",
     "source": "packages/ui/src/components/templates/pagination",
     "components": [
       {
@@ -1674,7 +1638,6 @@
     "slug": "slider",
     "name": "Slider",
     "category": "Templates",
-    "description": "Carrossel simples que recebe os slides diretamente como children, com quatro esquemas de cor de seta prontos.",
     "source": "packages/ui/src/components/templates/slider",
     "components": [
       {
@@ -1720,7 +1683,6 @@
     "slug": "textwithimagebox",
     "name": "TextWithImageBox",
     "category": "Templates",
-    "description": "Bloco de texto ao lado de uma ou duas imagens, com cor de fundo, borda e orientação configuráveis.",
     "source": "packages/ui/src/components/templates/textWithImageBox",
     "components": [
       {
@@ -1802,7 +1764,6 @@
     "slug": "unitybanner",
     "name": "UnityBanner",
     "category": "Templates",
-    "description": "Banner de abertura de módulo, com fundo ilustrado próprio por número de módulo (1 a 4) e duas variantes de proporção: principal e secundária.",
     "source": "packages/ui/src/components/templates/unityBanner",
     "components": [
       {

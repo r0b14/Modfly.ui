@@ -1,0 +1,236 @@
+[
+  {
+    "slug": "buttonlink",
+    "name": "ButtonLink",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "buttonpdfdownload",
+    "name": "ButtonPdfDownload",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "buttonreference",
+    "name": "ButtonReference",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "check",
+    "name": "Check",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "exclamation",
+    "name": "Exclamation",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "imagefallback",
+    "name": "ImageFallback",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "pagerendererror",
+    "name": "PageRenderError",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "postit",
+    "name": "Postit",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "rangeblue",
+    "name": "RangeBlue",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "rangegreen",
+    "name": "RangeGreen",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "tooltip",
+    "name": "Tooltip",
+    "category": "Átomos",
+    "exports": 1
+  },
+  {
+    "slug": "cardflip",
+    "name": "CardFlip",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "cards",
+    "name": "Cards",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "casestudy",
+    "name": "CaseStudy",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "citation",
+    "name": "Citation",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "embed",
+    "name": "Embed",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "figure",
+    "name": "Figure",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "imagelist",
+    "name": "ImageList",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "indentcitation",
+    "name": "IndentCitation",
+    "category": "Moléculas",
+    "exports": 4
+  },
+  {
+    "slug": "listmodule",
+    "name": "ListModule",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "minicards",
+    "name": "MiniCards",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "questionreflect",
+    "name": "QuestionReflect",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "quotetext",
+    "name": "QuoteText",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "quotes",
+    "name": "Quotes",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "referencemodal",
+    "name": "ReferenceModal",
+    "category": "Moléculas",
+    "exports": 1
+  },
+  {
+    "slug": "accordion",
+    "name": "Accordion",
+    "category": "Organismos",
+    "exports": 1
+  },
+  {
+    "slug": "historytopics",
+    "name": "HistoryTopics",
+    "category": "Organismos",
+    "exports": 1
+  },
+  {
+    "slug": "learningblock",
+    "name": "LearningBlock",
+    "category": "Organismos",
+    "exports": 1
+  },
+  {
+    "slug": "questionoptionheader",
+    "name": "QuestionOptionHeader",
+    "category": "Organismos",
+    "exports": 1
+  },
+  {
+    "slug": "starlist",
+    "name": "StarList",
+    "category": "Organismos",
+    "exports": 1
+  },
+  {
+    "slug": "timelinewithcards",
+    "name": "TimelineWithCards",
+    "category": "Organismos",
+    "exports": 1
+  },
+  {
+    "slug": "carousel",
+    "name": "Carousel",
+    "category": "Templates",
+    "exports": 1
+  },
+  {
+    "slug": "container",
+    "name": "Container",
+    "category": "Templates",
+    "exports": 1
+  },
+  {
+    "slug": "glossary",
+    "name": "Glossary",
+    "category": "Templates",
+    "exports": 1
+  },
+  {
+    "slug": "minibanner",
+    "name": "Minibanner",
+    "category": "Templates",
+    "exports": 1
+  },
+  {
+    "slug": "pagination",
+    "name": "Pagination",
+    "category": "Templates",
+    "exports": 1
+  },
+  {
+    "slug": "slider",
+    "name": "Slider",
+    "category": "Templates",
+    "exports": 1
+  },
+  {
+    "slug": "textwithimagebox",
+    "name": "TextWithImageBox",
+    "category": "Templates",
+    "exports": 1
+  },
+  {
+    "slug": "unitybanner",
+    "name": "UnityBanner",
+    "category": "Templates",
+    "exports": 1
+  }
+]

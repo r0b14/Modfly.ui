@@ -4,6 +4,7 @@ import svgr from "vite-plugin-svgr";
 
 const config: StorybookConfig = {
   stories: [
+    "../stories/*.mdx",
     "../../../packages/ui/src/**/*.mdx",
     "../../../packages/ui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
     "../../../packages/ui-avamec/src/**/*.stories.tsx",

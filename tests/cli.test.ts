@@ -51,3 +51,13 @@ it('todos os exemplos da documentação compilam contra a API pública', async (
   const result=spawnSync(process.execPath,[path.resolve('node_modules/typescript/bin/tsc'),'--project',path.join(cwd,'tsconfig.json')],{encoding:'utf8'});
   expect(result.stdout+result.stderr).toBe(''); expect(result.status).toBe(0);
 });
+it('exemplos dos guias em português e inglês compilam contra os pacotes', async () => {
+  const { guides } = await import('../apps/docs/content/guides');
+  const cwd = await project(); await symlink(path.resolve('node_modules'),path.join(cwd,'node_modules'),'dir');
+  for (const [slug,translations] of Object.entries(guides)) for (const [lang,guide] of Object.entries(translations)) for (const section of guide.sections) {
+    if (section.code?.includes('import ')) await writeFile(path.join(cwd,'src',`${slug}-${lang}-${section.id}.tsx`),section.code);
+  }
+  await writeFile(path.join(cwd,'tsconfig.json'),JSON.stringify({compilerOptions:{jsx:'react-jsx',target:'ES2020',module:'ESNext',moduleResolution:'bundler',strict:true,esModuleInterop:true,skipLibCheck:true,noEmit:true,baseUrl:cwd,paths:{'@modfly/ui':[path.resolve('packages/ui/dist/index.d.ts')],'@modfly/ui-avamec':[path.resolve('packages/ui-avamec/dist/index.d.ts')]}},include:['src']}));
+  const result=spawnSync(process.execPath,[path.resolve('node_modules/typescript/bin/tsc'),'--project',path.join(cwd,'tsconfig.json')],{encoding:'utf8'});
+  expect(result.stdout+result.stderr).toBe(''); expect(result.status).toBe(0);
+});

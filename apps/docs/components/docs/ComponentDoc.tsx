@@ -1,22 +1,181 @@
 import Link from 'next/link';
 import catalog from '@/generated/catalog.json';
+import { editorial } from '@/content/components';
+import { propDescription } from '@/content/props';
+import { copy, localized, repository, type Locale } from '@/lib/i18n';
 import { RightToc } from './RightToc';
 import { LiveExample } from './LiveExample';
 import { Pager } from './Pager';
-const entries = [{ id: 'visao-geral', label: 'Visão geral' }, { id: 'preview', label: 'Demonstração' }, { id: 'props', label: 'API e tipos' }, { id: 'uso', label: 'Como usar' }, { id: 'variantes', label: 'Variantes e composição' }];
-export function ComponentDoc({ slug }: { slug: string }) {
-  const index = catalog.findIndex(c => c.slug === slug);
+export function ComponentDoc({ slug, lang }: { slug: string; lang: Locale }) {
+  const index = catalog.findIndex((c) => c.slug === slug);
   const item = catalog[index];
-  if (!item) throw new Error(`Componente ausente do catálogo: ${slug}`);
-  const pagerItem = (i: number, label: string) => catalog[i] ? { href: `/docs/components/${catalog[i].slug}`, label, title: catalog[i].name } : undefined;
-  return <div className="grid grid-cols-1 xl:grid-cols-[1fr_260px] min-h-screen"><div className="min-w-0 px-4 sm:px-6 lg:px-10">
-    <header className="doc-head"><div className="doc-cat">{item.category} · Referência</div><h1 className="doc-title">{item.name}<i>.</i></h1><p className="doc-lead">{item.description}</p><p className="doc-p">@modfly/ui · 1.1.0 · React + TypeScript</p></header>
-    <article className="doc-prose">
-      <section id="visao-geral"><h2 className="doc-h2">01 · Visão geral</h2><p className="doc-p">{item.description} Esta página executa a implementação distribuída pela biblioteca. As demonstrações e variantes partem das mesmas stories utilizadas no laboratório visual.</p></section>
-      <section id="preview"><h2 className="doc-h2">02 · Demonstração</h2>{item.components.map(component => <div key={component.name}><h3 className="doc-h3">{component.name}</h3><LiveExample name={component.name} example={component.example} initialVariant={component.initialVariant} /></div>)}</section>
-      <section id="props"><h2 className="doc-h2">03 · API e tipos</h2><p className="doc-p">Tabela extraída dos tipos públicos. Propriedades opcionais podem ser omitidas; os exemplos demonstram uma configuração inicial.</p>{item.components.map(component => <div key={component.name}><h3 className="doc-h3">{component.name}</h3><div className="table-wrap overflow-x-auto"><table className="doc-table"><thead><tr><th>Propriedade</th><th>Tipo</th><th>Obrigatória</th><th>Descrição</th></tr></thead><tbody>{component.props.map(prop => <tr key={prop.name}><td><code>{prop.name}</code></td><td className="break-words"><code>{prop.type}</code></td><td>{prop.required ? 'Sim' : 'Não'}</td><td>{prop.description || 'Veja o exemplo e o tipo acima.'}</td></tr>)}</tbody></table></div></div>)}</section>
-      <section id="uso"><h2 className="doc-h2">04 · Como usar</h2><ol className="prose-ol"><li className="prose-li">Instale <code>@modfly/ui</code> e importe <code>@modfly/ui/styles.css</code> uma vez no entrypoint global.</li><li className="prose-li">Copie o exemplo da demonstração e substitua o conteúdo pelo material da sua aula.</li><li className="prose-li">No Next.js, use uma fronteira <code>&apos;use client&apos;</code> para exemplos interativos com callbacks.</li></ol><p className="doc-p">Para personalizar o código, use <code>npx modfly@1.1.0 add {slug}</code> após configurar a CLI. <Link href="/docs/getting-started/cli">Veja o guia da CLI.</Link></p><p className="doc-p">Props que recebem HTML devem receber conteúdo confiável e sanitizado pela aplicação. Prefira ReactNode quando a API oferecer essa opção.</p></section>
-      <section id="variantes"><h2 className="doc-h2">05 · Variantes e composição</h2><p className="doc-p">Selecione as variantes na demonstração para comparar conteúdo e apresentação. Os tipos acima delimitam as opções aceitas; mantenha textos legíveis, descrições de imagens e navegação por teclado ao adaptar o componente.</p><p className="doc-p"><a href={`https://github.com/r0b14/Modfly.ui/tree/main/${item.source}`}>Consultar implementação e stories ↗</a></p></section>
-      <hr className="doc-hr" /><Pager prev={pagerItem(index - 1, 'Anterior')} next={pagerItem(index + 1, 'Próximo')} />
-    </article></div><RightToc entries={entries} readTime="~5 min" editHref={`https://github.com/r0b14/Modfly.ui/tree/main/${item.source}`} /></div>;
+  const content = editorial(slug, lang);
+  const t = (pt: string, en: string) => copy(lang, pt, en);
+  const entries = [
+    { id: 'overview', label: t('Visão geral', 'Overview') },
+    { id: 'preview', label: t('Demonstração', 'Demonstration') },
+    { id: 'props', label: t('API e tipos', 'API and types') },
+    { id: 'usage', label: t('Como usar', 'Usage') },
+    { id: 'variants', label: t('Composição e acessibilidade', 'Composition and accessibility') },
+  ];
+  const pagerItem = (i: number, label: string) =>
+    catalog[i]
+      ? {
+          href: localized(lang, `/docs/components/${catalog[i].slug}`),
+          label,
+          title: catalog[i].name,
+        }
+      : undefined;
+  return (
+    <div className="reading-layout">
+      <article className="reading-article">
+        <header className="doc-head">
+          <p className="eyebrow">@modfly/ui · {t('Referência', 'Reference')}</p>
+          <h1 className="doc-title">
+            {item.name}
+            <i>.</i>
+          </h1>
+          <p className="doc-lead">{content.description}</p>
+        </header>
+        <section id="overview">
+          <h2 className="doc-h2">{entries[0].label}</h2>
+          <p className="doc-p">{content.guidance}</p>
+        </section>
+        <section id="preview">
+          <h2 className="doc-h2">{entries[1].label}</h2>
+          <p className="doc-p">
+            {t(
+              'Demonstrações reais do catálogo. Os exemplos preservam o conteúdo original dos cursos em português; nomes de variantes são identificadores da API.',
+              'Live catalog demonstrations. Examples preserve original Portuguese course content; variant names are API identifiers.',
+            )}
+          </p>
+          {item.components.map((component) => (
+            <div key={component.name}>
+              <h3 className="doc-h3">{component.name}</h3>
+              <LiveExample
+                name={component.name}
+                example={component.example}
+                initialVariant={component.initialVariant}
+              />
+            </div>
+          ))}
+        </section>
+        <section id="props">
+          <h2 className="doc-h2">{entries[2].label}</h2>
+          <p className="doc-p">
+            {t(
+              'Tipos extraídos da implementação pública. Propriedades opcionais podem ser omitidas; a demonstração mostra uma configuração inicial.',
+              'Types extracted from the public implementation. Optional properties may be omitted; the demonstration shows an initial configuration.',
+            )}
+          </p>
+          {item.components.map((component) => (
+            <div key={component.name}>
+              <h3 className="doc-h3">{component.name}</h3>
+              <div
+                className="table-wrap"
+                role="region"
+                tabIndex={0}
+                aria-label={`${component.name} API`}
+              >
+                <table className="doc-table">
+                  <caption className="sr-only">{component.name} API</caption>
+                  <thead>
+                    <tr>
+                      {[
+                        t('Propriedade', 'Property'),
+                        t('Tipo', 'Type'),
+                        t('Obrigatória', 'Required'),
+                        t('Descrição', 'Description'),
+                      ].map((label) => (
+                        <th scope="col" key={label}>
+                          {label}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {component.props.map((prop) => (
+                      <tr key={prop.name}>
+                        <th scope="row">
+                          <code>{prop.name}</code>
+                        </th>
+                        <td>
+                          <code>{prop.type}</code>
+                        </td>
+                        <td>{prop.required ? t('Sim', 'Yes') : t('Não', 'No')}</td>
+                        <td>{propDescription(prop.name, lang)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))}
+        </section>
+        <section id="usage">
+          <h2 className="doc-h2">{entries[3].label}</h2>
+          <ol className="prose-ol">
+            <li>
+              {t(
+                'Instale o pacote e importe @modfly/ui/styles.css uma vez no entrypoint global.',
+                'Install the package and import @modfly/ui/styles.css once in the global entrypoint.',
+              )}
+            </li>
+            <li>
+              {t(
+                'Copie o exemplo e substitua o conteúdo pelo material da aula.',
+                'Copy the example and replace its content with your lesson material.',
+              )}
+            </li>
+            <li>
+              {t(
+                'No Next.js, mantenha callbacks e estado em uma fronteira de cliente.',
+                'In Next.js, keep callbacks and state inside a client boundary.',
+              )}
+            </li>
+          </ol>
+          <p className="doc-p">
+            <Link href={localized(lang, '/docs/getting-started/installation')}>
+              {t(
+                'Guia de instalação e disponibilidade da versão',
+                'Installation guide and version availability',
+              )}
+            </Link>
+          </p>
+          <p className="doc-p">
+            {t(
+              'Para editar a implementação após a publicação da CLI:',
+              'To edit the implementation after CLI publication:',
+            )}{' '}
+            <code>npx modfly@1.1.0 add {slug}</code>.{' '}
+            <Link href={localized(lang, '/docs/getting-started/cli')}>
+              {t('Configurar a CLI', 'Configure the CLI')}
+            </Link>
+          </p>
+        </section>
+        <section id="variants">
+          <h2 className="doc-h2">{entries[4].label}</h2>
+          <p className="doc-p">{content.guidance}</p>
+          <p className="doc-p">
+            {t(
+              'Teste seu conteúdo em telas pequenas e com teclado. Props que recebem HTML precisam de conteúdo confiável e sanitizado pela aplicação. As cores e dimensões personalizadas devem preservar contraste e legibilidade.',
+              'Test your content on small screens and with a keyboard. Props accepting HTML require trusted content sanitized by your application. Custom colors and dimensions must preserve contrast and readability.',
+            )}
+          </p>
+          <p className="doc-p">
+            <a
+              href={`${repository}/tree/${process.env.VERCEL_GIT_COMMIT_SHA || 'codex/modfly-v1.1-release'}/${item.source}`}
+            >
+              {t('Consultar implementação e stories', 'View implementation and stories')} ↗
+            </a>
+          </p>
+        </section>
+        <Pager
+          prev={pagerItem(index - 1, t('Anterior', 'Previous'))}
+          next={pagerItem(index + 1, t('Próximo', 'Next'))}
+        />
+      </article>
+      <RightToc entries={entries} />
+    </div>
+  );
 }

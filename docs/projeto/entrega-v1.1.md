@@ -6,6 +6,8 @@
 
 [PR de revisão #5](https://github.com/r0b14/Modfly.ui/pull/5) · [Preview da documentação](https://modfly-docs-git-codex-modfly-v11-1f22a6-robson-thiagos-projects.vercel.app)
 
+Veja também a [entrega do site público bilíngue](entrega-site-publico.md), com evidências e condições de publicação. O preview exige login da equipe Vercel.
+
 ## O que foi implementado
 
 | Frente | Resultado |
@@ -13,7 +15,7 @@
 | Core | 42 componentes exportados em 39 grupos; CSS distribuído, assets tipados, SSR, teclado e ajustes responsivos |
 | AVAMEC | Sete formatos, provider, controlador, payload binário e adaptadores remoto/local/memória |
 | CLI | 51 entradas, dependências transitivas, assets portáveis, conflitos, dry-run e controle de versão |
-| Docs | 39 páginas core com implementação real, API derivada de tipos e variantes das stories; guias de instalação, temas, CLI e AVAMEC |
+| Docs | 102 páginas em português e inglês; catálogo, referências reais, dez guias, navegação acessível e metadados por idioma |
 | README | Índice, jornada pedagógica, origem, exemplos, stack, decisões, layout e operação |
 | Consumo | Curso-template usa os pacotes; verificação de tarballs fora do workspace com React 18 e 19 |
 | Operação | CI de qualidade, Changesets e workflow manual de candidatas/publicação com evidência de homologação |
@@ -27,8 +29,8 @@ A migração preserva referências históricas em `packages/@legado`. Logos, lay
 | Lint | `pnpm lint` | Passou |
 | Tipos de pacotes, site e stories | `pnpm typecheck` | Passou |
 | Builds dos três pacotes e três apps | `pnpm build` | 6 tarefas concluídas |
-| Componentes, contratos, CLI e exemplos | `pnpm test` | 196 testes passaram |
-| Navegador | `pnpm test:e2e` | 41 cenários passaram; auditoria das variantes sem violações graves/críticas nas fixtures |
+| Componentes, contratos, CLI e exemplos | `pnpm test` | 197 testes passaram |
+| Navegador | `pnpm test:e2e` | 62 cenários passaram; auditoria das variantes sem violações graves/críticas nas fixtures |
 | Distribuição externa | `pnpm test:packages` | React 18.3.1 e 19.2.6: ESM, CommonJS, CSS, tipos, SSR e interação sem Tailwind passaram |
 
 Os testes no navegador percorrem as páginas em 375, 768 e 1440 pixels, verificam imagens das demos, auditam variantes e exercitam teclado, modal e uma atividade completa. Players externos são simulados nessa auditoria: o teste verifica o componente e o contrato do iframe, não a acessibilidade do código de YouTube/Spotify.

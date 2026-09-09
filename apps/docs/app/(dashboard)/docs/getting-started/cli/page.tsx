@@ -1,9 +1,0 @@
-import { DocCodeBlock } from '@/components/docs/DocCodeBlock';
-const code = `npx modfly@1.1.0 init
-npx modfly@1.1.0 list
-npx modfly@1.1.0 add citation accordion
-npx modfly@1.1.0 add question-option
-
-# Conferir arquivos sem gravar
-npx modfly@1.1.0 add cards --dry-run`;
-export default function Page() { return <article className="doc-prose px-4 sm:px-8"><div className="doc-cat">Ferramentas · CLI</div><h1 className="doc-title">Seu código, sua <i>aula.</i></h1><p className="doc-lead">A CLI copia componentes editáveis, dependências transitivas e assets para o seu projeto React com TypeScript.</p><h2 className="doc-h2">Começar</h2><p className="doc-p">Use Node 22.14 ou superior em um projeto React existente. A configuração fica em modfly.json; o destino padrão é src/components/modfly, ou components/modfly quando não existe src.</p><DocCodeBlock filename="Terminal" raw={code}><pre>{code}</pre></DocCodeBlock><h2 className="doc-h2">Usar o código copiado</h2><p className="doc-p">Importe o styles.css do diretório gerado uma vez no entrypoint global. Importe cada componente pelo caminho mostrado no terminal. Os SVGs são convertidos em TSX e imagens em módulos de dados, sem exigir plugins no Vite ou no Next.js.</p><h2 className="doc-h2">Atualizar com cuidado</h2><p className="doc-p">Arquivos idênticos são preservados. Se você editou um arquivo, add para antes de copiar qualquer componente. Use --force somente quando quiser substituir a edição. --no-install copia sem executar o gerenciador de pacotes; instale manualmente as dependências informadas.</p><h2 className="doc-h2">Versões e estilos</h2><p className="doc-p">A versão registrada em modfly.json deve ser a mesma da CLI. Na v1.1, o CSS compilado acompanha o código; novas classes Tailwind criadas por você exigem o Tailwind configurado no projeto. Preserve a licença MIT ao redistribuir.</p></article>; }
