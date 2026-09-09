@@ -89,8 +89,8 @@ export const componentContent: Record<string, [string, string, string, string]> 
   citation: [
     'Citação editorial para destacar uma ideia e sua referência.',
     'An editorial quotation for highlighting an idea and its source.',
-    'Inclua a atribuição em reference quando houver fonte. Use a variante para combinar com a seção.',
-    'Include attribution through reference when there is a source. Choose a variant that suits the section.',
+    'Inclua a atribuição em children quando houver fonte. Use a variante para combinar com a seção.',
+    'Include attribution through children when there is a source. Choose a variant that suits the section.',
   ],
   embed: [
     'Conteúdo de mídia incorporado a partir de um endereço.',
@@ -101,8 +101,8 @@ export const componentContent: Record<string, [string, string, string, string]> 
   figure: [
     'Imagem editorial com legenda, numeração e referência.',
     'An editorial image with a caption, number and attribution.',
-    'Forneça alt descritivo e uma fonte legível. Use imgSrcMobile quando a leitura exigir outro enquadramento.',
-    'Provide descriptive alt text and a readable attribution. Use imgSrcMobile when a different crop improves mobile reading.',
+    'Descreva a imagem em caption e indique a fonte em reference. Use imgSrcMobile quando a leitura exigir outro enquadramento.',
+    'Describe the image through caption and provide its source through reference. Use imgSrcMobile when a different crop improves mobile reading.',
   ],
   imagelist: [
     'Sequência de imagens com detalhes expansíveis.',
@@ -119,8 +119,8 @@ export const componentContent: Record<string, [string, string, string, string]> 
   listmodule: [
     'Lista de apresentação dos assuntos de um módulo.',
     'An introductory list of module topics.',
-    'Use título, subtítulo e itens para antecipar a jornada da unidade.',
-    'Use a title, subtitle and items to introduce the unit’s learning journey.',
+    'Use title, subtitle e textList para antecipar a jornada da unidade.',
+    'Use title, subtitle and textList to introduce the unit’s learning journey.',
   ],
   minicards: [
     'Cartões compactos com detalhes de texto.',
@@ -209,8 +209,8 @@ export const componentContent: Record<string, [string, string, string, string]> 
   minibanner: [
     'Faixa ilustrada para identificar momentos da aula.',
     'An illustrated banner identifying stages of a lesson.',
-    'Escolha a variante e um título que indiquem o propósito da seção, como leitura ou prática.',
-    'Choose a variant and a title that communicate the section’s purpose, such as reading or practice.',
+    'Escolha a variante e forneça em children um texto que indique o propósito da seção, como leitura ou prática.',
+    'Choose a variant and provide text through children to communicate the section’s purpose, such as reading or practice.',
   ],
   pagination: [
     'Navegação controlada entre páginas de um curso.',
@@ -233,8 +233,8 @@ export const componentContent: Record<string, [string, string, string, string]> 
   unitybanner: [
     'Abertura ilustrada de unidade com variantes por módulo.',
     'An illustrated unit opening with module variants.',
-    'Defina module de acordo com as opções da API e mantenha o título legível em dispositivos móveis.',
-    'Set module using an API-supported option and keep the title readable on mobile devices.',
+    'Defina type e module para selecionar a ilustração. Use subtitle para o texto de apoio e confira sua leitura em dispositivos móveis.',
+    'Set type and module to select the illustration. Use subtitle for supporting text and check its readability on mobile devices.',
   ],
 };
 export function editorial(slug: string, lang: Locale) {
