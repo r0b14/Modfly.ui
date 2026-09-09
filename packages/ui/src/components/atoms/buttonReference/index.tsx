@@ -9,7 +9,7 @@ export interface ButtonReferenceProps {
 
 export const ButtonReference: React.FC<ButtonReferenceProps> = ({ isOpen, onToggle }) => {
   return (
-    <button
+    <button type="button"
       className="flex items-center justify-center mt-5 cursor-pointer shadow-md text-[20px] text-[#111] bg-[#FFAB00] hover:bg-[#EC9E00] transition-all py-3 px-8 rounded-[20px] w-full max-w-[200px]"
       onClick={onToggle}
     >

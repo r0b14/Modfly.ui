@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Embed } from "./index";
+import { Embed } from "@modfly/ui";
 
 const meta: Meta<typeof Embed> = {
   title: "Molecules/Embed",
@@ -12,14 +12,14 @@ type Story = StoryObj<typeof Embed>;
 
 export const YouTube: Story = {
   args: {
-    text: "Assista a este vídeo sobre educação:",
+    text: "Exemplo de incorporação do YouTube (mídia externa):",
     link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
   },
 };
 
 export const Spotify: Story = {
   args: {
-    text: "Ouça este podcast:",
+    text: "Exemplo de incorporação do Spotify (mídia externa):",
     link: "https://open.spotify.com/episode/7F6mWkn6tPqr0HMHA86Deu",
   },
 };

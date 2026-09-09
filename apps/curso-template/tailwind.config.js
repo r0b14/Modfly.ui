@@ -37,9 +37,6 @@ module.exports = {
         tituloH3: '#285C93', // verde azulado
         tituloH5: '#0C602B', // verde escuro
       },
-      screens: {
-        xss: { max: '320px' },
-      },
     },
   },
   plugins: [],

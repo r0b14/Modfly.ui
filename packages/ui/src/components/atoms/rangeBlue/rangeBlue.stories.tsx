@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { RangeBlue } from "./index";
+import { RangeBlue } from "@modfly/ui";
 
 const meta: Meta<typeof RangeBlue> = {
   title: "Atoms/RangeBlue",

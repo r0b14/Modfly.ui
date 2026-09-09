@@ -16,7 +16,7 @@ export const ButtonPdfDownload: React.FC<ButtonPdfDownloadProps> = ({
       const parsedUrl = new URL(url, window.location.origin);
       const pathname = parsedUrl.pathname;
       const segments = pathname.split('/');
-      let lastSegment = segments.pop() || 'download.pdf';
+      const lastSegment = segments.pop() || 'download.pdf';
 
       // Remover extensão
       const extensionIndex = lastSegment.lastIndexOf('.');
@@ -31,13 +31,13 @@ export const ButtonPdfDownload: React.FC<ButtonPdfDownloadProps> = ({
       // Remover hash
       const hashIndex = nameWithoutExtension.lastIndexOf('.');
       const cleanName =
-        hashIndex !== -1 
+        hashIndex !== -1
           ? nameWithoutExtension.substring(0, hashIndex)
           : nameWithoutExtension;
 
       return decodeURIComponent(cleanName) + extension;
     } catch {
-      let lastSegment = url.split('/').pop() || 'download.pdf';
+      const lastSegment = url.split('/').pop() || 'download.pdf';
       const extensionIndex = lastSegment.lastIndexOf('.');
       const extension =
         extensionIndex !== -1 ? lastSegment.substring(extensionIndex) : '';
@@ -70,7 +70,7 @@ export const ButtonPdfDownload: React.FC<ButtonPdfDownloadProps> = ({
 
   return (
     <div className="flex justify-center">
-      <button
+      <button type="button"
         onClick={handleDownload}
         className="flex mx-5 lg:mx-32 gap-5 justify-center items-center bg-[#FFAB00] hover:bg-[#E89C01] font-semibold py-3 px-6 rounded-3xl shadow-md transition-colors"
       >

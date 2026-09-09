@@ -1,0 +1,5 @@
+{
+  "extends": "../../packages/tsconfig/react-library.json",
+  "compilerOptions": { "baseUrl": ".", "types": ["node"], "paths": { "@storybook/react": ["./node_modules/@storybook/react"], "@modfly/ui": ["../../packages/ui/dist/index.d.ts"], "@modfly/ui-avamec": ["../../packages/ui-avamec/dist/index.d.ts"] } },
+  "include": [".storybook/**/*.ts", ".storybook/**/*.tsx", "../../packages/ui/src/**/*.stories.tsx", "../../packages/ui-avamec/src/**/*.stories.tsx", "../../packages/ui-avamec/src/demo.ts"]
+}

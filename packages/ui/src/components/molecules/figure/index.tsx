@@ -26,10 +26,8 @@ export const Figure: React.FC<FigureProps> = ({
   maxWidth = "100%",
   smallFont = false,
 }) => {
-  const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 600 : false);
-  const [showMessage, setShowMessage] = useState(
-    smallFont && (typeof window !== 'undefined' ? window.innerWidth < 600 : false)
-  );
+  const [isMobile, setIsMobile] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,12 +36,13 @@ export const Figure: React.FC<FigureProps> = ({
       setShowMessage(smallFont && isCurrentlyMobile);
     };
 
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [smallFont]);
 
   const finalImgSrc = isMobile && imgSrcMobile ? imgSrcMobile : imgSrc;
-   
+
   return (
     <div className="flex flex-col justify-center items-center text-center md:px-4 relative mb-10 mx-auto">
       {(number || caption || type) && (
@@ -71,7 +70,7 @@ export const Figure: React.FC<FigureProps> = ({
             </div>
           </div>
         )}
-        
+
         <div className={`w-full ${showMessage ? 'grayscale' : ''}`}>
           <ImageFallback
             maxWidth={maxWidth}
@@ -82,7 +81,7 @@ export const Figure: React.FC<FigureProps> = ({
         </div>
         {children}
       </div>
-      
+
       {reference && (
         <div className="referencia text-sm opacity-80 italic">
           {reference}

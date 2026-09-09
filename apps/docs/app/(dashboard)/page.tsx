@@ -74,7 +74,7 @@ export default function Home() {
         </div>
 
         <div className="mt-10 lg:mt-14 grid grid-cols-2 sm:grid-cols-4 gap-y-6 border-t border-rule pt-7">
-          <MetaItem label="Stack" value="React 18 · TS · Tailwind" mono />
+          <MetaItem label="Stack" value="React 18/19 · TS · CSS" mono />
           <MetaItem label="Bundler" value="tsup" detail="— ESM + CJS" />
           <MetaItem label="Monorepo" value="pnpm" detail="+ Turborepo" />
           <MetaItem label="Licença" value="MIT" detail="— gratuito" />
@@ -217,7 +217,7 @@ export default function Home() {
           <div>
             <h2 className="font-instrument text-[32px] sm:text-[40px] md:text-[52px] leading-none tracking-[-0.025em] m-0 mb-4 serif">Começando em quatro passos.</h2>
             <p className="max-w-full md:max-w-[620px] text-[var(--ink-2)] text-base leading-[1.55]">
-              Da instalação à primeira lição. O único passo não-óbvio é o <span className="font-jetbrains text-[13px] mono">content</span> do Tailwind —
+              Da instalação à primeira lição. Importe o <span className="font-jetbrains text-[13px] mono">styles.css</span> no entrypoint global —
               sem ele as classes da lib não chegam ao bundle final.
             </p>
           </div>
@@ -226,7 +226,7 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-8 items-start">
           <div>
             <Step num="01" title="Instale o pacote" desc={<>Adicione <code>@modfly/ui</code> ao seu projeto React 18+ via pnpm, npm ou yarn.</>} />
-            <Step num="02" title="Configure o Tailwind" desc={<>Inclua <code>./node_modules/@modfly/ui/dist/**/*.js</code> no array <code>content</code> do seu tailwind.config.</>} />
+            <Step num="02" title="Importe os estilos" desc={<>Importe <code>@modfly/ui/styles.css</code> no entrypoint global do seu projeto.</>} />
             <Step num="03" title="Importe e componha" desc={<>Use os componentes diretamente. Tudo é tree-shakeable — só carrega o que importa.</>} />
             <Step num="04" title="Precisa do AVAMEC?" desc={<>Instale também <code>@modfly/ui-avamec</code> para as questões integradas à BridgeRestApi.</>} />
           </div>
@@ -273,9 +273,9 @@ export default function Home() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-rule">
           <Phase num="00" title="Estrutura" when="em andamento" ship="workspace pronto" items={["Org GitHub modfly-ui", "tsup + ESM/CJS", "Storybook v8 wiring", "Domínio modfly.design"]} />
-          <Phase num="01" title="Migração central" when="planejado" ship="0.1.0-alpha no npm" items={["Accordion (22 variantes)", "ButtonLink + PDF", "Cards + CardFlip", "Carousel + Slider", "LearningBlock"]} />
-          <Phase num="02" title="Site de docs" when="planejado" ship="0.1.0 estável" items={["Next.js 15 + MDX", "Preview + abas de código", "Página por componente", "Deploy Vercel"]} />
-          <Phase num="03–04" title="AVAMEC + CLI" when="objetivo ambicioso" ship="1.0.0 com CLI" items={["@modfly/ui-avamec", "Tipos BridgeRestApi", "npx modfly add", "Analytics + SEO"]} />
+          <Phase num="01" title="Migração central" when="implementado" ship="core 1.1.0" items={["Accordion (22 variantes)", "ButtonLink + PDF", "Cards + CardFlip", "Carousel + Slider", "LearningBlock"]} />
+          <Phase num="02" title="Site de docs" when="implementado" ship="demos reais" items={["Next.js 16 + TSX", "Preview + abas de código", "Página por componente", "Deploy Vercel"]} />
+          <Phase num="03–04" title="AVAMEC + CLI" when="em validação" ship="1.1.0" items={["@modfly/ui-avamec", "Tipos BridgeRestApi", "npx modfly add", "Homologação e publicação"]} />
         </div>
       </section>
 

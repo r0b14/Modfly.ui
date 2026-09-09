@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ReferenceModal } from "./index";
+import { ReferenceModal } from "@modfly/ui";
 
 const meta: Meta<typeof ReferenceModal> = {
   title: "Molecules/ReferenceModal",

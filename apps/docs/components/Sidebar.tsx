@@ -1,11 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [query, setQuery] = useState("");
+  const search = useRef<HTMLInputElement>(null);
+  useEffect(() => { const handle = (event: KeyboardEvent) => { if ((event.ctrlKey || event.metaKey) && event.key === "k") { event.preventDefault(); const toggle = document.getElementById("nav-toggle") as HTMLInputElement | null; if (toggle) toggle.checked = true; search.current?.focus(); } }; window.addEventListener("keydown", handle); return () => window.removeEventListener("keydown", handle); }, []);
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -33,7 +36,7 @@ export function Sidebar() {
           Modfly<sup className="text-[10px] text-[var(--orange)] font-jetbrains ml-[2px] mono">UI</sup>
         </div>
         <span className="ml-auto font-jetbrains text-[10px] text-[var(--muted)] py-[3px] px-[7px] bg-[var(--bg-2)] rounded-full self-center mono">
-          v0.1.0
+          v1.1.0
         </span>
       </Link>
       <div className="font-instrument italic text-[var(--muted)] text-sm mb-7 pl-[42px] -mt-1 serif">
@@ -42,24 +45,26 @@ export function Sidebar() {
 
       <div className="flex items-center gap-2 border border-rule bg-[var(--paper)] p-2.5 rounded-[6px] mb-7 text-[13px] text-[var(--muted)]">
         <span className="text-[13px]">⌕</span>
-        <span>Search components…</span>
+        <input ref={search} type="search" aria-label="Buscar componentes" placeholder="Buscar componentes…" value={query} onChange={e => setQuery(e.target.value)} className="w-full min-w-0 bg-transparent outline-none" />
         <span className="ml-auto font-jetbrains text-[10px] bg-[var(--bg-2)] py-[2px] px-1.5 rounded-[3px] mono">
           ⌘ K
         </span>
       </div>
 
-      <NavSection title="Getting started" items={["Introduction", "Installation", "Tailwind setup", "Theming"]} currentPath={pathname} />
-      <NavSection title="Atoms" items={["ButtonLink", "ButtonPdfDownload", "Tooltip", "Postit", "Check", "ImageFallback", "ButtonReference", "Exclamation", "RangeBlue", "RangeGreen"]} currentPath={pathname} />
-      <NavSection title="Molecules" items={["Cards", "CardFlip", "QuoteText", "Figure", "Citation", "IndentCitation", "ListModule", "MiniCards", "Embed", "ImageList", "CaseStudy", "QuestionReflect", "Quotes", "ReferenceModal"]} currentPath={pathname} />
-      <NavSection title="Organisms" items={["Accordion", "StarList", "TimelineWithCards", "HistoryTopics", "LearningBlock", "QuestionOptionHeader"]} currentPath={pathname} />
-      <NavSection title="Templates" items={["Carousel", "Slider", "Pagination", "UnityBanner", "Glossary", "Container", "TextWithImageBox", "Minibanner"]} currentPath={pathname} />
+      <NavSection title="Getting started" items={["Introduction", "Installation", "Tailwind setup", "Theming", "CLI", "AVAMEC"]} query={query} currentPath={pathname} />
+      <NavSection title="Atoms" items={["ButtonLink", "ButtonPdfDownload", "Tooltip", "Postit", "Check", "ImageFallback", "PageRenderError", "ButtonReference", "Exclamation", "RangeBlue", "RangeGreen"]} query={query} currentPath={pathname} />
+      <NavSection title="Molecules" items={["Cards", "CardFlip", "QuoteText", "Figure", "Citation", "IndentCitation", "ListModule", "MiniCards", "Embed", "ImageList", "CaseStudy", "QuestionReflect", "Quotes", "ReferenceModal"]} query={query} currentPath={pathname} />
+      <NavSection title="Organisms" items={["Accordion", "StarList", "TimelineWithCards", "HistoryTopics", "LearningBlock", "QuestionOptionHeader"]} query={query} currentPath={pathname} />
+      <NavSection title="Templates" items={["Carousel", "Slider", "Pagination", "UnityBanner", "Glossary", "Container", "TextWithImageBox", "Minibanner"]} query={query} currentPath={pathname} />
     </aside>
   );
 }
 
-function NavSection({ title, items, currentPath }: any) {
+function NavSection({ title, items, currentPath, query }: { title: string; items: string[]; currentPath: string; query: string }) {
+  items = items.filter(item => item.toLowerCase().includes(query.toLowerCase()));
+  if (!items.length) return null;
   const isDocGroup = title !== "Getting started";
-  
+
   return (
     <div className="mb-6">
       <div className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mb-2.5 flex items-center gap-2 mono">
@@ -70,7 +75,7 @@ function NavSection({ title, items, currentPath }: any) {
           const slug = item.toLowerCase().replace(/\s+/g, '-');
           const href = isDocGroup ? `/docs/components/${slug}` : `/docs/getting-started/${slug}`;
           const isActive = currentPath === href;
-          
+
           return (
             <li key={item}>
               <Link

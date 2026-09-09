@@ -6,6 +6,7 @@ const config: StorybookConfig = {
   stories: [
     "../../../packages/ui/src/**/*.mdx",
     "../../../packages/ui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../../../packages/ui-avamec/src/**/*.stories.tsx",
   ],
   addons: [
     "@storybook/addon-links",

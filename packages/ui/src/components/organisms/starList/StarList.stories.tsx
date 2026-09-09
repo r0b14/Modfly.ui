@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { StarList } from "./index";
+import { StarList } from "@modfly/ui";
 
 const meta: Meta<typeof StarList> = {
   title: "Organisms/StarList",

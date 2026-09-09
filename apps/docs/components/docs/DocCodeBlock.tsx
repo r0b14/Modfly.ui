@@ -10,13 +10,16 @@ interface DocCodeBlockProps {
 
 export function DocCodeBlock({ filename, children, raw }: DocCodeBlockProps) {
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
   const blockRef = useRef<HTMLDivElement>(null);
 
   function handleCopy() {
+    setCopyError(false);
+    if (!navigator.clipboard) { setCopyError(true); return; }
     navigator.clipboard.writeText(raw).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
-    });
+    }).catch(() => setCopyError(true));
   }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
@@ -47,10 +50,11 @@ export function DocCodeBlock({ filename, children, raw }: DocCodeBlockProps) {
       <button
         className={`code-copy${copied ? " copied" : ""}`}
         onClick={handleCopy}
-        aria-label="Copy code"
+        type="button" aria-label="Copiar código"
       >
-        {copied ? "COPIED" : "COPY"}
+        {copied ? "COPIADO" : "COPIAR"}
       </button>
+      {copyError && <p role="status">Não foi possível copiar. Selecione o código e copie manualmente.</p>}
     </div>
   );
 }

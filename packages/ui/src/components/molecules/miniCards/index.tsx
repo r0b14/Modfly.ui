@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // Assets
 import topBlue from "./assets/topBlue.svg";
@@ -14,21 +14,11 @@ export interface MiniCardProps {
 
 export const MiniCards: React.FC<MiniCardProps> = ({ cardsData }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const getTopImage = (tipo: number) => {
     return tipo === 1 ? topBlue : topGreen;
@@ -65,22 +55,23 @@ export const MiniCards: React.FC<MiniCardProps> = ({ cardsData }) => {
                   className="w-full h-auto rounded-t-[20px]"
                 />
               </div>
-              
+
               <h3 className="text-center leading-tight text-[20px] md:text-[24px] font-bold text-[#F9F5C1] px-4 mt-4 mb-4">
                 {nome}
               </h3>
-              
+
               <div className="flex justify-center px-4 mb-3 flex-1 items-center">
-                <img 
-                  src={imagemURL} 
+                <img
+                  src={imagemURL}
                   alt={nome}
                   className="max-w-[200px] w-full h-auto object-contain"
                 />
               </div>
 
-              <button
+              <button type="button"
                 className="absolute left-1/2 transform -translate-x-1/2 bottom-[-30px] focus:outline-none z-10 transition-transform hover:scale-110 active:scale-95"
                 onClick={() => handleToggle(index)}
+                aria-label={`${openIndex === index ? "Recolher" : "Expandir"} ${nome}`}
                 aria-expanded={openIndex === index}
               >
                 <ButtonImage
@@ -90,7 +81,7 @@ export const MiniCards: React.FC<MiniCardProps> = ({ cardsData }) => {
               </button>
             </div>
 
-            <div 
+            <div
               className={`overflow-hidden transition-all duration-500 ease-in-out w-full ${
                 openIndex === index ? 'max-h-[500px] opacity-100 mt-10' : 'max-h-0 opacity-0 mt-0'
               }`}

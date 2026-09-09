@@ -1,3 +1,5 @@
+> **Registro histórico anterior à v1.1.** Inventários, comandos e status abaixo podem estar superados. Consulte o [README atual](../../README.md) e o [relatório da v1.1](../projeto/entrega-v1.1.md).
+
 # Design System — Modfy UI
 
 > Biblioteca de componentes React para cursos e-learning.  

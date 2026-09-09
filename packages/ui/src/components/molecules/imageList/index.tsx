@@ -51,8 +51,8 @@ export const ImageList: React.FC<ImageListProps> = ({ items }) => {
                   style={{ backgroundColor: item.barColor }}
                 />
               )}
-            </div>    
-               
+            </div>
+
             {/* Conteúdo principal */}
             <div className="flex-1 pb-5" style={{ maxWidth: "1080px" }}>
               {/* Container da imagem com botão */}
@@ -64,7 +64,7 @@ export const ImageList: React.FC<ImageListProps> = ({ items }) => {
                 />
 
                 {/* Botão de expandir/recolher */}
-                <button
+                <button type="button"
                   onClick={() => toggleDescription(index)}
                   className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl z-10"
                   style={{

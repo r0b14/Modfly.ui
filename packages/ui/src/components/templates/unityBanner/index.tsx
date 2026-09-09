@@ -1,16 +1,16 @@
 import React from 'react';
 
 // Assets
-import bg0 from './assets/bg0.svg';
-import bg1 from './assets/bg1.svg';
-import bg2 from './assets/bg2.svg';
-import bg3 from './assets/bg3.svg';
-import bg4 from './assets/bg4.svg';
+import bg0 from './assets/bg0.svg?url';
+import bg1 from './assets/bg1.svg?url';
+import bg2 from './assets/bg2.svg?url';
+import bg3 from './assets/bg3.svg?url';
+import bg4 from './assets/bg4.svg?url';
 
-import bg1Secondary from './assets/bg1-secondary.svg';
-import bg2Secondary from './assets/bg2-secondary.svg';
-import bg3Secondary from './assets/bg3-secondary.svg';
-import bg4Secondary from './assets/bg4-secondary.svg';
+import bg1Secondary from './assets/bg1-secondary.svg?url';
+import bg2Secondary from './assets/bg2-secondary.svg?url';
+import bg3Secondary from './assets/bg3-secondary.svg?url';
+import bg4Secondary from './assets/bg4-secondary.svg?url';
 
 const mainBgs: Record<number, string> = { 0: bg0, 1: bg1, 2: bg2, 3: bg3, 4: bg4 };
 const secondaryBgs: Record<number, string> = { 1: bg1Secondary, 2: bg2Secondary, 3: bg3Secondary, 4: bg4Secondary };

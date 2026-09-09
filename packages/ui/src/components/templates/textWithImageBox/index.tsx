@@ -36,7 +36,7 @@ export const TextWithImageBox: React.FC<TextWithImageBoxProps> = ({
         className={`
           flex flex-col md:flex-row items-start md:items-center justify-center
           w-full max-w-[1200px] mx-auto p-5 gap-5
-          rounded-[7px] md:h-[311px] h-auto
+          rounded-[7px] h-auto
 
           ${
             imgSrc2
@@ -55,7 +55,7 @@ export const TextWithImageBox: React.FC<TextWithImageBoxProps> = ({
           <img
             src={imgSrc2}
             alt=""
-            style={{ maxWidth: imgMaxWidth || "100%", width: "100%", height: "auto", objectFit: "contain" }}
+            style={{ minWidth: 0, maxWidth: imgMaxWidth ? `min(100%, ${typeof imgMaxWidth === "number" ? `${imgMaxWidth}px` : imgMaxWidth})` : "100%", width: "100%", height: "auto", objectFit: "contain" }}
           />
         )}
 
@@ -64,11 +64,11 @@ export const TextWithImageBox: React.FC<TextWithImageBoxProps> = ({
             src={imgSrc}
             alt=""
             className="w-full md:w-auto"
-            style={{ maxWidth: imgMaxWidth || "100%", width: "100%", height: "auto", objectFit: "contain" }}
+            style={{ minWidth: 0, maxWidth: imgMaxWidth ? `min(100%, ${typeof imgMaxWidth === "number" ? `${imgMaxWidth}px` : imgMaxWidth})` : "100%", width: "100%", height: "auto", objectFit: "contain" }}
           />
         )}
 
-        <div className={imgSrc2 ? "w-full px-5" : "w-full md:w-[70%]"}>
+        <div className={imgSrc2 ? "w-full min-w-0 px-5" : "w-full min-w-0 md:w-[70%]"}>
           {hasTitle && (
             <header>
               <h4 className="font-semibold" style={{ color: titleColor }}>
@@ -84,7 +84,7 @@ export const TextWithImageBox: React.FC<TextWithImageBoxProps> = ({
             src={imgSrc}
             alt=""
             className="w-full md:w-auto"
-            style={{ maxWidth: imgMaxWidth || "100%", width: "100%", height: "auto", objectFit: "contain" }}
+            style={{ minWidth: 0, maxWidth: imgMaxWidth ? `min(100%, ${typeof imgMaxWidth === "number" ? `${imgMaxWidth}px` : imgMaxWidth})` : "100%", width: "100%", height: "auto", objectFit: "contain" }}
           />
         )}
       </div>

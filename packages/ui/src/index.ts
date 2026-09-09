@@ -12,17 +12,17 @@ export { Figure } from "./components/molecules/figure";
 export type { FigureProps } from "./components/molecules/figure";
 export { ImageList } from "./components/molecules/imageList";
 export type { ImageListProps } from "./components/molecules/imageList";
-export { 
-  IndentCitation, 
-  IndentCitationBg, 
-  IndentCitationImg, 
-  IndentCitationTitle 
+export {
+  IndentCitation,
+  IndentCitationBg,
+  IndentCitationImg,
+  IndentCitationTitle
 } from "./components/molecules/indentCitation";
-export type { 
-  IndentCitationProps, 
-  IndentCitationBgProps, 
-  IndentCitationImgProps, 
-  IndentCitationTitleProps 
+export type {
+  IndentCitationProps,
+  IndentCitationBgProps,
+  IndentCitationImgProps,
+  IndentCitationTitleProps
 } from "./components/molecules/indentCitation";
 export { ListModule } from "./components/molecules/listModule";
 export type { ListModuleProps } from "./components/molecules/listModule";
@@ -88,3 +88,6 @@ export { RangeGreen } from "./components/atoms/rangeGreen";
 export type { RangeGreenProps } from "./components/atoms/rangeGreen";
 export { Tooltip } from "./components/atoms/tooltip";
 export type { TooltipProps } from "./components/atoms/tooltip";
+export { PageRenderError } from './components/atoms/pageRenderError';
+export type { PageRenderErrorProps } from './components/atoms/pageRenderError';
+export type { ImageListItem } from './components/molecules/imageList';

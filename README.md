@@ -1,313 +1,281 @@
 <div align="center">
-
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="apps/docs/public/logo-dark.png">
-  <img src="apps/docs/public/logo.png" alt="Modfly UI" width="96" />
+  <img src="apps/docs/public/logo.png" alt="Modfly UI" width="96">
 </picture>
 
 # Modfly UI
 
 **Components built for learning.**
 
-Uma biblioteca de componentes React feita para quem constrói cursos — não dashboards.
+🧩 Explique. 🎴 Explore. ✍️ Pratique. 💡 Aprenda.
 
-<br/>
+Componentes React e TypeScript para transformar conteúdo em experiências de aprendizagem.
 
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
-[![Turborepo](https://img.shields.io/badge/Turborepo-2-FF0080?style=flat-square&logo=turborepo&logoColor=white)](https://turbo.build)
-[![CI](https://github.com/r0b14/Modfly.ui/actions/workflows/ci.yml/badge.svg)](https://github.com/r0b14/Modfly.ui/actions/workflows/ci.yml)
-[![License](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
-
-<br/>
-
-[**Documentação**](https://modfly.design) · [**Storybook**](https://storybook.modfly.design) · [**npm**](https://npmjs.com/package/@modfly/ui) · [**Issues**](https://github.com/modfly-ui/ui/issues)
+[Documentação](https://modfly.design) · [Storybook](https://storybook.modfly.design) · [Código e issues](https://github.com/r0b14/Modfly.ui) · [Licença MIT](LICENSE)
 
 </div>
 
----
+> **Versão em preparação: 1.1.0.** O escopo inclui biblioteca, questões AVAMEC e CLI. A versão só será considerada lançada após validação, homologação e publicação. Consulte as evidências e pendências no [relatório da entrega](docs/projeto/entrega-v1.1.md).
 
-### Sumário
+## Encontre seu caminho
 
-[O problema](#o-problema) · [O que é](#o-que-é) · [Recursos](#recursos) · [Como a lib cresce](#como-a-lib-cresce-com-o-curso) · [Stack](#stack) · [Componentes](#componentes) · [Estrutura do repositório](#estrutura-do-repositório) · [Início rápido](#início-rápido) · [Uso no seu projeto](#uso-no-seu-projeto) · [Roadmap](#roadmap) · [Contribuindo](#contribuindo) · [Autor](#autor)
+1. [O que a biblioteca faz](#o-que-a-biblioteca-faz)
+2. [De onde veio](#de-onde-veio)
+3. [Sua primeira aula](#sua-primeira-aula)
+4. [Escolha seus componentes](#escolha-seus-componentes)
+5. [Questões e AVAMEC](#questões-e-avamec)
+6. [Código editável com a CLI](#código-editável-com-a-cli)
+7. [Temas, assets e layout](#temas-assets-e-layout)
+8. [Linguagens e decisões técnicas](#linguagens-e-decisões-técnicas)
+9. [Como trabalhar no projeto](#como-trabalhar-no-projeto)
+10. [Qualidade e publicação](#qualidade-e-publicação)
+11. [Contribuir e conhecer a origem](#contribuir-e-conhecer-a-origem)
 
----
+## O que a biblioteca faz
 
-## O problema
+Pense em uma aula como uma sequência de descobertas: um banner apresenta o assunto, uma citação provoca reflexão, um acordeão aprofunda a explicação e uma atividade ajuda o estudante a praticar.
 
-O mercado tem dezenas de bibliotecas de componentes. Nenhuma delas foi projetada para o contexto de **e-learning**.
+A Modfly reúne essas peças para que cada curso não precise reconstruí-las. O conteúdo continua sendo seu: textos, imagens, navegação, regras do curso e conexão com a plataforma entram por propriedades e adaptadores.
 
-Carrosséis de conteúdo, citações tipográficas, acordeões didáticos, listas de aprendizado, flashcards — esses componentes existem em todo curso EAD produzido profissionalmente. E são reescritos do zero a cada projeto.
+| Quero… | Uso… |
+| --- | --- |
+| Montar a interface de uma aula | `@modfly/ui` |
+| Criar questões e registrar atividades | `@modfly/ui-avamec` |
+| Editar os componentes dentro do meu projeto | CLI `modfly` |
+| Explorar apresentações e comportamentos | Storybook |
+| Entender uma API e copiar um exemplo | Site de documentação |
 
-O Modfly UI resolve isso.
+## De onde veio
 
----
+O projeto nasceu do trabalho com cursos de e-learning e de pesquisas incubadas no **Vlab UFPE**, conforme o histórico documentado do repositório. Hoje é desenvolvido de forma independente por Robson Thiago.
 
-## O que é
-
-Uma lib **open source**, modular, construída em cima de React 18 + Tailwind CSS, com CLI de instalação por componente — inspirada no modelo do Shadcn UI, mas com foco total no ecossistema de aprendizagem digital.
-
-```bash
-npx modfly@latest add accordion
-```
-
----
-
-## Recursos
-
-- 🧩 **Atomic Design** — átomos, moléculas, organismos e templates, sem misturar camadas
-- ⚡ **Tree-shakeable** — build ESM + CJS + `.d.ts` via `tsup`, importe só o que usar
-- 🎨 **Tailwind CSS puro** — sem CSS-in-JS pesado, fácil de sobrescrever no seu tema
-- 🧭 **Zero acoplamento a router** — `Pagination`/`useModfy` recebem callbacks, funcionam com qualquer navegação
-- 🇧🇷 **Documentação 100% em PT-BR** — feita para times brasileiros de e-learning
-- 🎓 **Componentes pedagógicos** — carrosséis, flashcards, acordeões didáticos e citações, não widgets de dashboard
-
----
-
-## Como a lib cresce com o curso
-
-Nenhum componente nasce na biblioteca — ele nasce dentro de um curso real, e só migra se fizer sentido para outros cursos também usarem:
+Os componentes começaram dentro de cursos reais. A biblioteca extrai as partes reutilizáveis, separa conteúdo de apresentação e oferece uma API comum. O modelo de código editável da CLI tem inspiração em projetos como Shadcn UI e Pittaya UI; isso não significa que a Modfly seja uma distribuição desses projetos.
 
 ```mermaid
 flowchart LR
-    A["Componente nasce<br/>em um curso real"] --> B{"É genérico?"}
-    B -- Sim --> C["Migra para<br/>packages/ui"]
-    B -- Não --> D["Fica só no curso"]
-    C --> E["Publica no npm<br/>@modfly/ui"]
-    E --> F["Outros cursos<br/>instalam e reusam"]
-    F -.-> A
+  Curso[Uma necessidade de aula] --> Componente[Componente reutilizável]
+  Componente --> Lib[packages/ui ou ui-avamec]
+  Lib --> Laboratorio[Storybook e testes]
+  Laboratorio --> Docs[Documentação com componente real]
+  Docs --> Entrega[Pacote npm e catálogo da CLI]
+  Entrega --> Cursos[Novos cursos]
 ```
 
----
+## Sua primeira aula
 
-## Stack
-
-| Camada | Tecnologia | |
-|:---|:---|:---|
-| Monorepo | Turborepo + pnpm | orquestração e cache de builds |
-| Framework | React 18 + TypeScript | UI reativa e totalmente tipada |
-| Estilo | Tailwind CSS | design system utilitário |
-| Bundler | tsup | saída ESM + CJS + `.d.ts` |
-| Docs | Next.js 15 (App Router) | site de documentação em PT-BR |
-| Storybook | v8 + Vite | laboratório visual de componentes |
-
----
-
-## Componentes
-
-### Átomos
-
-| Componente | Docs | npm | Story |
-|:---|:---:|:---:|:---:|
-| `ButtonLink` | — | — | ✅ |
-| `ButtonPdfDownload` | — | — | — |
-| `Tooltip` | — | — | — |
-| `Postit` | — | — | — |
-| `Check` | — | — | — |
-
-### Moléculas
-
-| Componente | Docs | npm | Story |
-|:---|:---:|:---:|:---:|
-| `Citation` | ✅ | — | ✅ |
-| `Cards` | — | — | ✅ |
-| `CardFlip` | — | — | ✅ |
-| `QuoteText` | — | — | ✅ |
-| `Figure` | — | — | ✅ |
-| `IndentCitation` | — | — | ✅ |
-| `ListModule` | — | — | ✅ |
-| `MiniCards` | — | — | ✅ |
-| `Embed` | — | — | ✅ |
-| `ImageList` | — | — | ✅ |
-
-### Organismos
-
-| Componente | Docs | npm | Story |
-|:---|:---:|:---:|:---:|
-| `Accordion` | — | — | ✅ |
-| `LearningBlock` | — | — | ✅ |
-| `StarList` | — | — | — |
-| `TimelineWithCards` | — | — | — |
-| `HistoryTopics` | — | — | — |
-
-### Templates
-
-| Componente | Docs | npm | Story |
-|:---|:---:|:---:|:---:|
-| `Carousel` | — | — | ✅ |
-| `Slider` | — | — | ✅ |
-| `Pagination` | — | — | ✅ |
-| `UnityBanner` | — | — | — |
-| `Glossary` | — | — | — |
-
-### `@modfly/ui-avamec` — sub-pacote
-
-Questões interativas compatíveis com o padrão AVAMEC.
-
-`QuestionOption` · `QuestionMultipleAnswer` · `QuestionTrueOrFalse` · `QuestionGrid` · `QuestionCorrelation` · `QuestionDragDrop` · `QuestionWritten` · `SendActivityButton`
-
----
-
-## Estrutura do repositório
-
-```
-Modfly.ui/
-├── apps/
-│   ├── docs/              # site de documentação (Next.js 15)
-│   ├── storybook/         # laboratório visual (Storybook v8)
-│   └── curso-template/    # app de consumo — fonte dos componentes
-├── packages/
-│   ├── ui/                # core da biblioteca (@modfly/ui)
-│   └── tsconfig/          # tsconfig compartilhado
-├── docs/                  # documentação interna (infra, front, projeto, integrações, copyright)
-├── LICENSE
-├── turbo.json
-└── pnpm-workspace.yaml
-```
-
-`packages/*` é o que é publicável; `apps/*` é quem consome. O `apps/docs` ainda está na "Fase Ponte" — importa direto do `curso-template` em vez de `@modfly/ui`, até a migração de cada componente ser concluída:
-
-```mermaid
-flowchart TB
-    subgraph packages["📦 packages/ (publicável)"]
-        UI["ui — @modfly/ui"]
-    end
-    subgraph apps["apps/ (consumidores)"]
-        SB["storybook"]
-        DOCS["docs (Next.js)"]
-        CURSO["curso-template"]
-    end
-    NPM(["pnpm add @modfly/ui<br/>em qualquer curso"])
-
-    UI --> SB
-    UI --> NPM
-    CURSO -. "Fase Ponte (temporário)" .-> DOCS
-    UI -. "Fase B (meta)" .-> DOCS
-```
-
----
-
-## Início rápido
+Os comandos abaixo descrevem o uso da versão **após sua publicação**. Para experimentar antes, siga o [ambiente local](#como-trabalhar-no-projeto).
 
 ```bash
-# Pré-requisito: Node 18+ e pnpm
-npm install -g pnpm
-
-# Clone e instale
-git clone https://github.com/modfly-ui/ui
-cd ui
-pnpm install
-
-# Inicie o ambiente completo
-pnpm dev
+pnpm add @modfly/ui@1.1.0
 ```
 
-O comando `pnpm dev` sobe todos os apps em paralelo via Turborepo.
-
-### Rodar um app por vez
-
-> **Importante:** todos os comandos abaixo devem ser executados **na raiz do monorepo** (`Modfly.ui/`), nunca dentro de `packages/ui`. O `packages/ui` é uma biblioteca — rodar `pnpm dev` dentro dele apenas compila os arquivos com `tsup`, sem abrir nenhuma porta.
-
-| App | Comando | URL | Quando usar |
-|:---|:---|:---|:---|
-| Storybook | `pnpm --filter storybook dev` | `localhost:6006` | Ver e testar componentes isolados |
-| Docs | `pnpm --filter docs dev` | `localhost:3000` | Navegar a documentação |
-| Curso Template | `pnpm --filter curso-template start` | `localhost:3000` | Ver componentes no contexto real de curso |
-
-> Para testar um componente novo (ex: `Accordion` com `course="pce"`), o **Storybook** é o caminho mais rápido — crie uma story e veja o resultado isolado sem precisar navegar no app.
-
----
-
-## Uso no seu projeto
-
-```bash
-# instala a lib
-pnpm add @modfly/ui
-
-# ou, no modelo CLI (em breve)
-npx modfly@latest add citation
-```
-
-Adicione o caminho ao `content` do seu `tailwind.config`:
-
-```js
-content: [
-  "./src/**/*.{js,ts,jsx,tsx}",
-  "./node_modules/@modfly/ui/dist/**/*.js",
-]
-```
+Importe o CSS uma vez no entrypoint global: `src/main.tsx` no Vite ou `app/layout.tsx` no Next.js.
 
 ```tsx
-import { Citation, Accordion } from '@modfly/ui'
+import '@modfly/ui/styles.css';
+```
+
+Crie uma aula:
+
+```tsx
+'use client';
+
+import { Accordion, Citation } from '@modfly/ui';
 
 export default function Aula() {
   return (
-    <Citation
-      author="Paulo Freire"
-      text="Ensinar não é transferir conhecimento, mas criar possibilidades para a sua produção."
-    />
-  )
+    <main>
+      <h1>Aprender fazendo</h1>
+      <Citation
+        title="Uma ideia para começar"
+        text="Aprender combina explicação, prática e reflexão."
+      />
+      <Accordion title="Como colocar em prática?" bgColor={1}>
+        <p>Escolha uma ideia da aula e explique-a com suas palavras.</p>
+      </Accordion>
+    </main>
+  );
 }
 ```
 
----
+**Não é necessário instalar Tailwind para consumir o CSS compilado.** React e React DOM são dependências do projeto consumidor. A compatibilidade declarada cobre React 18.2 e React 19; a matriz de validação da release verifica essas duas linhas.
 
-## Roadmap
+## Escolha seus componentes
 
-```
-✅ Fase 0 — Monorepo + site de docs
-🔄 Fase 1 — Migração dos componentes para packages/ui
-🔄 Fase 2 — Deploy (Vercel) + domínio + npm
-⏳ Fase 3 — @modfly/ui-avamec (questões interativas)
-⏳ Fase 4 — CLI + polimento + Changesets
-```
+A organização segue Atomic Design: peças pequenas formam conjuntos que, por sua vez, ajudam a compor uma aula. As categorias organizam o código; os imports públicos saem de `@modfly/ui`.
 
----
+<!-- component-inventory:start -->
+| Camada | Componentes |
+| --- | --- |
+| Átomos | [ButtonLink](https://modfly.design/docs/components/buttonlink) · [ButtonPdfDownload](https://modfly.design/docs/components/buttonpdfdownload) · [ButtonReference](https://modfly.design/docs/components/buttonreference) · [Check](https://modfly.design/docs/components/check) · [Exclamation](https://modfly.design/docs/components/exclamation) · [ImageFallback](https://modfly.design/docs/components/imagefallback) · [PageRenderError](https://modfly.design/docs/components/pagerendererror) · [Postit](https://modfly.design/docs/components/postit) · [RangeBlue](https://modfly.design/docs/components/rangeblue) · [RangeGreen](https://modfly.design/docs/components/rangegreen) · [Tooltip](https://modfly.design/docs/components/tooltip) |
+| Moléculas | [CardFlip](https://modfly.design/docs/components/cardflip) · [Cards](https://modfly.design/docs/components/cards) · [CaseStudy](https://modfly.design/docs/components/casestudy) · [Citation](https://modfly.design/docs/components/citation) · [Embed](https://modfly.design/docs/components/embed) · [Figure](https://modfly.design/docs/components/figure) · [ImageList](https://modfly.design/docs/components/imagelist) · [IndentCitation](https://modfly.design/docs/components/indentcitation) · [ListModule](https://modfly.design/docs/components/listmodule) · [MiniCards](https://modfly.design/docs/components/minicards) · [QuestionReflect](https://modfly.design/docs/components/questionreflect) · [QuoteText](https://modfly.design/docs/components/quotetext) · [Quotes](https://modfly.design/docs/components/quotes) · [ReferenceModal](https://modfly.design/docs/components/referencemodal) |
+| Organismos | [Accordion](https://modfly.design/docs/components/accordion) · [HistoryTopics](https://modfly.design/docs/components/historytopics) · [LearningBlock](https://modfly.design/docs/components/learningblock) · [QuestionOptionHeader](https://modfly.design/docs/components/questionoptionheader) · [StarList](https://modfly.design/docs/components/starlist) · [TimelineWithCards](https://modfly.design/docs/components/timelinewithcards) |
+| Templates | [Carousel](https://modfly.design/docs/components/carousel) · [Container](https://modfly.design/docs/components/container) · [Glossary](https://modfly.design/docs/components/glossary) · [Minibanner](https://modfly.design/docs/components/minibanner) · [Pagination](https://modfly.design/docs/components/pagination) · [Slider](https://modfly.design/docs/components/slider) · [TextWithImageBox](https://modfly.design/docs/components/textwithimagebox) · [UnityBanner](https://modfly.design/docs/components/unitybanner) |
+<!-- component-inventory:end -->
 
-## Contribuindo
+Cada página apresenta contexto, demonstração interativa, tipos das propriedades, exemplo e variantes. A API é extraída dos tipos TypeScript; as demonstrações reutilizam as stories e importam o pacote real.
 
-Toda contribuição é bem-vinda — do relatório de bug à nova história no Storybook. Antes de abrir um PR, leia o [padrão de documentação de componentes](docs/front/padrao-documentacao-componentes.md) e o guia de [assets PNG/SVG](docs/front/guia-assets-png-svg.md).
+## Questões e AVAMEC
 
-```
-feat: novo componente
-fix: correção de bug
-docs: mudança em documentação
-style: formatação / visual
-refactor: refatoração
-perf: melhoria de performance
+```bash
+pnpm add @modfly/ui-avamec@1.1.0
 ```
 
-Seguimos o padrão **[Conventional Commits](https://www.conventionalcommits.org/pt-br)**.
+```tsx
+'use client';
 
----
+import { useMemo } from 'react';
+import {
+  ActivityQuestions, QuestionsProvider, createMemoryAdapter,
+} from '@modfly/ui-avamec';
+import type { ActivityDefinition } from '@modfly/ui-avamec';
+import '@modfly/ui-avamec/styles.css';
 
-## Autor
+const activity: ActivityDefinition = {
+  module: 1,
+  slide: 1,
+  maxAttempts: 3,
+  questions: [{
+    id: '1',
+    type: 'option',
+    prompt: 'O que ajuda a consolidar o aprendizado?',
+    options: [
+      { id: 'a', label: 'Praticar e receber feedback' },
+      { id: 'b', label: 'Ignorar dúvidas' },
+    ],
+    correctAnswer: 'a',
+  }],
+};
 
-<table>
-  <tr>
-    <td width="120" align="center" valign="top">
-      <a href="https://github.com/r0b14">
-        <img src="https://github.com/r0b14.png" width="80" style="border-radius:50%" /><br/>
-        <sub><b>Robson Thiago</b></sub>
-      </a>
-    </td>
-    <td valign="top">
-      <strong>Criador & mantenedor principal</strong><br/>
-      <br/>
-      Designer de sistemas que escreve TypeScript. Começou a construir essa lib porque nenhuma outra entendia o que é produzir um curso online de verdade — com flashcards, carrosséis pedagógicos e componentes que respeitam o estudante.<br/>
-      <br/>
-      <a href="https://twitter.com/_r0b14">Twitter</a> ·
-      <a href="https://linkedin.com/in/robson-thiago">LinkedIn</a> ·
-      <a href="https://github.com/r0b14">GitHub</a>
-    </td>
-  </tr>
-</table>
+export function Atividade() {
+  const adapter = useMemo(() => createMemoryAdapter(), []);
+  return (
+    <QuestionsProvider activity={activity} adapter={adapter}>
+      <ActivityQuestions />
+    </QuestionsProvider>
+  );
+}
+```
 
-> Este projeto nasceu de pesquisas incubadas no **[Vlab UFPE](https://vlab.ufpe.br)** e hoje é desenvolvido de forma independente.
+O exemplo usa memória e reinicia ao recarregar. Para persistência local, use `createLocalAdapter(storage, namespace)` com um namespace por curso e estudante. Para a plataforma, injete um `AvamecBridge` em `createAvamecAdapter(bridge)`.
 
----
+Os sete formatos são alternativa única, múltiplas respostas, verdadeiro/falso, grade, correlação, arrastar/soltar e resposta escrita. Você pode usar `ActivityQuestions` ou compor os componentes individualmente dentro do provider.
 
-<div align="center">
-  <sub>MIT License · feito com foco no estudante</sub>
-</div>
+O envio separa **resultado binário** de **respostas detalhadas**. Erros remotos são exibidos. Um envio sem confirmação bloqueia novas tentativas até reconciliação; o contrato existente não oferece idempotência para repetir uma requisição com segurança. A implementação não migra automaticamente o estado dos cursos antigos.
+
+Veja [integração, contratos e migração](docs/integracoes/avamec-v1.1.md). Homologação real é uma condição de lançamento, não uma consequência dos testes com simulador.
+
+## Código editável com a CLI
+
+```bash
+npx modfly@1.1.0 init
+npx modfly@1.1.0 list
+npx modfly@1.1.0 add citation accordion
+npx modfly@1.1.0 add question-option
+```
+
+O `init` cria `modfly.json`. O `add` copia o componente e suas dependências de código para `src/components/modfly`, ou `components/modfly` se o projeto não tiver `src`. Depois:
+
+1. Importe o `styles.css` do diretório gerado uma vez.
+2. Importe os componentes pelos caminhos mostrados no terminal.
+3. Edite os arquivos para adaptar sua aula.
+
+| Opção | Comportamento |
+| --- | --- |
+| `--dry-run` | Mostra o que será copiado sem escrever arquivos |
+| `--no-install` | Copia os arquivos e informa dependências para instalação manual |
+| `--force` | Permite substituir arquivos locais modificados |
+| `--cwd pasta` | Executa em outro projeto |
+
+A versão da CLI deve corresponder à versão de `modfly.json`. Sem `--force`, conflitos interrompem a cópia antes da primeira alteração. Assets são convertidos em módulos portáveis; o consumidor não precisa configurar SVGR.
+
+## Temas, assets e layout
+
+🎨 **Componentes da aula:** preservam as ilustrações e variantes dos cursos de origem. Cores, conteúdos e dimensões são configuráveis conforme a API de cada componente. Não existe um provider universal de tema nesta versão.
+
+📖 **Site de documentação:** usa navegação lateral, coluna de leitura e sumário contextual em telas amplas. No celular, a navegação é recolhida. A identidade combina cores de destaque, tipografia editorial e blocos de código copiáveis.
+
+🖼️ **Assets:** SVGs decorativos podem ser componentes React; SVGs usados em `img` são URLs explícitas. Imagens do pacote ficam incorporadas na distribuição. Fotos e conteúdo específico de cursos entram por props.
+
+O CSS distribuído contém utilitários Tailwind sem o reset global Preflight. Alguns componentes, como Accordion, também usam Emotion para estilos estruturais. O README anterior descrevia “Tailwind puro”; isso não correspondia à implementação.
+
+Ao copiar código pela CLI, novas classes Tailwind criadas por você precisam ser compiladas no seu projeto. Conteúdo HTML passado a props deve ser confiável e sanitizado pela aplicação; prefira ReactNode quando disponível.
+
+## Linguagens e decisões técnicas
+
+| Escolha | Por quê | Consequência prática |
+| --- | --- | --- |
+| TypeScript + TSX | Expressar contratos e compor UI React | Props tipadas e declarações `.d.ts` no pacote |
+| React | Composição e atualização de estado | O consumidor fornece React; a lib não inclui outra cópia |
+| Tailwind 3 + Emotion | Preservar utilitários e estilos dos componentes existentes | CSS pronto para uso, sem reescrita visual durante a release |
+| pnpm + Turborepo | Organizar dependências e ordem dos builds | Pacotes são construídos antes dos apps consumidores |
+| tsup | Distribuir módulos e tipos | Saídas ESM e CommonJS com assets resolvidos |
+| Next.js 16 | Publicar documentação navegável | Páginas usam a biblioteca real e fronteiras de cliente |
+| Storybook 8 + Vite | Explorar componentes isoladamente | Stories servem de base para demos e verificações |
+| Vitest + Testing Library + Playwright | Verificar contratos, UI e navegador | Falhas reproduzíveis antes da publicação |
+| JavaScript ESM na CLI | Executar diretamente no Node | Sem runtime adicional para os comandos |
+| Adaptadores AVAMEC | Separar UI da infraestrutura do curso | Simulação local e integração remota explícitas |
+
+## Como trabalhar no projeto
+
+**Pré-requisitos do monorepo:** Node 22.14+ e pnpm 9.0.0. A versão de referência está em `.nvmrc`.
+
+```bash
+git clone https://github.com/r0b14/Modfly.ui.git
+cd Modfly.ui
+corepack enable
+pnpm install --frozen-lockfile
+pnpm build
+pnpm dev
+```
+
+| Ambiente | Comando na raiz | Endereço |
+| --- | --- | --- |
+| Documentação | `pnpm --filter docs dev` | http://localhost:3000 |
+| Storybook | `pnpm --filter storybook dev` | http://localhost:6006 |
+| Aula de exemplo | `pnpm --filter curso-template dev` | http://localhost:3001 |
+| CLI local | `node packages/cli/src/cli.mjs --help` | Terminal |
+
+```text
+apps/
+  docs/             documentação pública
+  storybook/        laboratório de componentes
+  curso-template/   aula que consome os pacotes
+packages/
+  ui/               componentes e estilos
+  ui-avamec/        questões, estado e adaptadores
+  cli/              comandos e catálogo de código
+  tsconfig/         configurações compartilhadas
+  @legado/          referência histórica privada
+scripts/            geração de catálogo e distribuição
+tests/              verificações automatizadas
+docs/               decisões, contratos e evidências
+```
+
+`packages/@legado` e os componentes antigos do curso-template são referências de migração; não são a fonte do pacote publicado. Logos, layout institucional e infográficos de cursos continuam específicos do curso.
+
+## Qualidade e publicação
+
+```bash
+pnpm docs:generate   # atualiza API e demos a partir do código
+pnpm check           # lint, tipos, testes e builds
+pnpm test:e2e        # testes no navegador
+```
+
+O aceite exige: componentes e variantes renderizando; interações essenciais por teclado; estilos e imagens presentes; exemplos compiláveis; CLI funcionando fora do monorepo; pacote instalável em React 18 e 19; AVAMEC homologado; npm e sites verificados após publicação.
+
+Changesets mantém as versões dos três pacotes alinhadas. Uma release começa por candidatas e previews, passa pelos critérios de aceite e só então recebe a versão pública. O [guia de release](docs/projeto/entrega-v1.1.md) registra comandos, resultados e dependências externas.
+
+## Contribuir e conhecer a origem
+
+Ao adicionar um componente, inclua tipos públicos, story com exemplos reais, testes de comportamento e documentação. Rode o gerador do catálogo e valide os consumidores. Use commits convencionais: `feat`, `fix`, `docs`, `refactor` e `test`.
+
+- [Índice da documentação interna](docs/README.md)
+- [Padrão de documentação de componentes](docs/front/padrao-documentacao-componentes.md)
+- [Arquitetura e fluxo de componentes](docs/projeto/fluxo-saudavel-componentes.md)
+- [Migração para a v1.1](docs/projeto/migracao-v1.1.md)
+
+**Criador e mantenedor:** [Robson Thiago](https://github.com/r0b14). Origem em pesquisas incubadas no [Vlab UFPE](https://vlab.ufpe.br), com desenvolvimento independente.
+
+Distribuído sob a [licença MIT](LICENSE). Preserve a atribuição ao redistribuir o código.

@@ -1,3 +1,5 @@
+> **Registro histórico anterior à v1.1.** Inventários, comandos e status abaixo podem estar superados. Consulte o [README atual](../../README.md) e o [relatório da v1.1](../projeto/entrega-v1.1.md).
+
 # Guia de Arquitetura — Diagnóstico do Modfly UI + Estudo sobre Projetos React e Bibliotecas
 
 Este documento tem dois propósitos:

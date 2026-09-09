@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import "@modfly/ui/styles.css";
+import "@modfly/ui-avamec/styles.css";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Modfy UI — Components built for learning",
+  title: "Modfly UI — Components built for learning",
   description: "Uma biblioteca de componentes React disruptiva para e-learning.",
 };
 

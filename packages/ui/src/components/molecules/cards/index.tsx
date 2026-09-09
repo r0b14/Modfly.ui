@@ -18,7 +18,7 @@ export interface CardProps {
 export const Cards: React.FC<CardProps> = ({ cardsData }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [hoveredButton, setHoveredButton] = useState<number | null>(null);
+  const [_hoveredButton, setHoveredButton] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -71,8 +71,8 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
     }
   };
 
-  const getButtonImage = (tipo: number, isOpen: boolean, index: number) => {
-    const isHovered = hoveredButton === index;
+  const getButtonImage = (tipo: number, isOpen: boolean) => {
+
 
     if (tipo === 3) {
       if (isOpen) return openOrange;
@@ -93,7 +93,7 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
       <div className="flex md:flex-row flex-col flex-wrap gap-10 mb-10 justify-center relative max-w-[1200px] w-full">
         {cardsData.map(([nome, texto, imagemURL, tipo, textoExpandido], index) => {
           const colors = getColorClasses(tipo);
-          const ButtonImage = getButtonImage(tipo, openIndex === index, index);
+          const ButtonImage = getButtonImage(tipo, openIndex === index);
           return (
             <div
               key={index}
@@ -131,11 +131,12 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
                 </div>
               </div>
 
-              <button
+              <button type="button"
                 className={`flex items-center justify-center rounded-full w-[60px] h-[60px] focus:outline-none shadow-lg transition-all duration-300 -mt-[30px] relative z-10`}
                 onClick={() => handleToggle(index)}
                 onMouseEnter={() => setHoveredButton(index)}
                 onMouseLeave={() => setHoveredButton(null)}
+                aria-label={`${openIndex === index ? "Recolher" : "Expandir"} ${nome}`}
                 aria-expanded={openIndex === index}
               >
                 <ButtonImage
@@ -145,7 +146,7 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
               </button>
 
               {/* Mobile Expansion */}
-              <div 
+              <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out w-full max-w-[353px] ${
                   openIndex === index && isMobile ? 'max-h-[2000px] opacity-100 mt-6' : 'max-h-0 opacity-0 mt-0'
                 }`}
@@ -154,7 +155,7 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
                   <div className={`p-6 text-black ${colors.bg} shadow-lg rounded-[15px] transform transition-all duration-500 ease-in-out ${
                     openIndex === index ? 'scale-100 translate-y-0' : 'scale-95 -translate-y-4'
                   }`}>
-                    <div 
+                    <div
                       className="w-full text-[16px] leading-relaxed"
                       dangerouslySetInnerHTML={{ __html: textoExpandido }}
                     />
@@ -167,7 +168,7 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
       </div>
 
       {/* Desktop Expansion */}
-      <div 
+      <div
         className={`overflow-hidden transition-all duration-500 ease-in-out w-full max-w-[1200px] ${
           openIndex !== null && !isMobile ? 'max-h-[2000px] opacity-100 mt-8' : 'max-h-0 opacity-0 mt-0'
         }`}
@@ -176,7 +177,7 @@ export const Cards: React.FC<CardProps> = ({ cardsData }) => {
           <div className={`p-10 text-black ${getColorClasses(cardsData[openIndex][3]).bg} shadow-lg rounded-[15px] transform transition-all duration-500 ease-in-out ${
             openIndex !== null ? 'scale-100 translate-y-0' : 'scale-95 -translate-y-4'
           }`}>
-            <div 
+            <div
               className="w-full text-[18px] leading-relaxed"
               dangerouslySetInnerHTML={{ __html: cardsData[openIndex][4] }}
             />

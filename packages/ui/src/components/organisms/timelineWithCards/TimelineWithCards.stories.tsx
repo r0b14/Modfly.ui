@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TimelineWithCards } from "./index";
+import { TimelineWithCards } from "@modfly/ui";
 
 const meta: Meta<typeof TimelineWithCards> = {
   title: "Organisms/TimelineWithCards",

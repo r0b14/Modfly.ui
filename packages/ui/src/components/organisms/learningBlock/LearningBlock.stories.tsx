@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { LearningBlock } from "./index";
+import { LearningBlock } from "@modfly/ui";
 
 const meta: Meta<typeof LearningBlock> = {
   title: "Organisms/LearningBlock",
@@ -39,3 +39,17 @@ export const Variante8: Story = {
     children: <p>Bloco com borda ilustrada e ícone fixo, sem SVGs de topo/base.</p>,
   },
 };
+
+export const Variante2: Story = { args: { ...Variante1.args, variant: 2 } };
+
+export const Variante3: Story = { args: { ...Variante1.args, variant: 3 } };
+
+export const Variante4: Story = { args: { ...Variante1.args, variant: 4 } };
+
+export const Variante6: Story = { args: { ...Variante1.args, variant: 6 } };
+
+export const Variante7: Story = { args: { ...Variante1.args, variant: 7 } };
+
+export const Variante9: Story = { args: { ...Variante1.args, variant: 9 } };
+
+export const Variante10: Story = { args: { ...Variante1.args, variant: 10 } };

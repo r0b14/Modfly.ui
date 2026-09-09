@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "storybook build"
+    "build": "storybook build",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@modfly/ui": "workspace:*",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "@modfly/ui-avamec": "workspace:*"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.0.0",

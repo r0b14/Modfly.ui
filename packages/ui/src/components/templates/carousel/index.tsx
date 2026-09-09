@@ -1,145 +1,35 @@
-import React, { useEffect, useState, useRef } from 'react';
-import arrowIcon from './assets/arrow.svg';
-
+import React, { useEffect, useRef, useState } from 'react';
+import arrowIcon from './assets/arrow.svg?url';
 export interface CarouselProps {
-  items: Array<React.ReactNode>;
-  numberOfItems: number;
-  bgImages?: Array<string>;
+  items: React.ReactNode[];
+  /** Compatibilidade: a navegação usa items.length para evitar slides vazios. */
+  numberOfItems?: number;
+  bgImages?: string[];
   bgColor?: string;
-  bgPosition?: Array<string>;
+  bgPosition?: string[];
 }
-
-export const Carousel: React.FC<CarouselProps> = ({
-  items,
-  numberOfItems,
-  bgImages,
-  bgColor = "transparent",
-  bgPosition = [],
-}) => {
-  const [widthPx, setWidthPx] = useState(1200);
-  const [slideNow, setSlideNow] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  const resizeContent = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth < 1350) {
-        setWidthPx(window.innerWidth - 150);
-      } else {
-        setWidthPx(1200);
-      }
-    }
-  };
-
+export const Carousel: React.FC<CarouselProps> = ({ items, bgImages, bgColor = 'transparent', bgPosition = [] }) => {
+  const [index, setIndex] = useState(0);
+  const viewport = useRef<HTMLDivElement>(null);
+  const current = Math.min(index, Math.max(0, items.length - 1));
   useEffect(() => {
-    resizeContent();
-    window.addEventListener('resize', resizeContent);
-    return () => window.removeEventListener('resize', resizeContent);
-  }, []);
-
-  const goToSlide = (index: number) => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({
-        left: index * widthPx,
-        behavior: 'smooth',
-      });
-      setSlideNow(index);
-    }
-  };
-
-  const nextSlide = () => {
-    if (slideNow < numberOfItems - 1) {
-      goToSlide(slideNow + 1);
-    }
-  };
-
-  const prevSlide = () => {
-    if (slideNow > 0) {
-      goToSlide(slideNow - 1);
-    }
-  };
-
-  const currentBgImage = bgImages && bgImages[slideNow] ? `url(${bgImages[slideNow]})` : 'none';
-  const currentBgPos = bgPosition[slideNow] || 'center';
-
-  return (
-    <div 
-      className="relative flex flex-col items-center w-full my-10 overflow-hidden"
-      style={{
-        backgroundColor: bgColor,
-        backgroundImage: currentBgImage,
-        backgroundPosition: currentBgPos,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        transition: 'background-image 0.5s ease-in-out'
-      }}
-    >
-      <div className="flex h-full text-justify justify-center items-center py-20 flex-col sm:flex-row w-full max-w-[1400px]">
-        {/* Prev Arrow */}
-        <button 
-          onClick={prevSlide}
-          className="hidden sm:block p-4 focus:outline-none transition-transform hover:scale-125 disabled:opacity-30 disabled:cursor-not-allowed"
-          disabled={slideNow === 0}
-        >
-          <img src={arrowIcon} alt="Anterior" className="rotate-180 w-4 h-6" />
-        </button>
-
-        {/* Carousel Items Container */}
-        <div
-          ref={carouselRef}
-          className="flex overflow-hidden scroll-smooth"
-          style={{
-            maxWidth: `${widthPx}px`,
-            minWidth: `${widthPx}px`,
-          }}
-        >
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="px-4 sm:px-10 flex-shrink-0"
-              style={{
-                width: `${widthPx}px`,
-              }}
-            >
-              <div className="w-full flex justify-center">
-                {item}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Next Arrow */}
-        <button 
-          onClick={nextSlide}
-          className="hidden sm:block p-4 focus:outline-none transition-transform hover:scale-125 disabled:opacity-30 disabled:cursor-not-allowed"
-          disabled={slideNow === numberOfItems - 1}
-        >
-          <img src={arrowIcon} alt="Próximo" className="w-4 h-6" />
-        </button>
-
-        {/* Mobile Arrows */}
-        <div className="flex sm:hidden w-full justify-between px-10 mt-8">
-          <button onClick={prevSlide} disabled={slideNow === 0}>
-            <img src={arrowIcon} alt="Anterior" className="rotate-180 w-4 h-6" />
-          </button>
-          <button onClick={nextSlide} disabled={slideNow === numberOfItems - 1}>
-            <img src={arrowIcon} alt="Próximo" className="w-4 h-6" />
-          </button>
-        </div>
-      </div>
-
-      {/* Bullets */}
-      <div className="flex gap-4 mb-10">
-        {items.map((_, index) => (
-          <button
-            key={index}
-            className={`w-4 h-4 rounded-full transition-all duration-300 ${
-              index === slideNow ? "bg-[#285C93] scale-125" : "bg-gray-300 hover:bg-gray-400"
-            }`}
-            onClick={() => goToSlide(index)}
-            aria-label={`Ir para slide ${index + 1}`}
-          />
-        ))}
-      </div>
+    const element = viewport.current;
+    if (!element) return;
+    const sync = () => element.scrollTo({ left: current * element.clientWidth, behavior: 'auto' });
+    sync();
+    if (typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(sync); observer.observe(element); return () => observer.disconnect();
+  }, [current, items.length]);
+  if (!items.length) return null;
+  const go = (next: number) => setIndex(Math.max(0, Math.min(next, items.length - 1)));
+  return <section aria-roledescription="carrossel" aria-label="Conteúdo da aula" className="w-full min-w-0 my-10" style={{ backgroundColor: bgColor, backgroundImage: bgImages?.[current] ? `url(${bgImages[current]})` : undefined, backgroundPosition: bgPosition[current] ?? 'center', backgroundSize: 'cover' }}>
+    <div ref={viewport} className="flex w-full overflow-hidden" onKeyDown={e => { if (e.target === e.currentTarget && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); go(current + (e.key === 'ArrowRight' ? 1 : -1)); } }} tabIndex={0} aria-label="Slides; use as setas para navegar">
+      {items.map((item, i) => <div key={i} className="w-full shrink-0 min-w-0 p-4 sm:p-8" role="group" aria-roledescription="slide" aria-label={`${i + 1} de ${items.length}`} aria-hidden={i !== current} style={{ visibility: i === current ? 'visible' : 'hidden' }}>{item}</div>)}
     </div>
-  );
+    <div className="flex flex-wrap items-center justify-center gap-3 p-4">
+      <button type="button" onClick={() => go(current - 1)} disabled={current === 0} aria-label="Slide anterior" className="p-3 disabled:opacity-30"><img src={arrowIcon} alt="" className="w-4 h-6 rotate-180" /></button>
+      {items.map((_, i) => <button type="button" key={i} aria-label={`Ir para slide ${i + 1}`} aria-current={i === current ? 'step' : undefined} onClick={() => go(i)} className="w-8 h-8 rounded-full border" style={{ background: i === current ? '#285c93' : '#fff', color: i === current ? '#fff' : '#285c93' }}>{i + 1}</button>)}
+      <button type="button" onClick={() => go(current + 1)} disabled={current === items.length - 1} aria-label="Próximo slide" className="p-3 disabled:opacity-30"><img src={arrowIcon} alt="" className="w-4 h-6" /></button>
+    </div>
+  </section>;
 };

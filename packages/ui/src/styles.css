@@ -1,0 +1,12 @@
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  :where(button, a, [role="button"], input, select, textarea):focus-visible {
+    outline: 3px solid #285c93;
+    outline-offset: 3px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([class]) { scroll-behavior: auto !important; }
+}

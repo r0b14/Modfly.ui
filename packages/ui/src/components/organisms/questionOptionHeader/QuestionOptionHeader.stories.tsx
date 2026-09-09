@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { QuestionOptionHeader } from "./index";
+import { QuestionOptionHeader } from "@modfly/ui";
 
 const meta: Meta<typeof QuestionOptionHeader> = {
   title: "Organisms/QuestionOptionHeader",

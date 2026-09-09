@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Pagination } from "./index";
+import { Pagination } from "@modfly/ui";
 
 const meta: Meta<typeof Pagination> = {
   title: "Templates/Pagination",

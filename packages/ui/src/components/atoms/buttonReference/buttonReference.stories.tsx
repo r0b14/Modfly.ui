@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ButtonReference } from "./index";
+import { ButtonReference } from "@modfly/ui";
 
 const meta: Meta<typeof ButtonReference> = {
   title: "Atoms/ButtonReference",

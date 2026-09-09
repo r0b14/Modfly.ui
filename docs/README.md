@@ -4,6 +4,12 @@
 
 > Isto é documentação **interna** do repositório (decisões técnicas, padrões, planos). O site público de docs dos componentes é o app `apps/docs` (Next.js, deployado em modfly.design) — não confunda os dois.
 
+## Entrega v1.1
+
+- [Evidências e publicação](projeto/entrega-v1.1.md)
+- [Migração de consumidores](projeto/migracao-v1.1.md)
+- [Contrato AVAMEC e homologação](integracoes/avamec-v1.1.md)
+
 ---
 
 ## `infra/` — Arquitetura e infraestrutura do monorepo

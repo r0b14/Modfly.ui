@@ -1,0 +1,1835 @@
+[
+  {
+    "slug": "buttonlink",
+    "name": "ButtonLink",
+    "category": "Átomos",
+    "description": "Botão ou link com fundo ilustrado e ícone de ação — clique, documento ou vídeo — em três esquemas de cor. O componente mais usado para chamadas de ação dentro de um módulo.",
+    "source": "packages/ui/src/components/atoms/buttonLink",
+    "components": [
+      {
+        "name": "ButtonLink",
+        "initialVariant": "Azul",
+        "props": [
+          {
+            "name": "variant",
+            "required": true,
+            "type": "1 | 2 | 3",
+            "description": ""
+          },
+          {
+            "name": "colorScheme",
+            "required": false,
+            "type": "1 | 2 | 3 | undefined",
+            "description": ""
+          },
+          {
+            "name": "text",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "textColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "textClassName",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "href",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "onClick",
+            "required": false,
+            "type": "(() => void) | undefined",
+            "description": ""
+          },
+          {
+            "name": "target",
+            "required": false,
+            "type": "\"_blank\" | \"_self\" | \"_parent\" | \"_top\" | undefined",
+            "description": ""
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "width",
+            "required": false,
+            "type": "string | number | undefined",
+            "description": ""
+          },
+          {
+            "name": "height",
+            "required": false,
+            "type": "string | number | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { ButtonLink } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof ButtonLink> = {\n    variant: 1,\n    colorScheme: 1,\n    text: \"Acessar material\",\n    href: \"#\",\n  };\n\nexport default function Exemplo() {\n  return <ButtonLink {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "buttonpdfdownload",
+    "name": "ButtonPdfDownload",
+    "category": "Átomos",
+    "description": "Botão dedicado ao download de um PDF — slides da aula ou roteiro de vídeo — com rótulo fixo e ícone de download.",
+    "source": "packages/ui/src/components/atoms/buttonPdfDownload",
+    "components": [
+      {
+        "name": "ButtonPdfDownload",
+        "initialVariant": "Aula",
+        "props": [
+          {
+            "name": "pdfile",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "variation",
+            "required": false,
+            "type": "\"class\" | \"video\" | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { ButtonPdfDownload } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof ButtonPdfDownload> = {\n    pdfile: \"/exemplo-slides.pdf\",\n    variation: \"class\",\n  };\n\nexport default function Exemplo() {\n  return <ButtonPdfDownload {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "buttonreference",
+    "name": "ButtonReference",
+    "category": "Átomos",
+    "description": "Botão de alternância (&quot;Ver mais&quot; / &quot;Ver menos&quot;) com ícone de mais/menos — usado para expandir ou recolher uma lista de referências bibliográficas.",
+    "source": "packages/ui/src/components/atoms/buttonReference",
+    "components": [
+      {
+        "name": "ButtonReference",
+        "initialVariant": "Fechado",
+        "props": [
+          {
+            "name": "isOpen",
+            "required": true,
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "onToggle",
+            "required": true,
+            "type": "() => void",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { ButtonReference } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof ButtonReference> = {\n    isOpen: false,\n    onToggle: () => {},\n  };\n\nexport default function Exemplo() {\n  return <ButtonReference {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "check",
+    "name": "Check",
+    "category": "Átomos",
+    "description": "Lista de itens de aprendizagem com moldura decorativa de topo e rodapé — ideal para resumir objetivos ou pontos-chave de uma unidade.",
+    "source": "packages/ui/src/components/atoms/check",
+    "components": [
+      {
+        "name": "Check",
+        "initialVariant": "Verde",
+        "props": [
+          {
+            "name": "items",
+            "required": false,
+            "type": "ReactNode[] | undefined",
+            "description": ""
+          },
+          {
+            "name": "numberOfItems",
+            "required": false,
+            "type": "number | undefined",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "1 | 2 | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Check } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst items = [\n  <p key=\"1\">Primeiro item de aprendizagem</p>,\n  <p key=\"2\">Segundo item de aprendizagem</p>,\n  <p key=\"3\">Terceiro item de aprendizagem</p>,\n];\n\nconst props: ComponentProps<typeof Check> = {\n    variant: 1,\n    numberOfItems: 3,\n    items,\n  };\n\nexport default function Exemplo() {\n  return <Check {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "exclamation",
+    "name": "Exclamation",
+    "category": "Átomos",
+    "description": "Bloco de aviso com ícone de exclamação, título opcional e um link de ação (ex.: download de material complementar).",
+    "source": "packages/ui/src/components/atoms/exclamation",
+    "components": [
+      {
+        "name": "Exclamation",
+        "initialVariant": "ComLink",
+        "props": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "link",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "linkLabel",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Exclamation } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Exclamation> = {\n    title: \"Atenção\",\n    children: \"O material complementar desta unidade está disponível para download.\",\n    link: \"https://example.com/material.pdf\",\n  };\n\nexport default function Exemplo() {\n  return <Exclamation {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "imagefallback",
+    "name": "ImageFallback",
+    "category": "Átomos",
+    "description": "Imagem com fallback automático — tenta carregar um WEBP e recua para PNG/JPG se o navegador não suportar o formato moderno.",
+    "source": "packages/ui/src/components/atoms/imageFallback",
+    "components": [
+      {
+        "name": "ImageFallback",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "src",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "fallback",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "imgCenter",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "maxWidth",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "alt",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { ImageFallback } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof ImageFallback> = {\n    src: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    fallback: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    alt: \"Imagem de exemplo\",\n  };\n\nexport default function Exemplo() {\n  return <ImageFallback {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "pagerendererror",
+    "name": "PageRenderError",
+    "category": "Átomos",
+    "description": "Componente pageRenderError para compor experiências de aprendizagem.",
+    "source": "packages/ui/src/components/atoms/pageRenderError",
+    "components": [
+      {
+        "name": "PageRenderError",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "onRetry",
+            "required": false,
+            "type": "(() => void) | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { PageRenderError } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof PageRenderError> = { title: 'Conteúdo indisponível', children: 'Confira o endereço da aula e tente novamente.' };\n\nexport default function Exemplo() {\n  return <PageRenderError {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "postit",
+    "name": "Postit",
+    "category": "Átomos",
+    "description": "Bloco de destaque estilizado como um post-it — corpo azul com dobra decorativa no topo e no rodapé — para observações e avisos que precisam se destacar do texto corrido.",
+    "source": "packages/ui/src/components/atoms/postit",
+    "components": [
+      {
+        "name": "Postit",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "style",
+            "required": false,
+            "type": "CSSProperties | undefined",
+            "description": ""
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Postit } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Postit> = {\n    children: \"Não esqueça de revisar o conteúdo da aula anterior antes de continuar!\",\n  };\n\nexport default function Exemplo() {\n  return <Postit {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "rangeblue",
+    "name": "RangeBlue",
+    "category": "Átomos",
+    "description": "Faixa horizontal de fundo azul com bordas decorativas onduladas no topo e na base — envolve conteúdo em destaque com um texto de apoio opcional ao lado.",
+    "source": "packages/ui/src/components/atoms/rangeBlue",
+    "components": [
+      {
+        "name": "RangeBlue",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "text",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "bgColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "isCustomContent",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { RangeBlue } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof RangeBlue> = {\n    children: <p style={{ margin: 0 }}>Conteúdo principal dentro da faixa.</p>,\n    text: \"Texto de apoio ao lado do conteúdo principal.\",\n  };\n\nexport default function Exemplo() {\n  return <RangeBlue {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "rangegreen",
+    "name": "RangeGreen",
+    "category": "Átomos",
+    "description": "Faixa horizontal verde com três sub-variantes visuais (bordas retas, arredondadas e finas) — mesmo conceito do RangeBlue, com outra paleta e mais opções de estilo.",
+    "source": "packages/ui/src/components/atoms/rangeGreen",
+    "components": [
+      {
+        "name": "RangeGreen",
+        "initialVariant": "Variante1",
+        "props": [
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "1 | 2 | 3 | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { RangeGreen } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof RangeGreen> = {\n    variant: 1,\n    children: <p style={{ margin: 0 }}>Conteúdo dentro da faixa verde, variante 1.</p>,\n  };\n\nexport default function Exemplo() {\n  return <RangeGreen {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "tooltip",
+    "name": "Tooltip",
+    "category": "Átomos",
+    "description": "Termo com sublinhado pontilhado que revela uma explicação ao passar o mouse — ideal para glossário inline sem sair da leitura.",
+    "source": "packages/ui/src/components/atoms/tooltip",
+    "components": [
+      {
+        "name": "Tooltip",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "content",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "position",
+            "required": false,
+            "type": "\"left\" | \"center\" | \"right\" | undefined",
+            "description": ""
+          },
+          {
+            "name": "text",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "width",
+            "required": false,
+            "type": "number | undefined",
+            "description": ""
+          },
+          {
+            "name": "widthMobile",
+            "required": false,
+            "type": "number | undefined",
+            "description": "width to use on mobile viewports (px)"
+          },
+          {
+            "name": "height",
+            "required": false,
+            "type": "number | undefined",
+            "description": ""
+          },
+          {
+            "name": "bgColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "reference",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Tooltip } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Tooltip> = {\n    text: \"Justiça Restaurativa\",\n    content: \"Modelo de justiça focado em reparar o dano causado, não apenas punir.\",\n    position: \"center\",\n  };\n\nexport default function Exemplo() {\n  return <Tooltip {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "cardflip",
+    "name": "CardFlip",
+    "category": "Moléculas",
+    "description": "Cartão com efeito de virar em 3D: a frente mostra imagem e título, o verso revela um texto expandido em HTML ao clicar no botão.",
+    "source": "packages/ui/src/components/molecules/cardFlip",
+    "components": [
+      {
+        "name": "CardFlip",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "cardFlipData",
+            "required": true,
+            "type": "[string, string, string, number, string][]",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { CardFlip } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof CardFlip> = {\n    cardFlipData: [\n      [\n        \"Justiça Restaurativa\",\n        \"Breve descrição na frente.\",\n        \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        1,\n        \"<p>A <strong>Justiça Restaurativa</strong> é um processo através do qual todas as partes que têm uma participação em uma ofensa específica reúnem-se para resolver coletivamente como lidar com as consequências da ofensa e suas implicações para o futuro.</p>\",\n      ],\n      [\n        \"Círculos de Construção de Paz\",\n        \"Outro card na frente.\",\n        \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        2,\n        \"<p>Os <strong>Círculos</strong> são processos estruturados de diálogo que criam um espaço seguro para que as pessoas se conectem, compartilhem suas histórias e resolvam conflitos de maneira construtiva.</p>\",\n      ],\n    ],\n  };\n\nexport default function Exemplo() {\n  return <CardFlip {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "cards",
+    "name": "Cards",
+    "category": "Moléculas",
+    "description": "Grade de cartões com imagem, título e texto curto, cada um com um botão circular que expande um texto complementar em HTML. Ideal para apresentar princípios, passos ou conceitos lado a lado.",
+    "source": "packages/ui/src/components/molecules/cards",
+    "components": [
+      {
+        "name": "Cards",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "cardsData",
+            "required": true,
+            "type": "[string, string, string, number, string][]",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Cards } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Cards> = {\n    cardsData: [\n      [\n        \"Princípio 1\",\n        \"Foco na reparação do dano.\",\n        \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        1,\n        \"<p>O foco principal da Justiça Restaurativa é reparar o dano causado à vítima, em vez de apenas punir o ofensor.</p>\",\n      ],\n      [\n        \"Princípio 2\",\n        \"Participação voluntária.\",\n        \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        2,\n        \"<p>Todas as partes envolvidas devem participar voluntariamente do processo restaurativo.</p>\",\n      ],\n      [\n        \"Princípio 3\",\n        \"Inclusão de todos os envolvidos.\",\n        \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        3,\n        \"<p>Vítimas, ofensores e a comunidade são convidados a participar da resolução do conflito.</p>\",\n      ],\n    ],\n  };\n\nexport default function Exemplo() {\n  return <Cards {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "casestudy",
+    "name": "CaseStudy",
+    "category": "Moléculas",
+    "description": "Cartão de estudo de caso com faixa de topo ilustrada (ícone + título) e um corpo com fundo próprio para o conteúdo — pensado para blocos de leitura mais longos e autocontidos.",
+    "source": "packages/ui/src/components/molecules/caseStudy",
+    "components": [
+      {
+        "name": "CaseStudy",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "topBgImg",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "iconImg",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "bottomBgImg",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "bottomBgWidth",
+            "required": false,
+            "type": "string | number | undefined",
+            "description": ""
+          },
+          {
+            "name": "bottomBgHeight",
+            "required": false,
+            "type": "string | number | undefined",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { CaseStudy } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof CaseStudy> = {\n    title: \"Estudo de Caso 1\",\n    topBgImg: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    iconImg: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    bottomBgImg: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    children: (\n      <div>\n        <p>Este é um exemplo de estudo de caso com conteúdo rico dentro.</p>\n        <ul className=\"list-disc pl-5 mt-4\">\n          <li>Fato 1 do caso</li>\n          <li>Fato 2 do caso</li>\n        </ul>\n      </div>\n    ),\n  };\n\nexport default function Exemplo() {\n  return <CaseStudy {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "citation",
+    "name": "Citation",
+    "category": "Moléculas",
+    "description": "Bloco de citação editorial com ícone de livro e atribuição de autor. Ideal para referenciar frases de impacto, pensadores e referências bibliográficas dentro do fluxo de um módulo de aprendizagem.",
+    "source": "packages/ui/src/components/molecules/citation",
+    "components": [
+      {
+        "name": "Citation",
+        "initialVariant": "Verde",
+        "props": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "text",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"green\" | \"yellow\" | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Citation } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Citation> = {\n    title: \"Citação Importante\",\n    text: \"A educação é o processo de viver e não uma preparação para a vida futura.\",\n    children: \"John Dewey (1897)\",\n    variant: \"green\",\n  };\n\nexport default function Exemplo() {\n  return <Citation {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "embed",
+    "name": "Embed",
+    "category": "Moléculas",
+    "description": "Incorpora vídeos do YouTube/Vimeo, áudios do Spotify, arquivos do Google Drive ou posts do Instagram a partir de um único link, detectando a plataforma automaticamente.",
+    "source": "packages/ui/src/components/molecules/embed",
+    "components": [
+      {
+        "name": "Embed",
+        "initialVariant": "YouTube",
+        "props": [
+          {
+            "name": "text",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "link",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "isVimeo",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "isOnlyText",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "width",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "height",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "isReels",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "widthTablet",
+            "required": false,
+            "type": "string | undefined",
+            "description": "optional width to use for tablet viewports (e.g. '700px')"
+          },
+          {
+            "name": "containerClassName",
+            "required": false,
+            "type": "string | undefined",
+            "description": "optional class override for the outer container"
+          }
+        ],
+        "example": "'use client';\nimport { Embed } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Embed> = {\n    text: \"Exemplo de incorporação do YouTube (mídia externa):\",\n    link: \"https://www.youtube.com/watch?v=dQw4w9WgXcQ\",\n  };\n\nexport default function Exemplo() {\n  return <Embed {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "figure",
+    "name": "Figure",
+    "category": "Moléculas",
+    "description": "Wrapper editorial para imagens com numeração, legenda e referência, incluindo fallback e uma versão específica para mobile.",
+    "source": "packages/ui/src/components/molecules/figure",
+    "components": [
+      {
+        "name": "Figure",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "imgSrc",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "imgFb",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "imgSrcMobile",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "type",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "number",
+            "required": false,
+            "type": "string | number | undefined",
+            "description": ""
+          },
+          {
+            "name": "caption",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "reference",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "maxWidth",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "smallFont",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Figure } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Figure> = {\n    imgSrc: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    type: \"Figura\",\n    number: 1,\n    caption: \"Legenda descrevendo o conteúdo da imagem.\",\n    reference: \"Fonte: elaboração própria.\",\n  };\n\nexport default function Exemplo() {\n  return <Figure {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "imagelist",
+    "name": "ImageList",
+    "category": "Moléculas",
+    "description": "Sequência vertical de imagens conectadas por uma barra colorida, cada uma com fonte e um botão para expandir uma descrição.",
+    "source": "packages/ui/src/components/molecules/imageList",
+    "components": [
+      {
+        "name": "ImageList",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "items",
+            "required": true,
+            "type": "ImageListItem[]",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { ImageList } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof ImageList> = {\n    items: [\n      {\n        imgSrc: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        imgFallback: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        fonte: \"Fonte: elaboração própria.\",\n        descricao: \"Descrição detalhada que aparece ao clicar no botão de expandir.\",\n        barColor: \"#298BCA\",\n        buttonColor: \"#298BCA\",\n        buttonColorActive: \"#1E6591\",\n        descriptionBoxColor: \"#E1EFFF\",\n      },\n      {\n        imgSrc: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        imgFallback: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        fonte: \"Fonte: elaboração própria.\",\n        descricao: \"Segundo item da lista, com cor de destaque diferente.\",\n        barColor: \"#649753\",\n        buttonColor: \"#649753\",\n        buttonColorActive: \"#4C7440\",\n        descriptionBoxColor: \"#DFF1D8\",\n        isLast: true,\n      },\n    ],\n  };\n\nexport default function Exemplo() {\n  return <ImageList {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "indentcitation",
+    "name": "IndentCitation",
+    "category": "Moléculas",
+    "description": "Família de blocos de citação indentados com borda colorida à esquerda. O módulo exporta quatro componentes: IndentCitation, IndentCitationBg, IndentCitationImg e IndentCitationTitle.",
+    "source": "packages/ui/src/components/molecules/indentCitation",
+    "components": [
+      {
+        "name": "IndentCitation",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "borderColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "backgroundColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { IndentCitation } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof IndentCitation> = {\n    children:\n      \"A citação indentada é ideal para destacar trechos de livros, artigos ou falas importantes que merecem atenção especial do aluno.\",\n    borderColor: \"#0D4490\",\n  };\n\nexport default function Exemplo() {\n  return <IndentCitation {...props} />;\n}"
+      },
+      {
+        "name": "IndentCitationBg",
+        "initialVariant": "Amarelo",
+        "props": [
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "backgroundColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "text",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "option",
+            "required": false,
+            "type": "\"yellow\" | \"pink\" | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { IndentCitationBg } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof IndentCitationBg> = {\n    title: \"Você sabia?\",\n    text: \"Texto de apoio ao lado da imagem principal.\",\n    option: \"yellow\",\n    children: \"Conteúdo adicional abaixo da citação, quando necessário.\",\n  };\n\nexport default function Exemplo() {\n  return <IndentCitationBg {...props} />;\n}"
+      },
+      {
+        "name": "IndentCitationImg",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "backgroundColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "imageSrc",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "text",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "\"items-center\" | \"items-start\" | \"items-end\" | undefined",
+            "description": ""
+          },
+          {
+            "name": "borderColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { IndentCitationImg } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof IndentCitationImg> = {\n    title: \"Título do bloco\",\n    text: \"Texto ao lado da imagem, com borda colorida à esquerda em telas pequenas.\",\n    imageSrc: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    borderColor: \"#549d90\",\n  };\n\nexport default function Exemplo() {\n  return <IndentCitationImg {...props} />;\n}"
+      },
+      {
+        "name": "IndentCitationTitle",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "borderColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "backgroundColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { IndentCitationTitle } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof IndentCitationTitle> = {\n    title: \"Resumo do capítulo\",\n    children:\n      \"Igual ao IndentCitation, mas com um título em destaque acima do texto — útil para citações mais longas.\",\n    borderColor: \"#0D4490\",\n  };\n\nexport default function Exemplo() {\n  return <IndentCitationTitle {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "listmodule",
+    "name": "ListModule",
+    "category": "Moléculas",
+    "description": "Lista com borda esquerda colorida e título/subtítulo opcionais — usada para resumir o conteúdo de um módulo antes de começar.",
+    "source": "packages/ui/src/components/molecules/listModule",
+    "components": [
+      {
+        "name": "ListModule",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "borderColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "textList",
+            "required": false,
+            "type": "string[] | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { ListModule } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof ListModule> = {\n    title: \"Módulo 1\",\n    subtitle: \"Introdução aos Conceitos\",\n    textList: [\n      \"O que é Justiça Restaurativa?\",\n      \"Histórico e origens.\",\n      \"Diferença entre Justiça Retributiva e Restaurativa.\",\n      \"Os três pilares da JR.\",\n    ],\n    borderColor: \"#0D4490\",\n  };\n\nexport default function Exemplo() {\n  return <ListModule {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "minicards",
+    "name": "MiniCards",
+    "category": "Moléculas",
+    "description": "Versão compacta de Cards, em grade de duas colunas, com apenas duas cores (azul e verde) e texto expandido simples (sem HTML).",
+    "source": "packages/ui/src/components/molecules/miniCards",
+    "components": [
+      {
+        "name": "MiniCards",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "cardsData",
+            "required": true,
+            "type": "[string, string, string, number][]",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { MiniCards } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof MiniCards> = {\n    cardsData: [\n      [\n        \"Passo A\",\n        \"Descrição detalhada do Passo A que aparece ao clicar.\",\n        \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        1,\n      ],\n      [\n        \"Passo B\",\n        \"Descrição detalhada do Passo B com fundo verde.\",\n        \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n        2,\n      ],\n    ],\n  };\n\nexport default function Exemplo() {\n  return <MiniCards {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "questionreflect",
+    "name": "QuestionReflect",
+    "category": "Moléculas",
+    "description": "Bloco de pergunta reflexiva com um ícone decorativo grande no canto e duas paletas de tema (padrão e &quot;nuvem&quot;).",
+    "source": "packages/ui/src/components/molecules/questionReflect",
+    "components": [
+      {
+        "name": "QuestionReflect",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"default\" | \"cloud\" | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { QuestionReflect } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof QuestionReflect> = {\n    title: \"Para Refletir\",\n    children: <p>O que você pensa sobre a aplicação de círculos restaurativos em turmas do ensino fundamental?</p>,\n  };\n\nexport default function Exemplo() {\n  return <QuestionReflect {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "quotetext",
+    "name": "QuoteText",
+    "category": "Moléculas",
+    "description": "Bloco de citação simples com ícone de aspas e sombra suave — sem atribuição de autor nem ícone de livro, para trechos de destaque dentro do texto corrido.",
+    "source": "packages/ui/src/components/molecules/quoteText",
+    "components": [
+      {
+        "name": "QuoteText",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "specText",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "quoteAlign",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "fullScreen",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { QuoteText } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof QuoteText> = {\n    specText: \"quote-text-1\",\n    children: \"A educação é o processo de viver e não uma preparação para a vida futura.\",\n  };\n\nexport default function Exemplo() {\n  return <QuoteText {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "quotes",
+    "name": "Quotes",
+    "category": "Moléculas",
+    "description": "Citação com ícone de aspas colorido, alinhada à direita, em quatro esquemas de cor.",
+    "source": "packages/ui/src/components/molecules/quotes",
+    "components": [
+      {
+        "name": "Quotes",
+        "initialVariant": "Blue",
+        "props": [
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "colorScheme",
+            "required": false,
+            "type": "\"green\" | \"pink\" | \"blue\" | \"orange\" | undefined",
+            "description": ""
+          },
+          {
+            "name": "width",
+            "required": false,
+            "type": "number | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Quotes } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Quotes> = {\n    colorScheme: \"blue\",\n    children: <p>A educação não transforma o mundo. Educação muda as pessoas. Pessoas mudam o mundo.</p>,\n  };\n\nexport default function Exemplo() {\n  return <Quotes {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "referencemodal",
+    "name": "ReferenceModal",
+    "category": "Moléculas",
+    "description": "Texto clicável que abre um modal simples com a referência bibliográfica completa — para citações rápidas sem sair do fluxo de leitura.",
+    "source": "packages/ui/src/components/molecules/referenceModal",
+    "components": [
+      {
+        "name": "ReferenceModal",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "reference",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { ReferenceModal } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof ReferenceModal> = {\n    children: \"Clique aqui para ver a referência\",\n    reference: (\n      <div>\n        <p>\n          <strong>FREIRE, Paulo.</strong> Pedagogia da Autonomia: saberes necessários à prática educativa. São Paulo: Paz e Terra, 1996.\n        </p>\n      </div>\n    ),\n  };\n\nexport default function Exemplo() {\n  return <ReferenceModal {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "accordion",
+    "name": "Accordion",
+    "category": "Organismos",
+    "description": "Componente de revelação progressiva com cabeçalho visual rico. Usado em módulos de e-learning para organizar seções de conteúdo como \"Para saber mais\", \"Sugestão de resposta\" e \"Dica de aprofundamento\" sem sobrecarregar visualmente a página.",
+    "source": "packages/ui/src/components/organisms/accordion",
+    "components": [
+      {
+        "name": "Accordion",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "title",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "titleColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "titleColor2",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "bgColor",
+            "required": true,
+            "type": "BgVariant",
+            "description": ""
+          },
+          {
+            "name": "bgInsideColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"static\" | \"dynamic\" | \"borderful\" | undefined",
+            "description": ""
+          },
+          {
+            "name": "textColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "iconBackColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "upArrowColorVariant",
+            "required": false,
+            "type": "ArrowVariant | undefined",
+            "description": ""
+          },
+          {
+            "name": "downArrowColorVariant",
+            "required": false,
+            "type": "ArrowVariant | undefined",
+            "description": ""
+          },
+          {
+            "name": "headerHeight",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "sidePadding",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "course",
+            "required": false,
+            "type": "\"pce\" | undefined",
+            "description": "Quando informado, usa os assets do curso correspondente e ignora bgColor"
+          }
+        ],
+        "example": "'use client';\nimport { Accordion } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Accordion> = {\n    title: \"O que é Justiça Restaurativa?\",\n    bgColor: 1,\n    children: (\n      <p>\n        Um processo colaborativo que reúne todas as partes afetadas por uma ofensa para decidir\n        coletivamente como lidar com suas consequências.\n      </p>\n    ),\n  };\n\nexport default function Exemplo() {\n  return <Accordion {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "historytopics",
+    "name": "HistoryTopics",
+    "category": "Organismos",
+    "description": "Estrutura fixa de três &quot;gerações&quot; conectadas por uma linha vertical, cada uma com um resumo curto e um detalhe complementar em destaque.",
+    "source": "packages/ui/src/components/organisms/historyTopics",
+    "components": [
+      {
+        "name": "HistoryTopics",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "text1",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "text11",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "text2",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "text22",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "text3",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "text33",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "text333",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "lineColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { HistoryTopics } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof HistoryTopics> = {\n    text1: \"surgiu no contexto dos direitos humanos, após a Segunda Guerra Mundial.\",\n    text11: \"Trouxe o reconhecimento de direitos civis e políticos como base da cidadania.\",\n    text2: \"ampliou o debate para os direitos sociais, econômicos e culturais.\",\n    text22: \"Incluiu educação, saúde e trabalho como direitos fundamentais.\",\n    text3: \"trouxe os direitos difusos e coletivos, como meio ambiente e consumidor.\",\n    text33: \"Reconheceu interesses que ultrapassam o indivíduo isolado.\",\n    text333: \"Hoje, as três gerações convivem e se complementam na proteção da pessoa.\",\n  };\n\nexport default function Exemplo() {\n  return <HistoryTopics {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "learningblock",
+    "name": "LearningBlock",
+    "category": "Organismos",
+    "description": "Bloco de destaque com 10 variantes visuais diferentes — de faixas decorativas com SVG no topo/base a bordas ilustradas — para reflexões, dicas e sínteses ao longo do curso.",
+    "source": "packages/ui/src/components/organisms/learningBlock",
+    "components": [
+      {
+        "name": "LearningBlock",
+        "initialVariant": "Variante1",
+        "props": [
+          {
+            "name": "children",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "1 | 2 | 3 | 5 | 4 | 6 | 7 | 8 | 9 | 10 | undefined",
+            "description": ""
+          },
+          {
+            "name": "maxWidth",
+            "required": false,
+            "type": "string | number | undefined",
+            "description": ""
+          },
+          {
+            "name": "borderColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { LearningBlock } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof LearningBlock> = {\n    variant: 1,\n    children: <p>Bloco de destaque com fundo verde e SVGs decorativos no topo e na base.</p>,\n  };\n\nexport default function Exemplo() {\n  return <LearningBlock {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "questionoptionheader",
+    "name": "QuestionOptionHeader",
+    "category": "Organismos",
+    "description": "Cabeçalho estático de uma questão de múltipla escolha: número opcional, enunciado em parágrafos e a grade de alternativas em destaque.",
+    "source": "packages/ui/src/components/organisms/questionOptionHeader",
+    "components": [
+      {
+        "name": "QuestionOptionHeader",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "questionNumber",
+            "required": false,
+            "type": "number | undefined",
+            "description": ""
+          },
+          {
+            "name": "text",
+            "required": true,
+            "type": "string[]",
+            "description": ""
+          },
+          {
+            "name": "answersContent",
+            "required": true,
+            "type": "string[]",
+            "description": ""
+          },
+          {
+            "name": "groupIndex",
+            "required": true,
+            "type": "number",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { QuestionOptionHeader } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof QuestionOptionHeader> = {\n    questionNumber: 1,\n    text: [\"Qual das alternativas abaixo representa corretamente o conceito discutido na aula?\"],\n    answersContent: [\"Alternativa A\", \"Alternativa B\", \"Alternativa C\", \"Alternativa D\"],\n    groupIndex: 1,\n  };\n\nexport default function Exemplo() {\n  return <QuestionOptionHeader {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "starlist",
+    "name": "StarList",
+    "category": "Organismos",
+    "description": "Lista vertical conectada por uma linha tracejada, com um ícone de estrela e um trecho em destaque antes do texto de cada item.",
+    "source": "packages/ui/src/components/organisms/starList",
+    "components": [
+      {
+        "name": "StarList",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "items",
+            "required": true,
+            "type": "StarListItem[]",
+            "description": ""
+          },
+          {
+            "name": "lineColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { StarList } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof StarList> = {\n    items: [\n      { textBold: \"Primeiro pilar:\", text: \"reparação do dano causado à vítima.\" },\n      { textBold: \"Segundo pilar:\", text: \"responsabilização ativa do ofensor.\" },\n      { textBold: \"Terceiro pilar:\", text: \"reintegração de todos à comunidade.\" },\n    ],\n  };\n\nexport default function Exemplo() {\n  return <StarList {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "timelinewithcards",
+    "name": "TimelineWithCards",
+    "category": "Organismos",
+    "description": "Linha do tempo vertical com cartões alternando à esquerda e à direita, conectados por uma linha central e pontos coloridos — para eventos históricos ou marcos de um curso.",
+    "source": "packages/ui/src/components/organisms/timelineWithCards",
+    "components": [
+      {
+        "name": "TimelineWithCards",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "content",
+            "required": true,
+            "type": "TimelineItem[]",
+            "description": ""
+          },
+          {
+            "name": "lineColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "dotColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { TimelineWithCards } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof TimelineWithCards> = {\n    content: [\n      { title: \"1970\", content: \"Primeiras experiências de mediação vítima-ofensor no Canadá.\" },\n      { title: \"1989\", content: \"Nova Zelândia formaliza práticas restaurativas na justiça juvenil.\" },\n      { title: \"2002\", content: \"ONU publica princípios básicos sobre justiça restaurativa.\" },\n    ],\n  };\n\nexport default function Exemplo() {\n  return <TimelineWithCards {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "carousel",
+    "name": "Carousel",
+    "category": "Templates",
+    "description": "Carrossel de slides com setas de navegação e bolinhas indicadoras, com fundo opcional que pode trocar de imagem a cada slide.",
+    "source": "packages/ui/src/components/templates/carousel",
+    "components": [
+      {
+        "name": "Carousel",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "items",
+            "required": true,
+            "type": "ReactNode[]",
+            "description": ""
+          },
+          {
+            "name": "numberOfItems",
+            "required": false,
+            "type": "number | undefined",
+            "description": "Compatibilidade: a navegação usa items.length para evitar slides vazios."
+          },
+          {
+            "name": "bgImages",
+            "required": false,
+            "type": "string[] | undefined",
+            "description": ""
+          },
+          {
+            "name": "bgColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "bgPosition",
+            "required": false,
+            "type": "string[] | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Carousel } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Carousel> = {\n    items: [\n      <div key=\"1\" style={{ padding: \"40px\", background: \"#eee\" }}>Slide 1 Content</div>,\n      <div key=\"2\" style={{ padding: \"40px\", background: \"#ddd\" }}>Slide 2 Content</div>,\n      <div key=\"3\" style={{ padding: \"40px\", background: \"#ccc\" }}>Slide 3 Content</div>,\n    ],\n    numberOfItems: 3,\n    bgColor: \"#f0f0f0\",\n    bgImages: [],\n    bgPosition: [],\n  };\n\nexport default function Exemplo() {\n  return <Carousel {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "container",
+    "name": "Container",
+    "category": "Templates",
+    "description": "Wrapper de largura máxima que centraliza o conteúdo de uma página, com margens laterais responsivas.",
+    "source": "packages/ui/src/components/templates/container",
+    "components": [
+      {
+        "name": "Container",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Container } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Container> = {\n    children: (\n      <div style={{ background: \"#EFEFEF\", padding: 24, width: \"100%\", textAlign: \"center\" }}>\n        Conteúdo centralizado com largura máxima de 1200px\n      </div>\n    ),\n  };\n\nexport default function Exemplo() {\n  return <Container {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "glossary",
+    "name": "Glossary",
+    "category": "Templates",
+    "description": "Palavra com sublinhado pontilhado que revela uma definição em um popover ao passar o mouse, tocar ou clicar — posicionado automaticamente acima ou abaixo conforme o espaço disponível.",
+    "source": "packages/ui/src/components/templates/glossary",
+    "components": [
+      {
+        "name": "Glossary",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "word",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "definition",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "hasBoldTitle",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Glossary } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Glossary> = {\n    word: \"Justiça Restaurativa\",\n    definition:\n      \"Uma abordagem de resolução de conflitos que se concentra em reparar o dano causado às pessoas e relacionamentos, em vez de focar apenas na punição do infrator.\",\n    hasBoldTitle: true,\n  };\n\nexport default function Exemplo() {\n  return <Glossary {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "minibanner",
+    "name": "Minibanner",
+    "category": "Templates",
+    "description": "Faixa curta com ilustração de fundo por variante, usada para rotular seções como leitura, fixação, tarefa ou avaliação dentro de uma aula.",
+    "source": "packages/ui/src/components/templates/minibanner",
+    "components": [
+      {
+        "name": "Minibanner",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "fontColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"faixaWifi\" | \"referencias\" | \"minifaixaLaranja\" | \"minifaixaLaranjaEscuro\" | \"fixacaoLaranja\" | \"minifaixaCiano\" | \"minifaixaCianoEscuro\" | \"minifaixaVerde\" | \"minifaixaVerdeEscuro\" | \"minifaixaVerde2\" | \"minifaixaAzulEscuro\" | \"fixacaoAmarelo\" | \"fixacaoCiano\" | \"fixacaoVerde\" | \"fixacaoLaranja2\" | \"autoavaliacao\" | \"audiovisualLaranja\" | \"audiovisualAzul\" | \"audiovisualAmarelo\" | \"leitura\" | \"leituraLaranja\" | \"tarefa\" | \"tarefaAzul\" | \"artigos\" | \"minifaixaMarrom\" | \"avaliativo\" | \"ii\" | \"iii\" | \"iv\" | \"v\" | \"vi\" | \"minifaixalaranjaEDC\" | \"minifaixarosaEDC\" | \"minifaixaverdeEDC\" | \"minifaixaazulEDC\" | \"parapraticarEDC\" | \"atividadeavaliativaEDC\" | undefined",
+            "description": ""
+          },
+          {
+            "name": "width",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "height",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "mobileWidth",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "tabletHeight",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "mobileHeight",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Minibanner } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Minibanner> = {\n    variant: \"ii\",\n    children: \"Atividade\",\n  };\n\nexport default function Exemplo() {\n  return <Minibanner {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "pagination",
+    "name": "Pagination",
+    "category": "Templates",
+    "description": "Barra de navegação entre páginas de um módulo, com botões Voltar/Próximo e números de página clicáveis.",
+    "source": "packages/ui/src/components/templates/pagination",
+    "components": [
+      {
+        "name": "Pagination",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "numberOfPages",
+            "required": true,
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "currentPage",
+            "required": true,
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "onPageChange",
+            "required": true,
+            "type": "(page: number) => void",
+            "description": ""
+          },
+          {
+            "name": "onNext",
+            "required": false,
+            "type": "(() => void) | undefined",
+            "description": ""
+          },
+          {
+            "name": "onPrev",
+            "required": false,
+            "type": "(() => void) | undefined",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "showNumbers",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "className",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Pagination } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Pagination> = {\n    numberOfPages: 5,\n    currentPage: 2,\n    onPageChange: (page: number) => console.log(\"page change\", page),\n  };\n\nexport default function Exemplo() {\n  return <Pagination {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "slider",
+    "name": "Slider",
+    "category": "Templates",
+    "description": "Carrossel simples que recebe os slides diretamente como children, com quatro esquemas de cor de seta prontos.",
+    "source": "packages/ui/src/components/templates/slider",
+    "components": [
+      {
+        "name": "Slider",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode[]",
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "\"green\" | \"blue\" | \"orange\" | \"brown\" | undefined",
+            "description": ""
+          },
+          {
+            "name": "bulletColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "bulletActiveColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "onSlideChange",
+            "required": false,
+            "type": "((current: number) => void) | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { Slider } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof Slider> = {\n    variant: \"blue\",\n    bulletColor: \"#ccc\",\n    bulletActiveColor: \"#285C93\",\n    children: [\n      <div key=\"1\" style={{ padding: \"40px\", textAlign: \"center\" }}>Slide 1</div>,\n      <div key=\"2\" style={{ padding: \"40px\", textAlign: \"center\" }}>Slide 2</div>,\n      <div key=\"3\" style={{ padding: \"40px\", textAlign: \"center\" }}>Slide 3</div>,\n    ],\n  };\n\nexport default function Exemplo() {\n  return <Slider {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "textwithimagebox",
+    "name": "TextWithImageBox",
+    "category": "Templates",
+    "description": "Bloco de texto ao lado de uma ou duas imagens, com cor de fundo, borda e orientação configuráveis.",
+    "source": "packages/ui/src/components/templates/textWithImageBox",
+    "components": [
+      {
+        "name": "TextWithImageBox",
+        "initialVariant": "Default",
+        "props": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "hasTitle",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "children",
+            "required": true,
+            "type": "ReactNode",
+            "description": ""
+          },
+          {
+            "name": "backgroundColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "borderColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "imgSrc",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "imgSrc2",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          },
+          {
+            "name": "imgMaxWidth",
+            "required": false,
+            "type": "string | number | undefined",
+            "description": ""
+          },
+          {
+            "name": "isReverse",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "justifyText",
+            "required": false,
+            "type": "boolean | undefined",
+            "description": ""
+          },
+          {
+            "name": "titleColor",
+            "required": false,
+            "type": "string | undefined",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { TextWithImageBox } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof TextWithImageBox> = {\n    hasTitle: true,\n    title: \"Justiça Restaurativa\",\n    imgSrc: \"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIiB2aWV3Qm94PSIwIDAgOTAwIDUwMCI+PHJlY3Qgd2lkdGg9IjkwMCIgaGVpZ2h0PSI1MDAiIGZpbGw9IiNlMWVmZmYiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyMTAiIHI9IjEwMCIgZmlsbD0iI2Y1YzU0MiIvPjxwYXRoIGQ9Ik0zMzAgMzYwVjE1MGg0MDB2MjEweiIgZmlsbD0iIzQ4N2U0MiIvPjx0ZXh0IHg9IjQ1MCIgeT0iNDM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzE2NDE2NSI+QXByZW5kZXIsIHByYXRpY2FyLCBjb21wYXJ0aWxoYXI8L3RleHQ+PC9zdmc+\",\n    children: \"A justiça restaurativa propõe um novo olhar sobre o conflito, priorizando a reparação do dano em vez da punição.\",\n  };\n\nexport default function Exemplo() {\n  return <TextWithImageBox {...props} />;\n}"
+      }
+    ]
+  },
+  {
+    "slug": "unitybanner",
+    "name": "UnityBanner",
+    "category": "Templates",
+    "description": "Banner de abertura de módulo, com fundo ilustrado próprio por número de módulo (1 a 4) e duas variantes de proporção: principal e secundária.",
+    "source": "packages/ui/src/components/templates/unityBanner",
+    "components": [
+      {
+        "name": "UnityBanner",
+        "initialVariant": "Main",
+        "props": [
+          {
+            "name": "type",
+            "required": true,
+            "type": "\"main\" | \"secondary\"",
+            "description": ""
+          },
+          {
+            "name": "module",
+            "required": false,
+            "type": "number | undefined",
+            "description": ""
+          },
+          {
+            "name": "subtitle",
+            "required": false,
+            "type": "ReactNode",
+            "description": ""
+          }
+        ],
+        "example": "'use client';\nimport { UnityBanner } from '@modfly/ui';\nimport type { ComponentProps } from 'react';\n\nconst props: ComponentProps<typeof UnityBanner> = {\n    type: \"main\",\n    module: 1,\n    subtitle: \"Conhecimentos Fundamentais\",\n  };\n\nexport default function Exemplo() {\n  return <UnityBanner {...props} />;\n}"
+      }
+    ]
+  }
+]

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Postit } from "./index";
+import { Postit } from "@modfly/ui";
 
 const meta: Meta<typeof Postit> = {
   title: "Atoms/Postit",

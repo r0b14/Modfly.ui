@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ListModule } from "./index";
+import { ListModule } from "@modfly/ui";
 
 const meta: Meta<typeof ListModule> = {
   title: "Molecules/ListModule",

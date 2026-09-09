@@ -11,15 +11,16 @@ export interface TimelineWithCardsProps {
   dotColor?: string;
 }
 
-export const TimelineWithCards: React.FC<TimelineWithCardsProps> = ({ 
+export const TimelineWithCards: React.FC<TimelineWithCardsProps> = ({
   content,
   lineColor = "bg-orange-400",
   dotColor = "#F9AE63"
 }) => {
-  const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -32,7 +33,7 @@ export const TimelineWithCards: React.FC<TimelineWithCardsProps> = ({
           className={`absolute top-20 left-1/2 transform -translate-x-1/2 w-1 ${lineColor} max-md:left-10 max-md:translate-x-0`}
           style={{ height: 'calc(100% - 160px)' }}
         />
-        
+
         {content.map((item, index) => (
           <div
             key={index}
@@ -41,7 +42,7 @@ export const TimelineWithCards: React.FC<TimelineWithCardsProps> = ({
             } max-md:flex-col max-md:items-start max-md:ml-10`}
           >
             {/* Dot */}
-            <div 
+            <div
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full border-white border-8 z-10 max-md:static max-md:translate-x-[-30px] max-md:translate-y-0 max-md:mb-[-20px]"
               style={{ backgroundColor: dotColor }}
             />
@@ -57,11 +58,8 @@ export const TimelineWithCards: React.FC<TimelineWithCardsProps> = ({
             <div
               className="bg-white border-2 border-orange-400 rounded-xl shadow-lg p-6 max-w-[450px] w-full z-0 transition-transform duration-500"
               style={{
-                transform: isDesktop
-                  ? index % 2 === 0
-                    ? 'translateX(-15%)'
-                    : 'translateX(15%)'
-                  : 'none',
+                width: isDesktop ? 'calc(50% - 32px)' : '100%',
+                minWidth: 0,
               }}
             >
               <h4 className="text-[#3A584E] font-bold text-xl mb-3">{item.title}</h4>

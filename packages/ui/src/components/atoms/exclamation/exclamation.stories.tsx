@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Exclamation } from "./index";
+import { Exclamation } from "@modfly/ui";
 
 const meta: Meta<typeof Exclamation> = {
   title: "Atoms/Exclamation",

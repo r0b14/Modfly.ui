@@ -1,6 +1,6 @@
 {
   "name": "@modfly/ui",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Components built for learning.",
   "keywords": [
     "react",
@@ -15,22 +15,25 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+      "require": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && tailwindcss -i src/styles.css -o dist/styles.css --minify && node ../../scripts/package-metadata.mjs",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "dependencies": {
     "@emotion/css": "^11.13.5"
@@ -43,6 +46,19 @@
     "react-dom": "^18.2.0",
     "tsup": "^8.0.0",
     "esbuild-plugin-svgr": "^2.1.0",
-    "typescript": "^5.4.0"
+    "typescript": "^5.4.0",
+    "tailwindcss": "^3.4.19"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "homepage": "https://modfly.design",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/r0b14/Modfly.ui.git",
+    "directory": "packages/ui"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

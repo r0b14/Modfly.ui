@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { IndentCitationTitle } from "./IndentCitationTitle";
+import { IndentCitationTitle } from "@modfly/ui";
 
 const meta: Meta<typeof IndentCitationTitle> = {
   title: "Molecules/IndentCitation/IndentCitationTitle",
