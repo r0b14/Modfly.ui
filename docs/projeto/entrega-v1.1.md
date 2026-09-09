@@ -2,7 +2,9 @@
 
 **Data da verificação:** 9 de setembro de 2026.
 
-**Situação:** implementação local e validação automatizada; publicação estável ainda depende de autenticação e homologação externa. Este documento não declara uma release publicada.
+**Situação:** implementação, validação local e preview da documentação; publicação estável ainda depende de autenticação e homologação externa. Este documento não declara uma release publicada.
+
+[PR de revisão #5](https://github.com/r0b14/Modfly.ui/pull/5) · [Preview da documentação](https://modfly-docs-git-codex-modfly-v11-1f22a6-robson-thiagos-projects.vercel.app)
 
 ## O que foi implementado
 

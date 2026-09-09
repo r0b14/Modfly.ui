@@ -37,6 +37,7 @@ for (const item of catalog) {
 test('Accordion e modal funcionam com teclado', async ({page}) => {
   await page.goto('/docs/components/accordion');
   const trigger = page.getByTestId('preview-Accordion').getByRole('button').first();
+  await expect(trigger.getByRole('heading')).toHaveCSS('color', 'rgb(255, 255, 255)');
   await trigger.focus(); await page.keyboard.press('Enter'); await expect(trigger).toHaveAttribute('aria-expanded','true');
   await page.goto('/docs/components/referencemodal');
   const reference = page.getByTestId('preview-ReferenceModal').getByRole('button');

@@ -251,6 +251,9 @@ export const Accordion: React.FC<AccordionProps> = ({
   const isMobile = useMediaQuery("(max-width: 660px)");
   const [isOpen, setIsOpen] = useState(false);
   const panelId = useId();
+  // Cores de base das ilustrações: o contraste de imagens não é detectado por axe.
+  const imageBackgrounds: Record<number, string> = { 1: '#165315', 2: '#ED8041', 3: '#44A939', 4: '#285C93', 5: '#ED8041', 6: '#44A939', 7: '#FAEBC2', 8: '#FAEBC2', 9: '#FAA5CC', 10: '#2A6B13', 11: '#EA8914', 12: '#3A7AC5' };
+  const imageTitleColor = contrastColor(course ? (isOpen ? '#F6ECBD' : '#670098') : imageBackgrounds[bgColor] ?? '#FFFFFF');
   const triggerProps = { role: "button", tabIndex: 0, "aria-expanded": isOpen, "aria-controls": panelId, onKeyDown: (event: React.KeyboardEvent) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setIsOpen(open => !open); } } };
 
   // Renderização pelo sistema de cursos (pce, e futuros)
@@ -269,7 +272,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             style={{
               height: headerHeight ?? "100px",
               padding: "0 24px",
-              color: isOpen ? titleColor2 : titleColor,
+              color: (isOpen ? titleColor2 : titleColor) ?? imageTitleColor,
             }}
           >
             <AssetBg
@@ -337,7 +340,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             onClick={() => setIsOpen(!isOpen)}
               style={{
                 padding: headerPadding, margin: headerMargin,
-                height: headerHeight, color: isOpen ? titleColor2 : titleColor,
+                height: headerHeight, color: (isOpen ? titleColor2 : titleColor) ?? imageTitleColor,
               }}
             >
               <Asset
@@ -377,7 +380,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             onClick={() => setIsOpen(!isOpen)}
               style={{
                 padding: headerPadding, margin: headerMargin,
-                height: headerHeight ?? "100px", color: isOpen ? titleColor2 : titleColor,
+                height: headerHeight ?? "100px", color: (isOpen ? titleColor2 : titleColor) ?? imageTitleColor,
               }}
             >
               <AssetBg
