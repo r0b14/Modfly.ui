@@ -22,7 +22,8 @@
 
 - CLI `modfly init/list/add`, catálogo versionado, código editável, assets portáveis e tratamento de conflitos.
 - Documentação renderiza o pacote real; API e exemplos derivados de tipos e stories.
-- README reestruturado em PT-BR, com índice, primeiros passos, origem e decisões técnicas.
+- README com índice estável, trilhas de leitura, exemplos, arquitetura, evidências e estado de publicação; READMEs dos três pacotes e central técnica atualizados.
+- Site com 102 páginas em português e inglês, busca, navegação acessível, metadados e Storybook com apresentação bilíngue.
 - Aula de exemplo consome os novos pacotes.
 - CI com lint, tipos, builds, testes de comportamento, navegador e consumidores externos.
 
