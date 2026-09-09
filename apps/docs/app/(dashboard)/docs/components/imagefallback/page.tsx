@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ImageFallback",
+  description: "Imagem com fallback automático — tenta carregar um WEBP e recua para PNG/JPG se o navegador não suportar o formato moderno.",
+  alternates: { canonical: "/docs/components/imagefallback" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

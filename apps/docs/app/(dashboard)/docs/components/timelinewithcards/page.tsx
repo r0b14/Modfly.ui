@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TimelineWithCards",
+  description: "Linha do tempo vertical com cartões alternando à esquerda e à direita, conectados por uma linha central e pontos coloridos — para eventos históricos ou…",
+  alternates: { canonical: "/docs/components/timelinewithcards" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

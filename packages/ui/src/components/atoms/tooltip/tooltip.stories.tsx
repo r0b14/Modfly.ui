@@ -33,3 +33,13 @@ export const ComReferencia: Story = {
     position: "center",
   },
 };
+
+export const SemRabinho: Story = {
+  name: "Sem rabinho (container)",
+  args: {
+    text: "BNCC, 2018, p. 30",
+    content: "Competência é a mobilização de conhecimentos, habilidades, atitudes e valores.",
+    position: "center",
+    showArrow: false,
+  },
+};

@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "LearningBlock",
+  description: "Bloco de destaque com 10 variantes visuais diferentes — de faixas decorativas com SVG no topo/base a bordas ilustradas — para reflexões, dicas e sínteses ao…",
+  alternates: { canonical: "/docs/components/learningblock" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

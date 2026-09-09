@@ -4,6 +4,14 @@ import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 import { ReferenceModalPreview } from "./ReferenceModalPreview";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ReferenceModal",
+  description: "Texto clicável que abre um modal simples com a referência bibliográfica completa — para citações rápidas sem sair do fluxo de leitura.",
+  alternates: { canonical: "/docs/components/referencemodal" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "UnityBanner",
+  description: "Banner de abertura de módulo, com fundo ilustrado próprio por número de módulo (1 a 4) e duas variantes de proporção: principal e secundária.",
+  alternates: { canonical: "/docs/components/unitybanner" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

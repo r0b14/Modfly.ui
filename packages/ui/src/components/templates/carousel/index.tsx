@@ -1,145 +1,115 @@
-import React, { useEffect, useState, useRef } from 'react';
-import arrowIcon from './assets/arrow.svg';
+import React, { useState } from 'react';
 
-export interface CarouselProps {
-  items: Array<React.ReactNode>;
-  numberOfItems: number;
-  bgImages?: Array<string>;
-  bgColor?: string;
-  bgPosition?: Array<string>;
+export { CarouselLegacy } from './legacy';
+export type { CarouselLegacyProps } from './legacy';
+
+// Redesign EDC (2026-07): cada slide é um card colorido com fundo decorativo
+// (tubos/setas ilustrados nos cantos), seta de navegação sobreposta nas bordas
+// e paginação por pontos. SVGs renderizados como componentes React via SVGR.
+import CardBlue from './assets/cardBlue.svg';
+import CardOrange from './assets/cardOrange.svg';
+import CardGreen from './assets/cardGreen.svg';
+import Arrow from './assets/arrow.svg';
+
+type Svg = React.FC<React.SVGProps<SVGSVGElement>>;
+
+const CARD_BY_SCHEME: Record<'blue' | 'orange' | 'green', Svg> = {
+  blue: CardBlue,
+  orange: CardOrange,
+  green: CardGreen,
+};
+
+const ARROW_COLOR_BY_SCHEME: Record<'blue' | 'orange' | 'green', string> = {
+  blue: '#285C93',
+  orange: '#DD6F2F',
+  green: '#2D9522',
+};
+
+export interface CarouselItem {
+  content: React.ReactNode;
+  colorScheme?: 'blue' | 'orange' | 'green';
 }
 
-export const Carousel: React.FC<CarouselProps> = ({
-  items,
-  numberOfItems,
-  bgImages,
-  bgColor = "transparent",
-  bgPosition = [],
-}) => {
-  const [widthPx, setWidthPx] = useState(1200);
+export interface CarouselProps {
+  items: CarouselItem[];
+}
+
+export const Carousel: React.FC<CarouselProps> = ({ items }) => {
   const [slideNow, setSlideNow] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
-  const resizeContent = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth < 1350) {
-        setWidthPx(window.innerWidth - 150);
-      } else {
-        setWidthPx(1200);
-      }
-    }
-  };
+  const goToSlide = (index: number) => setSlideNow(index);
+  const nextSlide = () => slideNow < items.length - 1 && goToSlide(slideNow + 1);
+  const prevSlide = () => slideNow > 0 && goToSlide(slideNow - 1);
 
-  useEffect(() => {
-    resizeContent();
-    window.addEventListener('resize', resizeContent);
-    return () => window.removeEventListener('resize', resizeContent);
-  }, []);
-
-  const goToSlide = (index: number) => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollTo({
-        left: index * widthPx,
-        behavior: 'smooth',
-      });
-      setSlideNow(index);
-    }
-  };
-
-  const nextSlide = () => {
-    if (slideNow < numberOfItems - 1) {
-      goToSlide(slideNow + 1);
-    }
-  };
-
-  const prevSlide = () => {
-    if (slideNow > 0) {
-      goToSlide(slideNow - 1);
-    }
-  };
-
-  const currentBgImage = bgImages && bgImages[slideNow] ? `url(${bgImages[slideNow]})` : 'none';
-  const currentBgPos = bgPosition[slideNow] || 'center';
+  const currentArrowColor = ARROW_COLOR_BY_SCHEME[items[slideNow]?.colorScheme ?? 'blue'];
 
   return (
-    <div 
-      className="relative flex flex-col items-center w-full my-10 overflow-hidden"
-      style={{
-        backgroundColor: bgColor,
-        backgroundImage: currentBgImage,
-        backgroundPosition: currentBgPos,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        transition: 'background-image 0.5s ease-in-out'
-      }}
-    >
-      <div className="flex h-full text-justify justify-center items-center py-20 flex-col sm:flex-row w-full max-w-[1400px]">
-        {/* Prev Arrow */}
-        <button 
-          onClick={prevSlide}
-          className="hidden sm:block p-4 focus:outline-none transition-transform hover:scale-125 disabled:opacity-30 disabled:cursor-not-allowed"
-          disabled={slideNow === 0}
-        >
-          <img src={arrowIcon} alt="Anterior" className="rotate-180 w-4 h-6" />
-        </button>
-
-        {/* Carousel Items Container */}
+    <div className="flex flex-col items-center w-full my-10 px-4">
+      <div className="relative overflow-hidden w-full" style={{ maxWidth: '1200px' }}>
         <div
-          ref={carouselRef}
-          className="flex overflow-hidden scroll-smooth"
-          style={{
-            maxWidth: `${widthPx}px`,
-            minWidth: `${widthPx}px`,
-          }}
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateX(-${slideNow * 100}%)` }}
         >
-          {items.map((item, index) => (
-            <div
-              key={index}
-              className="px-4 sm:px-10 flex-shrink-0"
-              style={{
-                width: `${widthPx}px`,
-              }}
-            >
-              <div className="w-full flex justify-center">
-                {item}
+          {items.map(({ content, colorScheme = 'blue' }, index) => {
+            const Card = CARD_BY_SCHEME[colorScheme];
+
+            return (
+              <div key={index} className="flex-shrink-0 w-full">
+                <div className="relative rounded-xl overflow-hidden min-h-[200px] flex items-center">
+                  <Card
+                    aria-hidden="true"
+                    preserveAspectRatio="none"
+                    className="absolute inset-0 w-full h-full"
+                  />
+                  <div className="relative z-10 flex-1 flex justify-center px-14 sm:px-20 py-10 text-center">
+                    {content}
+                  </div>
+                </div>
               </div>
-            </div>
+            );
+          })}
+        </div>
+
+        <button
+          type="button"
+          onClick={prevSlide}
+          disabled={slideNow === 0}
+          aria-label="Slide anterior"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-4 focus:outline-none transition-transform hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+          style={{ color: currentArrowColor }}
+        >
+          <Arrow className="w-[15px] h-[30px] rotate-180" />
+        </button>
+        <button
+          type="button"
+          onClick={nextSlide}
+          disabled={slideNow === items.length - 1}
+          aria-label="Próximo slide"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-4 focus:outline-none transition-transform hover:scale-110 disabled:opacity-30 disabled:cursor-not-allowed"
+          style={{ color: currentArrowColor }}
+        >
+          <Arrow className="w-[15px] h-[30px]" />
+        </button>
+      </div>
+
+      {items.length > 1 && (
+        <div className="flex gap-3 mt-6">
+          {items.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              onClick={() => goToSlide(index)}
+              aria-label={`Ir para slide ${index + 1}`}
+              className="p-1"
+            >
+              <span
+                className="block w-3 h-3 rounded-full transition-opacity duration-300"
+                style={{ background: '#3A584E', opacity: index === slideNow ? 1 : 0.5 }}
+              />
+            </button>
           ))}
         </div>
-
-        {/* Next Arrow */}
-        <button 
-          onClick={nextSlide}
-          className="hidden sm:block p-4 focus:outline-none transition-transform hover:scale-125 disabled:opacity-30 disabled:cursor-not-allowed"
-          disabled={slideNow === numberOfItems - 1}
-        >
-          <img src={arrowIcon} alt="Próximo" className="w-4 h-6" />
-        </button>
-
-        {/* Mobile Arrows */}
-        <div className="flex sm:hidden w-full justify-between px-10 mt-8">
-          <button onClick={prevSlide} disabled={slideNow === 0}>
-            <img src={arrowIcon} alt="Anterior" className="rotate-180 w-4 h-6" />
-          </button>
-          <button onClick={nextSlide} disabled={slideNow === numberOfItems - 1}>
-            <img src={arrowIcon} alt="Próximo" className="w-4 h-6" />
-          </button>
-        </div>
-      </div>
-
-      {/* Bullets */}
-      <div className="flex gap-4 mb-10">
-        {items.map((_, index) => (
-          <button
-            key={index}
-            className={`w-4 h-4 rounded-full transition-all duration-300 ${
-              index === slideNow ? "bg-[#285C93] scale-125" : "bg-gray-300 hover:bg-gray-400"
-            }`}
-            onClick={() => goToSlide(index)}
-            aria-label={`Ir para slide ${index + 1}`}
-          />
-        ))}
-      </div>
+      )}
     </div>
   );
 };

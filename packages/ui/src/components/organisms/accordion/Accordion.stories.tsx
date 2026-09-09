@@ -33,6 +33,21 @@ export const VarianteSol: Story = {
   },
 };
 
+export const VarianteValeAPena: Story = {
+  name: "Variante vale a pena explicar (bgColor 23)",
+  args: {
+    title: "Vale a pena explicar",
+    bgColor: 23,
+    children: (
+      <ul>
+        <li>Conhecer o projeto de pesquisa que originou este curso;</li>
+        <li>Entender o que são gases de efeito estufa e suas principais causas;</li>
+        <li>Refletir sobre como os impactos da emergência climática afetam de maneira desigual grupos e comunidades já historicamente mais vulnerabilizados.</li>
+      </ul>
+    ),
+  },
+};
+
 export const VarianteCompacta: Story = {
   name: "Variante compacta (bgColor 9)",
   args: {

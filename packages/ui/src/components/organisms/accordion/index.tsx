@@ -4,9 +4,11 @@ import { courseAccordionAssets, type CourseVariant } from "./assets";
 
 // Assets
 import sun from "./assets/sun.svg";
+import valeAPenaIcon from "./assets/valeAPenaIcon.svg";
+import arrowPink from "./assets/arrowPink.svg";
 import ArrowDownYellow from "./assets/arrowDownYellow.png";
 import ArrowDownBlue from "./assets/arrowDownBlue.png";
-import ArrowDownWhite from "./assets/arrowDownWhite.png";
+import ArrowDownWhite from "./assets/arrowDownWhite.svg";
 import ArrowDownBrown from "./assets/arrowDownBrown.png";
 import ArrowDownOrange from "./assets/arrowDownOrange.png";
 import ArrowDownOrange2 from "./assets/arrowDownOrange2.svg";
@@ -159,7 +161,7 @@ const arrowsClosed = [
 ] as const;
 
 export type ArrowVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-export type BgVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22;
+export type BgVariant = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23;
 
 export interface AccordionProps {
   title: React.ReactNode;
@@ -308,6 +310,69 @@ export const Accordion: React.FC<AccordionProps> = ({
   const arrowSrcForHeader: ImgAsset = custom ? custom.arrow : (isOpen ? ArrowDownWhite : getArrowImage(upArrowColorVariant));
   const isSmallBgHeader = bgColor >= 9 && bgColor <= 12;
   const headerArrowWidth = isSmallBgHeader ? (isMobile ? "15px" : "20px") : (isMobile ? "40px" : "50px");
+
+  if (bgColor === 23) {
+    return (
+      <div className={styleAccordionBox}>
+        <div
+          className={styleAccordionContent}
+          style={{ overflow: "hidden", padding: 0, maxWidth: sizeVariation }}
+        >
+          <div
+            className="relative w-full flex items-center cursor-pointer"
+            onClick={() => setIsOpen(!isOpen)}
+            style={{
+              height: headerHeight ?? "102px",
+              background: "#FAEBC2",
+              paddingLeft: isMobile ? "76px" : "152px",
+              paddingRight: isMobile ? "30px" : "60px",
+            }}
+          >
+            <Asset
+              src={valeAPenaIcon}
+              className="absolute left-0 top-0 h-full w-auto pointer-events-none"
+            />
+            <h2 className="relative z-10 flex-1 text-[18px] sm:text-[28px] font-bold text-white">
+              {title}
+            </h2>
+            <Asset
+              src={arrowPink}
+              alt={isOpen ? "Fechar" : "Abrir"}
+              className="relative z-10 shrink-0"
+              style={{
+                width: isMobile ? "30px" : "50px",
+                transform: isOpen ? "rotate(180deg)" : "rotate(0)",
+                transition: "transform 0.3s linear",
+              }}
+            />
+          </div>
+          <div
+            className="overflow-hidden"
+            style={{
+              background: "#FAEBC2",
+              maxHeight: isOpen ? "3300px" : "0px",
+              opacity: isOpen ? 1 : 0,
+              transition: "max-height 0.3s linear, opacity 0.2s linear, padding 0.3s linear",
+              padding: isOpen ? "20px" : "0 20px",
+            }}
+          >
+            <div
+              className="p-4"
+              style={{
+                borderStyle: "solid",
+                borderWidth: "20px",
+                borderImageSlice: "35 44 32 38",
+                borderImageSource:
+                  "url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDU3IiBoZWlnaHQ9IjYyOCIgdmlld0JveD0iMCAwIDQ1NyA2MjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik00MTAuMTA5IDEuMjVIMjI1LjY5Mkg0MS4yNzU5IiBzdHJva2U9IiNGOThCQkQiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00Mi4yNzU5IDYyNi4yNUg0MS41NDI0TDEuMjc1ODggNTk0LjcxN0wyNC45NjgyIDI2Ljk3NTZDMjQuOTY4MiAyNi45NzU2IDMyLjE5ODcgMTEuNDI4OSAzNy4xOTA5IDEuMjVINDIuMjc1OSIgc3Ryb2tlPSIjRjk4QkJEIiBzdHJva2Utd2lkdGg9IjIuNSIvPgo8cGF0aCBkPSJNNDExLjEwOSA2MjYuMjVIMjI2LjY5Mkg0Mi4yNzU5IiBzdHJva2U9IiNGOThCQkQiIHN0cm9rZS13aWR0aD0iMi41Ii8+CjxwYXRoIGQ9Ik00MDkuMjc2IDEuMjVINDEzLjE2Nkw0MjUuMzUyIDM3LjQxMTFMNDQ2LjY3NyA1MS42NzM3TDQ1NS4yNzYgNTM0Ljk3TDQxMy4xNjYgNjI2LjI1TDQwOS4yNzYgNjI2LjI1IiBzdHJva2U9IiNGOThCQkQiIHN0cm9rZS13aWR0aD0iMi41Ii8+Cjwvc3ZnPgo=')",
+              }}
+            >
+              <div style={{ maxWidth: isMobile ? "320px" : "100%" }}>{children}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styleAccordionBox}>

@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ListModule",
+  description: "Lista com borda esquerda colorida e título/subtítulo opcionais — usada para resumir o conteúdo de um módulo antes de começar.",
+  alternates: { canonical: "/docs/components/listmodule" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

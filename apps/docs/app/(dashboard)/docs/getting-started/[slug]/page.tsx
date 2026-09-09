@@ -4,12 +4,53 @@ import { PackageManagerTabs } from '@/components/docs/PackageManagerTabs';
 import { Pager } from '@/components/docs/Pager';
 import { RightToc } from '@/components/docs/RightToc';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 
 interface GettingStartedPageProps {
   params: Promise<{ slug: string }>;
 }
 
 const VALID_STEPS = ['introduction', 'installation', 'tailwind-setup', 'theming'];
+
+const STEP_METADATA: Record<string, { title: string; description: string }> = {
+  introduction: {
+    title: 'Introduction',
+    description:
+      'Conheça a Modfly UI: uma biblioteca de componentes React projetada para o ecossistema de e-learning e cursos estruturados.',
+  },
+  installation: {
+    title: 'Installation',
+    description:
+      'Como instalar a Modfly UI no seu projeto React com npm, pnpm ou yarn e configurar as dependências necessárias.',
+  },
+  'tailwind-setup': {
+    title: 'Tailwind setup',
+    description:
+      'Configure o Tailwind CSS para funcionar com os componentes da Modfly UI no seu projeto.',
+  },
+  theming: {
+    title: 'Theming',
+    description:
+      'Personalize cores, tipografia e tokens de design dos componentes da Modfly UI.',
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: GettingStartedPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const step = STEP_METADATA[slug];
+
+  if (!step) {
+    return {};
+  }
+
+  return {
+    title: step.title,
+    description: step.description,
+    alternates: { canonical: `/docs/getting-started/${slug}` },
+  };
+}
 
 const TOC_ENTRIES = [
   { id: 'requirements', label: 'Before you install' },

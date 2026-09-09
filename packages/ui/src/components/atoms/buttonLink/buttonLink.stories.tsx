@@ -6,15 +6,9 @@ const meta: Meta<typeof ButtonLink> = {
   component: ButtonLink,
   tags: ["autodocs"],
   argTypes: {
-    variant: {
-      control: "radio",
-      options: [1, 2, 3],
-      description: "1: link/clique, 2: documento, 3: vídeo",
-    },
-    colorScheme: {
-      control: "radio",
-      options: [1, 2, 3],
-      description: "1: azul, 2: amarelo, 3: rosa",
+    showIcon: {
+      control: "boolean",
+      description: "Exibe o selo com a seta à esquerda do rótulo",
     },
   },
 };
@@ -22,29 +16,24 @@ const meta: Meta<typeof ButtonLink> = {
 export default meta;
 type Story = StoryObj<typeof ButtonLink>;
 
-export const Azul: Story = {
+export const Default: Story = {
   args: {
-    variant: 1,
-    colorScheme: 1,
-    text: "Acessar material",
+    children: "Acessar agora",
     href: "#",
   },
 };
 
-export const Amarelo: Story = {
+export const SemIcone: Story = {
   args: {
-    variant: 2,
-    colorScheme: 2,
-    text: "Baixar documento",
+    children: "Acessar agora",
     href: "#",
+    showIcon: false,
   },
 };
 
-export const Rosa: Story = {
+export const ComoBotao: Story = {
   args: {
-    variant: 3,
-    colorScheme: 3,
-    text: "Assistir vídeo",
-    href: "#",
+    children: "Acessar agora",
+    onClick: () => alert("clicado"),
   },
 };

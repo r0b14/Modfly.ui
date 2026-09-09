@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Citation",
+  description: "Bloco de citação editorial com ícone de livro e atribuição de autor. Ideal para referenciar frases de impacto, pensadores e referências bibliográficas…",
+  alternates: { canonical: "/docs/components/citation" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

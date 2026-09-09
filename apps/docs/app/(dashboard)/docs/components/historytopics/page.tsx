@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "HistoryTopics",
+  description: "Estrutura fixa de três \"gerações\" conectadas por uma linha vertical, cada uma com um resumo curto e um detalhe complementar em destaque.",
+  alternates: { canonical: "/docs/components/historytopics" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

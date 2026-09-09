@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Check",
+  description: "Lista de itens de aprendizagem com moldura decorativa de topo e rodapé — ideal para resumir objetivos ou pontos-chave de uma unidade.",
+  alternates: { canonical: "/docs/components/check" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

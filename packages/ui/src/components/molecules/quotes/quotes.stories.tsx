@@ -8,7 +8,7 @@ const meta: Meta<typeof Quotes> = {
   argTypes: {
     colorScheme: {
       control: "radio",
-      options: ["blue", "green", "orange", "pink"],
+      options: ["purple", "blue", "yellow", "orange", "beige"],
     },
   },
 };
@@ -23,23 +23,30 @@ export const Blue: Story = {
   },
 };
 
-export const Green: Story = {
+export const Purple: Story = {
   args: {
-    colorScheme: "green",
+    colorScheme: "purple",
     children: <p>Se a educação sozinha não transforma a sociedade, sem ela tampouco a sociedade muda.</p>,
+  },
+};
+
+export const Yellow: Story = {
+  args: {
+    colorScheme: "yellow",
+    children: <p>Ensinar não é transmitir conhecimento, mas criar as possibilidades para a sua própria produção ou a sua construção.</p>,
   },
 };
 
 export const Orange: Story = {
   args: {
     colorScheme: "orange",
-    children: <p>Ensinar não é transmitir conhecimento, mas criar as possibilidades para a sua própria produção ou a sua construção.</p>,
+    children: <p>Não há saber mais ou saber menos. Há saberes diferentes.</p>,
   },
 };
 
-export const Pink: Story = {
+export const Beige: Story = {
   args: {
-    colorScheme: "pink",
-    children: <p>Não há saber mais ou saber menos. Há saberes diferentes.</p>,
+    colorScheme: "beige",
+    children: <p>Quem ensina aprende ao ensinar. E quem aprende ensina ao aprender.</p>,
   },
 };

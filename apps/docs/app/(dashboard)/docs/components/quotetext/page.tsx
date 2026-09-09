@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "QuoteText",
+  description: "Bloco de citação simples com ícone de aspas e sombra suave — sem atribuição de autor nem ícone de livro, para trechos de destaque dentro do texto corrido.",
+  alternates: { canonical: "/docs/components/quotetext" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

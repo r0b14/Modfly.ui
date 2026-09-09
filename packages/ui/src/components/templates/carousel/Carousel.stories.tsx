@@ -13,13 +13,30 @@ type Story = StoryObj<typeof Carousel>;
 export const Default: Story = {
   args: {
     items: [
-      <div key="1" style={{ padding: "40px", background: "#eee" }}>Slide 1 Content</div>,
-      <div key="2" style={{ padding: "40px", background: "#ddd" }}>Slide 2 Content</div>,
-      <div key="3" style={{ padding: "40px", background: "#ccc" }}>Slide 3 Content</div>,
+      {
+        colorScheme: "blue",
+        content: (
+          <p className="text-[22px] leading-[1.5] text-black m-0">
+            &quot;Se você não tem uma religião, você não tem um Deus&quot;
+          </p>
+        ),
+      },
+      {
+        colorScheme: "orange",
+        content: (
+          <p className="text-[22px] leading-[1.5] text-black m-0">
+            &quot;Se você não tem um Deus, você não tem uma alma&quot;
+          </p>
+        ),
+      },
+      {
+        colorScheme: "green",
+        content: (
+          <p className="text-[22px] leading-[1.5] text-black m-0">
+            &quot;E, por fim, se você não tem uma alma, não é humano, mas animal&quot; (Grosfoguel, 2016 p. 37).
+          </p>
+        ),
+      },
     ],
-    numberOfItems: 3,
-    bgColor: "#f0f0f0",
-    bgImages: [],
-    bgPosition: [],
   },
 };

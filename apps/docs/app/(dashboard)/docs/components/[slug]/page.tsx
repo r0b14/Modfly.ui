@@ -1,8 +1,27 @@
 import React from "react";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { findComponentBySlug } from "@/lib/routes";
 
 interface ComponentPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({
+  params,
+}: ComponentPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const component = findComponentBySlug(slug);
+
+  if (!component) {
+    return {};
+  }
+
+  return {
+    title: component.name,
+    description: `Documentação, exemplos de uso e propriedades do componente ${component.name} da Modfly UI.`,
+    alternates: { canonical: `/docs/components/${slug}` },
+  };
 }
 
 const VALID_COMPONENTS = [

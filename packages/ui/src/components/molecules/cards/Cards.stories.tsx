@@ -12,28 +12,54 @@ type Story = StoryObj<typeof Cards>;
 
 export const Default: Story = {
   args: {
-    cardsData: [
-      [
-        "Princípio 1",
-        "Foco na reparação do dano.",
-        "https://via.placeholder.com/300x250",
-        1,
-        "<p>O foco principal da Justiça Restaurativa é reparar o dano causado à vítima, em vez de apenas punir o ofensor.</p>",
-      ],
-      [
-        "Princípio 2",
-        "Participação voluntária.",
-        "https://via.placeholder.com/300x250",
-        2,
-        "<p>Todas as partes envolvidas devem participar voluntariamente do processo restaurativo.</p>",
-      ],
-      [
-        "Princípio 3",
-        "Inclusão de todos os envolvidos.",
-        "https://via.placeholder.com/300x250",
-        3,
-        "<p>Vítimas, ofensores e a comunidade são convidados a participar da resolução do conflito.</p>",
-      ],
+    items: [
+      {
+        title: "Infraestrutura das escolas",
+        imageUrl: "https://via.placeholder.com/380x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "green",
+        content: "Ter metade das escolas com infraestrutura sustentável e resiliente;",
+      },
+      {
+        title: "Currículo",
+        imageUrl: "https://via.placeholder.com/380x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "blue",
+        content:
+          "Ter a educação ambiental climática presente nos currículos nacionais de 90% dos países do mundo;",
+      },
+    ],
+  },
+};
+
+export const QuatroCards: Story = {
+  name: "Quatro cards",
+  args: {
+    items: [
+      {
+        title: "Infraestrutura das escolas",
+        imageUrl: "https://via.placeholder.com/380x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "green",
+        content: "Ter metade das escolas com infraestrutura sustentável e resiliente;",
+      },
+      {
+        title: "Currículo",
+        imageUrl: "https://via.placeholder.com/380x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "blue",
+        content:
+          "Ter a educação ambiental climática presente nos currículos nacionais de 90% dos países do mundo;",
+      },
+      {
+        title: "Formação de educadores e capacidades de gestão dos sistemas educativos",
+        imageUrl: "https://via.placeholder.com/380x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "blue",
+        content:
+          "Promover formação continuada a educadores(as) e gestores(as) sobre mudanças climáticas e como se adaptar a elas e contribuir para que não aumentem;",
+      },
+      {
+        title: "Comunidades",
+        imageUrl: "https://via.placeholder.com/380x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "green",
+        content: "Fortalecer o papel das comunidades na ação climática por meio da educação;",
+      },
     ],
   },
 };

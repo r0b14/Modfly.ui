@@ -4,6 +4,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Postit",
+  description: "Bloco de destaque estilizado como um post-it — corpo azul com dobra decorativa no topo e no rodapé — para observações e avisos que precisam se destacar do…",
+  alternates: { canonical: "/docs/components/postit" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

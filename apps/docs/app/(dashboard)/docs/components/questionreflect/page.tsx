@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "QuestionReflect",
+  description: "Bloco de pergunta reflexiva com um ícone decorativo grande no canto e duas paletas de tema (padrão e \"nuvem\").",
+  alternates: { canonical: "/docs/components/questionreflect" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

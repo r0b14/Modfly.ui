@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "RangeGreen",
+  description: "Faixa horizontal verde com três sub-variantes visuais (bordas retas, arredondadas e finas) — mesmo conceito do RangeBlue, com outra paleta e mais opções de…",
+  alternates: { canonical: "/docs/components/rangegreen" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

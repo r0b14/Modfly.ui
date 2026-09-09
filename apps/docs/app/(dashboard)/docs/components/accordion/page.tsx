@@ -4,6 +4,14 @@ import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 import { AccordionPCEPreview } from "./AccordionPreview";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Accordion",
+  description: "Componente de revelação progressiva com cabeçalho visual rico. Usado em módulos de e-learning para organizar seções de conteúdo como \"Para saber mais\",…",
+  alternates: { canonical: "/docs/components/accordion" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

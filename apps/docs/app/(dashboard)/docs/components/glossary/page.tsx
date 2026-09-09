@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Glossary",
+  description: "Palavra com sublinhado pontilhado que revela uma definição em um popover ao passar o mouse, tocar ou clicar — posicionado automaticamente acima ou abaixo…",
+  alternates: { canonical: "/docs/components/glossary" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

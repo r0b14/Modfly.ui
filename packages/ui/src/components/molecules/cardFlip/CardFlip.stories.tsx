@@ -12,21 +12,21 @@ type Story = StoryObj<typeof CardFlip>;
 
 export const Default: Story = {
   args: {
-    cardFlipData: [
-      [
-        "Justiça Restaurativa",
-        "Breve descrição na frente.",
-        "https://via.placeholder.com/400x300",
-        1,
-        "<p>A <strong>Justiça Restaurativa</strong> é um processo através do qual todas as partes que têm uma participação em uma ofensa específica reúnem-se para resolver coletivamente como lidar com as consequências da ofensa e suas implicações para o futuro.</p>",
-      ],
-      [
-        "Círculos de Construção de Paz",
-        "Outro card na frente.",
-        "https://via.placeholder.com/400x300",
-        2,
-        "<p>Os <strong>Círculos</strong> são processos estruturados de diálogo que criam um espaço seguro para que as pessoas se conectem, compartilhem suas histórias e resolvam conflitos de maneira construtiva.</p>",
-      ],
+    items: [
+      {
+        title: "Jornada Pedagógica Pluvipet + App: Monitoramento participativo de chuvas",
+        imageUrl: "https://via.placeholder.com/340x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "blue",
+        content:
+          "<p>Esta Jornada Pedagógica é uma resposta prática e inovadora aos desafios impostos pelas mudanças do clima. Vivemos em um mundo onde desastres como inundações e deslizamentos de terra são cada vez mais frequentes.</p>",
+      },
+      {
+        title: "Jornada Pedagógica Bacia Escola: Aprendendo com a bacia hidrográfica",
+        imageUrl: "https://via.placeholder.com/340x274.png?text=Ilustra%C3%A7%C3%A3o",
+        colorScheme: "green",
+        content:
+          "<p>A Jornada Pedagógica Bacia Escola nos convida a redefinir nosso entendimento sobre o lugar onde vivemos. Ela parte da premissa de que a bacia hidrográfica, mais do que uma simples área geográfica, é uma verdadeira escola a céu aberto.</p>",
+      },
     ],
   },
 };

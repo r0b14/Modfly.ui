@@ -3,6 +3,15 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ButtonLink",
+  description:
+    "Botão de chamada de ação em duas gerações: o novo design GFD (pill salmão com selo ilustrado) e as versões legadas com fundo ilustrado em três esquemas de cor.",
+  alternates: { canonical: "/docs/components/buttonlink" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },
@@ -22,13 +31,14 @@ export default function ButtonLinkPage() {
             ButtonLink<i>.</i>
           </h1>
           <p className="doc-lead">
-            Botão ou link com fundo ilustrado e ícone de ação — clique, documento ou vídeo —
-            em três esquemas de cor. O componente mais usado para chamadas de ação dentro de um módulo.
+            Botão de chamada de ação em duas gerações: <strong>ButtonLink</strong>, o novo design
+            (pill salmão com selo ilustrado e estado de hover), e <strong>ButtonLinkLegacy</strong>,
+            as versões anteriores com fundo ilustrado — clique, documento ou vídeo — em três esquemas de cor.
           </p>
           <div className="doc-meta">
             <div className="doc-meta-item">Pacote <b>@modfly/ui</b></div>
             <div className="doc-meta-item">Categoria <b>átomo</b></div>
-            <div className="doc-meta-item">Props <b>11</b></div>
+            <div className="doc-meta-item">Exports <b>2</b></div>
             <div className="doc-meta-item">Status <b style={{ color: "var(--green)" }}>estável</b></div>
           </div>
         </header>
@@ -42,15 +52,18 @@ export default function ButtonLinkPage() {
               Visão geral
             </h2>
             <p className="doc-p">
-              O <code>ButtonLink</code> renderiza como <code>&lt;a&gt;</code> (quando recebe <code>href</code>)
-              ou <code>&lt;button&gt;</code>. O fundo é um SVG ilustrado que muda de cor com{" "}
-              <code>colorScheme</code>, e o ícone à direita do texto muda de acordo com <code>variant</code>{" "}
-              (o tipo de ação: link, documento ou vídeo).
+              Ambos renderizam como <code>&lt;a&gt;</code> (quando recebem <code>href</code>)
+              ou <code>&lt;button&gt;</code>. O novo <code>ButtonLink</code> tem um único visual — pill
+              salmão com textura, selo com seta e troca de estado no hover — e recebe o rótulo
+              via <code>children</code>. O <code>ButtonLinkLegacy</code> mantém a API anterior: fundo SVG
+              que muda com <code>colorScheme</code> e ícone à direita definido por <code>variant</code>{" "}
+              (link, documento ou vídeo).
             </p>
             <Callout variant="info" label="Quando usar">
               <p>
-                Use <code>ButtonLink</code> para links externos, abrir documentos ou reproduzir vídeos.
-                Para download direto de um PDF com rótulo fixo, prefira <code>ButtonPdfDownload</code>.
+                Prefira o novo <code>ButtonLink</code> em módulos novos. Use <code>ButtonLinkLegacy</code>{" "}
+                para manter consistência com módulos já publicados no visual antigo. Para download direto
+                de um PDF com rótulo fixo, prefira <code>ButtonPdfDownload</code>.
               </p>
             </Callout>
           </section>
@@ -63,25 +76,46 @@ export default function ButtonLinkPage() {
               Visualização
             </h2>
             <p className="doc-p">
-              Os três esquemas de cor, cada um com o ícone padrão (<code>variant=1</code>, clique):
+              O novo design (passe o mouse para ver o estado de hover):
             </p>
 
             <div className="my-7 bg-[var(--paper)] border border-rule rounded-xl overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-rule bg-[var(--bg)]">
                 <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">
-                  Preview · ButtonLink / cores
+                  Preview · ButtonLink / novo design
                 </span>
                 <span className="ml-auto font-jetbrains text-[9px] text-[var(--muted)] bg-[var(--bg-2)] py-[2px] px-[7px] rounded-full border border-rule mono">
                   átomo
                 </span>
               </div>
               <div className="p-10 bg-white flex flex-wrap items-center gap-6 justify-center">
-                <ButtonLinkPreview text="Acessar material" color="blue" icon="click" />
-                <ButtonLinkPreview text="Baixar documento" color="yellow" icon="click" />
-                <ButtonLinkPreview text="Assistir vídeo" color="pink" icon="click" />
+                <ButtonLinkNewPreview text="Acessar agora" />
               </div>
               <div className="px-4 py-2 border-t border-rule bg-[var(--bg)] font-jetbrains text-[10px] text-[var(--muted)] mono">
-                ↑ <span className="text-[var(--ink-2)]">&lt;ButtonLink /&gt;</span> — props: colorScheme, variant, text, href
+                ↑ <span className="text-[var(--ink-2)]">&lt;ButtonLink /&gt;</span> — props: children, href, showIcon
+              </div>
+            </div>
+
+            <p className="doc-p">
+              As versões legadas, nos três esquemas de cor com o ícone padrão (<code>variant=1</code>, clique):
+            </p>
+
+            <div className="my-7 bg-[var(--paper)] border border-rule rounded-xl overflow-hidden">
+              <div className="flex items-center gap-2 px-4 py-2.5 border-b border-rule bg-[var(--bg)]">
+                <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">
+                  Preview · ButtonLinkLegacy / cores
+                </span>
+                <span className="ml-auto font-jetbrains text-[9px] text-[var(--muted)] bg-[var(--bg-2)] py-[2px] px-[7px] rounded-full border border-rule mono">
+                  átomo
+                </span>
+              </div>
+              <div className="p-10 bg-white flex flex-wrap items-center gap-6 justify-center">
+                <ButtonLinkLegacyPreview text="Acessar material" color="blue" icon="click" />
+                <ButtonLinkLegacyPreview text="Baixar documento" color="yellow" icon="click" />
+                <ButtonLinkLegacyPreview text="Assistir vídeo" color="pink" icon="click" />
+              </div>
+              <div className="px-4 py-2 border-t border-rule bg-[var(--bg)] font-jetbrains text-[10px] text-[var(--muted)] mono">
+                ↑ <span className="text-[var(--ink-2)]">&lt;ButtonLinkLegacy /&gt;</span> — props: colorScheme, variant, text, href
               </div>
             </div>
           </section>
@@ -94,6 +128,60 @@ export default function ButtonLinkPage() {
               Propriedades
             </h2>
 
+            <h3 className="doc-h3">ButtonLink (novo design)</h3>
+            <div className="table-wrap">
+              <table className="doc-table">
+                <thead>
+                  <tr><th>Prop</th><th>Tipo</th><th>Padrão</th><th>Descrição</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>children</span></td>
+                    <td><span className="mono" style={{ fontSize: "12.5px" }}>ReactNode</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>—</span></td>
+                    <td>Rótulo do botão (obrigatória)</td>
+                  </tr>
+                  <tr>
+                    <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>href</span></td>
+                    <td><span className="mono" style={{ fontSize: "12.5px" }}>string</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>—</span></td>
+                    <td>Se presente, renderiza <code>&lt;a&gt;</code>; senão, <code>&lt;button&gt;</code></td>
+                  </tr>
+                  <tr>
+                    <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>showIcon</span></td>
+                    <td><span className="mono" style={{ fontSize: "12.5px" }}>boolean</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>true</span></td>
+                    <td>Exibe o selo com a seta à esquerda do rótulo</td>
+                  </tr>
+                  <tr>
+                    <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>icon / hoverIcon</span></td>
+                    <td><span className="mono" style={{ fontSize: "12.5px" }}>ReactNode</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>—</span></td>
+                    <td>Substituem o selo padrão nos estados normal e hover</td>
+                  </tr>
+                  <tr>
+                    <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>onClick</span></td>
+                    <td><span className="mono" style={{ fontSize: "12.5px" }}>{"() => void"}</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>—</span></td>
+                    <td>Handler de clique, funciona nos dois modos (link ou botão)</td>
+                  </tr>
+                  <tr>
+                    <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>target</span></td>
+                    <td><span className="mono" style={{ fontSize: "12.5px" }}>_blank | _self | _parent | _top</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>_blank</span></td>
+                    <td>Aplicado apenas quando <code>href</code> está presente</td>
+                  </tr>
+                  <tr>
+                    <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>className</span></td>
+                    <td><span className="mono" style={{ fontSize: "12.5px" }}>string</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>&quot;&quot;</span></td>
+                    <td>Classes Tailwind extras aplicadas ao <code>&lt;a&gt;</code>/<code>&lt;button&gt;</code> raiz</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="doc-h3">ButtonLinkLegacy</h3>
             <div className="table-wrap">
               <table className="doc-table">
                 <thead>
@@ -139,7 +227,7 @@ export default function ButtonLinkPage() {
                   <tr>
                     <td><span className="mono" style={{ fontSize: "12.5px", color: "var(--orange)" }}>textColor / textClassName</span></td>
                     <td><span className="mono" style={{ fontSize: "12.5px" }}>string</span></td>
-                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>black</span></td>
+                    <td><span className="mono text-[var(--muted)]" style={{ fontSize: "12.5px" }}>—</span></td>
                     <td>Cor e classes Tailwind do rótulo</td>
                   </tr>
                   <tr>
@@ -160,8 +248,9 @@ export default function ButtonLinkPage() {
 
             <Callout variant="warn" label="Fundo é SVG, não CSS">
               <p>
-                O fundo colorido é um componente SVG (via SVGR), renderizado como <code>&lt;svg&gt;</code>{" "}
-                absolutamente posicionado atrás do conteúdo — não uma imagem CSS <code>background</code>.
+                Nas duas versões o fundo/textura é um componente SVG (via SVGR), renderizado como{" "}
+                <code>&lt;svg&gt;</code> absolutamente posicionado atrás do conteúdo — não uma imagem
+                CSS <code>background</code>.
               </p>
             </Callout>
           </section>
@@ -175,11 +264,12 @@ export default function ButtonLinkPage() {
             </h2>
             <DocCodeBlock
               filename="Unidade01.tsx"
-              raw={`import { ButtonLink } from '@modfly/ui'\n\nexport function Aula01() {\n  return (\n    <ButtonLink\n      variant={1}\n      colorScheme={1}\n      text="Acessar material"\n      href="https://example.com"\n    />\n  )\n}`}
+              raw={`import { ButtonLink, ButtonLinkLegacy } from '@modfly/ui'\n\nexport function Aula01() {\n  return (\n    <>\n      <ButtonLink href="https://example.com">\n        Acessar agora\n      </ButtonLink>\n\n      <ButtonLinkLegacy\n        variant={1}\n        colorScheme={1}\n        text="Acessar material"\n        href="https://example.com"\n      />\n    </>\n  )\n}`}
             >
               <pre style={{ margin: 0 }}>
                 <span className="tok-key">import</span>{" "}{"{ "}
-                <span className="tok-tag">ButtonLink</span>
+                <span className="tok-tag">ButtonLink</span>,{" "}
+                <span className="tok-tag">ButtonLinkLegacy</span>
                 {" }"}{" "}
                 <span className="tok-key">from</span>{" "}
                 <span className="tok-str">&apos;@modfly/ui&apos;</span>
@@ -188,12 +278,18 @@ export default function ButtonLinkPage() {
                 <span className="tok-fn">Aula01</span>() {"{"}
                 {"\n"}
                 {"  "}<span className="tok-key">return</span> ({"\n"}
-                {"    "}&lt;<span className="tok-tag">ButtonLink</span>{"\n"}
-                {"      "}<span className="tok-attr">variant</span>={"{"}<span className="tok-num">1</span>{"}"}{"\n"}
-                {"      "}<span className="tok-attr">colorScheme</span>={"{"}<span className="tok-num">1</span>{"}"}{"\n"}
-                {"      "}<span className="tok-attr">text</span>=<span className="tok-str">&quot;Acessar material&quot;</span>{"\n"}
-                {"      "}<span className="tok-attr">href</span>=<span className="tok-str">&quot;https://example.com&quot;</span>{"\n"}
-                {"    "}/&gt;{"\n"}
+                {"    "}&lt;&gt;{"\n"}
+                {"      "}&lt;<span className="tok-tag">ButtonLink</span>{" "}
+                <span className="tok-attr">href</span>=<span className="tok-str">&quot;https://example.com&quot;</span>&gt;{"\n"}
+                {"        "}Acessar agora{"\n"}
+                {"      "}&lt;/<span className="tok-tag">ButtonLink</span>&gt;{"\n\n"}
+                {"      "}&lt;<span className="tok-tag">ButtonLinkLegacy</span>{"\n"}
+                {"        "}<span className="tok-attr">variant</span>={"{"}<span className="tok-num">1</span>{"}"}{"\n"}
+                {"        "}<span className="tok-attr">colorScheme</span>={"{"}<span className="tok-num">1</span>{"}"}{"\n"}
+                {"        "}<span className="tok-attr">text</span>=<span className="tok-str">&quot;Acessar material&quot;</span>{"\n"}
+                {"        "}<span className="tok-attr">href</span>=<span className="tok-str">&quot;https://example.com&quot;</span>{"\n"}
+                {"      "}/&gt;{"\n"}
+                {"    "}&lt;/&gt;{"\n"}
                 {"  "}){"\n"}
                 {"}"}
               </pre>
@@ -208,7 +304,32 @@ export default function ButtonLinkPage() {
               Variantes
             </h2>
             <p className="doc-p">
-              As três cores (<code>colorScheme</code>) combinadas com os três tipos de ícone (<code>variant</code>):
+              Os dois estados do novo design (o hover é automático via CSS):
+            </p>
+            <div className="grid grid-cols-2 gap-5 my-7">
+              <div className="border border-rule rounded-xl overflow-hidden bg-[var(--paper)]">
+                <div className="px-4 py-2.5 border-b border-rule bg-[var(--bg)] flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#FFB89F" }} />
+                  <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">Novo · padrão</span>
+                </div>
+                <div className="p-6 bg-white flex items-center justify-center">
+                  <ButtonLinkNewPreview text="Acessar agora" small />
+                </div>
+              </div>
+              <div className="border border-rule rounded-xl overflow-hidden bg-[var(--paper)]">
+                <div className="px-4 py-2.5 border-b border-rule bg-[var(--bg)] flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#F59978" }} />
+                  <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">Novo · hover</span>
+                </div>
+                <div className="p-6 bg-white flex items-center justify-center">
+                  <ButtonLinkNewPreview text="Acessar agora" small forceHover />
+                </div>
+              </div>
+            </div>
+
+            <p className="doc-p">
+              E as três cores legadas (<code>colorScheme</code>) combinadas com os três tipos de
+              ícone (<code>variant</code>):
             </p>
             <div className="grid grid-cols-3 gap-5 my-7">
               <div className="border border-rule rounded-xl overflow-hidden bg-[var(--paper)]">
@@ -217,7 +338,7 @@ export default function ButtonLinkPage() {
                   <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">Azul · clique</span>
                 </div>
                 <div className="p-6 bg-white flex items-center justify-center">
-                  <ButtonLinkPreview text="Clique aqui" color="blue" icon="click" small />
+                  <ButtonLinkLegacyPreview text="Clique aqui" color="blue" icon="click" small />
                 </div>
               </div>
               <div className="border border-rule rounded-xl overflow-hidden bg-[var(--paper)]">
@@ -226,7 +347,7 @@ export default function ButtonLinkPage() {
                   <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">Amarelo · documento</span>
                 </div>
                 <div className="p-6 bg-white flex items-center justify-center">
-                  <ButtonLinkPreview text="Ver PDF" color="yellow" icon="doc" small />
+                  <ButtonLinkLegacyPreview text="Ver PDF" color="yellow" icon="doc" small />
                 </div>
               </div>
               <div className="border border-rule rounded-xl overflow-hidden bg-[var(--paper)]">
@@ -235,7 +356,7 @@ export default function ButtonLinkPage() {
                   <span className="font-jetbrains text-[10px] uppercase tracking-[0.12em] text-[var(--muted)] mono">Rosa · vídeo</span>
                 </div>
                 <div className="p-6 bg-white flex items-center justify-center">
-                  <ButtonLinkPreview text="Assistir" color="pink" icon="video" small />
+                  <ButtonLinkLegacyPreview text="Assistir" color="pink" icon="video" small />
                 </div>
               </div>
             </div>
@@ -245,15 +366,16 @@ export default function ButtonLinkPage() {
             </h3>
             <ul className="prose-ul">
               <li className="prose-li">
-                O ícone é decorativo (<code>aria-hidden</code>) — a semântica vem do texto do rótulo, sempre visível.
+                Os ícones são decorativos (<code>aria-hidden</code>) — a semântica vem do texto do rótulo, sempre visível.
               </li>
               <li className="prose-li">
-                Quando <code>href</code> é usado com <code>target=&quot;_blank&quot;</code>, o componente já adiciona{" "}
+                Quando <code>href</code> é usado com <code>target=&quot;_blank&quot;</code>, os componentes já adicionam{" "}
                 <code>rel=&quot;noopener noreferrer&quot;</code> automaticamente.
               </li>
               <li className="prose-li">
-                Garanta contraste entre <code>textColor</code> e o fundo escolhido — o padrão (preto) funciona bem
-                nos três esquemas de cor.
+                O novo <code>ButtonLink</code> tem anel de foco visível para navegação por teclado{" "}
+                (<code>focus-visible</code>). No legado, garanta contraste entre <code>textColor</code>{" "}
+                e o fundo escolhido.
               </li>
             </ul>
           </section>
@@ -266,7 +388,7 @@ export default function ButtonLinkPage() {
           />
 
           <footer className="pg-foot">
-            <span>Atualizado em <b style={{ color: "var(--ink-2)" }}>16 Jul 2026</b></span>
+            <span>Atualizado em <b style={{ color: "var(--ink-2)" }}>25 Jul 2026</b></span>
             <a href="https://github.com/r0b14/Modfly.ui/tree/main/packages/ui/src/components/atoms/buttonLink" target="_blank" rel="noopener noreferrer">Ver fonte ↗</a>
             <a href="https://github.com/r0b14/Modfly.ui/issues" target="_blank" rel="noopener noreferrer">Reportar problema</a>
             <span className="right">© Modfly UI · MIT</span>
@@ -274,15 +396,71 @@ export default function ButtonLinkPage() {
         </article>
       </div>
 
-      <RightToc entries={TOC_ENTRIES} readTime="~3 min" editHref="https://github.com/r0b14/Modfly.ui" />
+      <RightToc entries={TOC_ENTRIES} readTime="~4 min" editHref="https://github.com/r0b14/Modfly.ui" />
     </div>
   );
 }
 
-// Usa os mesmos arquivos SVG do componente real (copiados para
-// /public/buttonlink) em vez de redesenhar o fundo à mão — evita a
-// prévia da doc dessincronizar do visual oficial do pacote.
-function ButtonLinkPreview({
+// Ambos os previews usam os mesmos arquivos SVG dos componentes reais (copiados
+// para /public/buttonlink) em vez de redesenhar o visual à mão — evita a prévia
+// da doc dessincronizar do visual oficial do pacote.
+
+function ButtonLinkNewPreview({
+  text,
+  small = false,
+  forceHover = false,
+}: {
+  text: string;
+  small?: boolean;
+  forceHover?: boolean;
+}) {
+  const height = small ? 54 : 64;
+  return (
+    <span
+      className={`group relative inline-flex items-center gap-4 rounded-full overflow-hidden px-7 transition-all duration-300 ${
+        forceHover
+          ? "bg-[#F59978] shadow-[0_0_6.8px_rgba(0,0,0,0.25)]"
+          : "bg-[#FFB89F] shadow-[0_0_6.8px_rgba(0,0,0,0.35)] hover:bg-[#F59978] hover:shadow-[0_0_6.8px_rgba(0,0,0,0.25)]"
+      }`}
+      style={{ height }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/buttonlink/textureOverlay.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      />
+      <span className="relative z-10 shrink-0" style={{ width: small ? 42 : 51, height: small ? 41 : 50 }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/buttonlink/arrowBadgeDefault.svg"
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${
+            forceHover ? "opacity-0" : "group-hover:opacity-0"
+          }`}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/buttonlink/arrowBadgeHover.svg"
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 w-full h-full transition-opacity duration-300 ${
+            forceHover ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+          }`}
+        />
+      </span>
+      <span
+        className={`relative z-10 whitespace-nowrap font-medium text-[#881438] ${small ? "text-lg" : "text-[22px]"}`}
+      >
+        {text}
+      </span>
+    </span>
+  );
+}
+
+function ButtonLinkLegacyPreview({
   text,
   color,
   icon,

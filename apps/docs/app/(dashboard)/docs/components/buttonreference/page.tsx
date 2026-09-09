@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ButtonReference",
+  description: "Botão de alternância (\"Ver mais\" / \"Ver menos\") com ícone de mais/menos — usado para expandir ou recolher uma lista de referências bibliográficas.",
+  alternates: { canonical: "/docs/components/buttonreference" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

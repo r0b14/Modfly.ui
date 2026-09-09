@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "StarList",
+  description: "Lista vertical conectada por uma linha tracejada, com um ícone de estrela e um trecho em destaque antes do texto de cada item.",
+  alternates: { canonical: "/docs/components/starlist" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

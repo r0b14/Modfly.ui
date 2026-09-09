@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CaseStudy",
+  description: "Cartão de estudo de caso com faixa de topo ilustrada (ícone + título) e um corpo com fundo próprio para o conteúdo — pensado para blocos de leitura mais…",
+  alternates: { canonical: "/docs/components/casestudy" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

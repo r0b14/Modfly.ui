@@ -1,140 +1,69 @@
 import React from "react";
 
-// Backgrounds (SVGs renderizados como componentes React via plugin SVGR configurado no tsup)
-import ButtomBlueBg from "./assets/ButtomBlue.svg";
-import ButtomBlueHoverBg from "./assets/ButtomBlueHover.svg";
-import ButtomPinkBg from "./assets/ButtomPink.svg";
-import ButtomPinkHoverBg from "./assets/ButtomPinkHover.svg";
-import ButtomYellowBg from "./assets/ButtomYellow.svg";
-import ButtomYellowHoverBg from "./assets/ButtomYellowHover.svg";
+export { ButtonLinkLegacy } from "./legacy";
+export type { ButtonLinkLegacyProps } from "./legacy";
 
-// Icons
-import ClickYellowIcon from "./assets/clickYellow.svg";
-import DocBlueIcon from "./assets/docBlue.svg";
-import DocPinkIcon from "./assets/docPink.svg";
-import DocYellowIcon from "./assets/docYellow.svg";
-import VideoYellowIcon from "./assets/videoYellow.svg";
-
-// Cor padrão do texto por esquema, conforme especificação do Figma
-const SCHEME_TEXT_COLOR: Record<1 | 2 | 3, string> = {
-  1: "#164165", // azul
-  2: "#7f5e05", // amarelo
-  3: "#9c355a", // rosa
-};
+// SVGs renderizados como componentes React via plugin SVGR configurado no tsup
+import ArrowBadgeDefault from "./assets/arrowBadgeDefault.svg";
+import ArrowBadgeHover from "./assets/arrowBadgeHover.svg";
+import TextureOverlay from "./assets/textureOverlay.svg";
 
 export interface ButtonLinkProps {
-  variant: 1 | 2 | 3; // 1: click, 2: doc, 3: video
-  colorScheme?: 1 | 2 | 3; // 1: azul, 2: amarelo, 3: rosa
-  text?: string;
-  textColor?: string;
-  textClassName?: string;
+  /** Rótulo do botão */
+  children: React.ReactNode;
   href?: string;
-  onClick?: () => void;
   target?: "_blank" | "_self" | "_parent" | "_top";
+  onClick?: () => void;
+  /** Exibe o selo com a seta à esquerda do rótulo (padrão: true) */
+  showIcon?: boolean;
+  /** Substitui o ícone do estado padrão */
+  icon?: React.ReactNode;
+  /** Substitui o ícone exibido no hover */
+  hoverIcon?: React.ReactNode;
   className?: string;
-  width?: string | number;
-  height?: string | number;
 }
 
 export const ButtonLink: React.FC<ButtonLinkProps> = ({
-  variant,
-  colorScheme = 1,
-  text,
-  textColor,
-  textClassName = 'tracking-wide m-0 p-0 font-bold sm:text-2xl',
+  children,
   href,
-  onClick,
   target = "_blank",
+  onClick,
+  showIcon = true,
+  icon,
+  hoverIcon,
   className = "",
-  width = 269,
-  height = 60,
 }) => {
-  const resolvedTextColor = textColor ?? SCHEME_TEXT_COLOR[colorScheme];
-
-  const DefaultBg = (() => {
-    switch (colorScheme) {
-      case 2: return ButtomYellowBg;
-      case 3: return ButtomPinkBg;
-      default: return ButtomBlueBg;
-    }
-  })();
-
-  const HoverBg = (() => {
-    switch (colorScheme) {
-      case 2: return ButtomYellowHoverBg;
-      case 3: return ButtomPinkHoverBg;
-      default: return ButtomBlueHoverBg;
-    }
-  })();
-
-  const VariantIcon = (() => {
-    switch (variant) {
-      case 1:
-        return ClickYellowIcon;
-      case 2:
-        switch (colorScheme) {
-          case 2: return DocYellowIcon;
-          case 3: return DocPinkIcon;
-          default: return DocBlueIcon;
-        }
-      case 3:
-        return VideoYellowIcon;
-      default:
-        return ClickYellowIcon;
-    }
-  })();
-
-  const buttonStyle: React.CSSProperties = {
-    maxWidth: typeof width === 'number' ? `${width}px` : width,
-    width: '100%',
-    height: typeof height === 'number' ? `${height}px` : height,
-  };
-
-  const buttonClassName = `
-    group flex items-center justify-center
-    font-bold text-2xl cursor-pointer
-    border-none no-underline
+  const containerClassName = `
+    group relative inline-flex items-center gap-4
+    h-16 px-7 py-[7px] rounded-full overflow-hidden
+    bg-[#FFB89F] shadow-[0_0_6.8px_rgba(0,0,0,0.35)]
+    hover:bg-[#F59978] hover:shadow-[0_0_6.8px_rgba(0,0,0,0.25)]
     transition-all duration-300 ease-in-out
-    relative mx-auto
-    hover:no-underline hover:scale-105
-    focus:outline-none
+    cursor-pointer border-none no-underline hover:no-underline
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-[#881438] focus-visible:ring-offset-2
     ${className}
-  `.replace(/\s+/g, ' ').trim();
+  `.replace(/\s+/g, " ").trim();
 
-  const content = (
-    <span
-      className="relative z-10 space-x-2 flex items-center"
-      style={colorScheme === 1 && variant === 2 ? { margin: "10px" } : undefined}
-    >
-      {text && (
-        <p
-          className={textClassName}
-          style={{ color: resolvedTextColor }}
-          dangerouslySetInnerHTML={{ __html: text }}
-        />
-      )}
-      <span className="flex items-center justify-center flex-shrink-0">
-        <VariantIcon
-          aria-hidden="true"
-          className="sm:w-10 sm:h-10 w-8 h-8 object-contain transition-transform duration-300 ease-in-out"
-        />
-      </span>
-    </span>
-  );
-
-  const buttonInner = (
+  const inner = (
     <>
-      <DefaultBg
+      <TextureOverlay
         aria-hidden="true"
-        preserveAspectRatio="none"
-        className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-in-out group-hover:opacity-0"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 w-full h-full pointer-events-none"
       />
-      <HoverBg
-        aria-hidden="true"
-        preserveAspectRatio="none"
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"
-      />
-      {content}
+      {showIcon && (
+        <span className="relative z-10 w-[51px] h-[50px] shrink-0">
+          <span className="absolute inset-0 transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+            {icon ?? <ArrowBadgeDefault className="w-full h-full" />}
+          </span>
+          <span className="absolute inset-0 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+            {hoverIcon ?? <ArrowBadgeHover className="w-full h-full" />}
+          </span>
+        </span>
+      )}
+      <span className="relative z-10 whitespace-nowrap font-medium text-[22px] leading-[33px] text-[#881438]">
+        {children}
+      </span>
     </>
   );
 
@@ -144,23 +73,17 @@ export const ButtonLink: React.FC<ButtonLinkProps> = ({
         href={href}
         target={target}
         rel={target === "_blank" ? "noopener noreferrer" : undefined}
-        className={buttonClassName}
-        style={buttonStyle}
+        className={containerClassName}
         onClick={onClick}
       >
-        {buttonInner}
+        {inner}
       </a>
     );
   }
 
   return (
-    <button
-      type="button"
-      className={buttonClassName}
-      style={buttonStyle}
-      onClick={onClick}
-    >
-      {buttonInner}
+    <button type="button" className={containerClassName} onClick={onClick}>
+      {inner}
     </button>
   );
 };

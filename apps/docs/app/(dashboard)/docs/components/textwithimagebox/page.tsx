@@ -4,6 +4,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TextWithImageBox",
+  description: "Bloco de texto ao lado de uma ou duas imagens, com cor de fundo, borda e orientação configuráveis.",
+  alternates: { canonical: "/docs/components/textwithimagebox" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

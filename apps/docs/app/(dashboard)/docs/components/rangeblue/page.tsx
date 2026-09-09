@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "RangeBlue",
+  description: "Faixa horizontal de fundo azul com bordas decorativas onduladas no topo e na base — envolve conteúdo em destaque com um texto de apoio opcional ao lado.",
+  alternates: { canonical: "/docs/components/rangeblue" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

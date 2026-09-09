@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ButtonPdfDownload",
+  description: "Botão dedicado ao download de um PDF — slides da aula ou roteiro de vídeo — com rótulo fixo e ícone de download.",
+  alternates: { canonical: "/docs/components/buttonpdfdownload" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

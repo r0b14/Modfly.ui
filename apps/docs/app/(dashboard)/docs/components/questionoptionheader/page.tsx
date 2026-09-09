@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "QuestionOptionHeader",
+  description: "Cabeçalho estático de uma questão de múltipla escolha: número opcional, enunciado em parágrafos e a grade de alternativas em destaque.",
+  alternates: { canonical: "/docs/components/questionoptionheader" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },

@@ -3,6 +3,14 @@ import { Callout } from "@/components/docs/Callout";
 import { Pager } from "@/components/docs/Pager";
 import { RightToc } from "@/components/docs/RightToc";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "IndentCitation",
+  description: "Família de blocos de citação indentados com borda colorida à esquerda. O módulo exporta quatro componentes: IndentCitation , IndentCitationBg ,…",
+  alternates: { canonical: "/docs/components/indentcitation" },
+};
+
 const TOC_ENTRIES = [
   { id: "visao-geral", label: "Visão geral" },
   { id: "preview", label: "Visualização" },
