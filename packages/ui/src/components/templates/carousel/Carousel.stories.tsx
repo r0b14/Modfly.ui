@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Carousel } from "./index";
+import { Carousel } from "@modfly/ui";
 
 const meta: Meta<typeof Carousel> = {
   title: "Templates/Carousel",

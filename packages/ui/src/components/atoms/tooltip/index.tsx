@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useState, ReactNode, useRef, useLayoutEffect, useEffect, useId } from 'react';
 
 export interface TooltipProps {
   content: string | ReactNode;
@@ -22,6 +22,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
   bgColor = '#FFDB70',
   reference,
 }) => {
+  const tooltipId = useId();
+  const patternId = useId();
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ left: 0, top: 0, transform: '' });
   const [arrowPosition, setArrowPosition] = useState({ left: '50%' });
@@ -59,7 +61,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
     let left = 0;
     let top = trigger.top - tooltipHeight - arrowHeight - spacing;
-    let transform = '';
+    const transform = '';
 
     // Calcular posição horizontal inicial baseado na preferência
     if (window.innerWidth <= 768) {
@@ -92,7 +94,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     let arrowLeft = triggerCenter - tooltipLeft;
 
     // Garantir que a seta não saia dos limites do tooltip
-    const arrowMinPosition = 19; 
+    const arrowMinPosition = 19;
     const arrowMaxPosition = tooltipWidth - 19;
 
     if (arrowLeft < arrowMinPosition) {
@@ -157,6 +159,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
             position: 'relative',
             zIndex: 10,
           }}
+          role="button" tabIndex={0} aria-expanded={isVisible} aria-describedby={isVisible ? tooltipId : undefined}
+          onFocus={() => setIsVisible(true)} onBlur={() => setIsVisible(false)}
+          onKeyDown={e => { if (e.key === "Escape") setIsVisible(false); else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setIsVisible(v => !v); } }}
+          onClick={() => setIsVisible(v => !v)}
           onMouseEnter={() => setIsVisible(true)}
           onMouseLeave={() => setIsVisible(false)}
         >
@@ -172,7 +178,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
             }}
           >
             <pattern
-              id="dotted-underline"
+              id={patternId}
               x="0"
               y="0"
               width="8"
@@ -181,13 +187,13 @@ export const Tooltip: React.FC<TooltipProps> = ({
             >
               <circle cx="1.5" cy="1.5" r="1.5" fill="#285C93" />
             </pattern>
-            <rect x="0" y="0" width="100%" height="3" fill="url(#dotted-underline)" />
+            <rect x="0" y="0" width="100%" height="3" fill={`url(#${patternId})`} />
           </svg>
         </span>
 
         {isVisible && (
           <div
-            ref={tooltipRef}
+            ref={tooltipRef} id={tooltipId} role="tooltip"
             style={{
               position: 'fixed',
               zIndex: 50,

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Check } from "./index";
+import { Check } from "@modfly/ui";
 
 const meta: Meta<typeof Check> = {
   title: "Atoms/Check",

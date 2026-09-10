@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { HistoryTopics } from "./index";
+import { HistoryTopics } from "@modfly/ui";
 
 const meta: Meta<typeof HistoryTopics> = {
   title: "Organisms/HistoryTopics",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // Assets
 import bottomBlue from "./assets/bottomBlue.svg";
@@ -30,7 +30,7 @@ export const CardFlip: React.FC<CardFlipProps> = ({ cardFlipData }) => {
     <div className="flex flex-col items-center px-4 w-full my-10">
       <div className="flex md:flex-row flex-col flex-wrap gap-10 mb-10 justify-center relative max-w-[900px] w-full">
         {cardFlipData.map(
-          ([nome, texto, imagemURL, tipo, textoExpandido], index) => {
+          ([nome, _texto, imagemURL, tipo, textoExpandido], index) => {
             const isFlipped = flippedIndex === index;
             const isHovered = hoveredIndex === index;
             const frontBgColor = getFrontBgColor(tipo);
@@ -53,7 +53,8 @@ export const CardFlip: React.FC<CardFlipProps> = ({ cardFlipData }) => {
                   {/* FRENTE DO CARD */}
                   <div
                     className={`absolute w-full h-full rounded-[40px] shadow-lg overflow-hidden ${frontBgColor} flex flex-col`}
-                    style={{ backfaceVisibility: "hidden" }}
+                    aria-hidden={isFlipped}
+                    style={{ backfaceVisibility: "hidden", visibility: isFlipped ? "hidden" : "visible" }}
                   >
                     <div className="px-4 md:px-6 pt-6 md:pt-8 pb-4 md:pb-6">
                       <h3 className="text-center leading-tight text-[20px] md:text-[28px] font-bold text-black">
@@ -73,6 +74,10 @@ export const CardFlip: React.FC<CardFlipProps> = ({ cardFlipData }) => {
 
                     <div
                       className="px-4 md:px-10 pb-6 md:pb-10 pt-4 md:pt-6 flex justify-center cursor-pointer"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={isFlipped ? `Voltar ao cartão ${nome}` : `Virar cartão ${nome}`}
+                      onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleFlip(index); } }}
                       onClick={() => handleFlip(index)}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(null)}
@@ -91,9 +96,14 @@ export const CardFlip: React.FC<CardFlipProps> = ({ cardFlipData }) => {
                     className="absolute w-full h-full rounded-[40px] shadow-lg bg-[#FAEBC2] cursor-pointer overflow-hidden"
                     style={{
                       backfaceVisibility: "hidden",
+                      visibility: isFlipped ? "visible" : "hidden",
                       transform: "rotateY(180deg)",
                     }}
-                    onClick={() => handleFlip(index)}
+                    role="button"
+                      tabIndex={0}
+                      aria-label={isFlipped ? `Voltar ao cartão ${nome}` : `Virar cartão ${nome}`}
+                      onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); handleFlip(index); } }}
+                      onClick={() => handleFlip(index)}
                   >
                     <div className="p-8 h-full flex flex-col pb-[70px]">
                       <div

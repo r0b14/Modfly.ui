@@ -1,0 +1,23 @@
+'use client';
+// Gerado por pnpm docs:generate a partir da story original.
+import { QuoteText } from "@modfly/ui";
+const meta = {
+    title: "Molecules/QuoteText",
+    component: QuoteText,
+    tags: ["autodocs"],
+};
+export default meta;
+export const Default = {
+    args: {
+        specText: "quote-text-1",
+        children: "A educação é o processo de viver e não uma preparação para a vida futura.",
+    },
+};
+export const TelaCheia = {
+    name: "Tela cheia",
+    args: {
+        specText: "quote-text-2",
+        fullScreen: true,
+        children: "Com fullScreen, o bloco ocupa 100% da largura disponível em vez de 80%.",
+    },
+};

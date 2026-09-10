@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { QuestionReflect } from "./index";
+import { QuestionReflect } from "@modfly/ui";
 
 const meta: Meta<typeof QuestionReflect> = {
   title: "Molecules/QuestionReflect",

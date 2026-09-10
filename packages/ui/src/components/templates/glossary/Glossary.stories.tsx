@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Glossary } from "./index";
+import { Glossary } from "@modfly/ui";
 
 const meta: Meta<typeof Glossary> = {
   title: "Templates/Glossary",

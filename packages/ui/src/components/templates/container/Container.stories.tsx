@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Container } from "./index";
+import { Container } from "@modfly/ui";
 
 const meta: Meta<typeof Container> = {
   title: "Templates/Container",

@@ -27,3 +27,11 @@ pnpm-debug.log*
 # Storybook
 /storybook-static
 capturas-telas
+
+**/storybook-static/
+playwright-report/
+test-results/
+artifacts/
+*.tsbuildinfo
+
+packages/cli/registry/

@@ -1,6 +1,6 @@
 import React from 'react';
-import backButton from './assets/back.svg';
-import nextButton from './assets/next.svg';
+import backButton from './assets/back.svg?url';
+import nextButton from './assets/next.svg?url';
 
 export interface PaginationProps {
   numberOfPages: number;
@@ -47,13 +47,13 @@ export const Pagination: React.FC<PaginationProps> = ({
           {title}
         </div>
       )}
-      
+
       <div className="flex flex-col-reverse sm:flex-row items-center gap-8 md:gap-12">
         {/* Back Button */}
-        <button
+        <button type="button"
           className="flex justify-start items-center gap-3 h-[70px] w-[195px] bg-white px-3 rounded-[35px] font-bold text-xl text-[#285C93] shadow-md transition-all hover:scale-105 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
           onClick={handlePrev}
-          disabled={currentPage === 1 && !onPrev}
+          disabled={currentPage <= 1 && !onPrev}
         >
           <div className="bg-[#285C93] h-[50px] w-[50px] flex items-center justify-center rounded-full shrink-0">
             <img src={backButton} alt="" className="w-6 h-6 mr-1" />
@@ -65,8 +65,10 @@ export const Pagination: React.FC<PaginationProps> = ({
         {showNumbers && (
           <div className="flex justify-center flex-wrap gap-3 px-4 max-w-[700px]">
             {Array.from({ length: numberOfPages }, (_, i) => i + 1).map((page) => (
-              <button
+              <button type="button"
                 key={page}
+                aria-current={page === currentPage ? "page" : undefined}
+                aria-label={`Página ${page}`}
                 className={`w-[50px] h-[50px] rounded-full flex justify-center items-center text-lg font-bold transition-all shadow-sm ${
                   page === currentPage
                     ? 'bg-[#FFB861] text-[#285C93] border-[3px] border-[#285C93] scale-110'
@@ -81,10 +83,10 @@ export const Pagination: React.FC<PaginationProps> = ({
         )}
 
         {/* Next Button */}
-        <button
+        <button type="button"
           className="flex justify-end items-center gap-3 h-[70px] w-[195px] bg-white px-3 rounded-[35px] font-bold text-xl text-[#285C93] shadow-md transition-all hover:scale-105 active:scale-95 disabled:opacity-30 disabled:cursor-not-allowed"
           onClick={handleNext}
-          disabled={currentPage === numberOfPages && !onNext}
+          disabled={currentPage >= numberOfPages && !onNext}
         >
           <span>PRÓXIMO</span>
           <div className="bg-[#285C93] h-[50px] w-[50px] flex items-center justify-center rounded-full shrink-0">

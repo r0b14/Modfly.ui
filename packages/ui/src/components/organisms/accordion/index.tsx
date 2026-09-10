@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 import { styleAccordionBox, styleAccordionContent } from "./Accordion.styles";
 import { courseAccordionAssets, type CourseVariant } from "./assets";
 
 // Assets
-import sun from "./assets/sun.svg";
+import sun from "./assets/sun.svg?url";
 import ArrowDownYellow from "./assets/arrowDownYellow.png";
 import ArrowDownBlue from "./assets/arrowDownBlue.png";
 import ArrowDownWhite from "./assets/arrowDownWhite.png";
@@ -21,7 +21,7 @@ import background5 from "./assets/background5.svg";
 import background6 from "./assets/background6.svg";
 import background8 from "./assets/background8.svg";
 import background8mobile from "./assets/background8Mobile.svg";
-import background10 from "./assets/background10.svg";
+import background10 from "./assets/background10.svg?url";
 
 import background2_open from "./assets/background2_open.png";
 import background3_open from "./assets/background3_open.png";
@@ -31,7 +31,7 @@ import background6_open from "./assets/background6_open.svg";
 import background8_open from "./assets/background8_open.svg";
 import background8mobile_open from "./assets/background8_openMobile.svg";
 
-import detailBg8 from "./assets/detailBg8.svg";
+import detailBg8 from "./assets/detailBg8.svg?url";
 import bgSunEDC from "./assets/bgSunEDC.svg";
 import bgSunEDCMobile from "./assets/bgSunEDCMobile.svg";
 
@@ -179,6 +179,12 @@ export interface AccordionProps {
   course?: CourseVariant;
 }
 
+function contrastColor(hex: string) {
+  const channels = [1, 3, 5].map(offset => parseInt(hex.slice(offset, offset + 2), 16) / 255).map(value => value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+  const luminance = channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
+  return luminance > 0.179 ? '#000000' : '#FFFFFF';
+}
+
 const idxFromBg = (bgColor: number) => {
   const i = (bgColor - 13) % backgroundCorHeaderClosed.length;
   return i < 0 ? 0 : i;
@@ -244,6 +250,11 @@ export const Accordion: React.FC<AccordionProps> = ({
 }) => {
   const isMobile = useMediaQuery("(max-width: 660px)");
   const [isOpen, setIsOpen] = useState(false);
+  const panelId = useId();
+  // Cores de base das ilustrações: o contraste de imagens não é detectado por axe.
+  const imageBackgrounds: Record<number, string> = { 1: '#165315', 2: '#ED8041', 3: '#44A939', 4: '#285C93', 5: '#ED8041', 6: '#44A939', 7: '#FAEBC2', 8: '#FAEBC2', 9: '#FAA5CC', 10: '#2A6B13', 11: '#EA8914', 12: '#3A7AC5' };
+  const imageTitleColor = contrastColor(course ? (isOpen ? '#F6ECBD' : '#670098') : imageBackgrounds[bgColor] ?? '#FFFFFF');
+  const triggerProps = { role: "button", tabIndex: 0, "aria-expanded": isOpen, "aria-controls": panelId, onKeyDown: (event: React.KeyboardEvent) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setIsOpen(open => !open); } } };
 
   // Renderização pelo sistema de cursos (pce, e futuros)
   if (course) {
@@ -256,11 +267,12 @@ export const Accordion: React.FC<AccordionProps> = ({
         >
           <div
             className="relative z-20 flex justify-between w-full items-center cursor-pointer"
+            {...triggerProps}
             onClick={() => setIsOpen(!isOpen)}
             style={{
               height: headerHeight ?? "100px",
               padding: "0 24px",
-              color: isOpen ? titleColor2 : titleColor,
+              color: (isOpen ? titleColor2 : titleColor) ?? imageTitleColor,
             }}
           >
             <AssetBg
@@ -281,7 +293,7 @@ export const Accordion: React.FC<AccordionProps> = ({
             />
           </div>
           <div
-            className="overflow-hidden z-20"
+            id={panelId} hidden={!isOpen} className="overflow-hidden z-20"
             style={{
               maxHeight: isOpen ? "3300px" : "0px",
               opacity: isOpen ? 1 : 0,
@@ -300,7 +312,7 @@ export const Accordion: React.FC<AccordionProps> = ({
 
   const sizeVariation = isMobile ? "500px" : variant === "dynamic" ? "950px" : "";
   const headerMargin = bgColor === 7 ? (isMobile ? "0" : "0px auto") : "0px";
-  const headerPadding = bgColor === 7 ? (isMobile ? "0 0px 0 75px" : "0 50px 0 90px") :
+  const headerPadding = sidePadding ? `0 ${sidePadding}` : bgColor === 7 ? (isMobile ? "0 0px 0 75px" : "0 50px 0 90px") :
                         (bgColor >= 9 && bgColor <= 12) ? "0 20px 0 30px" :
                         variant === "dynamic" ? "0 24px 0 120px" : "0 24px";
 
@@ -324,10 +336,11 @@ export const Accordion: React.FC<AccordionProps> = ({
           bgColor === 7 ? (
             <div
               className="relative w-full"
-              onClick={() => setIsOpen(!isOpen)}
+              {...triggerProps}
+            onClick={() => setIsOpen(!isOpen)}
               style={{
                 padding: headerPadding, margin: headerMargin,
-                height: headerHeight, color: isOpen ? titleColor2 : titleColor,
+                height: headerHeight, color: (isOpen ? titleColor2 : titleColor) ?? imageTitleColor,
               }}
             >
               <Asset
@@ -363,10 +376,11 @@ export const Accordion: React.FC<AccordionProps> = ({
           ) : (
             <div
               className="relative z-20 flex justify-between w-full items-center cursor-pointer"
-              onClick={() => setIsOpen(!isOpen)}
+              {...triggerProps}
+            onClick={() => setIsOpen(!isOpen)}
               style={{
                 padding: headerPadding, margin: headerMargin,
-                height: headerHeight ?? "100px", color: isOpen ? titleColor2 : titleColor,
+                height: headerHeight ?? "100px", color: (isOpen ? titleColor2 : titleColor) ?? imageTitleColor,
               }}
             >
               <AssetBg
@@ -399,10 +413,11 @@ export const Accordion: React.FC<AccordionProps> = ({
             <Asset src={background10} className="z-10 w-full h-auto block" />
             <div
               className="relative z-20 flex justify-between w-full items-center cursor-pointer"
-              onClick={() => setIsOpen(!isOpen)}
+              {...triggerProps}
+            onClick={() => setIsOpen(!isOpen)}
               style={{
                 padding: "0 24px", background: custom ? custom.bg : (isOpen ? "#CEE6C5" : "#4E9236"),
-                color: isOpen ? titleColor2 : titleColor,
+                color: (isOpen ? titleColor2 : titleColor) ?? contrastColor(custom?.bg ?? "#4E9236"),
               }}
             >
               <h2 className="leading-snug ml-4 text-[18px] sm:text-[24px] py-4 font-semibold" style={{ color: "inherit" }}>
@@ -423,7 +438,7 @@ export const Accordion: React.FC<AccordionProps> = ({
         )}
 
         <div
-          className="overflow-hidden z-20"
+          id={panelId} hidden={!isOpen} className="overflow-hidden z-20"
           style={{
             background: bgInsideColor, maxHeight: isOpen ? "3300px" : "0px",
             marginTop: bgColor === 7 ? "-32px" : bgColor === 8 ? "-42px" : "0px",

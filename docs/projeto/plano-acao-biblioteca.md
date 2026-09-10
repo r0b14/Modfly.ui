@@ -1,3 +1,5 @@
+> **Registro histórico anterior à v1.1.** Inventários, comandos e status abaixo podem estar superados. Consulte o [README atual](../../README.md) e o [relatório da v1.1](../projeto/entrega-v1.1.md).
+
 # Plano de Ação — Modfly UI
 
 ### Biblioteca de componentes para cursos e-learning

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Quotes } from "./index";
+import { Quotes } from "@modfly/ui";
 
 const meta: Meta<typeof Quotes> = {
   title: "Molecules/Quotes",

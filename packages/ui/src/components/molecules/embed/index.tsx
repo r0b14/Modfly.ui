@@ -39,9 +39,10 @@ export const Embed: React.FC<EmbedProps> = ({
     }
   }, [isReels, link]);
 
-  const [windowWidth, setWindowWidth] = useState<number>(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const [windowWidth, setWindowWidth] = useState<number>(1200);
   useEffect(() => {
     const onResize = () => setWindowWidth(window.innerWidth);
+    onResize();
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -60,12 +61,12 @@ export const Embed: React.FC<EmbedProps> = ({
           <div className="text-[#333333]">{text}</div>
         </div>
       )}
-      
+
       {!isOnlyText && isReels && link && (
         <div className="mb-10" style={{ width: chosenWidth, height }}>
-          <blockquote 
-            className="instagram-media" 
-            data-instgrm-permalink={link} 
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink={link}
             data-instgrm-version="14"
             style={{
               background: '#FFF',

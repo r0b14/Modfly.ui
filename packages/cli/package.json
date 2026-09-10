@@ -1,0 +1,8 @@
+{
+  "name": "modfly", "version": "1.1.0", "description": "Copie componentes pedagógicos React e TypeScript para seu projeto.",
+  "type": "module", "license": "MIT", "bin": { "modfly": "src/cli.mjs" }, "engines": { "node": ">=22.14.0" },
+  "files": ["src", "registry", "README.md", "LICENSE"], "publishConfig": { "access": "public" },
+  "repository": { "type": "git", "url": "git+https://github.com/r0b14/Modfly.ui.git", "directory": "packages/cli" },
+  "scripts": { "build": "node ../../scripts/build-registry.mjs && node ../../scripts/package-metadata.mjs", "typecheck": "node --check src/cli.mjs" },
+  "devDependencies": { "@modfly/ui": "workspace:*", "@modfly/ui-avamec": "workspace:*" }
+}

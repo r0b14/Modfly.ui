@@ -1,3 +1,5 @@
+> **Registro histórico anterior à v1.1.** Inventários, comandos e status abaixo podem estar superados. Consulte o [README atual](../../README.md) e o [relatório da v1.1](../projeto/entrega-v1.1.md).
+
 # Arquitetura Modfy UI (Monorepo)
 
 Este projeto utiliza uma estrutura de **Monorepo** gerenciada por **pnpm workspaces** e **Turborepo**. Essa arquitetura permite que a biblioteca de componentes, a documentação e os templates de cursos coexistam no mesmo repositório de forma organizada e eficiente.

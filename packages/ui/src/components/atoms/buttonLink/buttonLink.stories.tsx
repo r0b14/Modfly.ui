@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ButtonLink } from "./index";
+import { ButtonLink } from "@modfly/ui";
 
 const meta: Meta<typeof ButtonLink> = {
   title: "Atoms/ButtonLink",
@@ -48,3 +48,21 @@ export const Rosa: Story = {
     href: "#",
   },
 };
+
+export const Acao1Cor1: Story = { args: { variant: 1, colorScheme: 1, text: "Explorar conteúdo" } };
+
+export const Acao1Cor2: Story = { args: { variant: 1, colorScheme: 2, text: "Explorar conteúdo" } };
+
+export const Acao1Cor3: Story = { args: { variant: 1, colorScheme: 3, text: "Explorar conteúdo" } };
+
+export const Acao2Cor1: Story = { args: { variant: 2, colorScheme: 1, text: "Explorar conteúdo" } };
+
+export const Acao2Cor2: Story = { args: { variant: 2, colorScheme: 2, text: "Explorar conteúdo" } };
+
+export const Acao2Cor3: Story = { args: { variant: 2, colorScheme: 3, text: "Explorar conteúdo" } };
+
+export const Acao3Cor1: Story = { args: { variant: 3, colorScheme: 1, text: "Explorar conteúdo" } };
+
+export const Acao3Cor2: Story = { args: { variant: 3, colorScheme: 2, text: "Explorar conteúdo" } };
+
+export const Acao3Cor3: Story = { args: { variant: 3, colorScheme: 3, text: "Explorar conteúdo" } };

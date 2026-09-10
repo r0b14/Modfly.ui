@@ -1,3 +1,5 @@
+> **Registro histórico anterior à v1.1.** Inventários, comandos e status abaixo podem estar superados. Consulte o [README atual](../../README.md) e o [relatório da v1.1](../projeto/entrega-v1.1.md).
+
 # Issues Planejadas para Modfly UI v1
 
 Este documento contém a lista de issues estruturadas para o lançamento da versão 1.0.0, focando em Infraestrutura, Migração e Documentação.

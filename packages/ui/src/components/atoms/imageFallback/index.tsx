@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export interface ImageFallbackProps {
   src: string; // Imagem WEBP (principal)
@@ -17,6 +17,10 @@ export const ImageFallback: React.FC<ImageFallbackProps> = ({
   alt = "",
   className = "",
 }) => {
+  const [failed, setFailed] = useState(false);
+  useEffect(() => setFailed(false), [src, fallback]);
+  const image = failed ? fallback : src || fallback;
+  if (!image) return null;
   const style: React.CSSProperties = {
     maxWidth,
     margin: imgCenter ? '0 auto' : undefined,
@@ -25,9 +29,10 @@ export const ImageFallback: React.FC<ImageFallbackProps> = ({
 
   return (
     <picture className={className}>
-      <source srcSet={src} type="image/webp" />
+
       <img
-        src={fallback}
+        src={image}
+        onError={() => { if (!failed && fallback && fallback !== image) setFailed(true); }}
         alt={alt}
         style={style}
         className="w-full h-auto"

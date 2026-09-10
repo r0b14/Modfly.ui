@@ -1,0 +1,58 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: Canal de publicação
+        type: choice
+        options: [next, latest]
+        default: next
+        required: true
+      homologation:
+        description: URL da evidência de homologação (obrigatória para latest)
+        type: string
+        required: false
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: modfly-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    environment: npm-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.0.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.2
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+      - name: Verificar canal estável
+        env:
+          RELEASE_CHANNEL: ${{ inputs.channel }}
+          HOMOLOGATION_URL: ${{ inputs.homologation }}
+        run: node -e "if(process.env.RELEASE_CHANNEL === 'latest' && !/^https:\/\//.test(process.env.HOMOLOGATION_URL || '')) process.exit(1)"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - run: pnpm test:packages
+      - name: Preparar candidata
+        if: inputs.channel == 'next'
+        run: node scripts/candidate-version.mjs
+      - name: Reconstruir catálogo da candidata
+        if: inputs.channel == 'next'
+        run: pnpm --filter modfly build
+      - name: Publicar
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_CHANNEL: ${{ inputs.channel }}
+        run: |
+          for package in ui ui-avamec cli; do
+            (cd "packages/$package" && npm publish --access public --tag "$RELEASE_CHANNEL")
+          done

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ButtonPdfDownload } from "./index";
+import { ButtonPdfDownload } from "@modfly/ui";
 
 const meta: Meta<typeof ButtonPdfDownload> = {
   title: "Atoms/ButtonPdfDownload",

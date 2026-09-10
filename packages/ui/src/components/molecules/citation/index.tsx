@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 
 export interface CitationProps {
   title?: string;
@@ -8,6 +8,7 @@ export interface CitationProps {
 }
 
 function BookGreenIcon({ className }: { className?: string }) {
+  const clipId = useId();
   return (
     <svg
       width="110"
@@ -18,7 +19,7 @@ function BookGreenIcon({ className }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      <g clipPath="url(#citation-clip-green)">
+      <g clipPath={`url(#${clipId})`}>
         <path d="M43.9019 75.7437L48.3944 49.1924L0.5 89.5203H27.7518C35.3593 89.5203 42.6193 83.3252 43.9019 75.7437Z" fill="#225C1C" />
         <path d="M7.324 49.1918L0.5 89.5198L48.3944 49.1855H7.324V49.1918Z" fill="#487E42" />
         <path d="M49.4688 13.5771C29.7487 13.5771 10.8815 29.5218 7.32422 49.191H26.5831C28.4723 38.7482 38.4935 30.278 48.9633 30.278H51.8129L54.8332 13.5771H49.4688Z" fill="#225C1C" />
@@ -27,7 +28,7 @@ function BookGreenIcon({ className }: { className?: string }) {
         <path d="M103.969 0C84.2487 0 65.3815 15.9446 61.8242 35.6139H81.0831C82.9723 25.1711 92.9935 16.7009 103.463 16.7009H106.313L109.333 0H103.969Z" fill="#225C1C" />
       </g>
       <defs>
-        <clipPath id="citation-clip-green">
+        <clipPath id={clipId}>
           <rect width="109" height="90" fill="white" transform="translate(0.5)" />
         </clipPath>
       </defs>
@@ -36,6 +37,7 @@ function BookGreenIcon({ className }: { className?: string }) {
 }
 
 function BookYellowIcon({ className }: { className?: string }) {
+  const clipId = useId();
   return (
     <svg
       width="110"
@@ -46,7 +48,7 @@ function BookYellowIcon({ className }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      <g clipPath="url(#citation-clip-yellow)">
+      <g clipPath={`url(#${clipId})`}>
         <path d="M43.9019 75.7437L48.3944 49.1924L0.5 89.5203H27.7518C35.3593 89.5203 42.6193 83.3252 43.9019 75.7437Z" fill="#B8860B" />
         <path d="M7.324 49.1918L0.5 89.5198L48.3944 49.1855H7.324V49.1918Z" fill="#F5C542" />
         <path d="M49.4688 13.5771C29.7487 13.5771 10.8815 29.5218 7.32422 49.191H26.5831C28.4723 38.7482 38.4935 30.278 48.9633 30.278H51.8129L54.8332 13.5771H49.4688Z" fill="#B8860B" />
@@ -55,7 +57,7 @@ function BookYellowIcon({ className }: { className?: string }) {
         <path d="M103.969 0C84.2487 0 65.3815 15.9446 61.8242 35.6139H81.0831C82.9723 25.1711 92.9935 16.7009 103.463 16.7009H106.313L109.333 0H103.969Z" fill="#B8860B" />
       </g>
       <defs>
-        <clipPath id="citation-clip-yellow">
+        <clipPath id={clipId}>
           <rect width="109" height="90" fill="white" transform="translate(0.5)" />
         </clipPath>
       </defs>

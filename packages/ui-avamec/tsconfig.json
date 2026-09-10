@@ -1,0 +1,1 @@
+{ "extends": "@modfly/tsconfig/react-library.json", "include": ["src"], "exclude": ["src/**/*.stories.tsx"] }

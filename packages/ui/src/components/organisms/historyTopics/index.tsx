@@ -1,7 +1,7 @@
 import React from 'react';
-import img1 from './assets/img1.svg';
-import img2 from './assets/img2.svg';
-import img3 from './assets/img3.svg';
+import img1 from './assets/img1.svg?url';
+import img2 from './assets/img2.svg?url';
+import img3 from './assets/img3.svg?url';
 
 export interface HistoryTopicsProps {
   text1: string;
@@ -24,7 +24,7 @@ export const HistoryTopics: React.FC<HistoryTopicsProps> = ({
   text333,
   lineColor = "#6CA3E8"
 }) => {
-  
+
   return (
     <div className="w-full max-w-[1250px] mx-auto my-10 px-4">
       {/* Geração 1 */}
@@ -40,7 +40,7 @@ export const HistoryTopics: React.FC<HistoryTopicsProps> = ({
 
       {/* Linha Vertical e Conteúdo Intermediário */}
       <div className="sm:border-l-4 border-dashed ml-[5%] pl-[5%] py-10 my-[-20px] relative z-0" style={{ borderLeftColor: lineColor }}>
-        
+
         {/* Detalhe 1.1 */}
         <div className="flex items-center my-10">
           <div className="sm:border-b-4 border-dashed hidden sm:block w-[15%]" style={{ borderBottomColor: lineColor }} />

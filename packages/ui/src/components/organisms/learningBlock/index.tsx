@@ -43,8 +43,8 @@ import BottomQuestaoMobile from "./assets/QuestoesQueNaoQueremCalar/BottomMobile
 import TopQuestaoMobileMenor from "./assets/QuestoesQueNaoQueremCalar/TopMobile.svg";
 import BottomQuestaoMobileMenor from "./assets/QuestoesQueNaoQueremCalar/Bottom.svg";
 
-import iconVariant8 from "./assets/Variant8/iconVariant8.svg";
-import valeaPenaIcon from "./assets/ValeaPenaExplicar/valeaPenaTopo.svg";
+import iconVariant8 from "./assets/Variant8/iconVariant8.svg?url";
+import valeaPenaIcon from "./assets/ValeaPenaExplicar/valeaPenaTopo.svg?url";
 
 export interface LearningBlockProps {
   children?: React.ReactNode;
@@ -57,17 +57,17 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
   children,
   variant = 1,
   maxWidth,
-  borderColor = "#4A90E2",
+  borderColor,
 }) => {
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  const [windowWidth, setWindowWidth] = useState(1200);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isDesktop = windowWidth >= 768;
   const isMobile = windowWidth < 768 && windowWidth >= 640;
   const isMobileMenor = windowWidth < 640;
 
@@ -98,12 +98,12 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
         </div>
       );
   }
-  
+
   // Variant 8
   if (variant === 8) {
     return (
       <div className="max-w-[986px] mx-auto my-10">
-        <div 
+        <div
           className="px-10 pt-3 pb-5"
           style={{
             borderStyle: "solid",
@@ -128,7 +128,7 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
   if (variant === 10) {
     return (
       <div className="max-w-[986px] mx-auto my-10">
-        <div 
+        <div
           className="px-10 pt-3 pb-5"
           style={{
             borderStyle: "solid",
@@ -193,6 +193,7 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
   if (!BottomSVG) return null;
 
   const finalContainerStyle: React.CSSProperties = {
+    border: borderColor ? `2px solid ${borderColor}` : undefined,
     maxWidth: typeof maxWidth === "number" ? `${maxWidth}px` : maxWidth,
     margin: "0 auto",
   };

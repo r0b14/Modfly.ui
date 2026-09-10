@@ -1,0 +1,17 @@
+.modfly-question { border: 1px solid #9eafbd; border-radius: 12px; padding: 24px; margin: 24px 0; color: #16344c; background: #fff; min-width: 0; }
+.modfly-question legend { font-weight: 700; padding: 0 8px; max-width: 100%; }
+.modfly-option { display: flex; align-items: start; gap: 12px; padding: 12px; cursor: pointer; }
+.modfly-option input { margin-top: 5px; accent-color: #285c93; }
+.modfly-written, .modfly-row { display: grid; gap: 8px; margin: 12px 0; }
+.modfly-question :where(textarea,select) { width: 100%; border: 1px solid #748798; border-radius: 6px; background: white; color: #16344c; padding: 10px; font: inherit; box-sizing: border-box; }
+.modfly-question:disabled { opacity: .85; }
+.modfly-question:disabled .modfly-option { cursor: default; }
+.modfly-bank { display: flex; flex-wrap: wrap; gap: 12px; }
+.modfly-bank span { border: 1px dashed #285c93; padding: 8px 16px; cursor: grab; border-radius: 6px; }
+.modfly-correct { color: #225c1c; font-weight: 600; }
+.modfly-incorrect, .modfly-actions [role=alert] { color: #a12020; }
+.modfly-actions { display: grid; gap: 12px; margin: 24px 0; }
+.modfly-actions button { background: #285c93; color: white; border: 0; border-radius: 8px; padding: 12px 20px; cursor: pointer; font: inherit; }
+.modfly-actions button:disabled { opacity: .6; cursor: default; }
+:where(.modfly-question, .modfly-actions) :focus-visible { outline: 3px solid #a65014; outline-offset: 3px; }
+@media (max-width: 480px) { .modfly-question { padding: 16px 12px; } }
